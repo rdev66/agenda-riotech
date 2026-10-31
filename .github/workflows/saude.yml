@@ -1,0 +1,22 @@
+name: Saúde da agenda
+on:
+  schedule:
+    - cron: "30 11 * * 1"   # 08:30 no Rio, segunda-feira
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+jobs:
+  saude:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Publicar relatório
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: python scripts/saude.py

@@ -9,6 +9,7 @@ Fontes:
 Regras:
   - Nunca sobrescreve um campo já preenchido à mão: só completa campos vazios.
   - Eventos passados e fora do Rio (que não sejam online) ficam de fora.
+  - URLs em data/descartados.json não entram de novo.
   - Do WhatsApp só se guardam links: nada de nomes, telefones ou mensagens.
 
 Só usa a biblioteca padrão do Python (3.10+).
@@ -25,6 +26,8 @@ import unicodedata
 import urllib.parse
 import urllib.request
 from pathlib import Path
+
+import validar
 
 ROOT = Path(__file__).resolve().parents[1]
 EVENTS = ROOT / "data" / "events.json"
@@ -335,14 +338,82 @@ def whatsapp_links(path: Path, since: dt.date | None = None) -> list[str]:
 
 
 # ------------------------------------------------------------------ mescla
+RODAPE = "Para descartar um evento, acrescente a URL dele em data/descartados.json neste mesmo PR."
+
+RIO_CITY = re.compile(
+    r"rio de janeiro|\brj\b|niter[oó]i|duque de caxias|nova igua[cç]u|petr[oó]polis",
+    re.I,
+)
+
+
 def key_of(e: dict) -> tuple:
     return (e.get("url") or "").lower(), slug(e.get("title") or ""), (e.get("start") or "")[:10]
 
 
-def merge(existing: list[dict], new: dict, today: dt.date) -> str:
-    """Devolve 'novo', 'completado', 'igual' ou o motivo de ter ficado de fora."""
+def cidade_rio(city: str | None) -> bool:
+    return bool(city and RIO_CITY.search(city))
+
+
+def _palavras_tech() -> list[str]:
+    tags = json.loads(TAGS.read_text(encoding="utf-8"))["tags"]
+    words: set[str] = set()
+    for tid, labels in tags.items():
+        words.add(str(tid).lower())
+        words.add(str(tid).lower().replace("-", " "))
+        if isinstance(labels, dict):
+            for lab in labels.values():
+                texto = str(lab).strip().lower()
+                if texto:
+                    words.add(texto)
+    return [w for w in words if w]
+
+
+def parece_tech(ev: dict) -> bool:
+    """Há alguma palavra do vocabulário de tags no título ou na descrição."""
+    partes = [ev.get("title") or ""]
+    desc = ev.get("description") or {}
+    if isinstance(desc, dict):
+        partes.extend(str(v) for v in desc.values() if v)
+    elif isinstance(desc, str):
+        partes.append(desc)
+    texto = " ".join(partes).lower()
+    for palavra in _palavras_tech():
+        if re.search(r"(?<!\w)" + re.escape(palavra) + r"(?!\w)", texto):
+            return True
+    return False
+
+
+def bloco_novo(ev: dict, url: str) -> str:
+    lugar = " · ".join(p for p in (ev.get("venue"), ev.get("address"), ev.get("city")) if p) or "—"
+    fonte = ev.get("source") or urllib.parse.urlsplit(ev.get("url") or url or "").netloc.replace("www.", "") or "—"
+    tags = ", ".join(ev.get("tags") or []) or "—"
+    linhas = [
+        f"### {ev.get('title') or 'Sem título'}",
+        "",
+        f"- Data: {(ev.get('start') or 'sem data')[:16]}",
+        f"- Lugar: {lugar}",
+        f"- Fonte: {fonte}",
+        f"- Link: {ev.get('url') or url}",
+        f"- Tags: {tags}",
+    ]
+    avisos = []
+    if not parece_tech(ev):
+        avisos.append("não parece tech")
+    if not cidade_rio(ev.get("city")):
+        avisos.append("cidade não é Rio")
+    if avisos:
+        linhas.append("- ⚠️ revisar: " + "; ".join(avisos))
+    return "\n".join(linhas)
+
+
+def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str] | None = None) -> str:
+    """Devolve 'novo', 'completado', 'igual', 'descartado' ou o motivo de ter ficado de fora."""
+    if descartadas is None:
+        descartadas = validar.chaves_descartadas()
     if not new.get("title"):
         return "sem título"
+    if validar.url_chave(new.get("url") or "") in descartadas:
+        return "descartado"
     start = new.get("start")
     if not start:
         return "sem data na página (adicione à mão)"
@@ -362,8 +433,7 @@ def merge(existing: list[dict], new: dict, today: dt.date) -> str:
                     changed = True
             return "completado" if changed else "igual"
 
-    city = (new.get("city") or "").lower()
-    if new.get("format") != "online" and city and not re.search(r"rio de janeiro|\brj\b|niter[oó]i|duque de caxias|nova igua[cç]u|petr[oó]polis", city):
+    if new.get("format") != "online" and (new.get("city") or "") and not cidade_rio(new.get("city")):
         return "fora do Rio"
     new = dict(new)
     new["city"] = new.get("city") or "Rio de Janeiro"
@@ -390,6 +460,7 @@ def main(argv=None) -> int:
     data = json.loads(EVENTS.read_text(encoding="utf-8"))
     events = data["events"]
     report: list[str] = []
+    descartadas = validar.chaves_descartadas()
 
     urls = list(args.url)
     if args.whatsapp:
@@ -400,6 +471,9 @@ def main(argv=None) -> int:
 
     candidates: list[tuple[str, dict | None, str | None]] = []
     for u in urls:
+        if validar.url_chave(u) in descartadas:
+            candidates.append((u, None, "descartado"))
+            continue
         try:
             candidates.append((u, event_from_url(u), None))
         except Exception as exc:  # noqa: BLE001
@@ -415,16 +489,29 @@ def main(argv=None) -> int:
                         ev["source"] = f.get("nome")
                         candidates.append((ev.get("url") or f["url"], ev, None))
                 elif f["tipo"] == "url":
-                    candidates.append((f["url"], event_from_url(f["url"]), None))
+                    if validar.url_chave(f["url"]) in descartadas:
+                        candidates.append((f["url"], None, "descartado"))
+                    else:
+                        candidates.append((f["url"], event_from_url(f["url"]), None))
             except Exception as exc:  # noqa: BLE001
                 report.append(f"⚠️ Fonte «{f.get('nome')}» falhou: {exc.__class__.__name__}")
 
     counts: dict[str, int] = {}
     for url, ev, err in candidates:
-        result = err or ("sem dados de evento" if ev is None else merge(events, ev, today))
+        if err:
+            result = err
+        elif ev is not None and validar.url_chave(ev.get("url") or "") in descartadas:
+            result = "descartado"
+        elif ev is None:
+            result = "sem dados de evento"
+        else:
+            result = merge(events, ev, today, descartadas)
         counts[result] = counts.get(result, 0) + 1
-        if result in ("novo", "completado"):
-            report.append(f"- **{result}**: [{ev['title']}]({ev.get('url') or url}) · {(ev.get('start') or 'sem data')[:16]}")
+        if result == "novo":
+            report.append(bloco_novo(ev, url))
+            report.append("")
+        elif result == "completado":
+            report.append(f"- **completado**: [{ev['title']}]({ev.get('url') or url}) · {(ev.get('start') or 'sem data')[:16]}")
         elif result not in ("igual", "passado"):
             report.append(f"- {result}: {url}")
 
@@ -436,7 +523,10 @@ def main(argv=None) -> int:
     if not args.dry_run and (counts.get("novo") or counts.get("completado")):
         EVENTS.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if args.relatorio:
-        args.relatorio.write_text("\n".join(report) + "\n\nRevise datas, preço e tags antes de aprovar.\n", encoding="utf-8")
+        args.relatorio.write_text(
+            "\n".join(report).rstrip() + "\n\nRevise datas, preço e tags antes de aprovar.\n" + RODAPE + "\n",
+            encoding="utf-8",
+        )
     print("\n".join(report))
     return 0
 
