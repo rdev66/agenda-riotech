@@ -65,6 +65,70 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Missão Empresarial Internacional | Inovação, Educação e Investimentos no Rio de Janeiro",
+      "start": "2026-11-05T17:00:00-03:00",
+      "end": "2026-11-05T19:00:00-03:00",
+      "time_known": true,
+      "venue": "Library - Instituto 12",
+      "address": "Av. Ataulfo de Paiva, 1120 - Leblon",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/chxfyluk",
+      "image": "https://images.lumacdn.com/uploads/vn/9badabbf-e764-4bf7-83e9-73670fcb0251.png",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "Encontro no Instituto 12 para aproximar o ecossistema carioca de inovação, educação e investimento, com UFRJ, Invest.Rio e Maravalley na conversa.",
+        "en": "Gathering at Instituto 12 to connect Rio's innovation, education and investment ecosystem, with UFRJ, Invest.Rio and Maravalley in the room."
+      },
+      "tags": [
+        "inovacao",
+        "investimento",
+        "networking",
+        "educacao"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "id": "2026-11-05-missao-empresarial-internacional-inovacao-educac",
+      "added": "2026-10-31"
+    },
+    {
+      "title": "O lado B de Empreender",
+      "start": "2026-11-05T17:00:00-03:00",
+      "end": "2026-11-05T23:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Santo Cristo",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/7rnlgkzy",
+      "image": "https://images.lumacdn.com/uploads/at/a7b01bab-8897-4f49-9aa9-f141c22b9a68.png",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "Encontro de founders no Santo Cristo para falar do lado difícil de empreender: decisões duras, conflito entre sócios e crescimento de verdade.",
+        "en": "Founder meetup in Santo Cristo on the hard side of building a company: tough calls, cofounder conflict and what growth actually costs."
+      },
+      "tags": [
+        "founders",
+        "empreendedorismo",
+        "startups",
+        "networking"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "id": "2026-11-05-o-lado-b-de-empreender",
+      "added": "2026-10-31"
+    },
+    {
       "id": "2026-11-06-global-prediction-markets-summit-2026",
       "title": "GLOBAL PREDICTION MARKETS SUMMIT 2026",
       "start": "2026-11-06T15:00:00-03:00",
@@ -128,6 +192,101 @@
       "status": "a-confirmar",
       "added": "2026-10-31",
       "note": "Conferido numa página de terceiros; confirme na página oficial."
+    },
+    {
+      "title": "Hackathon VX: AI for Business Problems",
+      "start": "2026-11-07T09:00:00-03:00",
+      "end": "2026-11-08T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Flamengo (endereço após inscrição)",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/hackathonvx",
+      "image": "https://images.lumacdn.com/uploads/r2/6bdc7f35-a21f-46a4-9b71-c5a268f15333.png",
+      "organizer": "AI Salon Rio",
+      "description": {
+        "pt": "Dois dias presenciais no Flamengo para montar, em time, uma solução de IA para um problema real de negócio. Vagas limitadas, por seleção.",
+        "en": "Two in-person days in Flamengo to build, as a team, an AI solution for a real business problem. Limited spots, by selection."
+      },
+      "tags": [
+        "hackathon",
+        "ia",
+        "startups",
+        "produto"
+      ],
+      "status": "confirmado",
+      "source": "AI Salon Rio (Luma)",
+      "id": "2026-11-07-hackathon-vx-ai-for-business-problems",
+      "added": "2026-10-31"
+    },
+    {
+      "title": "RSR & RSYP RIO 2026",
+      "start": "2026-11-07T09:00:00-03:00",
+      "end": "2026-11-07T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Rio Branco, 124",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "R$ 45,00"
+      },
+      "registration": "ingresso",
+      "url": "https://www.even3.com.br/rsr-rsyp-2026-783933",
+      "image": "https://images.even3.com/bD2ToXOYQ2rw7-Uuai1K6ooiDAg=/1100x440/smart/https://static.even3.com/banner/WhatsAppImage2026-09-17at17.14.35.aed5fb8c7fa84a808c0c.jpeg",
+      "organizer": "IEEE Seção Rio de Janeiro",
+      "description": {
+        "pt": "Dia da seção Rio do IEEE no centro da cidade, para estudantes, jovens profissionais e voluntários. Em 2026 a seção faz 70 anos.",
+        "en": "IEEE Rio section day downtown for students, young professionals and volunteers. In 2026 the section turns 70."
+      },
+      "tags": [
+        "comunidade",
+        "carreira",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-07-rsr-rsyp-rio-2026",
+      "source": "even3.com.br",
+      "added": "2026-10-31"
+    },
+    {
+      "title": "Conexões Tech Founders | João Paulo Alves",
+      "start": "2026-11-09T18:00:00-03:00",
+      "end": "2026-11-09T20:30:00-03:00",
+      "time_known": true,
+      "venue": "Library - Instituto 12",
+      "address": "Av. Ataulfo de Paiva, 1120 - Leblon",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/j4lzh5bs",
+      "image": "https://images.lumacdn.com/event-covers/kl/e3e64c0d-6875-4f02-99d7-685482d1eb6c.png",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "Conversa no Instituto 12 com um cofundador da Tagme sobre criar e escalar uma empresa de tecnologia no setor de alimentação.",
+        "en": "Talk at Instituto 12 with a Tagme cofounder about building and scaling a technology company in food service."
+      },
+      "tags": [
+        "founders",
+        "startups",
+        "palestra",
+        "produto"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "id": "2026-11-09-conexoes-tech-founders-joao-paulo-alves",
+      "added": "2026-10-31"
     },
     {
       "id": "2026-11-10-sebrae-rio-summit-2026",
@@ -196,6 +355,70 @@
       "note": "Conferido numa página de terceiros; confirme na página oficial."
     },
     {
+      "title": "AI Salon Rio #17",
+      "start": "2026-11-12T18:30:00-03:00",
+      "end": "2026-11-12T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Leblon (endereço após inscrição)",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/aisalon17",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/jm/db1e60d5-53b5-4ecf-bce5-aed15ec438e5.png",
+      "organizer": "AI Salon Rio",
+      "description": {
+        "pt": "Salon de IA no Leblon sobre a diferença entre anunciar uma empresa AI-first e reconstruí-la de fato, com empresas nascidas no Rio.",
+        "en": "AI salon in Leblon on the difference between announcing an AI-first company and actually rebuilding one, with companies born in Rio."
+      },
+      "tags": [
+        "ia",
+        "meetup",
+        "palestra",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "AI Salon Rio (Luma)",
+      "id": "2026-11-12-ai-salon-rio-17",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-11-12-cansados-nao-obsoletos-reinventando-produto-na-e",
+      "title": "Cansados, não obsoletos: reinventando Produto na era da IA",
+      "start": "2026-11-12T19:00:00-03:00",
+      "end": "2026-11-12T22:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP - Rio de Janeiro",
+      "address": "Praia de Botafogo, 300 - Botafogo",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/producttank-rio-de-janeiro/events/317175798",
+      "image": "https://secure-content.meetupstatic.com/images/classic-events/536858709/676x676.jpg",
+      "organizer": "ProductTank Rio de Janeiro",
+      "description": {
+        "pt": "Meetup do ProductTank na FIAP, em Botafogo, sobre o que muda no trabalho de produto quando a IA deixa de ser diferencial.",
+        "en": "ProductTank meetup at FIAP in Botafogo on what changes in product work once AI is no longer a differentiator."
+      },
+      "tags": [
+        "produto",
+        "ia",
+        "meetup",
+        "palestra"
+      ],
+      "source": "meetup",
+      "status": "a-confirmar",
+      "added": "2026-10-31"
+    },
+    {
       "id": "2026-11-14-devfest-rio-de-janeiro-2026",
       "title": "DevFest Rio de Janeiro 2026",
       "start": "2026-11-14T08:00:00-03:00",
@@ -261,10 +484,42 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Jornada Técnica Nokia para Mulheres",
+      "start": "2026-11-17T09:00:00-03:00",
+      "end": "2026-11-19T17:00:00-03:00",
+      "time_known": true,
+      "venue": "Colmeia Carioca COWORKING",
+      "address": "Rua das Palmeiras, 13 - Botafogo",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/s959xb72",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/9t/6375dd72-c1d1-4297-9690-24ce7f79a6dc.jpg",
+      "organizer": "Nokia e Mansour Consultoria",
+      "description": {
+        "pt": "Três dias de capacitação presencial na Colmeia, da Nokia com a Mansour Consultoria, para mulheres que querem prática em tecnologia, IA e liderança.",
+        "en": "Three-day in-person training at Colmeia, from Nokia with Mansour Consultoria, for women who want hands-on work in technology, AI and leadership."
+      },
+      "tags": [
+        "diversidade",
+        "ia",
+        "workshop",
+        "carreira"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-17-jornada-tecnica-nokia-para-mulheres",
+      "source": "luma.com",
+      "added": "2026-10-31"
+    },
+    {
       "id": "2026-11-17-founders-live-rio-de-janeiro",
       "title": "Founders Live Rio de Janeiro",
       "start": "2026-11-17T19:00:00-03:00",
-      "end": null,
+      "end": "2026-11-17T21:00:00-03:00",
       "time_known": true,
       "venue": "Estácio · SuperCampus Maracanã",
       "address": "Maracanã",
@@ -276,7 +531,7 @@
       },
       "registration": "inscricao",
       "url": "https://luma.com/founderslive-rio-de-janeiro-2026-11",
-      "image": null,
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/mh/1f4a3f64-b29d-4056-849b-e137d9f1d6f0.png",
       "organizer": "Founders Live Rio (Weuler Silva)",
       "description": {
         "pt": "Edição carioca do Founders Live: noite de pitches rápidos de fundadores, com o público votando, e networking com a comunidade de startups.",
@@ -293,10 +548,42 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Inovar na Velocidade da IA: Como garantir que a segurança seja potencializador de crescimento",
+      "start": "2026-11-23T18:00:00-03:00",
+      "end": "2026-11-23T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Library - Instituto 12",
+      "address": "Av. Ataulfo de Paiva, 1120 - Leblon",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/5qua9nnr",
+      "image": "https://images.lumacdn.com/uploads/ov/01ac0c1d-25e5-4a16-b8ab-52bf3da709c0.png",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "Conversa no Instituto 12 sobre acompanhar a velocidade da IA sem descuidar de cibersegurança e da proteção de dados em tech e finanças.",
+        "en": "Talk at Instituto 12 on keeping up with AI without neglecting cybersecurity and data protection in tech and finance."
+      },
+      "tags": [
+        "ia",
+        "seguranca",
+        "palestra",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "id": "2026-11-23-inovar-na-velocidade-da-ia-como-garantir-que-a-s",
+      "added": "2026-10-31"
+    },
+    {
       "id": "2026-11-28-builders-day-1565-taicor",
       "title": "Builders Day · 1565 × Taicor",
       "start": "2026-11-28T09:00:00-03:00",
-      "end": null,
+      "end": "2026-11-28T21:00:00-03:00",
       "time_known": true,
       "venue": "Ipanema (endereço após inscrição)",
       "address": null,
@@ -322,6 +609,38 @@
       ],
       "source": "luma",
       "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "title": "Devin Meetup Rio de Janeiro",
+      "start": "2026-11-28T09:00:00-03:00",
+      "end": "2026-11-28T12:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP - Rio de Janeiro",
+      "address": "Praia de Botafogo, 300 - Botafogo",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/12gt4jis",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/tl/7a3a7537-8446-456a-8832-975f51493ca1.png",
+      "organizer": "Fazedor de Código",
+      "description": {
+        "pt": "Meetup presencial na FIAP, em Botafogo, para quem desenvolve no Rio e quer ver o Devin na prática, trocar ideia e testar a ferramenta.",
+        "en": "In-person meetup at FIAP in Botafogo for Rio developers who want to see Devin in practice, compare notes and try the tool."
+      },
+      "tags": [
+        "ia",
+        "meetup",
+        "networking",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-28-devin-meetup-rio-de-janeiro",
+      "source": "luma.com",
       "added": "2026-10-31"
     },
     {
@@ -354,6 +673,38 @@
       ],
       "source": "meetup",
       "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "title": "AI Salon Rio #18",
+      "start": "2026-12-03T18:30:00-03:00",
+      "end": "2026-12-03T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Leblon (endereço após inscrição)",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "R$ 30"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/aisalon18",
+      "image": "https://images.lumacdn.com/uploads/ks/4d3cbdb2-cb34-40a8-afdd-7485fc5cad61.png",
+      "organizer": "AI Salon Rio",
+      "description": {
+        "pt": "Happy hour de encerramento do AI Salon no Leblon, para quem construiu a comunidade em 2026 e quer entrar no próximo ano. Ingresso de R$ 30.",
+        "en": "AI Salon's closing happy hour in Leblon, for people who built the community in 2026 and want in next year. R$ 30 ticket."
+      },
+      "tags": [
+        "ia",
+        "networking",
+        "comunidade",
+        "meetup"
+      ],
+      "status": "confirmado",
+      "source": "AI Salon Rio (Luma)",
+      "id": "2026-12-03-ai-salon-rio-18",
       "added": "2026-10-31"
     },
     {
