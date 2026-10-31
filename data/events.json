@@ -1,0 +1,423 @@
+{
+  "updated": "2026-10-31",
+  "events": [
+    {
+      "id": "2026-11-04-riotech-happy-hour",
+      "title": "RioTech Happy Hour",
+      "start": "2026-11-04T18:00:00-03:00",
+      "end": "2026-11-04T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Colmeia Carioca COWORKING",
+      "address": "Rua das Palmeiras, 13 - Botafogo",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-tech/events/316895136/",
+      "image": "https://secure.meetupstatic.com/photos/event/3/0/6/f/600_536412399.jpeg",
+      "organizer": "RioTech (Meetup) – Zac G. & Rafael O.",
+      "description": {
+        "pt": "Happy hour mensal e descontraído da comunidade RioTech para profissionais de tecnologia, empreendedores e investidores; dá para chegar e sair quando quiser.",
+        "en": "Monthly casual happy hour of the RioTech community for tech workers, founders and investors; drop in and out whenever you like."
+      },
+      "tags": [
+        "networking",
+        "comunidade",
+        "startups",
+        "investimento"
+      ],
+      "source": "meetup",
+      "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-11-05-frontier-ai-governance-in-a-global-context",
+      "title": "Frontier AI Governance in a Global Context",
+      "start": "2026-11-05T09:45:00-03:00",
+      "end": "2026-11-06T15:15:00-03:00",
+      "time_known": true,
+      "venue": "Grand Hyatt Rio de Janeiro",
+      "address": "Av. Lúcio Costa, 9600 - Barra da Tijuca",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/kbk2mz6j",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/sc/291580d5-9374-46c6-8d11-d992ebfc93b0.png",
+      "organizer": "Recsai (projeto da European University Viadrina, apoio Dieter Schwarz Foundation)",
+      "description": {
+        "pt": "Conferência de dois dias sobre governança e regulação de IA de fronteira, contrastando Norte Global e Sul Global, com keynotes, painéis de especialistas e networking.",
+        "en": "Two-day conference on frontier AI governance and regulation, contrasting Global North and Global South perspectives, with keynotes, expert panels and networking."
+      },
+      "tags": [
+        "ia",
+        "conferencia",
+        "palestra"
+      ],
+      "source": "luma",
+      "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-11-06-global-prediction-markets-summit-2026",
+      "title": "GLOBAL PREDICTION MARKETS SUMMIT 2026",
+      "start": "2026-11-06T15:00:00-03:00",
+      "end": "2026-11-06T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Auditório Corealize – 3º andar (L3), Shopping Metropolitano Barra",
+      "address": "Av. Embaixador Abelardo Bueno, 1300 - Barra Olímpica",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Entrada gratuita, mediante inscrição antecipada"
+      },
+      "registration": "inscricao",
+      "url": "https://www.sympla.com.br/evento/global-prediction-markets-summit-2026/3627420",
+      "image": "https://images.sympla.com.br/6ad9081a489ab-lg.jpg",
+      "organizer": "Rodrigo Guimarães",
+      "description": {
+        "pt": "Tarde sobre mercados de previsão e sua relação com tecnologia, IA e mercado financeiro, com dois palestrantes da Malásia, networking e coffee break.",
+        "en": "An afternoon on prediction markets and how they relate to technology, AI and financial markets, with two speakers from Malaysia, networking and a coffee break."
+      },
+      "tags": [
+        "investimento",
+        "ia",
+        "palestra",
+        "networking"
+      ],
+      "source": "sympla",
+      "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-11-07-databricks-meetup-rio-de-janeiro-2026-data-ai-te",
+      "title": "Databricks Meetup Rio de Janeiro 2026 — Data, AI & Tecnologia",
+      "start": "2026-11-07T09:00:00-03:00",
+      "end": "2026-11-07T18:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP - Rio de Janeiro",
+      "address": "Praia de Botafogo, 300 - Botafogo",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Gratuito"
+      },
+      "registration": "inscricao",
+      "url": "https://usergroups.databricks.com/events/details/databricks-user-groups-rio-de-janeiro-databricks-user-group-presents-databricks-meetup-rio-de-janeiro-data-ai-amp-tecnologia/",
+      "image": null,
+      "organizer": "Databricks User Groups – Rio de Janeiro Databricks User Group",
+      "description": {
+        "pt": "Encontro da comunidade Databricks no Rio com um dia inteiro de conteúdo sobre dados, IA e engenharia de dados, além de networking entre profissionais da área.",
+        "en": "Rio Databricks community meetup: a full day of data, AI and data-engineering content plus networking among practitioners."
+      },
+      "tags": [
+        "dados",
+        "ia",
+        "meetup",
+        "comunidade"
+      ],
+      "source": "databricks-usergroups",
+      "status": "a-confirmar",
+      "added": "2026-10-31",
+      "note": "Conferido numa página de terceiros; confirme na página oficial."
+    },
+    {
+      "id": "2026-11-10-sebrae-rio-summit-2026",
+      "title": "Sebrae Rio Summit 2026",
+      "start": "2026-11-10T10:00:00-03:00",
+      "end": "2026-11-12T19:00:00-03:00",
+      "time_known": true,
+      "venue": "Riocentro",
+      "address": "Barra da Tijuca",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://sebraeriosummit.com.br",
+      "image": null,
+      "organizer": "Sebrae Rio",
+      "description": {
+        "pt": "Três dias de empreendedorismo e inovação do Sebrae Rio no Riocentro, com feira de startups, palestras e rodadas de negócios.",
+        "en": "Sebrae Rio's three-day entrepreneurship and innovation event at Riocentro, with a startup fair, talks and business matchmaking."
+      },
+      "tags": [
+        "empreendedorismo",
+        "startups",
+        "inovacao",
+        "conferencia"
+      ],
+      "source": "whatsapp-riotech",
+      "status": "a-confirmar",
+      "note": "Datas e local divulgados no grupo do WhatsApp; confirme no site oficial.",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-11-11-ai-festival-women-rio-de-janeiro-protagonismo-fe",
+      "title": "AI Festival Women Rio de Janeiro: Protagonismo feminino na Inteligência Artificial",
+      "start": "2026-11-11T09:30:00-03:00",
+      "end": "2026-11-11T21:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP Rio de Janeiro",
+      "address": "Praia de Botafogo, 300 - Botafogo",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "Pago · lotes a partir de R$ 197,90"
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/ai-festival-women-rio-de-janeiro-protagonismo-feminino-na-inteligencia-artificial/3592715",
+      "image": null,
+      "organizer": "AI Festival Brasil",
+      "description": {
+        "pt": "Festival de IA com foco em protagonismo feminino: palestras, casos práticos, demos ao vivo e workshops sobre IA para negócios, com certificado de participação.",
+        "en": "AI festival centred on women's leadership in AI: talks, practical cases, live demos and hands-on workshops on AI for business, with an attendance certificate."
+      },
+      "tags": [
+        "ia",
+        "diversidade",
+        "conferencia",
+        "workshop"
+      ],
+      "source": "sympla",
+      "status": "a-confirmar",
+      "added": "2026-10-31",
+      "note": "Conferido numa página de terceiros; confirme na página oficial."
+    },
+    {
+      "id": "2026-11-14-devfest-rio-de-janeiro-2026",
+      "title": "DevFest Rio de Janeiro 2026",
+      "start": "2026-11-14T08:00:00-03:00",
+      "end": "2026-11-14T18:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP",
+      "address": "Rua Marquês de Olinda, 11, 3º andar - Botafogo",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "Pago · valor no Sympla"
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/devfest-rio-de-janeiro-2026/3518874",
+      "image": null,
+      "organizer": "GDG Rio de Janeiro (com FIAP)",
+      "description": {
+        "pt": "Edição 2026 do DevFest do GDG Rio: um dia de palestras sobre tecnologias Google, IA, mobile e web, workshops e networking para devs iniciantes e experientes.",
+        "en": "GDG Rio's 2026 DevFest: a full day of talks on Google technologies, AI, mobile and web, plus workshops and networking for new and seasoned developers."
+      },
+      "tags": [
+        "conferencia",
+        "ia",
+        "mobile",
+        "web",
+        "comunidade"
+      ],
+      "source": "sympla",
+      "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-11-16-blockchaingov-2026",
+      "title": "BlockchainGov 2026",
+      "start": "2026-11-16T08:00:00-03:00",
+      "end": "2026-11-18T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Auditório do BNDES (16/11) · bootcamp 17–18/11",
+      "address": "Av. República do Chile, 100 - Centro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis · vagas limitadas"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/il4y4g0m",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/u9/e1c484c2-247f-4509-90ba-034c8d55af62.png",
+      "organizer": "Instituto Plexos / Rede Blockchain Brasil (RBB)",
+      "description": {
+        "pt": "Conferência sobre blockchain de interesse público (RBB, criada por BNDES e TCU) seguida de bootcamp de dois dias em que equipes resolvem desafios de instituições da rede.",
+        "en": "Conference on public-interest blockchain (RBB network founded by BNDES and TCU) followed by a two-day bootcamp where teams tackle challenges from member institutions."
+      },
+      "tags": [
+        "web3",
+        "conferencia",
+        "hackathon",
+        "inovacao"
+      ],
+      "source": "luma",
+      "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-11-17-founders-live-rio-de-janeiro",
+      "title": "Founders Live Rio de Janeiro",
+      "start": "2026-11-17T19:00:00-03:00",
+      "end": null,
+      "time_known": true,
+      "venue": "Estácio · SuperCampus Maracanã",
+      "address": "Maracanã",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/founderslive-rio-de-janeiro-2026-11",
+      "image": null,
+      "organizer": "Founders Live Rio (Weuler Silva)",
+      "description": {
+        "pt": "Edição carioca do Founders Live: noite de pitches rápidos de fundadores, com o público votando, e networking com a comunidade de startups.",
+        "en": "Rio edition of Founders Live: an evening of rapid-fire founder pitches voted by the audience, plus networking with the startup community."
+      },
+      "tags": [
+        "founders",
+        "startups",
+        "investimento",
+        "networking"
+      ],
+      "source": "luma",
+      "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-11-28-builders-day-1565-taicor",
+      "title": "Builders Day · 1565 × Taicor",
+      "start": "2026-11-28T09:00:00-03:00",
+      "end": null,
+      "time_known": true,
+      "venue": "Ipanema (endereço após inscrição)",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/1u8q55ta",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/qf/bdb34674-3b24-4842-9b27-c40564988f88.png",
+      "organizer": "1565.io (com Taicor)",
+      "description": {
+        "pt": "Hackathon de um dia: equipes de até 4 pessoas escolhem um problema real do Rio e constroem uma solução funcional; R$ 25 mil em prêmios, almoço e jantar incluídos.",
+        "en": "One-day hackathon: teams of up to four pick a real Rio problem and ship a working solution; R$25k in prizes, lunch and dinner included."
+      },
+      "tags": [
+        "hackathon",
+        "founders",
+        "startups",
+        "comunidade"
+      ],
+      "source": "luma",
+      "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-12-02-riotech-happy-hour",
+      "title": "RioTech Happy Hour",
+      "start": "2026-12-02T18:00:00-03:00",
+      "end": "2026-12-02T21:00:00-03:00",
+      "time_known": true,
+      "venue": "The Boua Kitchen Bar",
+      "address": "R. Nelson Mandela, 100 - Loja 108",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-tech/events/316895137/",
+      "image": "https://secure.meetupstatic.com/photos/event/3/0/6/f/600_536412399.jpeg",
+      "organizer": "RioTech (Meetup) – Zac G.",
+      "description": {
+        "pt": "Edição de dezembro do happy hour mensal da comunidade RioTech, reunindo gente de tecnologia, empreendedores e investidores num formato informal.",
+        "en": "December edition of the RioTech community's monthly happy hour, bringing together tech people, founders and investors in an informal setting."
+      },
+      "tags": [
+        "networking",
+        "comunidade",
+        "startups",
+        "investimento"
+      ],
+      "source": "meetup",
+      "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-12-09-inova-ia-2026",
+      "title": "INOVA IA 2026",
+      "start": "2026-12-09T09:00:00-03:00",
+      "end": "2026-12-10T17:30:00-03:00",
+      "time_known": true,
+      "venue": "Villa Aimoré",
+      "address": "Glória",
+      "city": "Rio de Janeiro",
+      "format": "hibrido",
+      "cost": {
+        "type": "gratis",
+        "text": "Gratuito"
+      },
+      "registration": "inscricao",
+      "url": "https://inova.ia.br/",
+      "image": null,
+      "organizer": "INOVA IA / Riosoft – Senac RJ, TI Rio, Softex e Secretaria Municipal de Ciência, Tecnologia e Inovação do Rio",
+      "description": {
+        "pt": "3º encontro nacional de inteligência artificial: governo, empresas, academia e sociedade debatem soberania tecnológica, governança, financiamento e o Plano Brasileiro de IA.",
+        "en": "Third national AI meeting where government, industry, academia and civil society discuss tech sovereignty, governance, funding and Brazil's national AI plan."
+      },
+      "tags": [
+        "ia",
+        "conferencia",
+        "inovacao"
+      ],
+      "source": "site-oficial",
+      "status": "confirmado",
+      "added": "2026-10-31"
+    },
+    {
+      "id": "2026-12-12-cafe-em-codigo-experience",
+      "title": "Café Em Código Experience",
+      "start": "2026-12-12T09:00:00-03:00",
+      "end": "2026-12-12T17:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP – Rio de Janeiro",
+      "address": "Rua Marquês de Olinda, 11 - Botafogo",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/pxzafjvq",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=800,height=420/event-social/4j/05e005b1-f049-4539-85ce-73282cbfa198.png",
+      "organizer": "Café em Código",
+      "description": {
+        "pt": "Imersão prática de um dia para construir, testar e proteger agentes de IA: segurança, governança, observabilidade e avaliação, com desafio premiado (apoio Solana). Leve notebook.",
+        "en": "Hands-on one-day immersion on building, testing and securing AI agents: safety, governance, observability and evals, plus a prize challenge backed by Solana. Bring a laptop."
+      },
+      "tags": [
+        "ia",
+        "seguranca",
+        "workshop",
+        "comunidade"
+      ],
+      "source": "luma",
+      "status": "confirmado",
+      "added": "2026-10-31"
+    }
+  ]
+}

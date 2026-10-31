@@ -1,0 +1,4 @@
+[01.03.30, 10:00:00] ~ Fulano: Bora? https://lu.ma/abc123?tk=XYZ
+[01.03.30, 10:05:00] ‪+55 21 90000‑0000‬: meu telefone é +55 21 90000-0000, link pessoal https://exemplo.org/blog
+[02.03.30, 09:00:00] ~ Beltrana: Evento no Sympla https://www.sympla.com.br/evento/teste/123?utm_source=whats
+[02.03.30, 09:01:00] ~ Beltrana: repetido https://luma.com/abc123

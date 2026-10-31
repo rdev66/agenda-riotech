@@ -1,0 +1,41 @@
+name: Issue → PR de evento
+on:
+  issues:
+    types: [opened, edited, labeled]
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+jobs:
+  importar:
+    if: contains(github.event.issue.labels.*.name, 'novo-evento')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pegar o link da issue
+        id: link
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          URL=$(printf '%s' "$BODY" | grep -Eo 'https://[^ )>"]+' | head -n1)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+      - name: Importar
+        if: steps.link.outputs.url != ''
+        env:
+          URL: ${{ steps.link.outputs.url }}
+        run: |
+          python scripts/importar.py --url "$URL" --relatorio relatorio.md
+          python scripts/validar.py
+          printf '\nCloses #%s\n' "${{ github.event.issue.number }}" >> relatorio.md
+      - name: Abrir PR
+        if: steps.link.outputs.url != ''
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: evento/issue-${{ github.event.issue.number }}
+          commit-message: "Evento sugerido na issue #${{ github.event.issue.number }}"
+          title: "Evento da issue #${{ github.event.issue.number }}"
+          body-path: relatorio.md
+          add-paths: data/events.json

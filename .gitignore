@@ -1,0 +1,9 @@
+# Exportações do WhatsApp têm nomes e telefones: nunca vão para o repositório
+*_chat.txt
+_chat.txt
+WhatsApp*/
+*.zip
+__pycache__/
+.venv/
+.DS_Store
+relatorio.md

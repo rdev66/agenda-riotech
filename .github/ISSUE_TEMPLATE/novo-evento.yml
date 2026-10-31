@@ -1,0 +1,23 @@
+name: Sugerir um evento
+description: Mande o link de um evento de tecnologia no Rio (ou online da comunidade). Um robô abre o PR.
+title: "Evento: "
+labels: ["novo-evento"]
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Link do evento
+      description: Página oficial (Luma, Meetup, Sympla, Even3, Eventbrite ou site do evento).
+      placeholder: https://luma.com/...
+    validations:
+      required: true
+  - type: input
+    id: quando
+    attributes:
+      label: Data e hora (se a página não mostrar)
+      placeholder: 14/11/2026, 19h
+  - type: textarea
+    id: obs
+    attributes:
+      label: Para quem é? (opcional)
+      description: Ex.: devs Python, investidores, quem quer abrir startup, iniciantes…

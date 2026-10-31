@@ -1,0 +1,42 @@
+{
+  "tags": {
+    "ia":             {"pt": "IA",              "en": "AI",              "pn": "IA"},
+    "python":         {"pt": "Python",          "en": "Python",          "pn": "Python"},
+    "web":            {"pt": "Web",             "en": "Web",             "pn": "Web"},
+    "mobile":         {"pt": "Mobile",          "en": "Mobile",          "pn": "Mobile"},
+    "dados":          {"pt": "Dados",           "en": "Data",            "pn": "Datos"},
+    "cloud":          {"pt": "Cloud",           "en": "Cloud",           "pn": "Nube"},
+    "devops":         {"pt": "DevOps",          "en": "DevOps",          "pn": "DevOps"},
+    "seguranca":      {"pt": "Segurança",       "en": "Security",        "pn": "Seguridade"},
+    "web3":           {"pt": "Web3",            "en": "Web3",            "pn": "Web3"},
+    "games":          {"pt": "Games",           "en": "Games",           "pn": "Jueguinhos"},
+    "design":         {"pt": "Design",          "en": "Design",          "pn": "Design"},
+    "produto":        {"pt": "Produto",         "en": "Product",         "pn": "Producto"},
+    "startups":       {"pt": "Startups",        "en": "Startups",        "pn": "Startups"},
+    "investimento":   {"pt": "Investimento",    "en": "Investing",       "pn": "Inversión"},
+    "founders":       {"pt": "Founders",        "en": "Founders",        "pn": "Fundadores"},
+    "empreendedorismo": {"pt": "Empreendedorismo", "en": "Entrepreneurship", "pn": "Emprendedorismo"},
+    "inovacao":       {"pt": "Inovação",        "en": "Innovation",      "pn": "Inovación"},
+    "networking":     {"pt": "Networking",      "en": "Networking",      "pn": "Networkeo"},
+    "conferencia":    {"pt": "Conferência",     "en": "Conference",      "pn": "Conferencia"},
+    "meetup":         {"pt": "Meetup",          "en": "Meetup",          "pn": "Juntada"},
+    "workshop":       {"pt": "Workshop",        "en": "Workshop",        "pn": "Taller"},
+    "hackathon":      {"pt": "Hackathon",       "en": "Hackathon",       "pn": "Hackatón"},
+    "palestra":       {"pt": "Palestra",        "en": "Talk",            "pn": "Charla"},
+    "carreira":       {"pt": "Carreira",        "en": "Careers",         "pn": "Carrera"},
+    "educacao":       {"pt": "Educação",        "en": "Education",       "pn": "Educación"},
+    "comunidade":     {"pt": "Comunidade",      "en": "Community",       "pn": "Comunidad"},
+    "impacto-social": {"pt": "Impacto social",  "en": "Social impact",   "pn": "Impacto social"},
+    "diversidade":    {"pt": "Diversidade",     "en": "Diversity",       "pn": "Diversidad"},
+    "open-source":    {"pt": "Open source",     "en": "Open source",     "pn": "Open source"}
+  },
+  "intents": [
+    {"id": "dev",     "label": {"pt": "Sou dev",          "en": "I write code",   "pn": "Soy dev, né"},          "tags": ["python", "web", "mobile", "dados", "cloud", "devops", "seguranca", "open-source", "workshop", "hackathon"]},
+    {"id": "ia",      "label": {"pt": "IA",               "en": "AI",             "pn": "IA"},                   "tags": ["ia"]},
+    {"id": "investir","label": {"pt": "Quero investir",   "en": "I invest",       "pn": "Quiero investir"},      "tags": ["investimento", "startups", "founders"]},
+    {"id": "founder", "label": {"pt": "Tenho startup",    "en": "I'm a founder",  "pn": "Tengo startup"},        "tags": ["founders", "startups", "empreendedorismo", "investimento", "produto"]},
+    {"id": "conf",    "label": {"pt": "Conferências",     "en": "Conferences",    "pn": "Conferencias"},         "tags": ["conferencia", "palestra"]},
+    {"id": "hack",    "label": {"pt": "Hackathons",       "en": "Hackathons",     "pn": "Hackatones"},           "tags": ["hackathon"]},
+    {"id": "network", "label": {"pt": "Networking",       "en": "Networking",     "pn": "Networkeando"},         "tags": ["networking", "comunidade", "meetup"]}
+  ]
+}

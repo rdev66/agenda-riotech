@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agenda RioTech</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Eventos de tecnologia no Rio de Janeiro num lugar só: meetups, conferências, hackathons e encontros de startups. Feito pela comunidade RioTech.">
+<meta property="og:title" content="Agenda RioTech">
+<meta property="og:description" content="Eventos de tecnologia no Rio, num lugar só. Feito pela comunidade.">
+<!-- URL do repositório no GitHub (para os botões «Sugerir evento»). Deixe vazio até publicar. -->
+<meta name="riotech:repo" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: agenda de jornal carioca — trilho de datas à esquerda, cartões leves, faixa de ondas do calçadão como única ousadia. */
+:root {
+  --bg: #F3F5F1;
+  --surface: #FFFFFF;
+  --ink: #0F2420;
+  --muted: #56665F;
+  --line: #D8E0DB;
+  --chip: #E7EDE9;
+  --accent: #0B7A69;
+  --accent-ink: #FFFFFF;
+  --sun: #E9A915;
+  --warn: #9A4A06;
+  --warn-bg: #FCEFD9;
+  --tone-1: #0B7A69;
+  --tone-2: #D49615;
+  --tone-3: #2F4C9A;
+  --tone-4: #A8442D;
+  --cover-ink: #FFFFFF;
+  --display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --body: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1412; --surface: #141E1B; --ink: #E5EEEA; --muted: #95A59F; --line: #24322D; --chip: #1B2824;
+    --accent: #3BC2AC; --accent-ink: #062019; --sun: #F2C14E; --warn: #F6BE6A; --warn-bg: #352610;
+    --tone-1: #148471; --tone-2: #B9820F; --tone-3: #3F5DB2; --tone-4: #B4543C; --cover-ink: #FFFFFF;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1412; --surface: #141E1B; --ink: #E5EEEA; --muted: #95A59F; --line: #24322D; --chip: #1B2824;
+  --accent: #3BC2AC; --accent-ink: #062019; --sun: #F2C14E; --warn: #F6BE6A; --warn-bg: #352610;
+  --tone-1: #148471; --tone-2: #B9820F; --tone-3: #3F5DB2; --tone-4: #B4543C; --cover-ink: #FFFFFF;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- Cabeçalho ---------- */
+.top { padding-block: 28px 0; }
+.top-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.kicker {
+  font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 6px;
+}
+h1 {
+  font-family: var(--display); font-weight: 800; font-size: clamp(44px, 9vw, 76px); line-height: .92;
+  letter-spacing: -.035em; margin: 0; text-wrap: balance;
+}
+h1 .sun { color: var(--sun); }
+.tagline { margin: 12px 0 0; color: var(--muted); max-width: 46ch; font-size: 17px; }
+
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+.lang button {
+  border: 0; background: transparent; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .06em; color: var(--muted);
+}
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+.wave {
+  height: 16px; margin-top: 24px;
+  background: var(--ink);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 16'%3E%3Cpath d='M0 8 C8 0 24 0 32 8 S56 16 64 8 V16 H0 Z'/%3E%3C/svg%3E") repeat-x left bottom / 64px 16px;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 16'%3E%3Cpath d='M0 8 C8 0 24 0 32 8 S56 16 64 8 V16 H0 Z'/%3E%3C/svg%3E") repeat-x left bottom / 64px 16px;
+}
+
+/* ---------- Filtros ---------- */
+.controls { display: grid; gap: 14px; padding-block: 22px 8px; }
+.search {
+  width: 100%; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  border-radius: 12px; padding: 12px 14px; font-size: 16px;
+}
+.search::placeholder { color: var(--muted); }
+.label {
+  font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 8px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.chip {
+  border: 1px solid var(--line); background: var(--surface); border-radius: 999px;
+  padding: 7px 13px; cursor: pointer; font-size: 14px; font-weight: 600; line-height: 1.2;
+}
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.chip.ghost { background: transparent; }
+.status-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.count { font-family: var(--mono); font-size: 13px; color: var(--muted); margin: 0; font-variant-numeric: tabular-nums; }
+.active-tag {
+  display: inline-flex; align-items: center; gap: 6px; border: 0; cursor: pointer;
+  background: var(--ink); color: var(--bg); border-radius: 999px; padding: 5px 10px; font-size: 13px; font-weight: 600;
+}
+
+/* ---------- Lista ---------- */
+.month { margin-top: 30px; }
+.month h2 {
+  font-family: var(--display); font-weight: 700; font-size: 28px; letter-spacing: -.02em; margin: 0 0 6px;
+  display: flex; align-items: baseline; gap: 10px;
+}
+.month h2 small { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .08em; }
+.list { list-style: none; margin: 0; padding: 0; }
+.ev {
+  display: grid; grid-template-columns: 64px 76px minmax(0, 1fr); gap: 16px; align-items: start;
+  padding-block: 18px; border-top: 1px solid var(--line);
+}
+.when { text-align: left; font-variant-numeric: tabular-nums; }
+.when .dow { display: block; font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.when .day { display: block; font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; letter-spacing: -.03em; }
+.when .day.range { font-size: 22px; white-space: nowrap; letter-spacing: -.045em; }
+.when .time { display: block; margin-top: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+
+.thumb {
+  width: 76px; aspect-ratio: 1; max-width: 100%; border-radius: 12px; overflow: hidden; background: var(--chip);
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cover {
+  width: 100%; height: 100%; display: grid; place-items: center; position: relative;
+  color: var(--cover-ink); font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -.02em;
+}
+.cover::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 14px; opacity: .35; background: var(--cover-ink);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 16'%3E%3Cpath d='M0 8 C8 0 24 0 32 8 S56 16 64 8 V16 H0 Z'/%3E%3C/svg%3E") repeat-x left bottom / 32px 8px;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 16'%3E%3Cpath d='M0 8 C8 0 24 0 32 8 S56 16 64 8 V16 H0 Z'/%3E%3C/svg%3E") repeat-x left bottom / 32px 8px;
+}
+.cover.t1 { background: var(--tone-1); } .cover.t2 { background: var(--tone-2); }
+.cover.t3 { background: var(--tone-3); } .cover.t4 { background: var(--tone-4); }
+
+.body { min-width: 0; }
+.ev h3 { font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.2; letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+.ev h3 a { text-decoration: none; }
+.ev h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.badge {
+  display: inline-block; vertical-align: 3px; margin-left: 6px; padding: 2px 8px; border-radius: 999px;
+  background: var(--warn-bg); color: var(--warn); font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .04em;
+}
+.where { margin: 4px 0 0; color: var(--muted); font-size: 14.5px; overflow-wrap: anywhere; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 14px; list-style: none; margin: 10px 0 0; padding: 0; font-size: 14px; font-weight: 600; }
+.facts li { display: inline-flex; align-items: center; gap: 6px; }
+.facts .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex: none; }
+.facts .free .dot { background: var(--accent); }
+.facts .paid .dot { background: var(--sun); }
+.facts .online .dot { background: var(--tone-3); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 10px 0 0; padding: 0; }
+.tags button {
+  border: 0; cursor: pointer; background: var(--chip); color: var(--ink); border-radius: 6px;
+  padding: 3px 8px; font-family: var(--mono); font-size: 12px; font-weight: 500;
+}
+.tags button:hover { background: var(--ink); color: var(--bg); }
+
+details { margin-top: 10px; }
+summary {
+  cursor: pointer; width: fit-content; font-size: 14px; font-weight: 600; color: var(--accent);
+  list-style: none;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after { content: " +"; font-family: var(--mono); }
+details[open] summary::after { content: " –"; }
+.desc { margin: 8px 0 0; max-width: 62ch; }
+.meta { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-size: 14px; font-weight: 600;
+  border: 1px solid var(--line); background: var(--surface); padding: 8px 12px; border-radius: 10px;
+}
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn:hover { border-color: var(--ink); }
+
+.empty { padding-block: 40px; text-align: center; color: var(--muted); }
+.empty button { margin-top: 10px; }
+
+/* ---------- Sugerir evento ---------- */
+.cta {
+  margin-block: 40px 24px; padding: 22px; border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--line);
+  display: grid; gap: 10px;
+}
+.cta h2 { font-family: var(--display); font-size: 24px; letter-spacing: -.02em; margin: 0; }
+.cta p { margin: 0; color: var(--muted); max-width: 60ch; }
+
+footer { padding-block: 8px 36px; color: var(--muted); font-size: 13px; }
+footer p { margin: 4px 0; }
+
+@media (max-width: 560px) {
+  .ev { grid-template-columns: 52px minmax(0, 1fr); gap: 12px; }
+  .ev .thumb { grid-column: 2; grid-row: 1; width: 56px; justify-self: end; margin-bottom: -56px; position: relative; z-index: 1; }
+  .ev .body { grid-column: 2; grid-row: 1; }
+  .ev h3 { padding-right: 66px; font-size: 18px; }
+  .ev .where { padding-right: 66px; }
+  .when .day { font-size: 28px; }
+  .when .day.range { font-size: 16px; }
+  .cover { font-size: 17px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ev { animation: rise .35s ease both; }
+  @keyframes rise { from { transform: translateY(4px); } to { transform: none; } }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="top-row">
+      <div>
+        <p class="kicker">RioTech · Rio de Janeiro</p>
+        <h1>Agenda<span class="sun">.</span></h1>
+        <p class="tagline" data-i18n="tagline">Eventos de tecnologia no Rio, num lugar só. Feito pela comunidade.</p>
+      </div>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" id="lang-pt" data-lang="pt" aria-pressed="true">PT</button>
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" id="lang-pn" data-lang="pn" aria-pressed="false" title="Portunhol">PÑ</button>
+      </div>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true"></div>
+</header>
+
+<main class="wrap">
+  <section class="controls" aria-label="Filtros">
+    <input id="q" class="search" type="search" autocomplete="off" data-i18n-placeholder="search" placeholder="Buscar evento, lugar ou tema">
+    <div>
+      <p class="label" data-i18n="what">O que você procura?</p>
+      <ul class="chips" id="intents"></ul>
+    </div>
+    <ul class="chips" id="toggles">
+      <li><button type="button" class="chip ghost" id="t-free" aria-pressed="false" data-i18n="free">Grátis</button></li>
+      <li><button type="button" class="chip ghost" id="t-presencial" aria-pressed="false" data-i18n="presencial">Presencial</button></li>
+      <li><button type="button" class="chip ghost" id="t-online" aria-pressed="false" data-i18n="online">Online</button></li>
+      <li><button type="button" class="chip ghost" id="t-past" aria-pressed="false" data-i18n="past">Mostrar passados</button></li>
+    </ul>
+    <div class="status-row">
+      <p class="count" id="count" aria-live="polite"></p>
+      <span id="active-tag-slot"></span>
+    </div>
+  </section>
+
+  <section id="list" aria-live="polite">
+    <p class="empty" data-i18n="loading">Carregando eventos…</p>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-title">
+    <h2 id="cta-title" data-i18n="addTitle">Tem um evento?</h2>
+    <p data-i18n="addBody">A agenda é aberta e vive no GitHub. Mande o link e ele entra na próxima atualização.</p>
+    <div class="actions" id="cta-actions"></div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p id="updated"></p>
+  <p data-i18n="sources">Fontes: Luma, Meetup, Sympla e o grupo da RioTech no WhatsApp. Confira sempre a página oficial antes de ir.</p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var TZ = "America/Sao_Paulo";
+  var REPO = (document.querySelector('meta[name="riotech:repo"]') || {}).content || "";
+
+  var T = {
+    pt: {
+      tagline: "Eventos de tecnologia no Rio, num lugar só. Feito pela comunidade.",
+      search: "Buscar evento, lugar ou tema", what: "O que você procura?", loading: "Carregando eventos…",
+      free: "Grátis", presencial: "Presencial", online: "Online", past: "Mostrar passados",
+      count: function (n) { return n === 1 ? "1 evento" : n + " eventos"; },
+      none: "Nenhum evento com esses filtros.", clear: "Limpar filtros",
+      details: "Detalhes", open: "Página do evento", gcal: "Pôr no Google Agenda", org: "Organiza", note: "Obs.",
+      tbc: "a confirmar", timeTbd: "horário a confirmar",
+      fmt: { presencial: "Presencial", online: "Online", hibrido: "Híbrido" },
+      reg: { livre: "Entrada livre", inscricao: "Inscrição", aprovacao: "Inscrição com aprovação", ingresso: "Ingresso" },
+      cost: { gratis: "Grátis", pago: "Pago", desconhecido: "Preço a confirmar" },
+      addTitle: "Tem um evento?", addBody: "A agenda é aberta e vive no GitHub. Mande o link e ele entra na próxima atualização.",
+      addIssue: "Sugerir pelo GitHub", addPR: "Editar os dados (PR)",
+      addNoRepo: "Por enquanto, mande o link no grupo da RioTech no WhatsApp.",
+      updated: "Atualizado em", sources: "Fontes: Luma, Meetup, Sympla e o grupo da RioTech no WhatsApp. Confira sempre a página oficial antes de ir.",
+      loadErr: "Não deu para carregar os eventos. Tente recarregar a página.", filtering: "Tag", locale: "pt-BR"
+    },
+    en: {
+      tagline: "Rio's tech events, all in one place. Made by the community.",
+      search: "Search events, venues or topics", what: "What are you after?", loading: "Loading events…",
+      free: "Free", presencial: "In person", online: "Online", past: "Show past events",
+      count: function (n) { return n === 1 ? "1 event" : n + " events"; },
+      none: "No events match these filters.", clear: "Clear filters",
+      details: "Details", open: "Event page", gcal: "Add to Google Calendar", org: "Hosted by", note: "Note",
+      tbc: "to be confirmed", timeTbd: "time TBC",
+      fmt: { presencial: "In person", online: "Online", hibrido: "Hybrid" },
+      reg: { livre: "Walk in", inscricao: "Sign-up", aprovacao: "Sign-up, host approves", ingresso: "Ticket" },
+      cost: { gratis: "Free", pago: "Paid", desconhecido: "Price TBC" },
+      addTitle: "Got an event?", addBody: "This calendar is open and lives on GitHub. Send the link and it goes in with the next update.",
+      addIssue: "Suggest on GitHub", addPR: "Edit the data (PR)",
+      addNoRepo: "For now, drop the link in the RioTech WhatsApp group.",
+      updated: "Updated", sources: "Sources: Luma, Meetup, Sympla and the RioTech WhatsApp group. Always check the official page before you go.",
+      loadErr: "Couldn't load the events. Try reloading the page.", filtering: "Tag", locale: "en-GB"
+    },
+    pn: {
+      tagline: "Los eventos tech do Rio, todo junto num lugarcito só. Hecho por la comunidade.",
+      search: "Buscá evento, lugar o tema", what: "¿Qué cê tá buscando, parcero?", loading: "Cargando los eventos…",
+      free: "De graça", presencial: "Presencial", online: "Online", past: "Ver los que ya pasaron",
+      count: function (n) { return n === 1 ? "1 eventito" : n + " eventos"; },
+      none: "Nada por acá con esos filtros, mermão.", clear: "Limpiá los filtros",
+      details: "Detallitos", open: "Ver el evento", gcal: "Botá no Google Agenda", org: "Organiza", note: "Ojo",
+      tbc: "a confirmar, hermano", timeTbd: "horário a confirmar",
+      fmt: { presencial: "Presencial", online: "Online", hibrido: "Híbrido" },
+      reg: { livre: "Chegá y entrá", inscricao: "Hay que inscribirse", aprovacao: "Inscripción com aprovação", ingresso: "Ingresso pagado" },
+      cost: { gratis: "De graça", pago: "Pagado", desconhecido: "Precio a confirmar" },
+      addTitle: "¿Tenés un evento?", addBody: "La agenda es abierta y vive no GitHub. Mandá el link y entra na próxima atualização.",
+      addIssue: "Sugerí por GitHub", addPR: "Editá los datos (PR)",
+      addNoRepo: "Por ahora, mandá el link no grupo da RioTech no WhatsApp.",
+      updated: "Actualizado em", sources: "Fuentes: Luma, Meetup, Sympla y el grupo da RioTech no WhatsApp. Chequeá siempre la página oficial antes de ir.",
+      loadErr: "No deu para cargar los eventos. Recargá la página.", filtering: "Tag", locale: "es"
+    }
+  };
+
+  var GLYPH = { ia: "IA", python: "Py", web: "</>", mobile: "App", dados: "{ }", cloud: "☁︎", devops: "CI", seguranca: "Sec",
+    web3: "W3", games: "GG", design: "Aa", produto: "PM", startups: "↗", investimento: "R$", founders: "↗",
+    empreendedorismo: "↗", inovacao: "✦", networking: "Oi", conferencia: "Mic", meetup: "Oi", workshop: "Lab",
+    hackathon: "#", palestra: "Mic", carreira: "CV", educacao: "Edu", comunidade: "Oi", "impacto-social": "♥", diversidade: "♥", "open-source": "OS" };
+
+  var state = { lang: "pt", q: "", intents: {}, free: false, presencial: false, online: false, past: false, tag: null };
+  var DATA = { events: [], updated: null };
+  var TAGS = { tags: {}, intents: [] };
+
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function t(k) { return T[state.lang][k]; }
+  function el(tag, attrs, kids) {
+    var n = document.createElement(tag);
+    if (attrs) for (var a in attrs) {
+      if (a === "class") n.className = attrs[a];
+      else if (a === "text") n.textContent = attrs[a];
+      else if (a.slice(0, 2) === "on") n.addEventListener(a.slice(2), attrs[a]);
+      else if (attrs[a] !== null && attrs[a] !== undefined) n.setAttribute(a, attrs[a]);
+    }
+    (kids || []).forEach(function (c) { if (c) n.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    return n;
+  }
+
+  // Datas: uma data sem horário ("2026-11-28") vale como dia inteiro no Rio.
+  function parseStart(s) { return new Date(s.length === 10 ? s + "T12:00:00-03:00" : s); }
+  function parseEnd(e) {
+    if (e.end) return new Date(e.end.length === 10 ? e.end + "T23:59:00-03:00" : e.end);
+    if (e.start.length === 10) return new Date(e.start + "T23:59:00-03:00");
+    return new Date(parseStart(e.start).getTime() + 2 * 3600e3);
+  }
+  function parts(d, opts) {
+    var o = {}; new Intl.DateTimeFormat(t("locale"), Object.assign({ timeZone: TZ }, opts)).formatToParts(d)
+      .forEach(function (p) { o[p.type] = p.value; }); return o;
+  }
+  function ymd(d) { var p = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); return p; }
+  function fmtTime(d) { return new Intl.DateTimeFormat(t("locale"), { timeZone: TZ, hour: "2-digit", minute: "2-digit", hour12: false }).format(d); }
+  function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+
+  function tagLabel(id) { var x = TAGS.tags[id]; return x ? (x[state.lang] || x.pt) : id; }
+  function intentTags() {
+    var on = Object.keys(state.intents).filter(function (k) { return state.intents[k]; });
+    if (!on.length) return null;
+    var set = {};
+    TAGS.intents.forEach(function (it) { if (state.intents[it.id]) it.tags.forEach(function (g) { set[g] = 1; }); });
+    return set;
+  }
+
+  function matches(e, now) {
+    if (!state.past && parseEnd(e) < now) return false;
+    if (state.free && e.cost.type !== "gratis") return false;
+    if (state.presencial || state.online) {
+      var okP = state.presencial && (e.format === "presencial" || e.format === "hibrido");
+      var okO = state.online && (e.format === "online" || e.format === "hibrido");
+      if (!okP && !okO) return false;
+    }
+    if (state.tag && e.tags.indexOf(state.tag) < 0) return false;
+    var it = intentTags();
+    if (it && !e.tags.some(function (g) { return it[g]; })) return false;
+    if (state.q) {
+      var hay = [e.title, e.venue, e.address, e.organizer, (e.description || {}).pt, (e.description || {}).en]
+        .concat(e.tags.map(function (g) { var x = TAGS.tags[g] || {}; return [g, x.pt, x.en, x.pn].join(" "); }))
+        .join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+      var needles = state.q.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").split(/\s+/).filter(Boolean);
+      if (!needles.every(function (n) { return hay.indexOf(n) >= 0; })) return false;
+    }
+    return true;
+  }
+
+  function costText(e) {
+    var c = e.cost || { type: "desconhecido" };
+    if (state.lang === "pt" && c.text) return c.text;
+    var base = t("cost")[c.type] || t("cost").desconhecido;
+    var m = c.text && c.text.match(/R\$\s?[\d.,]+(\s?[–-]\s?(R\$\s?)?[\d.,]+)?/);
+    return m && c.type !== "gratis" ? base + " · " + m[0] : base;
+  }
+
+  function gcalLink(e) {
+    function z(d) { return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); }
+    var dates;
+    if (!e.time_known) {
+      var a = e.start.slice(0, 10).replace(/-/g, "");
+      var nd = new Date(e.start.slice(0, 10) + "T12:00:00Z"); nd.setUTCDate(nd.getUTCDate() + 1);
+      dates = a + "/" + nd.toISOString().slice(0, 10).replace(/-/g, "");
+    } else {
+      dates = z(parseStart(e.start)) + "/" + z(parseEnd(e));
+    }
+    var q = new URLSearchParams({ action: "TEMPLATE", text: e.title, dates: dates,
+      location: [e.venue, e.address, e.city].filter(Boolean).join(", "), details: e.url });
+    return "https://calendar.google.com/calendar/render?" + q.toString();
+  }
+
+  function cover(e) {
+    var main = e.tags[0] || "comunidade";
+    var h = 0; for (var i = 0; i < e.id.length; i++) h = (h * 31 + e.id.charCodeAt(i)) >>> 0;
+    return el("div", { class: "cover t" + (1 + (h % 4)), "aria-hidden": "true", text: GLYPH[main] || main.slice(0, 2).toUpperCase() });
+  }
+  function thumb(e) {
+    var box = el("div", { class: "thumb" });
+    if (e.image) {
+      var img = el("img", { src: e.image, alt: "", loading: "lazy", referrerpolicy: "no-referrer", decoding: "async" });
+      img.addEventListener("error", function () { box.replaceChildren(cover(e)); });
+      box.appendChild(img);
+    } else box.appendChild(cover(e));
+    return box;
+  }
+
+  function whenBlock(e) {
+    var s = parseStart(e.start), en = e.end ? parseEnd(e) : null;
+    var multi = en && ymd(en) !== ymd(s);
+    var dow = parts(s, { weekday: "short" }).weekday.replace(".", "");
+    var d1 = parts(s, { day: "2-digit" }).day;
+    var dayTxt = d1, cls = "day";
+    if (multi) {
+      var sameMonth = parts(en, { month: "2-digit" }).month === parts(s, { month: "2-digit" }).month;
+      dayTxt = d1 + "–" + parts(en, { day: "2-digit" }).day + (sameMonth ? "" : "/" + parts(en, { month: "2-digit" }).month);
+      cls = "day range";
+    }
+    var time = e.time_known ? fmtTime(s) : t("timeTbd");
+    return el("div", { class: "when" }, [
+      el("span", { class: "dow", text: dow }),
+      el("span", { class: cls, text: dayTxt }),
+      el("span", { class: "time", text: time })
+    ]);
+  }
+
+  function card(e) {
+    var title = el("h3", null, [el("a", { href: e.url, target: "_blank", rel: "noopener", text: e.title })]);
+    if (e.status && e.status !== "confirmado") title.appendChild(el("span", { class: "badge", text: t("tbc") }));
+    var where = [e.venue, e.address].filter(Boolean).join(" · ");
+    var facts = el("ul", { class: "facts" }, [
+      el("li", { class: e.format === "online" ? "online" : "" }, [el("span", { class: "dot" }), t("fmt")[e.format] || e.format]),
+      el("li", { class: e.cost.type === "gratis" ? "free" : (e.cost.type === "pago" ? "paid" : "") }, [el("span", { class: "dot" }), costText(e)]),
+      el("li", null, [el("span", { class: "dot" }), t("reg")[e.registration] || e.registration])
+    ]);
+    var desc = (e.description && (state.lang === "en" ? (e.description.en || e.description.pt) : e.description.pt)) || "";
+    var det = el("details", null, [
+      el("summary", { text: t("details") }),
+      desc ? el("p", { class: "desc", text: desc }) : null,
+      e.organizer ? el("p", { class: "meta", text: t("org") + ": " + e.organizer }) : null,
+      e.note ? el("p", { class: "meta", text: t("note") + " " + e.note }) : null,
+      el("div", { class: "actions" }, [
+        el("a", { class: "btn primary", href: e.url, target: "_blank", rel: "noopener", text: t("open") + " ↗" }),
+        el("a", { class: "btn", href: gcalLink(e), target: "_blank", rel: "noopener", text: t("gcal") })
+      ])
+    ]);
+    var tags = el("ul", { class: "tags" }, e.tags.map(function (g) {
+      return el("li", null, [el("button", { type: "button", text: "#" + tagLabel(g), onclick: function () { state.tag = g; render(); window.scrollTo({ top: 0, behavior: "smooth" }); } })]);
+    }));
+    return el("li", { class: "ev", id: e.id }, [whenBlock(e), thumb(e),
+      el("div", { class: "body" }, [title, where ? el("p", { class: "where", text: where }) : null, facts, det, tags])]);
+  }
+
+  function render() {
+    var now = new Date();
+    var list = document.getElementById("list");
+    var shown = DATA.events.filter(function (e) { return matches(e, now); })
+      .sort(function (a, b) { return parseStart(a.start) - parseStart(b.start); });
+    document.getElementById("count").textContent = t("count")(shown.length);
+
+    var slot = document.getElementById("active-tag-slot"); slot.replaceChildren();
+    if (state.tag) slot.appendChild(el("button", { type: "button", class: "active-tag", "aria-label": t("clear"),
+      onclick: function () { state.tag = null; render(); } }, ["#" + tagLabel(state.tag), " ×"]));
+
+    list.replaceChildren();
+    if (!shown.length) {
+      list.appendChild(el("div", { class: "empty" }, [el("p", { text: t("none") }),
+        el("button", { type: "button", class: "chip", text: t("clear"), onclick: resetFilters })]));
+      return;
+    }
+    var byMonth = {};
+    var order = [];
+    shown.forEach(function (e) {
+      var k = ymd(parseStart(e.start)).slice(0, 7);
+      if (!byMonth[k]) { byMonth[k] = []; order.push(k); }
+      byMonth[k].push(e);
+    });
+    order.forEach(function (k) {
+      var d = new Date(k + "-15T12:00:00-03:00");
+      var p = parts(d, { month: "long", year: "numeric" });
+      var sec = el("section", { class: "month" }, [
+        el("h2", null, [cap(p.month), el("small", { text: p.year + " · " + t("count")(byMonth[k].length) })]),
+        el("ol", { class: "list" }, byMonth[k].map(card))
+      ]);
+      list.appendChild(sec);
+    });
+  }
+
+  function resetFilters() {
+    state.q = ""; state.intents = {}; state.free = state.presencial = state.online = false; state.tag = null;
+    document.getElementById("q").value = "";
+    syncChips(); render();
+  }
+
+  function syncChips() {
+    document.querySelectorAll("#intents .chip").forEach(function (b) { b.setAttribute("aria-pressed", state.intents[b.dataset.id] ? "true" : "false"); });
+    ["free", "presencial", "online", "past"].forEach(function (k) { document.getElementById("t-" + k).setAttribute("aria-pressed", state[k] ? "true" : "false"); });
+  }
+
+  function buildIntents() {
+    var ul = document.getElementById("intents"); ul.replaceChildren();
+    TAGS.intents.forEach(function (it) {
+      ul.appendChild(el("li", null, [el("button", { type: "button", class: "chip", "data-id": it.id, "aria-pressed": "false",
+        text: it.label[state.lang] || it.label.pt,
+        onclick: function () { state.intents[it.id] = !state.intents[it.id]; syncChips(); render(); } })]));
+    });
+    syncChips();
+  }
+
+  function buildCta() {
+    var box = document.getElementById("cta-actions"); box.replaceChildren();
+    if (REPO) {
+      var base = REPO.replace(/\/$/, "");
+      box.appendChild(el("a", { class: "btn primary", href: base + "/issues/new?template=novo-evento.yml", target: "_blank", rel: "noopener", text: t("addIssue") + " ↗" }));
+      box.appendChild(el("a", { class: "btn", href: base + "/blob/main/data/events.json", target: "_blank", rel: "noopener", text: t("addPR") }));
+    } else {
+      box.appendChild(el("p", { class: "meta", text: t("addNoRepo") }));
+    }
+  }
+
+  function applyLang(lang) {
+    state.lang = T[lang] ? lang : "pt";
+    document.documentElement.lang = state.lang === "en" ? "en" : (state.lang === "pn" ? "es" : "pt-BR");
+    document.querySelectorAll("[data-i18n]").forEach(function (n) { var v = t(n.dataset.i18n); if (typeof v === "string") n.textContent = v; });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (n) { n.placeholder = t(n.dataset.i18nPlaceholder); });
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.lang === state.lang ? "true" : "false"); });
+    if (DATA.updated) {
+      var d = new Date(DATA.updated + "T12:00:00-03:00");
+      document.getElementById("updated").textContent = t("updated") + " " +
+        new Intl.DateTimeFormat(t("locale"), { timeZone: TZ, day: "numeric", month: "long", year: "numeric" }).format(d) + ".";
+    }
+    buildIntents(); buildCta(); render();
+  }
+
+  // Eventos
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { store("riotech.lang", b.dataset.lang); applyLang(b.dataset.lang); });
+  });
+  ["free", "presencial", "online", "past"].forEach(function (k) {
+    document.getElementById("t-" + k).addEventListener("click", function () { state[k] = !state[k]; syncChips(); render(); });
+  });
+  var qTimer;
+  document.getElementById("q").addEventListener("input", function (ev) {
+    clearTimeout(qTimer); qTimer = setTimeout(function () { state.q = ev.target.value.trim(); render(); }, 120);
+  });
+
+  // Idioma inicial: escolha salva, senão o do navegador.
+  var saved = load("riotech.lang");
+  var nav = (navigator.language || "pt").toLowerCase();
+  var initial = saved || (nav.indexOf("pt") === 0 ? "pt" : (nav.indexOf("es") === 0 ? "pn" : (nav.indexOf("en") === 0 ? "en" : "pt")));
+  state.lang = T[initial] ? initial : "pt";
+
+  Promise.all([
+    fetch("data/events.json", { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }),
+    fetch("data/tags.json", { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+  ]).then(function (res) {
+    DATA = res[0]; TAGS = res[1];
+    applyLang(state.lang);
+  }).catch(function () {
+    applyLang(state.lang);
+    var list = document.getElementById("list");
+    list.replaceChildren(el("p", { class: "empty", text: t("loadErr") }));
+  });
+})();
+</script>
+</body>
+</html>

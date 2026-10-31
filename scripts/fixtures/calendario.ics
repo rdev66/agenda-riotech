@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:Hackathon de Dados Abertos
+DTSTART:20300405T120000Z
+DTEND:20300405T210000Z
+LOCATION:Centro\, Rio de Janeiro
+URL:https://exemplo.org/hackathon?utm_source=x
+DESCRIPTION:Hackathon com dados abertos da cidade.
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Live: carreira em cloud
+DTSTART;VALUE=DATE:20300410
+LOCATION:https://meet.google.com/abc
+END:VEVENT
+END:VCALENDAR
