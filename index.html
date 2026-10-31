@@ -209,9 +209,12 @@ h1 .sun { color: var(--sun); }
 }
 .week-arrow:hover { border-color: var(--ink); }
 .week-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin-top: 12px; }
+.week-back { display: flex; justify-content: center; margin-top: 10px; }
+.week-back:empty { display: none; }
 .wday { border: 0; background: transparent; border-radius: 12px; padding: 6px 0 8px; text-align: center; color: inherit; min-width: 0; }
 button.wday { cursor: pointer; }
 button.wday:hover { background: var(--chip); }
+.week.on button.wday { background: var(--chip); }
 .wday.today { box-shadow: inset 0 0 0 1.5px var(--accent); }
 .wday .wd {
   display: block; font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: .06em;
@@ -348,6 +351,7 @@ footer p { margin: 4px 0; }
       <button type="button" id="week-next" class="week-arrow" aria-label="Próxima semana">›</button>
     </div>
     <div class="week-days" id="week-days"></div>
+    <div class="week-back" id="week-back"></div>
   </nav>
 
   <section id="list" aria-live="polite">
@@ -379,7 +383,10 @@ footer p { margin: 4px 0; }
       search: "Buscar evento, lugar ou tema", what: "O que você procura?", loading: "Carregando eventos…",
       free: "Grátis", presencial: "Presencial", online: "Online", past: "Mostrar passados",
       count: function (n) { return n === 1 ? "1 evento" : n + " eventos"; },
-      none: "Nenhum evento com esses filtros.", clear: "Limpar filtros",
+      countOf: function (n, total) {
+        return n + " de " + total + " " + (total === 1 ? "evento" : "eventos");
+      },
+      none: "Nenhum evento com esses filtros.", clear: "Limpar filtros", seeAll: "Ver todos",
       details: "Detalhes", open: "Página do evento", gcal: "Pôr no Google Agenda", org: "Organiza", note: "Obs.",
       tbc: "a confirmar", timeTbd: "horário a confirmar",
       prevWeek: "Semana anterior", nextWeek: "Próxima semana", noneWeek: "Nenhum evento nesta semana.", weeks: "Semanas",
@@ -399,7 +406,10 @@ footer p { margin: 4px 0; }
       search: "Search events, venues or topics", what: "What are you after?", loading: "Loading events…",
       free: "Free", presencial: "In person", online: "Online", past: "Show past events",
       count: function (n) { return n === 1 ? "1 event" : n + " events"; },
-      none: "No events match these filters.", clear: "Clear filters",
+      countOf: function (n, total) {
+        return n + " of " + total + " " + (total === 1 ? "event" : "events");
+      },
+      none: "No events match these filters.", clear: "Clear filters", seeAll: "See all",
       details: "Details", open: "Event page", gcal: "Add to Google Calendar", org: "Hosted by", note: "Note",
       tbc: "to be confirmed", timeTbd: "time TBC",
       prevWeek: "Previous week", nextWeek: "Next week", noneWeek: "Nothing this week.", weeks: "Weeks",
@@ -419,7 +429,10 @@ footer p { margin: 4px 0; }
       search: "Buscá evento, lugar o tema", what: "¿Qué cê tá buscando, parcero?", loading: "Cargando los eventos…",
       free: "De graça", presencial: "Presencial", online: "Online", past: "Ver los que ya pasaron",
       count: function (n) { return n === 1 ? "1 eventito" : n + " eventos"; },
-      none: "Nada por acá con esos filtros, mermão.", clear: "Limpiá los filtros",
+      countOf: function (n, total) {
+        return n + " de " + total + " " + (total === 1 ? "eventito" : "eventos");
+      },
+      none: "Nada por acá con esos filtros, mermão.", clear: "Limpiá los filtros", seeAll: "Ver todos",
       details: "Detallitos", open: "Ver el evento", gcal: "Botá no Google Agenda", org: "Organiza", note: "Ojo",
       tbc: "por confirmar", timeTbd: "horário a confirmar",
       prevWeek: "Semana anterior", nextWeek: "Próxima semana", noneWeek: "Nada nesta semana.", weeks: "Semanas",
@@ -441,7 +454,7 @@ footer p { margin: 4px 0; }
     empreendedorismo: "↗", inovacao: "✦", networking: "Oi", conferencia: "Mic", meetup: "Oi", workshop: "Lab",
     hackathon: "#", palestra: "Mic", carreira: "CV", educacao: "Edu", comunidade: "Oi", "impacto-social": "♥", diversidade: "♥", "open-source": "OS" };
 
-  var state = { lang: "pt", q: "", intents: {}, free: false, presencial: false, online: false, past: false, tag: null, weekStart: null };
+  var state = { lang: "pt", q: "", intents: {}, free: false, presencial: false, online: false, past: false, tag: null, weekStart: null, weekOn: false };
   var DATA = { events: [], updated: null };
   var TAGS = { tags: {}, intents: [] };
 
@@ -640,7 +653,9 @@ footer p { margin: 4px 0; }
 
   function renderWeek(pool) {
     var start = state.weekStart;
-    document.getElementById("week").setAttribute("aria-label", t("weeks"));
+    var week = document.getElementById("week");
+    week.setAttribute("aria-label", t("weeks"));
+    week.classList.toggle("on", state.weekOn);
     document.getElementById("week-label").textContent = formatWeek(start);
     document.getElementById("week-prev").setAttribute("aria-label", t("prevWeek"));
     document.getElementById("week-next").setAttribute("aria-label", t("nextWeek"));
@@ -657,16 +672,18 @@ footer p { margin: 4px 0; }
       var long = parts(d, { weekday: "long", month: "long" });
       var label = cap(long.weekday) + ", " + dn + " " + long.month;
       var kids = [el("span", { class: "wd", text: wd }), el("span", { class: "dn", text: dn }), el("span", { class: "mark" })];
-      var node;
-      if (hits.length) {
-        node = el("button", { type: "button", class: cls, "aria-label": label, onclick: function (id) {
-          return function () {
-            var card = document.getElementById(id);
-            if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
-          };
-        }(hits[0].id) }, kids);
-      } else node = el("div", { class: cls }, kids);
-      box.appendChild(node);
+      box.appendChild(el("button", {
+        type: "button", class: cls, "aria-label": label, "aria-pressed": state.weekOn ? "true" : "false",
+        onclick: function () { state.weekOn = true; render(); }
+      }, kids));
+    }
+    var back = document.getElementById("week-back");
+    back.replaceChildren();
+    if (state.weekOn) {
+      back.appendChild(el("button", {
+        type: "button", class: "chip", text: t("seeAll"),
+        onclick: function () { state.weekOn = false; render(); }
+      }));
     }
   }
 
@@ -676,10 +693,10 @@ footer p { margin: 4px 0; }
     var list = document.getElementById("list");
     var pool = DATA.events.filter(function (e) { return matches(e, now); });
     var weekEnd = addDaysYmd(state.weekStart, 6);
-    var shown = pool.filter(function (e) { return overlaps(e, state.weekStart, weekEnd); })
+    var shown = (state.weekOn ? pool.filter(function (e) { return overlaps(e, state.weekStart, weekEnd); }) : pool.slice())
       .sort(function (a, b) { return parseStart(a.start) - parseStart(b.start); });
     renderWeek(pool);
-    document.getElementById("count").textContent = t("count")(shown.length);
+    document.getElementById("count").textContent = t("countOf")(shown.length, pool.length);
 
     var slot = document.getElementById("active-tag-slot"); slot.replaceChildren();
     if (state.tag) slot.appendChild(el("button", { type: "button", class: "active-tag", "aria-label": t("clear"),
@@ -687,8 +704,9 @@ footer p { margin: 4px 0; }
 
     list.replaceChildren();
     if (!shown.length) {
-      var kids = [el("p", { text: filtersActive() ? t("none") : t("noneWeek") })];
+      var kids = [el("p", { text: state.weekOn && !filtersActive() ? t("noneWeek") : t("none") })];
       if (filtersActive()) kids.push(el("button", { type: "button", class: "chip", text: t("clear"), onclick: resetFilters }));
+      else if (state.weekOn) kids.push(el("button", { type: "button", class: "chip", text: t("seeAll"), onclick: function () { state.weekOn = false; render(); } }));
       list.appendChild(el("div", { class: "empty" }, kids));
       return;
     }
