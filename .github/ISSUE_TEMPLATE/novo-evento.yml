@@ -20,4 +20,4 @@ body:
     id: obs
     attributes:
       label: Para quem é? (opcional)
-      description: Ex.: devs Python, investidores, quem quer abrir startup, iniciantes…
+      description: "Ex.: devs Python, investidores, quem quer abrir startup, iniciantes…"
