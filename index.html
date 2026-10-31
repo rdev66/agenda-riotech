@@ -4,10 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Agenda RioTech</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Eventos de tecnologia no Rio de Janeiro num lugar só: meetups, conferências, hackathons e encontros de startups. Feito pela comunidade RioTech.">
 <meta property="og:title" content="Agenda RioTech">
 <meta property="og:description" content="Eventos de tecnologia no Rio, num lugar só. Feito pela comunidade.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rdev66.github.io/agenda-riotech/">
+<meta property="og:image" content="https://rdev66.github.io/agenda-riotech/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Agenda RioTech — eventos de tecnologia no Rio, num lugar só">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F3F5F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D1412" media="(prefers-color-scheme: dark)">
 <!-- Repositório para os botões «Sugerir evento» e o convite a pull requests. -->
 <meta name="riotech:repo" content="https://github.com/rdev66/agenda-riotech">
 <script>
@@ -137,6 +147,7 @@ h1 .sun { color: var(--sun); }
   font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
   color: var(--muted); margin: 0 0 8px;
 }
+.chip-bleed { display: contents; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .chip {
   border: 1px solid var(--line); background: var(--surface); border-radius: 999px;
@@ -153,7 +164,7 @@ h1 .sun { color: var(--sun); }
 }
 
 /* ---------- Lista ---------- */
-.month { margin-top: 30px; }
+.month { margin-top: 8px; }
 .month h2 {
   font-family: var(--display); font-weight: 700; font-size: 28px; letter-spacing: -.02em; margin: 0 0 6px;
   display: flex; align-items: baseline; gap: 10px;
@@ -197,7 +208,7 @@ h1 .sun { color: var(--sun); }
 }
 
 /* ---------- Semanas ---------- */
-.week { margin-top: 18px; }
+.week { margin-top: 10px; }
 .week-nav { display: flex; align-items: center; gap: 10px; }
 .week-label {
   flex: 1; margin: 0; text-align: center;
@@ -261,7 +272,7 @@ details[open] summary::after { content: " –"; }
 
 /* ---------- Sugerir evento ---------- */
 .cta {
-  margin-block: 40px 24px; padding: 22px; border-radius: var(--radius);
+  margin-block: 12px 8px; padding: 22px; border-radius: var(--radius);
   background: var(--surface); border: 1px solid var(--line);
   display: grid; gap: 10px;
 }
@@ -272,6 +283,43 @@ details[open] summary::after { content: " –"; }
 footer { padding-block: 8px 36px; color: var(--muted); font-size: 13px; }
 footer p { margin: 4px 0; }
 
+@media (min-width: 601px) {
+  .top { padding-block: 18px 0; }
+  .controls { padding-block: 12px 4px; }
+}
+@media (max-width: 600px) {
+  .controls > * { min-width: 0; }
+  .chip-bleed {
+    display: block; position: relative; min-width: 0;
+    margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+    margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  }
+  .chip-bleed::after {
+    content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 28px; pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--bg));
+  }
+  .chip-bleed .chips {
+    flex-wrap: nowrap; min-width: 0; max-width: 100%; overflow-x: auto;
+    scroll-snap-type: x proximity; scrollbar-width: none;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: calc(max(16px, env(safe-area-inset-right, 0px)) + 24px);
+  }
+  .chip-bleed .chips::-webkit-scrollbar { display: none; }
+  .chip-bleed .chips > li { flex: none; scroll-snap-align: start; }
+  .top { padding-block: 12px 0; }
+  h1 { font-size: 36px; }
+  .tagline { margin-top: 4px; font-size: 15px; line-height: 1.35; }
+  .wave { margin-top: 8px; height: 12px; }
+  .controls { padding-block: 10px 2px; gap: 8px; }
+  .label { margin-bottom: 4px; }
+  .week { margin-top: 8px; }
+  .week-days { margin-top: 6px; }
+  .month { margin-top: 12px; }
+  .cta { margin-block: 8px 4px; padding: 12px; gap: 6px; }
+  .cta h2 { font-size: 20px; }
+  .cta p { font-size: 14px; line-height: 1.35; }
+  .cta .actions { margin-top: 2px; }
+}
 @media (max-width: 560px) {
   .ev { grid-template-columns: 52px minmax(0, 1fr); gap: 12px; }
   .ev .thumb { grid-column: 2; grid-row: 1; width: 56px; justify-self: end; margin-bottom: -56px; position: relative; z-index: 1; }
@@ -311,7 +359,7 @@ footer p { margin: 4px 0; }
             <span>EN</span>
           </button>
           <button type="button" id="lang-pn" data-lang="pn" aria-pressed="false" title="Portunhol" aria-label="Portunhol">
-            <svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#0B7A69"/><path d="M0 14 L20 0" stroke="#E9A915" stroke-width="5"/><circle cx="10" cy="7" r="2" fill="#F3F5F1"/></svg>
+            <svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><defs><clipPath id="pn-br"><polygon points="0,0 20,0 0,14"/></clipPath><clipPath id="pn-es"><polygon points="20,0 20,14 0,14"/></clipPath></defs><g clip-path="url(#pn-br)"><rect width="20" height="14" fill="#009B3A"/><polygon points="10,1.4 18.4,7 10,12.6 1.6,7" fill="#FEDD00"/><circle cx="10" cy="7" r="2.3" fill="#002776"/></g><g clip-path="url(#pn-es)"><rect width="20" height="14" fill="#AA151B"/><rect y="3.5" width="20" height="7" fill="#F1BF00"/></g></svg>
             <span>PÑ</span>
           </button>
         </div>
@@ -330,14 +378,18 @@ footer p { margin: 4px 0; }
     <input id="q" class="search" type="search" autocomplete="off" data-i18n-placeholder="search" placeholder="Buscar evento, lugar ou tema">
     <div>
       <p class="label" data-i18n="what">O que você procura?</p>
-      <ul class="chips" id="intents"></ul>
+      <div class="chip-bleed">
+        <ul class="chips" id="intents"></ul>
+      </div>
     </div>
+    <div class="chip-bleed">
     <ul class="chips" id="toggles">
       <li><button type="button" class="chip ghost" id="t-free" aria-pressed="false" data-i18n="free">Grátis</button></li>
       <li><button type="button" class="chip ghost" id="t-presencial" aria-pressed="false" data-i18n="presencial">Presencial</button></li>
       <li><button type="button" class="chip ghost" id="t-online" aria-pressed="false" data-i18n="online">Online</button></li>
       <li><button type="button" class="chip ghost" id="t-past" aria-pressed="false" data-i18n="past">Mostrar passados</button></li>
     </ul>
+    </div>
     <div class="status-row">
       <p class="count" id="count" aria-live="polite"></p>
       <span id="active-tag-slot"></span>
@@ -354,15 +406,15 @@ footer p { margin: 4px 0; }
     <div class="week-back" id="week-back"></div>
   </nav>
 
-  <section id="list" aria-live="polite">
-    <p class="empty" data-i18n="loading">Carregando eventos…</p>
-  </section>
-
-  <section class="cta" aria-labelledby="cta-title">
+  <section class="cta" id="cta" aria-labelledby="cta-title">
     <h2 id="cta-title" data-i18n="addTitle">Tem um evento?</h2>
     <p data-i18n="addBody">A agenda é aberta e vive no GitHub. Mande o link e ele entra na próxima atualização.</p>
     <p id="pr-note"></p>
     <div class="actions" id="cta-actions"></div>
+  </section>
+
+  <section id="list" aria-live="polite">
+    <p class="empty" data-i18n="loading">Carregando eventos…</p>
   </section>
 </main>
 

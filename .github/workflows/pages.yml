@@ -21,7 +21,7 @@ jobs:
       - name: Montar o site
         run: |
           mkdir -p _site/data
-          cp index.html _site/
+          cp index.html og.png favicon.svg _site/
           cp data/events.json data/tags.json _site/data/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
