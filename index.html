@@ -271,6 +271,15 @@ details[open] summary::after { content: " –"; }
 .empty button { margin-top: 10px; }
 
 /* ---------- Sugerir evento ---------- */
+.cta-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin: 8px 0 4px; padding: 7px 12px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.cta-bar h2 {
+  font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: -.02em; margin: 0; min-width: 0;
+}
+.cta-bar .btn { padding: 6px 10px; font-size: 13px; flex: none; }
 .cta {
   margin-block: 12px 8px; padding: 22px; border-radius: var(--radius);
   background: var(--surface); border: 1px solid var(--line);
@@ -301,8 +310,8 @@ footer p { margin: 4px 0; }
   .chip-bleed .chips {
     flex-wrap: nowrap; min-width: 0; max-width: 100%; overflow-x: auto;
     scroll-snap-type: x proximity; scrollbar-width: none;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: calc(max(16px, env(safe-area-inset-right, 0px)) + 24px);
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+    scroll-padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
   }
   .chip-bleed .chips::-webkit-scrollbar { display: none; }
   .chip-bleed .chips > li { flex: none; scroll-snap-align: start; }
@@ -337,6 +346,18 @@ footer p { margin: 4px 0; }
   .ev { animation: rise .35s ease both; }
   @keyframes rise { from { transform: translateY(4px); } to { transform: none; } }
 }
+/* Skyline Ipanema–Leblon–Dois Irmãos (maqueta) */
+:root { --sk-far:#DDE6E1; --sk-mid:#BFD0C8; --sk-city:#9DB3AA; --sk-win:transparent; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --sk-far:#15211D; --sk-mid:#1B2B26; --sk-city:#22352F; --sk-win:#F2C14E; } }
+:root[data-theme="dark"] { --sk-far:#15211D; --sk-mid:#1B2B26; --sk-city:#22352F; --sk-win:#F2C14E; }
+.top { position: relative; overflow: hidden; }
+.top .wrap { position: relative; z-index: 1; }
+.skyline { position: absolute; right: max(0px, calc((100vw - 1100px) / 2)); bottom: 14px; height: 86%; aspect-ratio: 800 / 260; max-width: 100%; z-index: 0; pointer-events: none; }
+.skyline svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.sk-sun { fill: var(--sun); } .sk-far { fill: var(--sk-far); } .sk-mid { fill: var(--sk-mid); }
+.sk-city { fill: var(--sk-city); } .sk-win { fill: var(--sk-win); opacity: .75; }
+.ly { will-change: transform; }
+@media (max-width: 600px) { .skyline { right: 0; bottom: 8px; height: auto; width: 34%; } }
 </style>
 </head>
 <body>
@@ -370,6 +391,12 @@ footer p { margin: 4px 0; }
       </div>
     </div>
   </div>
+  <div class="skyline" aria-hidden="true"><svg viewBox="0 0 800 260" preserveAspectRatio="xMaxYMax meet">
+<g class="ly" data-d="0.55"><circle class="sk-sun" cx="452" cy="168" r="20"/></g>
+<g class="ly" data-d="0.32"><path class="sk-far" d="M150 260 L190 205 C205 185 215 160 230 140 C240 128 250 122 262 121 L360 118 C378 118 388 128 398 145 C415 175 440 210 470 260 Z"/></g>
+<g class="ly" data-d="0.18"><path class="sk-mid" d="M400 260 C440 230 470 180 495 145 C510 124 525 112 540 112 C556 112 566 126 574 140 C580 150 586 150 592 138 C605 108 622 74 645 66 C668 58 690 74 706 104 C724 138 752 196 800 252 L800 260 Z"/></g>
+<g class="ly" data-d="0.06"><g class="sk-city"><rect x="0" y="238" width="22" height="22"/><rect x="22" y="242" width="14" height="18"/><rect x="36" y="220" width="30" height="40"/><rect x="66" y="234" width="30" height="26"/><rect x="99" y="242" width="18" height="18"/><rect x="119" y="242" width="30" height="18"/><rect x="152" y="226" width="22" height="34"/><rect x="176" y="220" width="22" height="40"/><rect x="198" y="220" width="26" height="40"/><rect x="224" y="214" width="14" height="46"/><rect x="241" y="226" width="30" height="34"/><rect x="271" y="238" width="26" height="22"/><rect x="300" y="242" width="14" height="18"/><rect x="314" y="226" width="22" height="34"/><rect x="339" y="234" width="14" height="26"/><rect x="356" y="230" width="14" height="30"/><rect x="372" y="226" width="30" height="34"/><rect x="402" y="214" width="22" height="46"/><rect x="426" y="242" width="22" height="18"/><rect x="450" y="242" width="22" height="18"/><rect x="472" y="246" width="18" height="14"/><rect x="493" y="214" width="18" height="46"/><rect x="511" y="246" width="18" height="14"/><rect x="529" y="226" width="30" height="34"/><rect x="559" y="238" width="18" height="22"/><rect x="580" y="228" width="30" height="32"/><rect x="613" y="248" width="30" height="12"/><rect x="643" y="244" width="30" height="16"/><rect x="675" y="234" width="14" height="26"/><rect x="689" y="244" width="18" height="16"/><rect x="707" y="250" width="22" height="10"/></g><g class="sk-win"><rect x="11" y="243" width="2.2" height="2.6"/><rect x="4" y="251" width="2.2" height="2.6"/><rect x="26" y="255" width="2.2" height="2.6"/><rect x="40" y="225" width="2.2" height="2.6"/><rect x="47" y="233" width="2.2" height="2.6"/><rect x="61" y="233" width="2.2" height="2.6"/><rect x="54" y="241" width="2.2" height="2.6"/><rect x="84" y="239" width="2.2" height="2.6"/><rect x="91" y="239" width="2.2" height="2.6"/><rect x="70" y="247" width="2.2" height="2.6"/><rect x="123" y="247" width="2.2" height="2.6"/><rect x="144" y="247" width="2.2" height="2.6"/><rect x="130" y="255" width="2.2" height="2.6"/><rect x="170" y="247" width="2.2" height="2.6"/><rect x="180" y="241" width="2.2" height="2.6"/><rect x="202" y="249" width="2.2" height="2.6"/><rect x="209" y="249" width="2.2" height="2.6"/><rect x="228" y="227" width="2.2" height="2.6"/><rect x="228" y="243" width="2.2" height="2.6"/><rect x="252" y="239" width="2.2" height="2.6"/><rect x="245" y="255" width="2.2" height="2.6"/><rect x="259" y="255" width="2.2" height="2.6"/><rect x="266" y="255" width="2.2" height="2.6"/><rect x="275" y="243" width="2.2" height="2.6"/><rect x="289" y="243" width="2.2" height="2.6"/><rect x="332" y="231" width="2.2" height="2.6"/><rect x="325" y="247" width="2.2" height="2.6"/><rect x="343" y="255" width="2.2" height="2.6"/><rect x="383" y="247" width="2.2" height="2.6"/><rect x="383" y="255" width="2.2" height="2.6"/><rect x="413" y="243" width="2.2" height="2.6"/><rect x="420" y="243" width="2.2" height="2.6"/><rect x="437" y="247" width="2.2" height="2.6"/><rect x="437" y="255" width="2.2" height="2.6"/><rect x="476" y="251" width="2.2" height="2.6"/><rect x="504" y="227" width="2.2" height="2.6"/><rect x="497" y="235" width="2.2" height="2.6"/><rect x="547" y="231" width="2.2" height="2.6"/><rect x="540" y="255" width="2.2" height="2.6"/><rect x="554" y="255" width="2.2" height="2.6"/><rect x="563" y="243" width="2.2" height="2.6"/><rect x="563" y="251" width="2.2" height="2.6"/><rect x="570" y="251" width="2.2" height="2.6"/><rect x="591" y="233" width="2.2" height="2.6"/><rect x="661" y="249" width="2.2" height="2.6"/><rect x="679" y="247" width="2.2" height="2.6"/><rect x="718" y="255" width="2.2" height="2.6"/></g></g>
+</svg></div>
   <div class="wave" aria-hidden="true"></div>
 </header>
 
@@ -406,15 +433,20 @@ footer p { margin: 4px 0; }
     <div class="week-back" id="week-back"></div>
   </nav>
 
-  <section class="cta" id="cta" aria-labelledby="cta-title">
+  <section class="cta-bar" aria-labelledby="cta-title">
     <h2 id="cta-title" data-i18n="addTitle">Tem um evento?</h2>
-    <p data-i18n="addBody">A agenda é aberta e vive no GitHub. Mande o link e ele entra na próxima atualização.</p>
-    <p id="pr-note"></p>
-    <div class="actions" id="cta-actions"></div>
+    <a class="btn" id="cta-suggest" href="https://github.com/rdev66/agenda-riotech/issues/new?template=novo-evento.yml" target="_blank" rel="noopener" data-i18n="suggest">Sugerir evento ↗</a>
   </section>
 
   <section id="list" aria-live="polite">
     <p class="empty" data-i18n="loading">Carregando eventos…</p>
+  </section>
+
+  <section class="cta" id="cta" aria-labelledby="cta-full-title">
+    <h2 id="cta-full-title" data-i18n="addTitle">Tem um evento?</h2>
+    <p data-i18n="addBody">A agenda é aberta e vive no GitHub. Mande o link e ele entra na próxima atualização.</p>
+    <p id="pr-note"></p>
+    <div class="actions" id="cta-actions"></div>
   </section>
 </main>
 
@@ -448,6 +480,7 @@ footer p { margin: 4px 0; }
       reg: { livre: "Entrada livre", inscricao: "Inscrição", aprovacao: "Inscrição com aprovação", ingresso: "Ingresso" },
       cost: { gratis: "Grátis", pago: "Pago", desconhecido: "Preço a confirmar" },
       addTitle: "Tem um evento?", addBody: "A agenda é aberta e vive no GitHub. Mande o link e ele entra na próxima atualização.",
+      suggest: "Sugerir evento ↗",
       addIssue: "Sugerir pelo GitHub", addPR: "Editar os dados (PR)",
       addNoRepo: "Por enquanto, mande o link no grupo da RioTech no WhatsApp.",
       updated: "Atualizado em", sources: "Fontes: Luma, Meetup, Sympla e o grupo da RioTech no WhatsApp. Confira sempre a página oficial antes de ir.",
@@ -471,6 +504,7 @@ footer p { margin: 4px 0; }
       reg: { livre: "Walk in", inscricao: "Sign-up", aprovacao: "Sign-up, host approves", ingresso: "Ticket" },
       cost: { gratis: "Free", pago: "Paid", desconhecido: "Price TBC" },
       addTitle: "Got an event?", addBody: "This calendar is open and lives on GitHub. Send the link and it goes in with the next update.",
+      suggest: "Suggest an event ↗",
       addIssue: "Suggest on GitHub", addPR: "Edit the data (PR)",
       addNoRepo: "For now, drop the link in the RioTech WhatsApp group.",
       updated: "Updated", sources: "Sources: Luma, Meetup, Sympla and the RioTech WhatsApp group. Always check the official page before you go.",
@@ -494,6 +528,7 @@ footer p { margin: 4px 0; }
       reg: { livre: "Chegá y entrá", inscricao: "Hay que inscribirse", aprovacao: "Inscripción com aprovação", ingresso: "Ingresso pagado" },
       cost: { gratis: "De graça", pago: "Pagado", desconhecido: "Precio a confirmar" },
       addTitle: "¿Tenés un evento?", addBody: "La agenda es abierta y vive no GitHub. Mandá el link y entra na próxima atualização.",
+      suggest: "Sugerí un evento ↗",
       addIssue: "Sugerí por GitHub", addPR: "Editá los datos (PR)",
       addNoRepo: "Por ahora, mandá el link no grupo da RioTech no WhatsApp.",
       updated: "Actualizado em", sources: "Fuentes: Luma, Meetup, Sympla y el grupo da RioTech no WhatsApp. Chequeá siempre la página oficial antes de ir.",
@@ -804,12 +839,17 @@ footer p { margin: 4px 0; }
   function buildCta() {
     var note = document.getElementById("pr-note");
     note.replaceChildren(el("a", { href: REPO, target: "_blank", rel: "noopener", text: t("prNote") }));
+    var suggest = document.getElementById("cta-suggest");
     var box = document.getElementById("cta-actions"); box.replaceChildren();
     if (REPO) {
       var base = REPO.replace(/\/$/, "");
-      box.appendChild(el("a", { class: "btn primary", href: base + "/issues/new?template=novo-evento.yml", target: "_blank", rel: "noopener", text: t("addIssue") + " ↗" }));
+      var issue = base + "/issues/new?template=novo-evento.yml";
+      suggest.href = issue;
+      suggest.hidden = false;
+      box.appendChild(el("a", { class: "btn primary", href: issue, target: "_blank", rel: "noopener", text: t("addIssue") + " ↗" }));
       box.appendChild(el("a", { class: "btn", href: base + "/blob/main/data/events.json", target: "_blank", rel: "noopener", text: t("addPR") }));
     } else {
+      suggest.hidden = true;
       box.appendChild(el("p", { class: "meta", text: t("addNoRepo") }));
     }
   }
@@ -870,6 +910,12 @@ footer p { margin: 4px 0; }
     list.replaceChildren(el("p", { class: "empty", text: t("loadErr") }));
   });
 })();
+</script>
+<script>
+(function(){ var m = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+ if (m && m.matches) return; var ls=[].slice.call(document.querySelectorAll(".skyline .ly")); var tick=false;
+ function f(){ var y=Math.min(window.scrollY, 600); ls.forEach(function(l){ l.style.transform="translateY("+(y*parseFloat(l.dataset.d)).toFixed(1)+"px)"; }); tick=false; }
+ window.addEventListener("scroll", function(){ if(!tick){ tick=true; requestAnimationFrame(f);} }, {passive:true}); f(); })();
 </script>
 </body>
 </html>
