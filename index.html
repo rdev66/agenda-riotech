@@ -8,8 +8,17 @@
 <meta name="description" content="Eventos de tecnologia no Rio de Janeiro num lugar só: meetups, conferências, hackathons e encontros de startups. Feito pela comunidade RioTech.">
 <meta property="og:title" content="Agenda RioTech">
 <meta property="og:description" content="Eventos de tecnologia no Rio, num lugar só. Feito pela comunidade.">
-<!-- URL do repositório no GitHub (para os botões «Sugerir evento»). Deixe vazio até publicar. -->
-<meta name="riotech:repo" content="">
+<!-- Repositório para os botões «Sugerir evento» e o convite a pull requests. -->
+<meta name="riotech:repo" content="https://github.com/rdev66/agenda-riotech">
+<script>
+/* Tema salvo antes da pintura. Sem valor, o CSS segue o sistema. */
+(function () {
+  try {
+    var t = localStorage.getItem("riotech.theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -36,6 +45,7 @@
   --body: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --radius: 14px;
+  color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -87,12 +97,27 @@ h1 {
 h1 .sun { color: var(--sun); }
 .tagline { margin: 12px 0 0; color: var(--muted); max-width: 46ch; font-size: 17px; }
 
+.tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
 .lang button {
-  border: 0; background: transparent; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 0; background: transparent; padding: 5px 10px; border-radius: 999px; cursor: pointer;
   font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .06em; color: var(--muted);
 }
 .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.flag { width: 16px; height: 11px; display: block; border-radius: 2px; box-shadow: 0 0 0 1px var(--line); flex: none; }
+.theme {
+  width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
+  cursor: pointer; display: grid; place-items: center; padding: 0; flex: none;
+}
+.theme .icon { width: 18px; height: 18px; display: block; }
+.theme .icon-moon { display: none; }
+:root[data-theme="dark"] .theme .icon-sun { display: none; }
+:root[data-theme="dark"] .theme .icon-moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme .icon-sun { display: none; }
+  :root:not([data-theme="light"]) .theme .icon-moon { display: block; }
+}
 
 .wave {
   height: 16px; margin-top: 24px;
@@ -167,8 +192,34 @@ h1 .sun { color: var(--sun); }
 .ev h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .badge {
   display: inline-block; vertical-align: 3px; margin-left: 6px; padding: 2px 8px; border-radius: 999px;
-  background: var(--warn-bg); color: var(--warn); font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .04em;
+  background: var(--warn-bg); color: var(--warn); font-family: var(--mono); font-size: 11px; font-weight: 600;
+  letter-spacing: .02em; white-space: nowrap;
 }
+
+/* ---------- Semanas ---------- */
+.week { margin-top: 18px; }
+.week-nav { display: flex; align-items: center; gap: 10px; }
+.week-label {
+  flex: 1; margin: 0; text-align: center;
+  font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: -.02em;
+}
+.week-arrow {
+  width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
+  cursor: pointer; font-family: var(--display); font-size: 22px; line-height: 1; flex: none;
+}
+.week-arrow:hover { border-color: var(--ink); }
+.week-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin-top: 12px; }
+.wday { border: 0; background: transparent; border-radius: 12px; padding: 6px 0 8px; text-align: center; color: inherit; min-width: 0; }
+button.wday { cursor: pointer; }
+button.wday:hover { background: var(--chip); }
+.wday.today { box-shadow: inset 0 0 0 1.5px var(--accent); }
+.wday .wd {
+  display: block; font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted);
+}
+.wday .dn { display: block; font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.05; margin-top: 2px; }
+.wday .mark { display: block; width: 5px; height: 5px; border-radius: 50%; margin: 5px auto 0; background: transparent; }
+.wday.has .mark { background: var(--sun); }
 .where { margin: 4px 0 0; color: var(--muted); font-size: 14.5px; overflow-wrap: anywhere; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 14px; list-style: none; margin: 10px 0 0; padding: 0; font-size: 14px; font-weight: 600; }
 .facts li { display: inline-flex; align-items: center; gap: 6px; }
@@ -213,6 +264,7 @@ details[open] summary::after { content: " –"; }
 }
 .cta h2 { font-family: var(--display); font-size: 24px; letter-spacing: -.02em; margin: 0; }
 .cta p { margin: 0; color: var(--muted); max-width: 60ch; }
+#pr-note a { color: var(--accent); font-weight: 600; }
 
 footer { padding-block: 8px 36px; color: var(--muted); font-size: 13px; }
 footer p { margin: 4px 0; }
@@ -226,6 +278,9 @@ footer p { margin: 4px 0; }
   .when .day { font-size: 28px; }
   .when .day.range { font-size: 16px; }
   .cover { font-size: 17px; }
+  .week-label { font-size: 18px; }
+  .wday .dn { font-size: 18px; }
+  .wday .wd { letter-spacing: .02em; font-size: 9px; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .ev { animation: rise .35s ease both; }
@@ -242,10 +297,25 @@ footer p { margin: 4px 0; }
         <h1>Agenda<span class="sun">.</span></h1>
         <p class="tagline" data-i18n="tagline">Eventos de tecnologia no Rio, num lugar só. Feito pela comunidade.</p>
       </div>
-      <div class="lang" role="group" aria-label="Idioma / Language">
-        <button type="button" id="lang-pt" data-lang="pt" aria-pressed="true">PT</button>
-        <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
-        <button type="button" id="lang-pn" data-lang="pn" aria-pressed="false" title="Portunhol">PÑ</button>
+      <div class="tools">
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button type="button" id="lang-pt" data-lang="pt" aria-pressed="true" aria-label="Português">
+            <svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#009B3A"/><polygon points="10,1.4 18.4,7 10,12.6 1.6,7" fill="#FEDD00"/><circle cx="10" cy="7" r="2.3" fill="#002776"/></svg>
+            <span>PT</span>
+          </button>
+          <button type="button" id="lang-en" data-lang="en" aria-pressed="false" aria-label="English">
+            <svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#012169"/><path d="M0 0 L20 14 M20 0 L0 14" stroke="#fff" stroke-width="3"/><path d="M0 0 L20 14 M20 0 L0 14" stroke="#C8102E" stroke-width="1.5"/><path d="M10 0 V14 M0 7 H20" stroke="#fff" stroke-width="5"/><path d="M10 0 V14 M0 7 H20" stroke="#C8102E" stroke-width="2.6"/></svg>
+            <span>EN</span>
+          </button>
+          <button type="button" id="lang-pn" data-lang="pn" aria-pressed="false" title="Portunhol" aria-label="Portunhol">
+            <svg class="flag" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#0B7A69"/><path d="M0 14 L20 0" stroke="#E9A915" stroke-width="5"/><circle cx="10" cy="7" r="2" fill="#F3F5F1"/></svg>
+            <span>PÑ</span>
+          </button>
+        </div>
+        <button type="button" id="theme" class="theme" aria-pressed="false" aria-label="Usar tema escuro">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="#E9A915"/><g stroke="#E9A915" stroke-width="2" stroke-linecap="round"><path d="M12 2.5 V5.5 M12 18.5 V21.5 M2.5 12 H5.5 M18.5 12 H21.5 M5.1 5.1 L7.2 7.2 M16.8 16.8 L18.9 18.9 M18.9 5.1 L16.8 7.2 M7.2 16.8 L5.1 18.9"/></g></svg>
+          <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.5 3.2 A8.2 8.2 0 1 0 20.8 14.2 A6.4 6.4 0 0 1 15.5 3.2 Z"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -271,6 +341,15 @@ footer p { margin: 4px 0; }
     </div>
   </section>
 
+  <nav class="week" id="week" aria-label="Semanas">
+    <div class="week-nav">
+      <button type="button" id="week-prev" class="week-arrow" aria-label="Semana anterior">‹</button>
+      <p id="week-label" class="week-label"></p>
+      <button type="button" id="week-next" class="week-arrow" aria-label="Próxima semana">›</button>
+    </div>
+    <div class="week-days" id="week-days"></div>
+  </nav>
+
   <section id="list" aria-live="polite">
     <p class="empty" data-i18n="loading">Carregando eventos…</p>
   </section>
@@ -278,6 +357,7 @@ footer p { margin: 4px 0; }
   <section class="cta" aria-labelledby="cta-title">
     <h2 id="cta-title" data-i18n="addTitle">Tem um evento?</h2>
     <p data-i18n="addBody">A agenda é aberta e vive no GitHub. Mande o link e ele entra na próxima atualização.</p>
+    <p id="pr-note"></p>
     <div class="actions" id="cta-actions"></div>
   </section>
 </main>
@@ -302,6 +382,9 @@ footer p { margin: 4px 0; }
       none: "Nenhum evento com esses filtros.", clear: "Limpar filtros",
       details: "Detalhes", open: "Página do evento", gcal: "Pôr no Google Agenda", org: "Organiza", note: "Obs.",
       tbc: "a confirmar", timeTbd: "horário a confirmar",
+      prevWeek: "Semana anterior", nextWeek: "Próxima semana", noneWeek: "Nenhum evento nesta semana.", weeks: "Semanas",
+      themeToDark: "Usar tema escuro", themeToLight: "Usar tema claro",
+      prNote: "Contribuições são bem-vindas via pull request.",
       fmt: { presencial: "Presencial", online: "Online", hibrido: "Híbrido" },
       reg: { livre: "Entrada livre", inscricao: "Inscrição", aprovacao: "Inscrição com aprovação", ingresso: "Ingresso" },
       cost: { gratis: "Grátis", pago: "Pago", desconhecido: "Preço a confirmar" },
@@ -319,6 +402,9 @@ footer p { margin: 4px 0; }
       none: "No events match these filters.", clear: "Clear filters",
       details: "Details", open: "Event page", gcal: "Add to Google Calendar", org: "Hosted by", note: "Note",
       tbc: "to be confirmed", timeTbd: "time TBC",
+      prevWeek: "Previous week", nextWeek: "Next week", noneWeek: "Nothing this week.", weeks: "Weeks",
+      themeToDark: "Use dark theme", themeToLight: "Use light theme",
+      prNote: "Contributions are welcome via a pull request.",
       fmt: { presencial: "In person", online: "Online", hibrido: "Hybrid" },
       reg: { livre: "Walk in", inscricao: "Sign-up", aprovacao: "Sign-up, host approves", ingresso: "Ticket" },
       cost: { gratis: "Free", pago: "Paid", desconhecido: "Price TBC" },
@@ -335,7 +421,10 @@ footer p { margin: 4px 0; }
       count: function (n) { return n === 1 ? "1 eventito" : n + " eventos"; },
       none: "Nada por acá con esos filtros, mermão.", clear: "Limpiá los filtros",
       details: "Detallitos", open: "Ver el evento", gcal: "Botá no Google Agenda", org: "Organiza", note: "Ojo",
-      tbc: "a confirmar, hermano", timeTbd: "horário a confirmar",
+      tbc: "por confirmar", timeTbd: "horário a confirmar",
+      prevWeek: "Semana anterior", nextWeek: "Próxima semana", noneWeek: "Nada nesta semana.", weeks: "Semanas",
+      themeToDark: "Usar o tema escuro", themeToLight: "Usar o tema claro",
+      prNote: "Contribuições são bem-vindas via pull request.",
       fmt: { presencial: "Presencial", online: "Online", hibrido: "Híbrido" },
       reg: { livre: "Chegá y entrá", inscricao: "Hay que inscribirse", aprovacao: "Inscripción com aprovação", ingresso: "Ingresso pagado" },
       cost: { gratis: "De graça", pago: "Pagado", desconhecido: "Precio a confirmar" },
@@ -352,7 +441,7 @@ footer p { margin: 4px 0; }
     empreendedorismo: "↗", inovacao: "✦", networking: "Oi", conferencia: "Mic", meetup: "Oi", workshop: "Lab",
     hackathon: "#", palestra: "Mic", carreira: "CV", educacao: "Edu", comunidade: "Oi", "impacto-social": "♥", diversidade: "♥", "open-source": "OS" };
 
-  var state = { lang: "pt", q: "", intents: {}, free: false, presencial: false, online: false, past: false, tag: null };
+  var state = { lang: "pt", q: "", intents: {}, free: false, presencial: false, online: false, past: false, tag: null, weekStart: null };
   var DATA = { events: [], updated: null };
   var TAGS = { tags: {}, intents: [] };
 
@@ -383,6 +472,45 @@ footer p { margin: 4px 0; }
       .forEach(function (p) { o[p.type] = p.value; }); return o;
   }
   function ymd(d) { var p = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); return p; }
+  function addDaysYmd(ymdStr, n) {
+    var p = ymdStr.split("-");
+    var d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + n));
+    var m = d.getUTCMonth() + 1, day = d.getUTCDate();
+    return d.getUTCFullYear() + "-" + (m < 10 ? "0" : "") + m + "-" + (day < 10 ? "0" : "") + day;
+  }
+  function weekdayMon0(ymdStr) {
+    var p = ymdStr.split("-");
+    return (new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])).getUTCDay() + 6) % 7;
+  }
+  function mondayOf(ymdStr) { return addDaysYmd(ymdStr, -weekdayMon0(ymdStr)); }
+  function rioTodayYmd() { return ymd(new Date()); }
+  function spanYmd(e) { return [ymd(parseStart(e.start)), ymd(parseEnd(e))]; }
+  function overlaps(e, a, b) { var s = spanYmd(e); return s[0] <= b && s[1] >= a; }
+  function anchorWeek() {
+    var today = rioTodayYmd();
+    var now = new Date();
+    var future = DATA.events.filter(function (e) { return parseEnd(e) >= now; })
+      .sort(function (a, b) { return parseStart(a.start) - parseStart(b.start); });
+    var anchor = future.length ? ymd(parseStart(future[0].start)) : today;
+    if (anchor < today) anchor = today;
+    return mondayOf(anchor);
+  }
+  function filtersActive() {
+    return !!(state.q || state.free || state.presencial || state.online || state.tag ||
+      Object.keys(state.intents).some(function (k) { return state.intents[k]; }));
+  }
+  function effectiveDark() {
+    var theme = document.documentElement.getAttribute("data-theme");
+    if (theme === "dark") return true;
+    if (theme === "light") return false;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function syncThemeButton() {
+    var dark = effectiveDark();
+    var b = document.getElementById("theme");
+    b.setAttribute("aria-pressed", dark ? "true" : "false");
+    b.setAttribute("aria-label", dark ? t("themeToLight") : t("themeToDark"));
+  }
   function fmtTime(d) { return new Intl.DateTimeFormat(t("locale"), { timeZone: TZ, hour: "2-digit", minute: "2-digit", hour12: false }).format(d); }
   function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
 
@@ -500,11 +628,57 @@ footer p { margin: 4px 0; }
       el("div", { class: "body" }, [title, where ? el("p", { class: "where", text: where }) : null, facts, det, tags])]);
   }
 
+  function formatWeek(start) {
+    var end = addDaysYmd(start, 6);
+    var a = new Date(start + "T12:00:00-03:00");
+    var b = new Date(end + "T12:00:00-03:00");
+    var month = function (d) { return parts(d, { month: "short" }).month.replace(".", ""); };
+    var day = function (d) { return parts(d, { day: "numeric" }).day; };
+    if (start.slice(0, 7) === end.slice(0, 7)) return day(a) + "–" + day(b) + " " + month(b) + " " + parts(b, { year: "numeric" }).year;
+    return day(a) + " " + month(a) + " – " + day(b) + " " + month(b) + " " + parts(b, { year: "numeric" }).year;
+  }
+
+  function renderWeek(pool) {
+    var start = state.weekStart;
+    document.getElementById("week").setAttribute("aria-label", t("weeks"));
+    document.getElementById("week-label").textContent = formatWeek(start);
+    document.getElementById("week-prev").setAttribute("aria-label", t("prevWeek"));
+    document.getElementById("week-next").setAttribute("aria-label", t("nextWeek"));
+    var today = rioTodayYmd();
+    var box = document.getElementById("week-days");
+    box.replaceChildren();
+    for (var i = 0; i < 7; i++) {
+      var y = addDaysYmd(start, i);
+      var d = new Date(y + "T12:00:00-03:00");
+      var hits = pool.filter(function (e) { return overlaps(e, y, y); });
+      var wd = parts(d, { weekday: "short" }).weekday.replace(".", "");
+      var dn = parts(d, { day: "numeric" }).day;
+      var cls = "wday" + (y === today ? " today" : "") + (hits.length ? " has" : "");
+      var long = parts(d, { weekday: "long", month: "long" });
+      var label = cap(long.weekday) + ", " + dn + " " + long.month;
+      var kids = [el("span", { class: "wd", text: wd }), el("span", { class: "dn", text: dn }), el("span", { class: "mark" })];
+      var node;
+      if (hits.length) {
+        node = el("button", { type: "button", class: cls, "aria-label": label, onclick: function (id) {
+          return function () {
+            var card = document.getElementById(id);
+            if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
+          };
+        }(hits[0].id) }, kids);
+      } else node = el("div", { class: cls }, kids);
+      box.appendChild(node);
+    }
+  }
+
   function render() {
+    if (!state.weekStart) state.weekStart = anchorWeek();
     var now = new Date();
     var list = document.getElementById("list");
-    var shown = DATA.events.filter(function (e) { return matches(e, now); })
+    var pool = DATA.events.filter(function (e) { return matches(e, now); });
+    var weekEnd = addDaysYmd(state.weekStart, 6);
+    var shown = pool.filter(function (e) { return overlaps(e, state.weekStart, weekEnd); })
       .sort(function (a, b) { return parseStart(a.start) - parseStart(b.start); });
+    renderWeek(pool);
     document.getElementById("count").textContent = t("count")(shown.length);
 
     var slot = document.getElementById("active-tag-slot"); slot.replaceChildren();
@@ -513,8 +687,9 @@ footer p { margin: 4px 0; }
 
     list.replaceChildren();
     if (!shown.length) {
-      list.appendChild(el("div", { class: "empty" }, [el("p", { text: t("none") }),
-        el("button", { type: "button", class: "chip", text: t("clear"), onclick: resetFilters })]));
+      var kids = [el("p", { text: filtersActive() ? t("none") : t("noneWeek") })];
+      if (filtersActive()) kids.push(el("button", { type: "button", class: "chip", text: t("clear"), onclick: resetFilters }));
+      list.appendChild(el("div", { class: "empty" }, kids));
       return;
     }
     var byMonth = {};
@@ -557,6 +732,8 @@ footer p { margin: 4px 0; }
   }
 
   function buildCta() {
+    var note = document.getElementById("pr-note");
+    note.replaceChildren(el("a", { href: REPO, target: "_blank", rel: "noopener", text: t("prNote") }));
     var box = document.getElementById("cta-actions"); box.replaceChildren();
     if (REPO) {
       var base = REPO.replace(/\/$/, "");
@@ -578,13 +755,25 @@ footer p { margin: 4px 0; }
       document.getElementById("updated").textContent = t("updated") + " " +
         new Intl.DateTimeFormat(t("locale"), { timeZone: TZ, day: "numeric", month: "long", year: "numeric" }).format(d) + ".";
     }
-    buildIntents(); buildCta(); render();
+    buildIntents(); buildCta(); syncThemeButton(); render();
   }
 
   // Eventos
   document.querySelectorAll(".lang button").forEach(function (b) {
     b.addEventListener("click", function () { store("riotech.lang", b.dataset.lang); applyLang(b.dataset.lang); });
   });
+  document.getElementById("theme").addEventListener("click", function () {
+    var next = effectiveDark() ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    store("riotech.theme", next);
+    syncThemeButton();
+  });
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+    if (!document.documentElement.getAttribute("data-theme")) syncThemeButton();
+  });
+  function shiftWeek(n) { state.weekStart = addDaysYmd(state.weekStart || anchorWeek(), n * 7); render(); }
+  document.getElementById("week-prev").addEventListener("click", function () { shiftWeek(-1); });
+  document.getElementById("week-next").addEventListener("click", function () { shiftWeek(1); });
   ["free", "presencial", "online", "past"].forEach(function (k) {
     document.getElementById("t-" + k).addEventListener("click", function () { state[k] = !state[k]; syncChips(); render(); });
   });
