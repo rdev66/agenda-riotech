@@ -34,6 +34,34 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Aprendizagem como Habilidade de Futuro",
+      "start": "2026-11-04T18:30:00-03:00",
+      "end": "2026-11-04T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12, Av. Ataulfo de Paiva, 1120 - Leblon, Rio de Janeiro - RJ, 22440-035, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/kcgfyftk",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/kcgfyftk Endereço: Instituto 12 Rio de Janeiro, RJ Brasil Organizado por Instituto 12 & Natalia"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "id": "2026-11-04-aprendizagem-como-habilidade-de-futuro",
+      "added": "2026-10-31"
+    },
+    {
       "id": "2026-11-05-frontier-ai-governance-in-a-global-context",
       "title": "Frontier AI Governance in a Global Context",
       "start": "2026-11-05T09:45:00-03:00",
@@ -126,6 +154,34 @@
       "status": "confirmado",
       "source": "Maravalley (Luma)",
       "id": "2026-11-05-o-lado-b-de-empreender",
+      "added": "2026-10-31"
+    },
+    {
+      "title": "Almoço de Membros",
+      "start": "2026-11-06T12:00:00-03:00",
+      "end": "2026-11-06T14:00:00-03:00",
+      "time_known": true,
+      "venue": "Pato com Laranja Leblon - Restaurante Japonês Contemporâneo | Drinks | Música e Gastronomia, Rua Dias Ferreira, 410 - Leblon, Rio de Janeiro - RJ, 22431-050, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/y1z3ue5c",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/y1z3ue5c Endereço: Pato com Laranja Leblon - Restaurante Japonês Contemporâneo | Drinks | Música e Gastronomia Rio de Janeiro, RJ Brasil Organizado por Instituto 12"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "id": "2026-11-06-almoco-de-membros",
       "added": "2026-10-31"
     },
     {
@@ -355,6 +411,34 @@
       "note": "Conferido numa página de terceiros; confirme na página oficial."
     },
     {
+      "title": "Clube do Livro",
+      "start": "2026-11-11T18:00:00-03:00",
+      "end": "2026-11-11T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Library - Instituto 12",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/pve8emb2",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/pve8emb2 Endereço: Library - Instituto 12 Organizado por Instituto 12"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "id": "2026-11-11-clube-do-livro",
+      "added": "2026-10-31"
+    },
+    {
       "title": "AI Salon Rio #17",
       "start": "2026-11-12T18:30:00-03:00",
       "end": "2026-11-12T22:00:00-03:00",
@@ -416,6 +500,34 @@
       ],
       "source": "meetup",
       "status": "a-confirmar",
+      "added": "2026-10-31"
+    },
+    {
+      "title": "Massa Máxima",
+      "start": "2026-11-13T17:00:00-03:00",
+      "end": "2026-11-13T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/fmp2ldvv",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/fmp2ldvv Endereço: Av. Prof. Pereira Reis, 76 Rio de Janeiro, RJ Brasil Organizado por Carolina Court"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "id": "2026-11-13-massa-maxima",
       "added": "2026-10-31"
     },
     {
@@ -548,6 +660,34 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Encontro de Mulheres | A Mente sem Limites",
+      "start": "2026-11-18T18:00:00-03:00",
+      "end": "2026-11-18T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Library - Instituto 12",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/m6gfhf1y",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/m6gfhf1y Endereço: Library - Instituto 12 Organizado por Instituto 12"
+      },
+      "tags": [
+        "diversidade"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "id": "2026-11-18-encontro-de-mulheres-a-mente-sem-limites",
+      "added": "2026-10-31"
+    },
+    {
       "title": "Inovar na Velocidade da IA: Como garantir que a segurança seja potencializador de crescimento",
       "start": "2026-11-23T18:00:00-03:00",
       "end": "2026-11-23T21:00:00-03:00",
@@ -577,6 +717,34 @@
       "status": "confirmado",
       "source": "Instituto 12 (Luma)",
       "id": "2026-11-23-inovar-na-velocidade-da-ia-como-garantir-que-a-s",
+      "added": "2026-10-31"
+    },
+    {
+      "title": "Grok Bot Live Brasil 🇧🇷",
+      "start": "2026-11-24T19:00:00-03:00",
+      "end": "2026-11-24T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/4cy8s78q",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/4cy8s78q Organizado por Rodrigo Silva & Emerson Delatorre"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "SpaceXAI / Cursor Rio (Luma)",
+      "id": "2026-11-24-grok-bot-live-brasil",
       "added": "2026-10-31"
     },
     {
