@@ -21,7 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 RIO = dt.timezone(dt.timedelta(hours=-3))
 UA = "Mozilla/5.0 (compatible; AgendaRioTech/1.0; +https://github.com)"
-LEMBRETE = "Exportar o chat do WhatsApp do grupo e rodar scripts/semanal.sh"
+LEMBRETE = "Exportar o chat do WhatsApp do grupo (sem mídia) para Downloads e rodar scripts/semanal.sh"
 
 
 def contar(events: list[dict], hoje: dt.date) -> tuple[int, int]:

@@ -42,10 +42,19 @@ python3 scripts/importar.py --fontes fontes.json --dry-run
 python3 scripts/importar.py --whatsapp ~/Downloads/_chat.txt --desde 2026-10-01
 ```
 
+Toda semana, com o export do grupo salvo em `~/Downloads` (o `.zip` serve, não precisa descompactar):
+
+```bash
+scripts/semanal.sh            # acha o export mais novo, importa os últimos 14 dias e abre o PR
+scripts/semanal.sh --onde     # só mostra qual export usaria; não mexe no git
+```
+
+O `_chat.txt` é lido para um arquivo temporário fora do repositório e apagado no fim. Se o export mais novo tiver mais de 2 dias, o script pergunta antes de seguir.
+
 ## WhatsApp: o que dá e o que não dá para automatizar
 
 - O WhatsApp não tem API oficial para ler grupos. Bots não oficiais (whatsapp-web.js, Baileys) violam os termos e podem levar o número a ser banido. Por isso a agenda não usa bot.
-- **O fluxo proposto:** de vez em quando, alguém exporta o chat e roda o importador. Ele extrai **só links** de plataformas de eventos.
+- **O fluxo proposto:** toda semana, alguém exporta o chat para Downloads e roda `scripts/semanal.sh`. Ele extrai **só links** de plataformas de eventos.
 - **Privacidade:** nenhum nome, telefone ou mensagem é gravado. O `.gitignore` bloqueia `_chat.txt`: **nunca suba a exportação do chat para o repositório.**
 
 ## Publicar
