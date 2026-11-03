@@ -27,6 +27,52 @@ class TestImportar(unittest.TestCase):
         self.assertIn("python", ev["tags"])
         self.assertIn("ia", ev["tags"])
 
+    def test_sympla_next_data_tem_data(self):
+        page = (FIX / "evento_sympla.html").read_text(encoding="utf-8")
+        ev = importar.event_from_page(
+            page, "https://www.sympla.com.br/evento/2-encontro-da-rede-dr-empreendedor/3635352?utm_source=whats")
+        self.assertEqual(ev["start"], "2026-11-26T08:30:00-03:00")
+        self.assertEqual(ev["end"], "2026-11-27T17:30:00-03:00")
+        self.assertTrue(ev["time_known"])
+        self.assertEqual(ev["status"], "confirmado")
+        self.assertEqual(ev["venue"], "Ibmec - Unidade Barra")
+        self.assertEqual(ev["address"], "Avenida Armando Lombardi, 940")
+        self.assertEqual(ev["city"], "Rio de Janeiro")
+        self.assertEqual(ev["format"], "presencial")
+        self.assertEqual(ev["cost"]["type"], "pago")
+        self.assertEqual(ev["url"], "https://www.sympla.com.br/evento/2-encontro-da-rede-dr-empreendedor/3635352")
+        self.assertIn("empreendedorismo", ev["tags"])
+        self.assertIn("startups", ev["tags"])
+
+    def test_sympla_data_com_espaco(self):
+        self.assertEqual(importar.to_iso("2026-11-26 08:30:00"), "2026-11-26T08:30:00-03:00")
+        page = """<script id="__NEXT_DATA__" type="application/json">
+{"props":{"pageProps":{"hydrationData":{"eventHydration":{"event":{
+  "name":"Encontro","startDate":"2026-11-26 08:30:00","endDate":"2026-11-27 17:30:00",
+  "eventsAddress":{"name":"Ibmec","city":"Rio de Janeiro"}
+}}}}}}
+</script>"""
+        ev = importar.event_from_page(page, "https://www.sympla.com.br/evento/x/1")
+        self.assertEqual(ev["start"], "2026-11-26T08:30:00-03:00")
+        self.assertEqual(ev["end"], "2026-11-27T17:30:00-03:00")
+
+    def test_jsonld_nao_e_substituido_pela_data_do_sympla(self):
+        page = """<html><head>
+<script type="application/ld+json">
+{"@type":"Event","name":"Título curado","startDate":"2030-03-10T19:00:00-03:00"}
+</script>
+<script id="__NEXT_DATA__" type="application/json">
+{"props":{"pageProps":{"hydrationData":{"eventHydration":{"event":{
+  "name":"Outro título","startDate":"2026-11-26 08:30:00",
+  "eventsAddress":{"name":"Ibmec - Unidade Barra","city":"Rio de Janeiro"}
+}}}}}}
+</script></head></html>"""
+        ev = importar.event_from_page(page, "https://www.sympla.com.br/evento/x/1")
+        self.assertEqual(ev["title"], "Título curado")
+        self.assertEqual(ev["start"], "2030-03-10T19:00:00-03:00")
+        self.assertEqual(ev["venue"], "Ibmec - Unidade Barra")
+        self.assertEqual(ev["city"], "Rio de Janeiro")
+
     def test_ics(self):
         evs = importar.ics_events((FIX / "calendario.ics").read_text(encoding="utf-8"))
         self.assertEqual(len(evs), 2)

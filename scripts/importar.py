@@ -101,11 +101,14 @@ def to_iso(value: str | None) -> str | None:
     """Normaliza datas para ISO com fuso -03:00. Datas sem hora ficam AAAA-MM-DD."""
     if not value:
         return None
-    v = value.strip()
+    v = value.strip().replace("Z", "+00:00")
     if re.fullmatch(r"\d{4}-\d{2}-\d{2}", v):
         return v
+    # Sympla manda «2026-11-26 08:30:00» (espaço). O fromisoformat do 3.10 exige «T».
+    if re.match(r"\d{4}-\d{2}-\d{2} ", v):
+        v = v.replace(" ", "T", 1)
     try:
-        d = dt.datetime.fromisoformat(v.replace("Z", "+00:00"))
+        d = dt.datetime.fromisoformat(v)
     except ValueError:
         return None
     if d.tzinfo is None:
@@ -241,13 +244,120 @@ def from_jsonld(ld: dict, url: str, meta: dict) -> dict:
     }
 
 
-def event_from_url(url: str) -> dict | None:
+def _vazio(v) -> bool:
+    return v in (None, "", [], {})
+
+
+def fill_empty(base: dict, extra: dict) -> dict:
+    """Copia de extra só o que base ainda não tem. Não apaga campo preenchido."""
+    out = dict(base)
+    for k, v in extra.items():
+        if _vazio(v) or not _vazio(out.get(k)):
+            continue
+        out[k] = v
+    if out.get("start") and _vazio(base.get("start")):
+        out["time_known"] = len(str(out["start"])) > 10
+        if _vazio(base.get("status")) or base.get("status") == "a-confirmar":
+            out["status"] = "confirmado"
+    return out
+
+
+def next_data(page: str) -> dict | None:
+    m = re.search(r'<script[^>]*id=["\']__NEXT_DATA__["\'][^>]*>(.*?)</script>', page, re.S | re.I)
+    if not m:
+        return None
+    try:
+        data = json.loads(html.unescape(m.group(1).strip()))
+    except json.JSONDecodeError:
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def _sympla_quando(ev: dict, chave: str) -> str | None:
+    multi = ev.get(chave + "MultiFormat")
+    if isinstance(multi, dict):
+        iso = to_iso(multi.get("ISO8601") if isinstance(multi.get("ISO8601"), str) else None)
+        if iso:
+            return iso
+    bruto = ev.get(chave)
+    return to_iso(bruto if isinstance(bruto, str) else None)
+
+
+def from_sympla_next(page: str, url: str, meta: dict) -> dict | None:
+    """Sympla (Next.js) não manda JSON-LD. A data está em __NEXT_DATA__."""
+    data = next_data(page)
+    if not data:
+        return None
+    try:
+        ev = data["props"]["pageProps"]["hydrationData"]["eventHydration"]["event"]
+    except (KeyError, TypeError):
+        return None
+    if not isinstance(ev, dict) or not (ev.get("name") or ev.get("startDate") or ev.get("startDateMultiFormat")):
+        return None
+
+    addr = ev.get("eventsAddress") if isinstance(ev.get("eventsAddress"), dict) else {}
+    online = isinstance(ev.get("onlineInfo"), dict) and bool(ev.get("onlineInfo"))
+    has_place = bool(addr.get("name") or addr.get("city"))
+    if online and has_place:
+        fmt = "hibrido"
+    elif online:
+        fmt = "online"
+    else:
+        fmt = "presencial"
+    num = str(addr.get("addressNum") or "").strip()
+    street = str(addr.get("address") or "").strip()
+    if street and num:
+        address = f"{street}, {num}"
+    else:
+        address = street or None
+    images = ev.get("images") if isinstance(ev.get("images"), dict) else {}
+    image = images.get("logoLarge") or images.get("logoUrl") or ev.get("logoUrl") or meta.get("og:image")
+    host = ev.get("eventsHost") if isinstance(ev.get("eventsHost"), dict) else {}
+    title = html.unescape(str(ev.get("name") or meta.get("og:title") or "")).strip()
+    desc = short(ev.get("detail") or ev.get("strippedDetail") or meta.get("og:description"))
+    start = _sympla_quando(ev, "startDate")
+    kind = str(ev.get("paymentEventType") or "").lower()
+    if kind in {"free", "gratis", "gratuit"}:
+        cost = {"type": "gratis", "text": "Grátis"}
+        reg = "inscricao"
+    elif kind == "paid":
+        cost = {"type": "pago", "text": None}
+        reg = "ingresso"
+    else:
+        cost = {"type": "desconhecido", "text": None}
+        reg = "inscricao"
+    return {
+        "title": title,
+        "start": start,
+        "end": _sympla_quando(ev, "endDate"),
+        "time_known": bool(start and len(start) > 10),
+        "venue": addr.get("name") or None,
+        "address": address,
+        "city": addr.get("city") or None,
+        "format": fmt,
+        "cost": cost,
+        "registration": reg,
+        "url": url,
+        "image": image,
+        "organizer": host.get("name") or None,
+        "description": {"pt": desc} if desc else {},
+        "tags": auto_tags(" ".join(filter(None, [title, desc or ""]))),
+        "status": "confirmado" if start else "a-confirmar",
+    }
+
+
+def event_from_page(page: str, url: str) -> dict | None:
     url = clean_url(url)
-    page = fetch(url)
     meta = meta_tags(page)
     evs = jsonld_events(page)
-    if evs:
-        return from_jsonld(evs[0], url, meta)
+    base = from_jsonld(evs[0], url, meta) if evs else None
+    extra = from_sympla_next(page, url, meta)
+    if base and extra:
+        return fill_empty(base, extra)
+    if base:
+        return base
+    if extra:
+        return extra
     if meta.get("og:title"):
         # Sem dados estruturados: entra como «a confirmar» e sem data, para revisão no PR.
         return {
@@ -260,6 +370,11 @@ def event_from_url(url: str) -> dict | None:
             "status": "a-confirmar",
         }
     return None
+
+
+def event_from_url(url: str) -> dict | None:
+    url = clean_url(url)
+    return event_from_page(fetch(url), url)
 
 
 # ------------------------------------------------------------------ iCal
