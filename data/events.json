@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31",
+  "updated": "2026-11-03",
   "events": [
     {
       "id": "2026-11-04-riotech-happy-hour",
@@ -578,6 +578,34 @@
       "source": "Instituto 12 (Luma)",
       "id": "2026-11-23-inovar-na-velocidade-da-ia-como-garantir-que-a-s",
       "added": "2026-10-31"
+    },
+    {
+      "title": "2º Encontro da Rede Dr. Empreendedor",
+      "start": "2026-11-26T08:30:00-03:00",
+      "end": "2026-11-27T17:30:00-03:00",
+      "time_known": true,
+      "venue": "Ibmec - Unidade Barra",
+      "address": "Avenida Armando Lombardi, 940",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/2-encontro-da-rede-dr-empreendedor/3635352",
+      "image": "https://images.sympla.com.br/6ae20e0ee8713-lg.jpg",
+      "organizer": "Rede Dr. Empreendedor",
+      "description": {
+        "pt": "2º Encontro da Rede Dr. Empreendedor Ciência, conexão e oportunidades para transformar o futuro. O 2º Encontro da Rede Dr. Empreendedor será um espaço de conexão, troca de experiências e fortalecimento do…"
+      },
+      "tags": [
+        "empreendedorismo"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-26-2o-encontro-da-rede-dr-empreendedor",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
     },
     {
       "id": "2026-11-28-builders-day-1565-taicor",
