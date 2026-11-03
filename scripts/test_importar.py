@@ -44,6 +44,16 @@ class TestImportar(unittest.TestCase):
         self.assertIn("empreendedorismo", ev["tags"])
         self.assertIn("startups", ev["tags"])
 
+    def test_doity_data_com_fuso_colado(self):
+        self.assertEqual(importar.to_iso("2026-09-15-0300:00"), "2026-09-15T00:00:00-03:00")
+        self.assertEqual(importar.to_iso("2026-12-04-0323:59"), "2026-12-04T23:59:00-03:00")
+        page = (FIX / "evento_doity.html").read_text(encoding="utf-8")
+        ev = importar.event_from_page(page, "https://doity.com.br/exemplo")
+        self.assertEqual(ev["start"], "2026-09-15T00:00:00-03:00")
+        self.assertEqual(ev["end"], "2026-12-04T23:59:00-03:00")
+        self.assertEqual(ev["format"], "online")
+        self.assertEqual(ev["title"], "Prêmio Exemplo")
+
     def test_sympla_data_com_espaco(self):
         self.assertEqual(importar.to_iso("2026-11-26 08:30:00"), "2026-11-26T08:30:00-03:00")
         page = """<script id="__NEXT_DATA__" type="application/json">
@@ -112,6 +122,41 @@ class TestImportar(unittest.TestCase):
         self.assertTrue(importar.merge(lista, sem_data, HOJE).startswith("sem data"))
         self.assertEqual(importar.merge(lista, sp, HOJE), "fora do Rio")
         self.assertEqual(lista, [])
+
+    def test_historico_guarda_passado_antigo_e_outra_cidade(self):
+        lista = []
+        antigo = {"title": "Antigo", "start": "2024-01-15T19:00:00-03:00", "url": "https://luma.com/antigo",
+                  "format": "presencial", "city": "Rio de Janeiro"}
+        sp = {"title": "Em SP", "start": "2030-02-01T19:00:00-03:00", "url": "https://luma.com/sp",
+              "format": "presencial", "city": "São Paulo"}
+        self.assertEqual(importar.merge(lista, antigo, HOJE, historico=True), "novo")
+        self.assertEqual(importar.merge(lista, sp, HOJE, historico=True), "novo")
+        self.assertEqual(lista[0]["start"][:10], "2024-01-15")
+        self.assertEqual(lista[1]["city"], "São Paulo")
+
+    def test_historico_nao_sobrescreve_e_nao_duplica_chave(self):
+        lista = []
+        primeiro = {"title": "Um", "start": "2030-02-01T19:00:00-03:00",
+                    "url": "https://luma.com/abc?locale=pt-BR", "format": "online", "venue": "Sala curada"}
+        outro = {"title": "Outro título", "start": "2030-02-01T19:00:00-03:00",
+                 "url": "https://luma.com/abc", "format": "online", "venue": "Sala do importador",
+                 "image": "https://exemplo.org/capa.png"}
+        self.assertEqual(importar.merge(lista, primeiro, HOJE, historico=True), "novo")
+        self.assertEqual(importar.merge(lista, outro, HOJE, historico=True), "completado")
+        self.assertEqual(len(lista), 1)
+        self.assertEqual(lista[0]["title"], "Um")
+        self.assertEqual(lista[0]["venue"], "Sala curada")
+        self.assertEqual(lista[0]["url"], "https://luma.com/abc?locale=pt-BR")
+        self.assertEqual(lista[0]["image"], "https://exemplo.org/capa.png")
+
+    def test_historico_id_repetido_ganha_sufixo(self):
+        lista = []
+        a = {"title": "Meetup", "start": "2030-02-01T19:00:00-03:00", "url": "https://luma.com/aaa111", "format": "online"}
+        b = {"title": "Meetup", "start": "2030-02-01T19:00:00-03:00", "url": "https://luma.com/bbb222", "format": "online"}
+        self.assertEqual(importar.merge(lista, a, HOJE, historico=True), "novo")
+        self.assertEqual(importar.merge(lista, b, HOJE, historico=True), "novo")
+        self.assertNotEqual(lista[0]["id"], lista[1]["id"])
+        self.assertEqual(len(lista), 2)
 
     def test_clean_url(self):
         self.assertEqual(importar.clean_url("http://lu.ma/x?tk=1&utm_source=a&id=7"), "https://luma.com/x?id=7")

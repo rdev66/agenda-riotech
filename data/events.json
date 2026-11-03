@@ -2,6 +2,4471 @@
   "updated": "2026-11-03",
   "events": [
     {
+      "title": "III Ciclo do programa SandBox.Rio",
+      "start": "2026-04-02T10:00:00-03:00",
+      "end": "2026-04-02T12:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/7m3qn8o0?locale=pt-BR",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/event-covers/nf/1cbc288f-45f9-4f80-82b5-f96c95619e3d.png",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "A Secretaria Municipal de Desenvolvimento Econômico convida você para o Lançamento do III Ciclo do Sandbox.Rio no Maravalley! 🚀Após seleção recorde com 58 inscritos, você vai conferir conferir em primeira mão os 10…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-04-02-iii-ciclo-do-programa-sandbox-rio",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Build AI-First Applications: Fast, Scalable & Autonomous",
+      "start": "2026-04-14T08:00:00-03:00",
+      "end": "2026-04-14T12:30:00-03:00",
+      "time_known": true,
+      "venue": "Cubo Itaú",
+      "address": "Cubo Itaú",
+      "city": "São Paulo",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/oracle-cubo",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/event-covers/e6/4aeff9c7-f5f1-46ac-aa1f-427c6dad2c83.png",
+      "organizer": "Vibe Space Academy",
+      "description": {
+        "pt": "Jornada de desenvolvimento completa: da infraestrutura até a aplicação Stack: Oracle + n8n + Vercel + ElevenLabs Saiba como agentes de IA, automação e interfaces conversacionais permitem acelerar drasticamente o…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-04-14-build-ai-first-applications-fast-scalable-autono",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Workshop: Trabalhe Remoto para os EUA",
+      "start": "2026-04-25T09:00:00-03:00",
+      "end": "2026-04-25T13:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/2mmebh4j",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/event-covers/ls/3290ca7d-7364-404e-a40d-757708bdc601.png",
+      "organizer": "Mariana Mavila",
+      "description": {
+        "pt": "Nos últimos 4 anos, coloquei mais de 600 profissionais da América Latina em vagas remotas para empresas americanas. Nesse evento gratuito e ao vivo, vou te explicar tudo! O que vamos cobrir: → Como recrutadores…"
+      },
+      "tags": [
+        "workshop",
+        "carreira"
+      ],
+      "status": "confirmado",
+      "id": "2026-04-25-workshop-trabalhe-remoto-para-os-eua",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Arduino Day 2026",
+      "start": "2026-04-25T10:00:00-03:00",
+      "end": "2026-04-25T17:00:00-03:00",
+      "time_known": true,
+      "venue": "Maravalley",
+      "address": "Rua Equador, 335",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/arduino-day-2026/3353626",
+      "image": "https://images.sympla.com.br/69e00f9f49d81-lg.png",
+      "organizer": "Rio Maker Space",
+      "description": {
+        "pt": "Arduino Day: O Futuro é Feito Aqui! Você está pronto para um dia inteiro de criatividade, inovação e tecnologia? O Rio Maker Space te convida para um evento imperdível, repleto de experiências práticas, palestras…"
+      },
+      "tags": [
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-04-25-arduino-day-2026",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "JET Station - Rio de Janeiro",
+      "start": "2026-04-25T15:00:00-03:00",
+      "end": "2026-04-25T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, Rio de Janeiro",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/8xho1s8u",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/event-covers/r9/c4467b0d-42d8-42b4-a7f2-67ac4292adc8.png",
+      "organizer": "JET Latam",
+      "description": {
+        "pt": "O JET STATION marca o primeiro encontro presencial da JET LATAM no Rio de Janeiro! 🧑‍🚀 Reunindo desenvolvedores e empreendedores para uma imersão no ecossistema da Solana e Jito. Mais do que um evento, esta é uma…"
+      },
+      "tags": [
+        "web3",
+        "empreendedorismo",
+        "workshop"
+      ],
+      "status": "confirmado",
+      "id": "2026-04-25-jet-station-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "ClawCon Rio de Janeiro presented by Hostinger",
+      "start": "2026-04-28T18:00:00-03:00",
+      "end": "2026-04-28T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/clawconrio",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/event-covers/bk/8fb239f0-d634-4b1c-a673-f4b710227a82.jpg",
+      "organizer": "ClawCon",
+      "description": {
+        "pt": "O espaço comporta até 180 pessoas, então as inscrições foram encerradas. Você ainda pode entrar na lista de espera — no dia do evento, novas vagas serão liberadas conforme a ocupação. Caso não possa comparecer, por…"
+      },
+      "tags": [
+        "carreira"
+      ],
+      "status": "confirmado",
+      "id": "2026-04-28-clawcon-rio-de-janeiro-presented-by-hostinger",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Conect.AI Startup | Rio de Janeiro - RJ",
+      "start": "2026-04-29T15:00:00-03:00",
+      "end": "2026-04-29T19:00:00-03:00",
+      "time_known": true,
+      "venue": "Colmeia Hub",
+      "address": "Rua das Palmeiras, 13",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.sympla.com.br/evento/conect-ai-startup-rio-de-janeiro-rj/3383732a",
+      "image": "https://images.sympla.com.br/69ef60b74ea44-lg.jpg",
+      "organizer": "VIRTUS",
+      "description": {
+        "pt": "Meetup de capacitação e conexão no contexto de Plataformas de Hardware e Software Inteligente realizado pelo Centro de Competência EMBRAPII VIRTUS (VIRTUS-CC) O Conect.AI Startup é um ciclo de capacitações realizadas…"
+      },
+      "tags": [
+        "ia",
+        "startups",
+        "meetup"
+      ],
+      "status": "confirmado",
+      "id": "2026-04-29-conect-ai-startup-rio-de-janeiro-rj",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Conect.AI Startup | Rio de Janeiro - RJ",
+      "start": "2026-04-29T15:00:00-03:00",
+      "end": "2026-04-29T19:00:00-03:00",
+      "time_known": true,
+      "venue": "Colmeia Hub",
+      "address": "Rua das Palmeiras, 13",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.sympla.com.br/evento/conect-ai-startup-rio-de-janeiro-rj/3383732",
+      "image": "https://images.sympla.com.br/69ef60b74ea44-lg.jpg",
+      "organizer": "VIRTUS",
+      "description": {
+        "pt": "Meetup de capacitação e conexão no contexto de Plataformas de Hardware e Software Inteligente realizado pelo Centro de Competência EMBRAPII VIRTUS (VIRTUS-CC) O Conect.AI Startup é um ciclo de capacitações realizadas…"
+      },
+      "tags": [
+        "ia",
+        "startups",
+        "meetup"
+      ],
+      "status": "confirmado",
+      "id": "2026-04-29-conect-ai-startup-rio-de-janeiro-rj-evento-conect-ai-sta",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Construindo na Stellar",
+      "start": "2026-04-29T17:00:00-03:00",
+      "end": "2026-04-29T21:30:00-03:00",
+      "time_known": true,
+      "venue": "Universidade Augusto Motta - Rio de Janeiro (Campo Grande) - Unidade I",
+      "address": "Universidade Augusto Motta - Rio de Janeiro (Campo Grande) - Unidade I",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/p50ue6fp",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/event-covers/k1/7b28bffb-14f3-46aa-a0ea-86fd84973693.jpg",
+      "organizer": "Eventos Instituto",
+      "description": {
+        "pt": "Chega junto para uma sessão feita de dev para dev! Vamos desmistificar de vez o desenvolvimento na rede Stellar. Não fique de fora da nossa imersão \"DA TEORIA AO DEPLOY: CONSTRUINDO NA STELLAR\" com nossos…"
+      },
+      "tags": [
+        "workshop"
+      ],
+      "status": "confirmado",
+      "id": "2026-04-29-construindo-na-stellar",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Startup Weekend Women Global Pitch Competition",
+      "start": "2026-05-13T11:00:00-03:00",
+      "end": "2026-05-13T13:45:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/q3x3nna8",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/a1/8372c246-f1a6-4510-9ebc-c7b07599769e.png",
+      "organizer": "Techstars SCC (Startup Community Catalyst)",
+      "description": {
+        "pt": "Powered by N8N In celebration of International Women’s Day this past March, Techstars launched Startup Weekend Women, a global initiative designed to provide women entrepreneurs with a high-stakes platform to pitch,…"
+      },
+      "tags": [
+        "startups",
+        "diversidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-05-13-startup-weekend-women-global-pitch-competition",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Rio de Janeiro | Claude Impact Lab",
+      "start": "2026-05-24T08:00:00-03:00",
+      "end": "2026-05-24T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/3i0rkczm",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/n7/fdab66f7-70b1-4990-a7fe-b06b43fa04ec.png",
+      "organizer": "Claude Community Events",
+      "description": {
+        "pt": "Join a Claude Community Event, organized by local enthusiasts for everyone who loves building with Claude Code! This event will be fully conducted in Brazilian Portuguese. Claude Impact Lab, Rio de Janeiro Primeira…"
+      },
+      "tags": [
+        "ia",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-05-24-rio-de-janeiro-claude-impact-lab",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Curso | Liderança de Comunidades de Startups",
+      "start": "2026-05-28T18:00:00-03:00",
+      "end": "2026-06-25T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.sympla.com.br/evento-online/curso-lideranca-de-comunidades-de-startups/3395437",
+      "image": "https://images.sympla.com.br/69ea209313bee-lg.png",
+      "organizer": "Abstartups",
+      "description": {
+        "pt": "LIDERANÇA DE COMUNIDADE DE STARTUPS Curso Online ao vivo | 8 Encontros | 16 horas de conteúdo Construir uma comunidade de startups vai muito além de organizar eventos de networking. É um trabalho estratégico de…"
+      },
+      "tags": [
+        "startups",
+        "networking",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-05-28-curso-lideranca-de-comunidades-de-startups",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "AI Salon Rio #12",
+      "start": "2026-05-28T18:30:00-03:00",
+      "end": "2026-05-28T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/aisalon12?locale=pt-BR",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ql/0298f854-6ea5-4c1f-b53f-d925237ef4dd.png",
+      "organizer": "AI Salon Rio",
+      "description": {
+        "pt": "Inside Invest.Rio: Building Latin America's Innovation Capital If you think Rio got lucky with the Olympics, you haven't met the carioca who actually ran them. And we got even luckier, because now he is running…"
+      },
+      "tags": [
+        "ia",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-05-28-ai-salon-rio-12",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Esquenta Web Summit - Invest.Rio",
+      "start": "2026-05-29T17:00:00-03:00",
+      "end": "2026-05-29T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Instituto 12",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/ta5m5j3a",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/fa/fad9e1b4-8c26-4199-9ae0-645798cce107.jpg",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "Em clima de Web Summit Rio, o Instituto 12 recebe a Invest.Rio para um happy hour de conexão, troca e encontros estratégicos entre empreendedores, investidores, executivos e agentes do ecossistema de inovação. Uma…"
+      },
+      "tags": [
+        "ia",
+        "web",
+        "investimento",
+        "empreendedorismo",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-05-29-esquenta-web-summit-invest-rio",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Maratona Maricá Criativa",
+      "start": "2026-05-30T13:00:00-03:00",
+      "end": "2026-05-31T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Centro de Artes e Esportes Unificados (CEU)",
+      "address": "Rodovia Amaral Peixoto",
+      "city": "Maricá",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.sympla.com.br/evento/maratona-marica-criativa/3407120",
+      "image": "https://images.sympla.com.br/69f3516f84532-lg.png",
+      "organizer": "Maratona Maricá Criativa",
+      "description": {
+        "pt": "Maratona Maricá Criativa Você sente que o seu fazer artístico tem um potencial gigante, mas às vezes falta aquele toque na gestão ou na rede de contatos para a ideia decolar? A Maratona Maricá Criativa chega para ser o…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-05-30-maratona-marica-criativa",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Maravalley Week - 1 a 3 de Junho",
+      "start": "2026-06-01T09:00:00-03:00",
+      "end": "2026-06-03T15:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/12nh2kkm?locale=pt-BR",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ep/59fdc6bf-9829-42aa-857c-b268abc83160.png",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "O centro da inovação do Rio antes do Web Summit Maravalley Week é a semana oficial de inovação, tecnologia e negócios do Maravalley, reunindo startups, investidores, corporações, academia, governo e lideranças do…"
+      },
+      "tags": [
+        "web",
+        "startups",
+        "investimento",
+        "inovacao",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-01-maravalley-week-1-a-3-de-junho",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Tether Dev Nexus – Rio",
+      "start": "2026-06-07T17:00:00-03:00",
+      "end": "2026-06-07T20:30:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/aag6ppqd",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/g6/fb106c47-b031-4b60-b91a-0ddcd141fae3.jpg",
+      "organizer": "Tether",
+      "description": {
+        "pt": "Set the stage before Web Summit with Tether Dev Nexus — Rio 2026. As Latin America's biggest tech event lands in Rio, we have the pleasure of inaugurating our developer community's first event! Let's make the city's…"
+      },
+      "tags": [
+        "web",
+        "conferencia",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-07-tether-dev-nexus-rio",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Web Summit Run :: FRC + Instituto 12 + Maravalley + The Simple RunClub",
+      "start": "2026-06-08T07:30:00-03:00",
+      "end": "2026-06-08T11:30:00-03:00",
+      "time_known": true,
+      "venue": "The Simple RunClub",
+      "address": "The Simple RunClub",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/20iibnvy",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/xa/ee49ba10-a8a9-446b-98d2-736acfc57f49.png",
+      "organizer": "Founders Running Club Rio",
+      "description": {
+        "pt": "Founders Running Club Rio joins forces with Maravalley , Instituto 12 and The Simple RunClub for a special social run + coffee during Web Summit Rio 🚀 We are bringing together founders, investors, creatives, operators,…"
+      },
+      "tags": [
+        "web",
+        "founders",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-08-web-summit-run-frc-instituto-12-maravalley-the-s",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Inova Agro Tour - RJ",
+      "start": "2026-06-08T08:00:00-03:00",
+      "end": "2026-06-08T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Sociedade Nacional de Agricultura",
+      "address": "Sociedade Nacional de Agricultura",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/hc00hxyu?locale=pt",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/8j/02289f14-f9c4-484e-aa37-2d3b9d1efe47.png",
+      "organizer": "Fred Pascual",
+      "description": {
+        "pt": "O Inova Agro Tour chega ao Rio de Janeiro no dia 8 de junho. Um encontro pensado para conectar inovação, negócios e as principais discussões que estão moldando o futuro do agro. Realizado pelo SNASH (SNA Startup Hub),…"
+      },
+      "tags": [
+        "startups",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-08-inova-agro-tour-rj",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "AITOUR 15 - Rio Websummit Edition - Vibeworking",
+      "start": "2026-06-08T14:00:00-03:00",
+      "end": "2026-06-08T17:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/8v3egn1o",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/an/d250b805-3f28-4f9b-97b6-63ed61a72d57.jpg",
+      "organizer": "AITOUR",
+      "description": {
+        "pt": "AITOUR Rio #15 — WebSummit Rio 2026 Edition Vibeworking Edition Empowering People, Companies and the Digital & Creators Economy Edição em conjunto com a TESS e com apoio do Maravalley. Durante a semana do Web Summit…"
+      },
+      "tags": [
+        "web",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-08-aitour-15-rio-websummit-edition-vibeworking",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Webinar - Prestadoras de Serviços de Ativos Virtuais",
+      "start": "2026-06-09T16:00:00-03:00",
+      "end": "2026-06-09T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Webinar",
+      "address": "Webinar",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/90x8gucu?locale=pt-BR",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/n8/73f1fa4c-e09d-48a4-bd89-4487957eea37.jpg",
+      "organizer": "BRUNO BRITO",
+      "description": {
+        "pt": "O Banco Central do Brasil acabou de desenhar o futuro das VASPs no país — e quem não se adaptar rápido vai ficar pelo caminho. As Resoluções BCB 519, 520 e 521 não são apenas novas regras. Elas representam a linha…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-09-webinar-prestadoras-de-servicos-de-ativos-virtua",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "AI STARTUPS & VCs presented by Microsoft",
+      "start": "2026-06-09T18:00:00-03:00",
+      "end": "2026-06-10T00:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Av. Ataulfo de Paiva, 1120 - Leblon, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/zu3m4t88",
+      "image": "https://images.lumacdn.com/uploads/es/b046a0d3-68ab-433a-95c1-606d1677fcc8.png",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "Beyond the stages of Web Summit Rio, the conversations continue. Welcome to AI Startups and VCs presented by Microsoft for Startups. This is the first of its…"
+      },
+      "tags": [
+        "ia",
+        "web",
+        "startups",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-09-ai-startups-vcs-presented-by-microsoft",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Intellectual Capital Meetup by Koinz Capital / Mattos Filho",
+      "start": "2026-06-09T18:00:00-03:00",
+      "end": "2026-06-09T21:30:00-03:00",
+      "time_known": true,
+      "venue": "Grand Hyatt Rio de Janeiro",
+      "address": "Grand Hyatt Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/eb4rk47v",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/lv/d33f088f-9ba9-4c9f-b5dd-f91e88325331.jpg",
+      "organizer": "Koinz Capital",
+      "description": {
+        "pt": "About Koinz Capital: An intellectual capital platform that connects high-potential companies with strategic minds. About Mattos Filho: One of Brazil’s leading corporate law firms. With an outstanding full-service…"
+      },
+      "tags": [
+        "meetup"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-09-intellectual-capital-meetup-by-koinz-capital-mat",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Web Summit Rio by Tech Changers, Runflow, Oracle e Dharma-AI",
+      "start": "2026-06-09T18:00:00-03:00",
+      "end": "2026-06-09T22:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/25g9ogw1",
+      "image": "https://images.lumacdn.com/uploads/gs/9dfb7979-d1fa-4f6b-a325-0ebf8482e5c5.png",
+      "organizer": "Maria fernanda Oliveira",
+      "description": {
+        "pt": "O Tech Changers estará presente no Web Summit Rio com um Side Event especial, exclusivo para CTOs e líderes de tecnologia e produto. Junto com Runflow, Oracle…"
+      },
+      "tags": [
+        "ia",
+        "web",
+        "produto",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-09-web-summit-rio-by-tech-changers-runflow-oracle-e",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Yield and Fintechs Rooftop Cocktail 🍸 by DeFindex and Privy",
+      "start": "2026-06-09T19:00:00-03:00",
+      "end": "2026-06-09T23:00:00-03:00",
+      "time_known": true,
+      "venue": "Sky Leme | Rooftop & Lounge",
+      "address": "Sky Leme | Rooftop & Lounge",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/7wxdqu5l",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/kc/9b635aff-1e19-4e46-a17b-7e177fdcc2bc.png",
+      "organizer": "PaltaLabs Events",
+      "description": {
+        "pt": "⚡ You're already a fintech. You just haven't turned on yield. Join DeFindex & Privy for The LATAM Embedded Finance Night at Web Summit Rio 🍸 Neobanks turned idle balances into retention and revenue, and any business…"
+      },
+      "tags": [
+        "web",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-09-yield-and-fintechs-rooftop-cocktail-by-defindex-",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Encontro Afro Cubo: Web Summit Rio 2026",
+      "start": "2026-06-10T09:00:00-03:00",
+      "end": "2026-06-10T11:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. João Cabral de Mello Neto, 850",
+      "address": "Av. João Cabral de Mello Neto, 850",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/r1xno6sd",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/oc/2f9f36c1-218b-4c26-a7e8-cc2f47577130.png",
+      "organizer": "Ana Luiza Guimarães",
+      "description": {
+        "pt": "O Afro Cubo é uma iniciativa Cubo Itaú que conecta e fortalece lideranças negras que estão construindo empresas, investindo e ocupando posições estratégicas no ecossistema de inovação. Com empreendedores e executivos à…"
+      },
+      "tags": [
+        "web",
+        "empreendedorismo",
+        "inovacao",
+        "conferencia",
+        "diversidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-10-encontro-afro-cubo-web-summit-rio-2026",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Sunset Connections RIO",
+      "start": "2026-06-10T16:00:00-03:00",
+      "end": "2026-06-10T21:00:00-03:00",
+      "time_known": true,
+      "venue": "R. Prof. Álvaro Rodrigues, 352",
+      "address": "R. Prof. Álvaro Rodrigues, 352",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/m00oaxxd?locale=pt-BR",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/8q/f53f7e1f-b0fb-4387-8b37-ebec6f248f5c.png",
+      "organizer": "Sunset Connections",
+      "description": {
+        "pt": "O Sunset Connections é um evento voltado à conexão entre pessoas, negócios e oportunidades, reunindo empreendedores, investidores, executivos e profissionais do ecossistema de inovação em um ambiente dinâmico e…"
+      },
+      "tags": [
+        "investimento",
+        "empreendedorismo",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-10-sunset-connections-rio",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "DIGITAL HOUSE: AI & Web3 presented by Tether",
+      "start": "2026-06-10T19:00:00-03:00",
+      "end": "2026-06-11T01:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Av. Ataulfo de Paiva, 1120 - Leblon, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/dt7qajao",
+      "image": "https://images.lumacdn.com/uploads/gu/f8eb12ef-416b-4fd0-a35a-8df7f5ffaf9c.png",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "On the second night of our Web Summit Rio side events, the conversations go deeper and the connections get stronger. Welcome to our Digital House presented by…"
+      },
+      "tags": [
+        "ia",
+        "web",
+        "web3",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-10-digital-house-ai-web3-presented-by-tether",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Side Event: staaake Reverse Network Closing Power Walk at Rio De Janeiro AI/Tech Conference",
+      "start": "2026-06-12T12:00:00-03:00",
+      "end": "2026-06-12T13:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/p6mjr2be",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/event-covers/te/3dcfd88b-27cd-4ed5-b934-ccc14c25b9df.png",
+      "organizer": "staaake",
+      "description": {
+        "pt": "🌟 Premium Spotlight https://www.linkedin.com/company/staaake/ Power Walk x Reverse Network side event. 🚶‍♂️✨ Reverse Networking events happen at places like parks, walks, bars, clubs, and penthouses. You can invite the…"
+      },
+      "tags": [
+        "ia",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-12-side-event-staaake-reverse-network-closing-power",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "3ª edição: After Web Summit - Latam Connection",
+      "start": "2026-06-12T19:30:00-03:00",
+      "end": "2026-06-13T00:00:00-03:00",
+      "time_known": true,
+      "venue": "R. Santa Cristina, 15",
+      "address": "R. Santa Cristina, 15",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/rny8gdin",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/sc/8ebd0a1b-59fd-4f10-b27b-14a70f97b448.jpg",
+      "organizer": "Lawi",
+      "description": {
+        "pt": "A Lawi, ALAS e DeFindex convidam você para a 3ª edição do After Web Summit - Latam Connection. 🚀 Vamos reunir fundadores, investidores e empreendedores de toda a América Latina para uma noite de conexões. O encontro…"
+      },
+      "tags": [
+        "web",
+        "investimento",
+        "founders",
+        "empreendedorismo",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-12-3a-edicao-after-web-summit-latam-connection",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "AgentCon Rio de Janeiro",
+      "start": "2026-06-13T10:00:00-03:00",
+      "end": "2026-06-13T17:00:00-03:00",
+      "time_known": true,
+      "venue": "Unidade Ibmec",
+      "address": "Unidade Ibmec",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/dw01vkcq",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/h6/6b0bdb6b-d7df-41dd-9380-765674970aa5.png",
+      "organizer": "Cynthia Zanoni",
+      "description": {
+        "pt": "A AgentCon chega ao Rio como parte do AI Agents World Tour, reunindo quem está construindo a próxima geração de software com IA. Se você desenvolve, pesquisa ou só quer entender pra onde os agentes estão indo, esse é o…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-13-agentcon-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Lovable Day Rio de Janeiro",
+      "start": "2026-06-20T09:00:00-03:00",
+      "end": "2026-06-20T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Instituto 12",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "R$ 890,00"
+      },
+      "registration": "ingresso",
+      "url": "https://luma.com/2e4zr9hg",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/event-covers/58/01e9122f-cfc5-47a1-bd54-a53aca7e8321.png",
+      "organizer": "AI Events",
+      "description": {
+        "pt": "O maior evento presencial da Lovable no mundo, pela primeira vez, no Rio de Janeiro. Um dia inteiro imerso no universo de Vibe Coding, com palestras inspiradoras, painéis interativos e casos de uso reais da plataforma…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-20-lovable-day-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "✧.* Web3 Café #6 ✧ Ilhas de Coerência ✧ Ações locais e inteligência coletiva para desafios globais",
+      "start": "2026-06-25T17:00:00-03:00",
+      "end": "2026-06-25T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/pwfju00z",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/hx/ffbf6474-60f6-4864-8ff5-ed4f1b3a1dc3.png",
+      "organizer": "FABULOSA LAB",
+      "description": {
+        "pt": "{EN below} ✧.* Web3 Café #6: Ilhas de Coerência: Ações locais e inteligência coletiva para desafios globais Vivemos um tempo de crescente complexidade. Mudanças climáticas, fragilidade democrática, polarização social e…"
+      },
+      "tags": [
+        "web3"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-25-web3-cafe-6-ilhas-de-coerencia-acoes-locais-e-in",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "AI Salon Rio #13",
+      "start": "2026-06-25T18:30:00-03:00",
+      "end": "2026-06-25T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/aisalon13",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/70/a9d462b5-513f-44bb-9c99-8cdd1b5d945e.png",
+      "organizer": "AI Salon Rio",
+      "description": {
+        "pt": "How to Build *THE* AI Ecosystem, with the Creator of Brazil at Silicon Valley Brazil at Silicon Valley helped put Brazil on the Silicon Valley map. It's one of the most important bridges between Brazilian innovation…"
+      },
+      "tags": [
+        "ia",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-25-ai-salon-rio-13",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Bitcoin, Chopp & Business - VELLORA HUB",
+      "start": "2026-06-26T19:00:00-03:00",
+      "end": "2026-06-26T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Downtown",
+      "address": "Downtown",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/8bi8o1sj",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ar/cd71e034-f64d-4154-861f-aa4a3c774bcd.png",
+      "organizer": "Victor Lacôrte",
+      "description": {
+        "pt": "🍻 ₿ Bitcoin, Chopp & Business Patrocinado por: IROV Um encontro privado e seleto para empresários, founders, investidores e representantes de empresas focados em gerar conexões estratégicas, parcerias e novos negócios.…"
+      },
+      "tags": [
+        "investimento",
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-26-bitcoin-chopp-business-vellora-hub",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Cybersecurity Summit Rio 2026",
+      "start": "2026-06-30T09:00:00-03:00",
+      "end": "2026-07-01T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Centro de Convenções RB1",
+      "address": "Avenida Rio Branco, 1",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/cybersecurity-summit-rio-2026/3438685?d=2026CYBERSPEAKER",
+      "image": "https://images.sympla.com.br/6a145e81c08c7-lg.jpg",
+      "organizer": "Assespro-RJ",
+      "description": {
+        "pt": "DO INSIGHT À EXECUÇÃO: O QUE REALMENTE IMPORTA EM CYBERSECURITY NA ERA DA IA Com a tecnologia construímos pontes mais rápido; mas cabe aos líderes decidir qual direção é segura. A quarta edição do Cybersecurity Summit…"
+      },
+      "tags": [
+        "ia",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-30-cybersecurity-summit-rio-2026",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Rio de Janeiro | Claude Meetup",
+      "start": "2026-06-30T18:30:00-03:00",
+      "end": "2026-06-30T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/claude-qlum",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/8r/1f94a4c0-1b9a-4387-af6d-939a77e70c27.png",
+      "organizer": "Claude Community Events",
+      "description": {
+        "pt": "Join a Claude Community Event, organized by local enthusiasts for everyone who loves building with Claude! This event will be fully conducted in Brazilian Portuguese Evento Oficial do Claude no Rio — 5ª edição Junte-se…"
+      },
+      "tags": [
+        "ia",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-06-30-rio-de-janeiro-claude-meetup",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "RioTech Happy Hour",
+      "start": "2026-07-01T18:00:00-03:00",
+      "end": "2026-07-01T21:00:00-03:00",
+      "time_known": true,
+      "venue": "The Boua Kitchen Bar",
+      "address": "R. Nelson Mandela, 100 - Loja 108, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-tech/events/314605024",
+      "image": "https://secure-content.meetupstatic.com/images/classic-events/513117828/676x676.jpg",
+      "organizer": "RioTech",
+      "description": {
+        "pt": "[ENGLISH below] **O RioTech Happy Hour é um evento recorrente casual para juntar profissionais, empreendedores, e investidores de tecnologia.** Vem beber"
+      },
+      "tags": [
+        "investimento",
+        "empreendedorismo",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-01-riotech-happy-hour",
+      "source": "meetup.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Happy Hour Download Vivatech",
+      "start": "2026-07-02T17:00:00-03:00",
+      "end": "2026-07-02T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/ik5ynbl5",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/wa/f4bb877c-e669-459e-b19b-c2a038c6ca30.jpg",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "HAPPY HOUR MARAVALLEY DOWNLOAD VIVATECH! Um dos maiores eventos de inovação e tecnologia da Europa acabou de acontecer, e agora é hora de trazer os principais aprendizados para o ecossistema do Rio. No dia 02 de julho,…"
+      },
+      "tags": [
+        "inovacao",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-02-happy-hour-download-vivatech",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Seminário Interdisciplinar sobre Sustentabilidade: Direito e Ciência em Diálogo",
+      "start": "2026-07-06T14:00:00-03:00",
+      "end": null,
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://www.even3.com.br/sisus-694496",
+      "image": "https://images.even3.com/hhhOpUgXS-jr8IqPN1XNyBijj6g=/1100x440/smart/https://static.even3.com/banner/WhatsAppImage2026-03-24at12.37.22.316d96aab3df4bd882c6.jpeg",
+      "organizer": "Comissão Organizadora do SISus",
+      "description": {
+        "pt": "O Seminário Interdisciplinar sobre Sustentabilidade: Direito e Ciência em diálogo promove esta integração de áreas de conhecimento a partir dos desafios contemporâneos da sustentabilidade. Inspirado nos Objetivos de…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-06-seminario-interdisciplinar-sobre-sustentabilidad",
+      "source": "even3.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Pulso Halftime Demo | BR",
+      "start": "2026-07-06T15:30:00-03:00",
+      "end": "2026-07-06T20:00:00-03:00",
+      "time_known": true,
+      "venue": "São Paulo, SP",
+      "address": null,
+      "city": "São Paulo",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/StellarHalftimeBR",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/mq/170b90bc-5cc0-4577-8b46-97bc6d41a2e6.png",
+      "organizer": "StarMaker LATAM | Stellar Ambassador Program",
+      "description": {
+        "pt": "A Copa nos reúne. Pulso nos conecta 🇧🇷 Te convidamos para o hub oficial do Pulso em São Paulo para viver o Pulso Demo Day, uma watch party da FIFA World Cup e uma sessão de demos ao vivo com os finalistas do Pulso…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-06-pulso-halftime-demo-br",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Google I/O Extended Rio de Janeiro",
+      "start": "2026-07-07T19:00:00-03:00",
+      "end": "2026-07-07T21:30:00-03:00",
+      "time_known": true,
+      "venue": "FIAP - Rio de Janeiro",
+      "address": "Praia de Botafogo, 300",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/google-i-o-extended-rio-de-janeiro/3461271",
+      "image": "https://www.sympla.com.br/images/logo-sympla-for-facebook.png",
+      "organizer": "GDG Rio de Janeiro",
+      "description": {
+        "pt": "Prepare-se, Rio! Os maiores anúncios de tecnologia do ano estão chegando oficialmente à nossa cidade. O Google I/O Extended Rio de Janeiro reúne desenvolvedores, engenheiros e entusiastas locais para debater e explorar…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-07-google-i-o-extended-rio-de-janeiro",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Google Extended I/O Rio de Janeiro",
+      "start": "2026-07-07T19:00:00-03:00",
+      "end": "2026-07-07T21:30:00-03:00",
+      "time_known": true,
+      "venue": "Rua Marquês de Olinda",
+      "address": "285-2147483647 Rua Marquês de Olinda",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://gdg.community.dev/events/details/google-gdg-rio-de-janeiro-presents-google-extended-io-rio-de-janeiro",
+      "image": "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-goog/event_banners/GDG_Bevy_DefaultEventThumbnail_2_MF2GjYZ.png",
+      "organizer": "Google Developer Groups",
+      "description": {
+        "pt": "Prepare-se, Rio! Os maiores anúncios de tecnologia do ano estão chegando oficialmente à nossa cidade. O Google I/O Extended Rio de Janeiro reúne desenvolvedores, engenheiros e entusiastas locais para debater e explorar…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-07-google-extended-i-o-rio-de-janeiro",
+      "source": "gdg.community.dev",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Workshop: AI Agents on Chainlink",
+      "start": "2026-07-07T20:00:00-03:00",
+      "end": "2026-07-07T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/chainlink-agents",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/km/3d4dec56-7d2b-4b71-8053-76671c3f319a.jpg",
+      "organizer": "Vibe Space",
+      "description": {
+        "pt": "AI Agents on Chainlink AI Agents, Blockchain & the Future of Work What happens when AI agents can own assets, interact with smart contracts, and collaborate with other agents? Join Vibe Space and Solange Gueiros for a…"
+      },
+      "tags": [
+        "ia",
+        "web3",
+        "workshop"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-07-workshop-ai-agents-on-chainlink",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Cursor Meetup Rio de Janeiro",
+      "start": "2026-07-11T09:00:00-03:00",
+      "end": "2026-07-11T11:30:00-03:00",
+      "time_known": true,
+      "venue": "R. S. José, 40 - 9o andar",
+      "address": "R. S. José, 40 - 9o andar",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/45jawdhf",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/km/e59892c0-40ca-48a9-8e96-9f95a900e599.png",
+      "organizer": "SpaceXSI for Rio de Janeiro, Brazil",
+      "description": {
+        "pt": "Em mais um encontro da Comunidade Cursor Rio de Janeiro, vamos reunir Líderes de Tecnologia, PMs, Founders, desenvolvedores e entusiastas de Inteligência Artificial para uma experiência prática e imersiva sobre o…"
+      },
+      "tags": [
+        "ia",
+        "founders",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-11-cursor-meetup-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Mulheres Negras na Web3",
+      "start": "2026-07-13T19:00:00-03:00",
+      "end": "2026-07-13T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/do4kx4g1",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ms/f4eab047-d069-47da-a2c3-0eec68888f22.png",
+      "organizer": "Luciana Sousa",
+      "description": {
+        "pt": "O futuro da internet também é nosso. E ele começa agora! Você já ouviu falar em Web3, blockchain, criptomoedas ou hackathons, mas ainda não entende como tudo isso pode abrir portas para a sua carreira? Então esse…"
+      },
+      "tags": [
+        "web3",
+        "carreira",
+        "diversidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-13-mulheres-negras-na-web3",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Meetup Online: She Is Solana",
+      "start": "2026-07-14T19:00:00-03:00",
+      "end": "2026-07-14T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/45rzfzvg",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/3i/7573cc67-d5f6-413b-9059-275720ed1f85.png",
+      "organizer": "Carol Santos",
+      "description": {
+        "pt": "She Is Solana é uma jornada criada para aproximar mulheres do ecossistema Solana, apresentando de forma simples e acessível os primeiros passos em Web3, blockchain, comunidade, carreira e oportunidades no mercado de…"
+      },
+      "tags": [
+        "web3",
+        "meetup",
+        "carreira",
+        "comunidade",
+        "diversidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-14-meetup-online-she-is-solana",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Own Your Funding Model w/ Transcend Network (Free Session)",
+      "start": "2026-07-15T12:00:00-03:00",
+      "end": "2026-07-15T13:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/ytxhxtk6?pk=g-btbQlSlPQxbmanj",
+      "image": "https://images.lumacdn.com/uploads/4g/7f5e95af-6122-4c25-9043-e7f6c55529c3.png",
+      "organizer": "Penny Gupta",
+      "description": {
+        "pt": "Find the funding model that fits the business you're actually building We've worked with 600 early-stage founders in the learning space, and most of them…"
+      },
+      "tags": [
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-15-own-your-funding-model-w-transcend-network-free-",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "[WEBINAR] 🚀 Do Vibe Coding ao Spec-Driven Development com TRAE AI",
+      "start": "2026-07-15T19:00:00-03:00",
+      "end": "2026-07-15T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/amxg486k",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/vb/4e89eed2-618e-4144-a92f-b7a4b8d21739.png",
+      "organizer": "Fazedor de Código",
+      "description": {
+        "pt": "🚀 Do Vibe Coding ao Spec-Driven Development com TRAE AI A IA revolucionou a forma como desenvolvemos software, mas gerar código rapidamente não é suficiente. Nesta Live oficial, você aprenderá como utilizar o…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-15-webinar-do-vibe-coding-ao-spec-driven-developmen",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Live: Como funciona o DevOps e suas evoluções",
+      "start": "2026-07-16T19:30:00-03:00",
+      "end": "2026-07-16T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/9fp6ntzz",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/5r/b642dd7a-9762-4d9d-86c4-bb31be51bc41.jpg",
+      "organizer": "Eventos Instituto",
+      "description": {
+        "pt": "Como Funciona o DevOps e suas Evoluções Sobre o evento: Toda aplicação que continua funcionando mesmo diante de falhas, que é implantada com segurança e escala sem interromper milhares de usuários, passa por uma…"
+      },
+      "tags": [
+        "devops",
+        "seguranca"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-16-live-como-funciona-o-devops-e-suas-evolucoes",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Feira de Empreendedoras Bybit Card",
+      "start": "2026-07-18T14:00:00-03:00",
+      "end": "2026-07-18T17:00:00-03:00",
+      "time_known": true,
+      "venue": "Fabulosa Lab",
+      "address": "Fabulosa Lab",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/arppobp8",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/bk/0781d7d0-f1e3-4eaa-a7fa-18d74e0e7f65.png",
+      "organizer": "Carol Santos",
+      "description": {
+        "pt": "A Feira de Empreendedoras Bybit Card é uma experiência prática para aprender sobre cripto, conhecer a usabilidade do Bybit Card e circular recursos entre o público e as empreendedoras convidadas. Durante o evento, o…"
+      },
+      "tags": [
+        "web3",
+        "empreendedorismo"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-18-feira-de-empreendedoras-bybit-card",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Esquenta Rio Innovation Week no Arca Hub",
+      "start": "2026-07-21T18:00:00-03:00",
+      "end": "2026-07-21T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Shopping Cassino Atlântico",
+      "address": "Av. Atlântica, 4240 - Copacabana, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/nyecpqty",
+      "image": "https://images.lumacdn.com/uploads/pa/63f8ade9-7758-4215-b3bb-6caddb2bfdb7.png",
+      "organizer": "Arca Hub",
+      "description": {
+        "pt": "A Rio Innovation Week está chegando — e nada melhor do que começar a entrar no clima reunindo quem movimenta o ecossistema de inovação do Rio. O Startup…"
+      },
+      "tags": [
+        "startups",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-21-esquenta-rio-innovation-week-no-arca-hub",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Meetup PHPRio",
+      "start": "2026-07-28T19:00:00-03:00",
+      "end": "2026-07-28T22:00:00-03:00",
+      "time_known": true,
+      "venue": "R. Marquês de Olinda, 11",
+      "address": "11 Rua Marquês de Olinda, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/php-rio/events/315586952",
+      "image": "https://secure-content.meetupstatic.com/images/classic-events/520445887/676x676.jpg",
+      "organizer": "PHP Rio",
+      "description": {
+        "pt": "A comunidade PHP do Rio está mais viva do que nunca e você está convidado. No dia **28 de julho, às 19h**, a PHPRio realiza mais um encontro presencial, re"
+      },
+      "tags": [
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-28-meetup-phprio",
+      "source": "meetup.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Happy Hour Maravalley - A hora de captar é agora: editais abertos para startups e empresas",
+      "start": "2026-07-30T17:00:00-03:00",
+      "end": "2026-07-30T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/rcqs92gl",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/gu/4675859f-591e-48c5-9f23-c49193d86173.jpg",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "🥂 HAPPY HOUR MARAVALLEY Olá, comunidade Maravalley! 🚀 No dia 30 de julho, a Dobra e o LaenderLaw promovem um happy hour no Maravalley para apresentar as principais oportunidades de financiamento e incentivo à inovação…"
+      },
+      "tags": [
+        "startups",
+        "inovacao",
+        "networking",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-30-happy-hour-maravalley-a-hora-de-captar-e-agora-e",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "AI Salon Rio #14",
+      "start": "2026-07-30T18:30:00-03:00",
+      "end": "2026-07-30T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/aisalon14",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/yi/b112e4b5-222d-4d7e-9b3f-30e59169396c.png",
+      "organizer": "AI Salon Rio",
+      "description": {
+        "pt": "Silicon Valley Was Also Built by Law: Can Rio's Tech Agenda Reach Brasília? The internet began as a Pentagon project. GPS was military infrastructure long before it was on our phones. NASA bought the Valley's first…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-30-ai-salon-rio-14",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Gama Fund & Genesis PUC-Rio",
+      "start": "2026-07-31T11:00:00-03:00",
+      "end": "2026-07-31T12:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/mehsgqy0",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/is/971bd30e-bfdd-4969-98da-5730e3baaa89.png",
+      "organizer": "Jan Kishi Diniz",
+      "description": {
+        "pt": "Criação + Fundraising de Startups AI Native Monashees e Gênesis PUC-Rio convidam founders e empreendedores para um evento online de 1h sobre o ecossistema de startups AI Native. A Monashees vai apresentar o Gama Fund —…"
+      },
+      "tags": [
+        "ia",
+        "startups",
+        "founders",
+        "empreendedorismo"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-31-gama-fund-genesis-puc-rio",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Builders Sunset",
+      "start": "2026-07-31T17:00:00-03:00",
+      "end": "2026-07-31T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "R$ 6,00"
+      },
+      "registration": "ingresso",
+      "url": "https://luma.com/hczlqbrf",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/21/1b7f0667-b6fd-4cd2-9a74-cc1cd4f229b7.jpg",
+      "organizer": "Douglas Miranda",
+      "description": {
+        "pt": "Junte-se ao Rio Crypto Hub para um encontro íntimo e especial de builders Web3 no Rio! No dia 25 de julho, ao pôr do sol, vamos nos reunir no HUB com vista incrível para o mar em Niterói para conectar builders,…"
+      },
+      "tags": [
+        "web3"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-31-builders-sunset",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Community Call - July",
+      "start": "2026-07-31T20:00:00-03:00",
+      "end": "2026-07-31T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/community-call-jul",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/3c/a28073ca-14f9-4655-9152-0e9e90d2881b.jpg",
+      "organizer": "Vibe Space",
+      "description": {
+        "pt": "Community Call - July Join us for the July Community Call, a live monthly live session hosted by Vibe Space. This online gathering brings together founders and investors for a fast-moving mix of guest spotlights, fresh…"
+      },
+      "tags": [
+        "founders",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-07-31-community-call-july",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Rio Innovation Week Run :: FRC + Maravalley",
+      "start": "2026-08-04T07:30:00-03:00",
+      "end": "2026-08-04T10:30:00-03:00",
+      "time_known": true,
+      "venue": "Porto Maravalley",
+      "address": "Porto Maravalley",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/ntelzjnp",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/yp/777dc95a-30b9-4749-b3a9-b45a71ccd5b2.png",
+      "organizer": "Founders Running Club Rio",
+      "description": {
+        "pt": "Founders Running Club Rio joins forces with Maravalley for a special social run + coffee during Rio Innovation Week 🚀 We are bringing together founders, investors, creatives, operators, and people passionate about…"
+      },
+      "tags": [
+        "founders",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-04-rio-innovation-week-run-frc-maravalley",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Rio Innovation Week - Pop & Tech",
+      "start": "2026-08-04T10:00:00-03:00",
+      "end": "2026-08-07T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Pier Mauá",
+      "address": "Avenida Rodrigues Alves, 10",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/rio-innovation-week-pop-tech/3439344?token=33b2247b7a12416dd7faef042820daf5",
+      "image": "https://images.sympla.com.br/6a14813f33d04-lg.png",
+      "organizer": "BASE MONTAGENS E SERVIÇOS PROMOCIONAIS LTDA",
+      "description": {
+        "pt": "RIW Pop & Tech 2026 — Onde cultura e inovação se encontram Seja bem-vindo(a) a 6ª edção do Rio Innovation Week A Maior Conferência Global de Tecnologia e Inovação ! Realizado entre os dias 04 e 07 de agosto , no Píer…"
+      },
+      "tags": [
+        "inovacao",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-04-rio-innovation-week-pop-tech",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Rio Innovation Week - 6ª Edição",
+      "start": "2026-08-04T10:00:00-03:00",
+      "end": "2026-08-07T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Pier Mauá",
+      "address": "Avenida Rodrigues Alves, 10",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/rio-innovation-week-6-edicao/3438968?referrer=www.google.com&referrer=www.google.com",
+      "image": "https://images.sympla.com.br/6a148987e5ae3-lg.png",
+      "organizer": "BASE MONTAGENS E SERVIÇOS PROMOCIONAIS LTDA",
+      "description": {
+        "pt": "Seja bem-vindo(a) a 6ª edção do Rio Innovation Week A Maior Conferência Global de Tecnologia e Inovação ! Realizado entre os dias 04 e 07 de agosto , no Píer Mauá, no Rio de Janeiro, o evento chega com uma programação…"
+      },
+      "tags": [
+        "inovacao",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-04-rio-innovation-week-6a-edicao",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "[SURPRESA] Happy Hour Casa das Startups / Colmeia Hub (RIW Edition)",
+      "start": "2026-08-05T18:30:00-03:00",
+      "end": "2026-08-05T23:00:00-03:00",
+      "time_known": true,
+      "venue": "Rua das Palmeiras, 13",
+      "address": "Rua das Palmeiras, 13",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/eewrdcur",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ws/2020f1ab-7c0d-46b6-ae5b-81ee7565e61f.webp",
+      "organizer": "Cristiano Braz Augusto Da Matta",
+      "description": {
+        "pt": "Exclusivo para quem acompanha o ecossistema. ⚡ A semana do Rio Innovation Week tá a mil e nós resolvemos armar um encontro de última hora! Um happy hour surpresa e totalmente exclusivo para reunirmos os fundadores,…"
+      },
+      "tags": [
+        "startups",
+        "founders",
+        "inovacao",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-05-surpresa-happy-hour-casa-das-startups-colmeia-hu",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Side RIW - By TroqPay",
+      "start": "2026-08-06T18:00:00-03:00",
+      "end": "2026-08-06T20:15:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/bvmq2qj0",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ri/3243148c-1709-4210-b7ec-9dd328383be7.jpg",
+      "organizer": "TroqPay",
+      "description": {
+        "pt": "Join us for an exclusive side event during Rio Innovation Week, one of Brazil’s leading technology and innovation events, hosted by TroqPay. We are bringing together founders and business leaders who are building and…"
+      },
+      "tags": [
+        "founders",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-06-side-riw-by-troqpay",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Juntos por Cripto + CryptoRastas",
+      "start": "2026-08-06T19:00:00-03:00",
+      "end": "2026-08-06T23:00:00-03:00",
+      "time_known": true,
+      "venue": "Centro Cultural Lado B",
+      "address": "Centro Cultural Lado B",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/juntosporcripto-rj",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/zn/50471b2a-9594-4c8b-ad02-6e9bb60f8d66.png",
+      "organizer": "CryptoRastas",
+      "description": {
+        "pt": "CryptoRastas convida geral para o lançamento oficial da nossa parceria com o movimento Juntos por Cripto. Se o sistema sempre tenta concentrar e ditar as regras, a nossa resposta sempre foi descentralização, cultura e…"
+      },
+      "tags": [
+        "web3"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-06-juntos-por-cripto-cryptorastas",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Clube de Empreendedorismo LALA | Primeiro encontro",
+      "start": "2026-08-06T20:00:00-03:00",
+      "end": "2026-08-06T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/6yp88r8z",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/gallery-images/de/a12a3146-d8ca-4e7d-865b-772a559a0a14",
+      "organizer": "Comunidad LALA",
+      "description": {
+        "pt": "Neste primeiro encontro, faremos uma roda de conversa sobre alguns dos principais essays e vídeos de Paul Graham e da Y Combinator, abordando temas centrais do empreendedorismo, da criação de startups e da construção…"
+      },
+      "tags": [
+        "startups",
+        "empreendedorismo"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-06-clube-de-empreendedorismo-lala-primeiro-encontro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Blockchain on the Road - UNISUAM",
+      "start": "2026-08-07T18:00:00-03:00",
+      "end": "2026-08-07T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Universidade Augusto Motta - Rio de Janeiro (Campo Grande) - Unidade I",
+      "address": "Av. Cesário de Melo, 2541 - Campo Grande, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/64c2h0g9",
+      "image": "https://images.lumacdn.com/uploads/wx/5bc3d8b1-b483-44b6-ba34-9b9e367da723.png",
+      "organizer": "Blockchain.RIO",
+      "description": {
+        "pt": "Blockchain on the Road - UNISUAM No dia 07/08, o Blockchain on the Road chega à UNISUAM, conectando estudantes, professores, profissionais e empresas às…"
+      },
+      "tags": [
+        "web3"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-07-blockchain-on-the-road-unisuam",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Impactos de IA nas esteiras de desenvolvimento de software com Rafael Gottardi (Fino)",
+      "start": "2026-08-07T20:00:00-03:00",
+      "end": "2026-08-07T22:30:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/ceizeabg",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/wb/64fb92b5-7914-4456-bc65-c514d09c1d25.jpg",
+      "organizer": "Eventos Instituto",
+      "description": {
+        "pt": "A IA está mudando o desenvolvimento de software. Mas, mais do que conhecer as ferramentas, o diferencial está em saber utilizá-las de forma estratégica, crítica e eficiente. No dia 07/08, às 20h, participe desse…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-07-impactos-de-ia-nas-esteiras-de-desenvolvimento-d",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Cursor Meetup Rio de Janeiro",
+      "start": "2026-08-08T08:30:00-03:00",
+      "end": "2026-08-08T12:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/6xm5wcbe",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/g9/7c4f6f5f-3845-44eb-9216-8603a60d59a2.png",
+      "organizer": "SpaceXSI for Rio de Janeiro, Brazil",
+      "description": {
+        "pt": "Em mais um encontro da Comunidade Cursor Rio de Janeiro, vamos reunir Líderes de Tecnologia, PMs, Founders, desenvolvedores e entusiastas de Inteligência Artificial para uma experiência prática e imersiva sobre o…"
+      },
+      "tags": [
+        "ia",
+        "founders",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-08-cursor-meetup-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Money Legos Rio | BitGo + Pods + Lawi",
+      "start": "2026-08-10T15:00:00-03:00",
+      "end": "2026-08-10T20:00:00-03:00",
+      "time_known": true,
+      "venue": "R. Santa Cristina, 15",
+      "address": "R. Santa Cristina, 15",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/1hq6dcgx",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/c3/5ac65870-2844-4a0c-ab50-731afe5f2cd2.png",
+      "organizer": "Pods Finance",
+      "description": {
+        "pt": "Welcome to Rio. 🇧🇷 Presented by Pods, BitGo, and Lawi, Money Legos Rio brings together the founders, builders, investors, and financial institutions shaping the future of onchain finance in Brazil. This isn't a room…"
+      },
+      "tags": [
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-10-money-legos-rio-bitgo-pods-lawi",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Sidechain Rio by TroqPay",
+      "start": "2026-08-11T18:00:00-03:00",
+      "end": "2026-08-11T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/mvbfi1di",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/qc/cfaa11ac-ec86-4236-9ebc-780cb250f242.jpg",
+      "organizer": "TroqPay",
+      "description": {
+        "pt": "Join us for an exclusive side event during Blockchain Rio week hosted by TroqPay. We are bringing together founders, global professionals, developers, and leaders who are building businesses in Brazil and abroad. No…"
+      },
+      "tags": [
+        "web3",
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-11-sidechain-rio-by-troqpay",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Merkle Science Meet Rio: The Future of Crypto Compliance",
+      "start": "2026-08-12T13:00:00-03:00",
+      "end": "2026-08-12T19:00:00-03:00",
+      "time_known": true,
+      "venue": "BMA Advogados",
+      "address": "BMA Advogados",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/908fpftp",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/vn/80a7d825-056c-42eb-9513-98a57f23a6ff.jpg",
+      "organizer": "Thibaut Gravelle-Vivien",
+      "description": {
+        "pt": "Merkle Science Meet Rio 2026, co-hosted with Movantis, Utexo, Duane Morris LLP, and BMA Advogados, brings together crypto compliance leaders, regulators, financial institutions, law firms, and blockchain innovators for…"
+      },
+      "tags": [
+        "web3"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-12-merkle-science-meet-rio-the-future-of-crypto-com",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Kraken x Reap: Blockchain Rio After Hours",
+      "start": "2026-08-12T18:00:00-03:00",
+      "end": "2026-08-12T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/kraken-reap-rio-reception",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/o0/580329cd-63c4-4256-a5eb-cae32c021424.png",
+      "organizer": "Kraken Events",
+      "description": {
+        "pt": "Join Kraken and Reap for an exclusive Institutional Infrastructure Networking Reception following Blockchain Rio. After a full day of insights and discussions, unwind with cocktails and canapés while connecting with…"
+      },
+      "tags": [
+        "web3",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-12-kraken-x-reap-blockchain-rio-after-hours",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "SNAPPY EXPERIENCE 2",
+      "start": "2026-08-13T20:00:00-03:00",
+      "end": "2026-08-14T00:00:00-03:00",
+      "time_known": true,
+      "venue": "Av: das Américas, 700",
+      "address": "Av: das Américas, 700",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/vellora-ox73",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/3y/b0b124e6-6e9d-48da-9f6e-416971e1052a.jpg",
+      "organizer": "VELLORA",
+      "description": {
+        "pt": "Depois do sucesso da primeira edição, a SNAPPY aparece de novo: no dia 13 de agosto, às 20h, o Kart do Shopping Città America (Barra da Tijuca) vai virar palco da Snappy Experience 2 — uma noite de emoções à flor da…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-13-snappy-experience-2",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Builder Sessions #01 | O Fim do App Solo",
+      "start": "2026-08-17T19:00:00-03:00",
+      "end": "2026-08-17T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/r68dndy4",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/jm/1e97b32e-a442-401b-94de-88eacf669064.png",
+      "organizer": "Let's CoCreate",
+      "description": {
+        "pt": "Builder Sessions é a nova série de workshops práticos do LCC. Em cada encontro, convidamos alguém com experiência real para mostrar processos e ferramentas que ajudam builders a construir projetos melhores. O Fim do…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-17-builder-sessions-01-o-fim-do-app-solo",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "#61 AWS Meetup: Esquenta AWS Community Day BH",
+      "start": "2026-08-18T18:30:00-03:00",
+      "end": "2026-08-18T22:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP",
+      "address": "11 Rua Marquês de Olinda, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/aws-user-group-rio/events/315947888",
+      "image": "https://secure-content.meetupstatic.com/images/classic-events/535484289/676x676.jpg",
+      "organizer": "AWS User Group Rio",
+      "description": {
+        "pt": "Olá pessoal! Nosso próximo encontro já tem data, e estamos com uma edição mega especial! No dia 22 de Agosto vai rolar o AWS Community Day em Belo Horizo"
+      },
+      "tags": [
+        "dados",
+        "cloud",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-18-61-aws-meetup-esquenta-aws-community-day-bh",
+      "source": "meetup.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Team1 Brasil Builder Lab: FIAP Rio de Janeiro",
+      "start": "2026-08-21T18:00:00-03:00",
+      "end": "2026-08-21T21:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP - Rio de Janeiro",
+      "address": "FIAP - Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/d977vjcz",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/z4/3b5c5496-3e3b-4507-8703-a104908818f3.jpg",
+      "organizer": "Team1 Brasil",
+      "description": {
+        "pt": "Team1 Brasil University Connect: FIAP Rio de Janeiro Sobre o evento: No dia 21 de agosto, a FIAP Rio de Janeiro recebe o Team1 Brasil University Connect, um encontro dedicado ao universo da Web3, Blockchain e…"
+      },
+      "tags": [
+        "web3"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-21-team1-brasil-builder-lab-fiap-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "AI Salon Rio #15",
+      "start": "2026-08-25T18:30:00-03:00",
+      "end": "2026-08-25T22:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/aisalon15?isk=UUNQHIqC5C",
+      "image": "https://images.lumacdn.com/uploads/v9/7dda459e-de00-444a-a1a4-50023c19375a.png",
+      "organizer": "Luana Helsinger",
+      "description": {
+        "pt": "Inside CEIA: How a University in Goiânia Became an AI Company Factory The largest applied AI research center in Latin America is not in São Paulo. Not in Rio…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-25-ai-salon-rio-15",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Introdução à Web3 para Mulheres",
+      "start": "2026-08-25T19:00:00-03:00",
+      "end": "2026-08-25T20:30:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/lq5piph2",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/qr/1d94e3ec-b5f8-4aaf-9ef0-ac78b4807eae.jpg",
+      "organizer": "Carol Santos",
+      "description": {
+        "pt": "Um encontro aberto e acolhedor para mulheres que querem entender, de forma simples e prática, o que é Web3, conhecer oportunidades nesse ecossistema e se conectar com outras mulheres interessadas em tecnologia,…"
+      },
+      "tags": [
+        "web3",
+        "diversidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-25-introducao-a-web3-para-mulheres",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Omarchy Meetup São Paulo: Linux para Devs e Vibe Coders",
+      "start": "2026-08-25T19:30:00-03:00",
+      "end": "2026-08-25T21:30:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/dhcang6s",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/4w/b5245d83-6b27-479b-8d75-ebf307b45439.png",
+      "organizer": "Omarchy BR",
+      "description": {
+        "pt": "O Omarchy é uma distribuição Linux moderna e opinativa, criada para quem quer um ambiente de desenvolvimento rápido, bonito e preparado para trabalhar com código, terminal e agentes de IA sem passar dias configurando o…"
+      },
+      "tags": [
+        "ia",
+        "meetup"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-25-omarchy-meetup-sao-paulo-linux-para-devs-e-vibe-",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Coworking Estruturado by Business Tech Curadoria",
+      "start": "2026-08-28T14:00:00-03:00",
+      "end": "2026-08-28T18:30:00-03:00",
+      "time_known": true,
+      "venue": "Arca Hub",
+      "address": "Arca Hub",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/vbdrv1f9",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ta/86d0aa5c-06fe-4878-beb9-cefe8b2bf70a.jpg",
+      "organizer": "Roberta Albano",
+      "description": {
+        "pt": "Mais um evento presencial do Business Tech Curadoria! Dessa vez, será um coworking com sessões de foco exclusivo do Business Tech Curadoria, com o apoio do Arca Hub. A proposta é reunir pessoas que querem aproveitar a…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-28-coworking-estruturado-by-business-tech-curadoria",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "O Legado do Meridian",
+      "start": "2026-08-28T19:00:00-03:00",
+      "end": "2026-08-28T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Av: Das Américas, 500",
+      "address": "Av: Das Américas, 500",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/q311amnq",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/3l/cf870751-8918-4db6-823d-f3532bad8620.jpg",
+      "organizer": "Eventos Instituto",
+      "description": {
+        "pt": "O Legado do Meridian: Ecossistema Stellar no Brasil Vem curtir uma noite de imersão e muito networking sobre o futuro da tecnologia blockchain e dos pagamentos! O ecossistema Stellar está crescendo rápido por aqui, e…"
+      },
+      "tags": [
+        "web3",
+        "networking",
+        "workshop"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-28-o-legado-do-meridian",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Rio de Janeiro | Claude Impact Lab",
+      "start": "2026-08-30T08:00:00-03:00",
+      "end": "2026-08-30T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/claude-bcnp",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/api-uploads/e4/39f44529-88e9-4cec-ac70-b12e09e33907.png",
+      "organizer": "Claude Community Events",
+      "description": {
+        "pt": "Join a Claude Community Event, organized by local enthusiasts for everyone who loves building with Claude! In partnership with the city of Rio de Janeiro. Claude Impact Lab Rio #2 Segunda edição do Claude Impact Lab no…"
+      },
+      "tags": [
+        "ia",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-08-30-rio-de-janeiro-claude-impact-lab",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Builder Sessions #03 | Do chat ao agente",
+      "start": "2026-09-02T19:00:00-03:00",
+      "end": "2026-09-02T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/l8x8a1zs",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/3o/22f9b447-8db4-417f-b711-55e8d4e4a6da.png",
+      "organizer": "Let's CoCreate",
+      "description": {
+        "pt": "Você conversa com a IA. Mas o que faz ela deixar de apenas responder e começar a usar ferramentas, consultar conhecimento e executar processos? Nesta quarta-feira, Fabinho Martinelli estará no Builder Sessions para…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-02-builder-sessions-03-do-chat-ao-agente",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Omarchy BR Meetup 002: Setup, Plugins, Themes e Linux",
+      "start": "2026-09-04T19:00:00-03:00",
+      "end": "2026-09-04T20:30:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/h9i9ix6i",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ax/8c39dfa9-6de9-4b4d-b695-f70b7209d67a.png",
+      "organizer": "Omarchy BR",
+      "description": {
+        "pt": "Vamos comemorar a criação da comunidade Omarchy BR e a abertura do nosso Discord com um encontro para colocar as ideias em dia e conversar sobre o que estamos fazendo com o Omarchy 4. A proposta é bater um papo aberto…"
+      },
+      "tags": [
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-04-omarchy-br-meetup-002-setup-plugins-themes-e-lin",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Workshop Blockchain Piauí",
+      "start": "2026-09-05T10:00:00-03:00",
+      "end": "2026-09-05T12:30:00-03:00",
+      "time_known": true,
+      "venue": "online",
+      "address": "online",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/foun19aw",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/wv/20f6f108-e032-412c-bc48-67759302b766.jpg",
+      "organizer": "Kauê 'VkS' Victor",
+      "description": {
+        "pt": "Workshop: Criando seu primeiro smart contract na rede Stellar A comunidade Blockchain Piauí convida você para uma imersão prática no universo da Web3. Venha aprender a desenvolver e realizar o deploy do seu primeiro…"
+      },
+      "tags": [
+        "web3",
+        "workshop",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-05-workshop-blockchain-piaui",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Omarchy Brasil #001: Omarchy para Devs - Sua Porta de Entrada para o Linux",
+      "start": "2026-09-08T19:30:00-03:00",
+      "end": "2026-09-08T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/dlbmd66c",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/tt/fbfc2a84-9958-4f0f-9786-d1852a902828.webp",
+      "organizer": "Guilherme Monteiro",
+      "description": {
+        "pt": "Você desenvolve no macOS ou Windows e tem curiosidade sobre Linux, mas não quer começar escolhendo cada pacote, desktop, terminal e arquivo de configuração? Neste encontro gratuito, vamos usar o Omarchy como uma porta…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-08-omarchy-brasil-001-omarchy-para-devs-sua-porta-d",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Happy Hour Maravalley + Download HackTown",
+      "start": "2026-09-10T17:00:00-03:00",
+      "end": "2026-09-10T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/srygkqge",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/e4/bd660e22-c312-4b3f-b4e2-8652dd8bf14d.png",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "🥂 HAPPY HOUR MARAVALLEY +DOWNLOAD HACKTOWN O Happy Hour Maravalley é o nosso encontro semanal de integração e networking, reunindo residentes para fortalecer conexões em um ambiente descontraído. Nesta edição, teremos…"
+      },
+      "tags": [
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-10-happy-hour-maravalley-download-hacktown",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Tem gente boa no Rio | HH 2.0",
+      "start": "2026-09-10T19:30:00-03:00",
+      "end": "2026-09-10T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Boteco Belmonte",
+      "address": "Boteco Belmonte",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/p2rn5g14",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/99/332fff39-8d03-44d1-a242-47e7ae30abf7.jpg",
+      "organizer": "Lucas Lameiras",
+      "description": {
+        "pt": "Não é que apareceu gente boa no Rio? Então vamos outra vez Os paulistas dizem que não tem gente boa no Rio. Que chorem os paulistas. HH para amigos e amigos de amigos. Porque gente boa temos - só faltava juntar. >"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-10-tem-gente-boa-no-rio-hh-2-0",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Builder Sessions #04 | Agentes racionais",
+      "start": "2026-09-11T19:00:00-03:00",
+      "end": "2026-09-11T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/sr78swxy",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/0k/3213364e-9a0a-41d1-9970-7cc50aee5475.png",
+      "organizer": "Let's CoCreate",
+      "description": {
+        "pt": "Como um agente de IA observa o ambiente, avalia possibilidades e decide o que fazer? Nesta Builder Session, a Dra. Marcela Marques vai apresentar os fundamentos dos agentes racionais e mostrar como essa lógica é…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-11-builder-sessions-04-agentes-racionais",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Glow Up: Brunch, Carreira e Conexões Inovadoras ☕✨",
+      "start": "2026-09-12T09:00:00-03:00",
+      "end": "2026-09-12T13:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/bed5765y",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/op/20a50343-a55e-4e0d-914a-576bd152bf65.png",
+      "organizer": "SheFi Brasil",
+      "description": {
+        "pt": "Web3 Café convida She is Solana para uma manhã inspiradora na Fabulosa Lab que vai impulsionar sua trajetória através de conexões, conhecimento e experiências transformadoras ☕ No dia 12 de Setembro, vamos reunir as…"
+      },
+      "tags": [
+        "web3",
+        "carreira"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-12-glow-up-brunch-carreira-e-conexoes-inovadoras",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "What’s your TASTE ? By STAMINA Ventures",
+      "start": "2026-09-13T09:00:00-03:00",
+      "end": "2026-09-13T10:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/yn5a7etf",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/jm/1738e3e0-6116-4838-a0a0-786001dd61f0.png",
+      "organizer": "Natan Sztamfater",
+      "description": {
+        "pt": "Whats your TASTE? Como builders transformam AI em resultado. Palestra Online acontecerá no dia 13 de Setembro as 9:30 com Rony Sztamfater da STAMINA e um convidado especialista em AI. Quanto mais a AI consegue fazer,…"
+      },
+      "tags": [
+        "ia",
+        "palestra"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-13-whats-your-taste-by-stamina-ventures",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Prêmio TransFORMAR 2026 · Capital Semente para MVPs | ANGRAD",
+      "start": "2026-09-15T00:00:00-03:00",
+      "end": "2026-12-04T23:59:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://doity.com.br/capitalsemente2026",
+      "image": "https://grcmlesydpcd.objectstorage.sa-saopaulo-1.oci.customer-oci.com/p/OQwcvnO-c63O08Gc2Kv4OTbJttj5ik60dguiDIyyQ0wuo5SWn-jHOLW9wNbylNqI/n/grcmlesydpcd/b/dtysppobjmntbkp01/o/media/doity/eventos/evento-301984-banner.jpeg",
+      "organizer": "Associação Nacional dos Cursos de Graduação em Administração (ANGRAD)",
+      "description": {
+        "pt": "Prêmio nacional da ANGRAD com R$ 105 mil em capital semente para MVPs de impacto elaborados por estudantes de Administração. Inscrições até 4 de dezembro de 2026."
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-15-premio-transformar-2026-capital-semente-para-mvp",
+      "source": "doity.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Builder Sessions #05 | Legal by Design",
+      "start": "2026-09-15T19:00:00-03:00",
+      "end": "2026-09-15T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/uknym13a",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/7u/510d6805-e918-4d25-9dc4-47d877ac537f.png",
+      "organizer": "Let's CoCreate",
+      "description": {
+        "pt": "Em que momento o jurídico entra na construção de um produto? Legal by Design é uma forma de considerar a conformidade desde as primeiras decisões, em vez de tentar adaptar tudo quando o produto já está pronto. Nesta…"
+      },
+      "tags": [
+        "design",
+        "produto"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-15-builder-sessions-05-legal-by-design",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "TechGrid 2026",
+      "start": "2026-09-16T13:30:00-03:00",
+      "end": "2026-09-16T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Maravalley",
+      "address": "Maravalley",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/1tygpl8b",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/0q/efd31820-bb83-4857-a878-2fa597fd4926.png",
+      "organizer": "Innoscience",
+      "description": {
+        "pt": "Infraestrutura para Escalar a Inteligência Artificial A inteligência artificial já deixou de ser uma discussão sobre modelos. O desafio agora é construir a infraestrutura capaz de sustentar sua adoção em escala.…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-16-techgrid-2026",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "O Brasil em Dados: O que as pesquisas revelam sobre o cenário político brasileiro",
+      "start": "2026-09-17T08:00:00-03:00",
+      "end": "2026-09-17T11:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Instituto 12",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/gaxbk9mh",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/mp/9c7e7fd4-ed05-4cdd-83aa-1bad42205166.png",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "Em um cenário político cada vez mais dinâmico, compreender dados, pesquisas e tendências é fundamental para interpretar os movimentos que influenciam o Brasil e antecipar possíveis cenários. Neste encontro, o Instituto…"
+      },
+      "tags": [
+        "dados"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-17-o-brasil-em-dados-o-que-as-pesquisas-revelam-sob",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Happy Hour Chamada Missão Lisboa",
+      "start": "2026-09-17T17:00:00-03:00",
+      "end": "2026-09-17T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/s1v3x4no",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/1e/280cb57e-4f63-4855-a344-8f6be68401df.jpg",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "HAPPY HOUR MISSÃO LISBOA Nesta edição do Happy Hour Maravalley, vamos apresentar a Chamada Web Summit Lisboa, uma iniciativa da Invest.Rio, agência de promoção e atração de investimentos da cidade e o Maravalley, que…"
+      },
+      "tags": [
+        "web",
+        "networking",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-17-happy-hour-chamada-missao-lisboa",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "STABLECOINS & PAYMENTS O Futuro dos Ativos Virtuais",
+      "start": "2026-09-17T18:30:00-03:00",
+      "end": "2026-09-17T21:30:00-03:00",
+      "time_known": true,
+      "venue": "Av: Das Américas, 500",
+      "address": "Av: Das Américas, 500",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/y2hp0vox",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/4q/76dabbc1-9cfa-4117-ae81-bf1dd1baadad.png",
+      "organizer": "Eventos Instituto",
+      "description": {
+        "pt": "STABLECOINS & PAYMENTS O Futuro dos Ativos Virtuais O dinheiro está mudando e os pagamentos também. No dia 17 de setembro de 2026, o Programa de Embaixadores Stellar reúne especialistas, builders, empresas e…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-17-stablecoins-payments-o-futuro-dos-ativos-virtuai",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Codex Community Meetup – Rio de Janeiro",
+      "start": "2026-09-19T10:00:00-03:00",
+      "end": "2026-09-19T14:30:00-03:00",
+      "time_known": true,
+      "venue": "5",
+      "address": "5",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/4hudcuqo",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/x2/6fe0a978-2875-4165-8791-c159e6ffa6d7.png",
+      "organizer": "Codex - Rio de Janeiro",
+      "description": {
+        "pt": "Participe de mais uma edição do Codex Community Meetup – Rio de Janeiro, um encontro presencial para desenvolvedores(as), engenheiros(as) de software, estudantes e builders interessados em entender como a Inteligência…"
+      },
+      "tags": [
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-19-codex-community-meetup-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Builder Sessions #06 | Ecossistema como canal de growth",
+      "start": "2026-09-22T19:00:00-03:00",
+      "end": "2026-09-22T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/ykqqpf36",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ng/2276734d-8911-4bd2-8657-68aacce1cb1c.png",
+      "organizer": "Let's CoCreate",
+      "description": {
+        "pt": "Como um ecossistema deixa de ser apenas um espaço de conexão e se transforma em um canal de distribuição para um produto? Comunidades, eventos, parcerias e relações de confiança podem aproximar projetos das pessoas…"
+      },
+      "tags": [
+        "produto"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-22-builder-sessions-06-ecossistema-como-canal-de-gr",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Meetup FIAP RIO | Human Skills × AI: Gen Z, Millennials e o futuro do trabalho",
+      "start": "2026-09-23T19:00:00-03:00",
+      "end": "2026-09-23T21:30:00-03:00",
+      "time_known": true,
+      "venue": "FIAP RIO",
+      "address": "Centro Empresarial Botafogo - Praia de Botafogo, 300 - Conjuntos 33 e 34 - Botafogo, Rio de Janeiro - RJ, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/fiapmeetups/events/316271494",
+      "image": "https://secure-content.meetupstatic.com/images/classic-events/535839215/676x676.jpg",
+      "organizer": "FIAP",
+      "description": {
+        "pt": "A IA já mudou o jogo. Agora, a pergunta é: o que ainda torna um profissional indispensável? Neste meetup, Millennials e Gen Z entram em campo para discuti"
+      },
+      "tags": [
+        "ia",
+        "meetup"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-23-meetup-fiap-rio-human-skills-ai-gen-z-millennial",
+      "source": "meetup.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Decoded | Carreiras em Transformação – Episódio 7: André Baltieri",
+      "start": "2026-09-23T19:30:00-03:00",
+      "end": "2026-09-23T20:30:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/tgchezmy",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/y7/2838fda8-6ea3-49b8-8933-2a32f64da1fb.jpg",
+      "organizer": "Decoded - Webinar",
+      "description": {
+        "pt": "IA e desenvolvimento de software: o que muda no papel do dev Por que, num momento em que a máquina escreve, testa e refatora código em segundos, o trabalho do desenvolvedor deixou de ser produzir código e passou a ser…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-23-decoded-carreiras-em-transformacao-episodio-7-an",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Google Cloud Summit'26",
+      "start": "2026-09-24T08:30:00-03:00",
+      "end": "2026-09-24T13:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/pkx5w1ah",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/51/7a6955cc-de31-4624-8053-241b8f56f9f7.jpg",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "O Google Cloud Summit '26 – Watch Party Rio acontece no dia 24/09, no Maravalley, reunindo profissionais e lideranças para acompanhar os principais conteúdos de um dos maiores encontros de cloud do Brasil. Como host da…"
+      },
+      "tags": [
+        "cloud",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-24-google-cloud-summit-26",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Inside The Investor Mind: What An Investor Actually Looks For",
+      "start": "2026-09-24T13:00:00-03:00",
+      "end": "2026-09-24T14:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "pago",
+        "text": "R$ 75,00"
+      },
+      "registration": "ingresso",
+      "url": "https://luma.com/hubble-ang1",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ma/5cb4ea46-aa41-4180-a514-0ba9e5a51309.png",
+      "organizer": "Hubble",
+      "description": {
+        "pt": "Fundraising is often viewed as a one way street, however the most successful partnerships with investors are built on mutual due diligence. Join Investor & Advisor Bettina Briz and Kevin Jurovich for a candid…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-24-inside-the-investor-mind-what-an-investor-actual",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Founders Night Rio",
+      "start": "2026-09-24T18:30:00-03:00",
+      "end": "2026-09-24T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/hi1h1pqo",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/zd/0240b761-00da-4d07-b194-6ecf56a68d2e.png",
+      "organizer": "1565.io",
+      "description": {
+        "pt": "Quinta-feira, 24 de setembro. Início às 18h30, Leblon. Quarenta pessoas, uma sala, uma noite. Três conversas com quem construiu projetos de verdade no Brasil, todas mediadas por Luca Cosivi. Depois a mesa fica livre…"
+      },
+      "tags": [
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-24-founders-night-rio",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "COPPE & Made in Rio Hackathon: Opening Day",
+      "start": "2026-09-25T14:00:00-03:00",
+      "end": "2026-09-25T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/hackathonrio",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/g5/e40b951d-407f-426a-a05d-506de8d2a16a.png",
+      "organizer": "AI Salon Rio",
+      "description": {
+        "pt": "Brazil's Only AI Hackathon for the Energy Transition. We believe the next great global cleantech company can be built in Rio. And on September 25, we want you in the room when we start building it. COPPE/UFRJ, Latin…"
+      },
+      "tags": [
+        "ia",
+        "hackathon"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-25-coppe-made-in-rio-hackathon-opening-day",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Devin Meetup Rio de Janeiro",
+      "start": "2026-09-26T08:30:00-03:00",
+      "end": "2026-09-26T12:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP - Rio de Janeiro",
+      "address": "FIAP - Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/l2f11j2p",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/01/609fbce7-f74e-4a3e-a90b-f40f80737a9d.png",
+      "organizer": "Fazedor de Código",
+      "description": {
+        "pt": "Junte-se a desenvolvedores da sua região para fazer networking, aprender e construir projetos com o Devin. Se você tem curiosidade sobre desenvolvimento com IA ou quer se conectar com outros desenvolvedores do Rio de…"
+      },
+      "tags": [
+        "ia",
+        "networking",
+        "meetup"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-26-devin-meetup-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "13º Café do Aldeia |Como transformar criatividade, cultura e eventos em oportunidades de negócio?",
+      "start": "2026-09-29T16:00:00-03:00",
+      "end": "2026-09-29T19:00:00-03:00",
+      "time_known": true,
+      "venue": "Condomínio Terracas de Camboinhas",
+      "address": "Condomínio Terracas de Camboinhas, 151",
+      "city": "Niterói",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.sympla.com.br/evento/13-cafe-do-aldeia-como-transformar-criatividade-cultura-e-eventos-em-oportunidades-de-negocio/3592045",
+      "image": "https://images.sympla.com.br/6ab42cfe033ee-lg.png",
+      "organizer": "AldeiaTech",
+      "description": {
+        "pt": "Criatividade movimenta ideias. Cultura movimenta pessoas. Eventos criam conexões. Mas como transformar tudo isso em oportunidades reais de negócio? Nesta edição, o Café do Aldeia coloca a Economia Criativa no centro da…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-29-13o-cafe-do-aldeia-como-transformar-criatividade",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Rio de Janeiro Tech Mixer",
+      "start": "2026-09-29T18:00:00-03:00",
+      "end": "2026-09-29T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Porto Maravalley",
+      "address": "Porto Maravalley",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/actonline-owjq",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/m2/79330283-9fb7-4587-9f6f-59324d8aadf1.jpg",
+      "organizer": "Association for Competitive Technology (ACT)",
+      "description": {
+        "pt": "Meet the founders, builders, and ecosystem leaders creating and thriving within Rio’s tech scene at ACT’s final stop on the Developed: Brazil Tour! ACT and Startup Guide are hosting a happy hour with Maravalley to…"
+      },
+      "tags": [
+        "startups",
+        "founders",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-29-rio-de-janeiro-tech-mixer",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "SuperteamBR: Meetup University",
+      "start": "2026-09-30T18:30:00-03:00",
+      "end": "2026-09-30T21:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP - Rio de Janeiro",
+      "address": "FIAP - Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/gyphbsbo",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/pe/4e1bd4d3-6c47-4e76-a66b-313ada225c96.jpg",
+      "organizer": "Carol Santos",
+      "description": {
+        "pt": "O Meetup University é um encontro para conectar estudantes universitários ao ecossistema Solana e às oportunidades da Web3. Durante o evento, vamos conversar sobre blockchain, carreira em tecnologia, comunidades e…"
+      },
+      "tags": [
+        "web3",
+        "meetup",
+        "carreira"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-30-superteambr-meetup-university",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Engenharia de Prompts para Ciência de Dados: técnicas e aplicações com IA",
+      "start": "2026-09-30T19:00:00-03:00",
+      "end": "2026-09-30T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.sympla.com.br/evento-online/engenharia-de-prompts-para-ciencia-de-dados-tecnicas-e-aplicacoes-com-ia/3563796",
+      "image": "https://images.sympla.com.br/6a974daee2a2d-lg.png",
+      "organizer": "Instituto Infnet",
+      "description": {
+        "pt": "Já pediu algo para uma Inteligência Artificial e recebeu uma resposta que não era exatamente o que você esperava? A forma como você formula uma instrução faz toda a diferença no resultado, especialmente quando falamos…"
+      },
+      "tags": [
+        "ia",
+        "dados"
+      ],
+      "status": "confirmado",
+      "id": "2026-09-30-engenharia-de-prompts-para-ciencia-de-dados-tecn",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Hackathon Desafio Inova SulFlu 2ª Edição",
+      "start": "2026-10-01T09:00:00-03:00",
+      "end": null,
+      "time_known": true,
+      "venue": "Faculdade de Tecnologia da UERJ",
+      "address": null,
+      "city": "Resende",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://www.even3.com.br/desafio-inova-sulflu2-777658",
+      "image": "https://images.even3.com/qEi0HtcWg57kRcBAqrLQm6uKpgo=/1100x440/smart/https://static.even3.com/banner/hackathonlogo2edio4.00cc8fef372f4215a32a.png",
+      "organizer": "Incubadora de empresas Sul Fluminense",
+      "description": {
+        "pt": "O Hackathon Desafio Inova SulFlu é uma maratona de inovação e empreendedorismo, onde participantes de diferentes áreas se reúnem para desenvolver soluções criativas e tecnológicas para desafios reais. Durante o evento,…"
+      },
+      "tags": [
+        "empreendedorismo",
+        "inovacao",
+        "hackathon"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-01-hackathon-desafio-inova-sulflu-2a-edicao",
+      "source": "even3.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "PSAV as a Service - belo & Lawi",
+      "start": "2026-10-01T09:30:00-03:00",
+      "end": "2026-10-01T10:30:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/0ovii8kz",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/9g/1c51065a-8edf-4065-8841-d64413d3dd0b.png",
+      "organizer": "belo",
+      "description": {
+        "pt": "O Banco Central do Brasil definiu as regras que regulamentam a Lei nº 14.478/2022 e estabeleceu um novo cenário para as prestadoras de serviços de ativos virtuais (PSAVs). Mas o que muda, na prática, para empresas e…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-01-psav-as-a-service-belo-lawi",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Happy Hour + Download ROG.e 2026",
+      "start": "2026-10-01T17:00:00-03:00",
+      "end": "2026-10-01T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/g8v4npqg",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/bz/ff106bc7-11a5-42f1-97ea-0e22b9e4d170.png",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "HAPPY HOUR + DOWNLOAD ROG.E 2026 Olá, comunidade Maravalley! 🚀 Mais do que um happy hour, este é um encontro para fortalecer conexões e impulsionar novas ideias. Em um ambiente descontraído, reunimos empreendedores,…"
+      },
+      "tags": [
+        "empreendedorismo",
+        "networking",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-01-happy-hour-download-rog-e-2026",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Missão DeFi com @Et_Erica",
+      "start": "2026-10-06T19:00:00-03:00",
+      "end": "2026-10-06T20:30:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/076514kz",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/xy/29256946-051e-4cab-84e6-83684abfb051.jpg",
+      "organizer": "SheFi Brasil",
+      "description": {
+        "pt": "Preparada para explorar o universo das finanças descentralizadas? 🛸 No próximo meetup, vamos embarcar em uma missão intergalática pelos conceitos de DeFi com a ET Erica, para entender melhor esse ecossistema, seus…"
+      },
+      "tags": [
+        "web3",
+        "meetup"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-06-missao-defi-com-et-erica",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Build Your Pre-Seed Pitch Deck: Slide by Slide + The Fundraising Framework I Use",
+      "start": "2026-10-07T13:00:00-03:00",
+      "end": "2026-10-07T14:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "pago",
+        "text": "R$ 49,00"
+      },
+      "registration": "ingresso",
+      "url": "https://luma.com/hubble-97w8",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/sr/5a6e813a-f819-40bf-8326-d445e1312390.png",
+      "organizer": "Hubble",
+      "description": {
+        "pt": "Build Your Pre-Seed Pitch Deck: Slide by Slide + The Fundraising Framework I Use I’ve raised multiple pre-seed rounds and built thousands of pitch decks over my time as a founder. The goal of a pre-seed pitch deck is…"
+      },
+      "tags": [
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-07-build-your-pre-seed-pitch-deck-slide-by-slide-th",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "O Jogo da atenção:como as audiências influenciam em seus projetos e produtos?",
+      "start": "2026-10-07T19:30:00-03:00",
+      "end": "2026-10-07T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/6zafwmpk",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/gv/7fc46c2e-e247-4b19-a0ab-439d24ad3d33.png",
+      "organizer": "Eventos Instituto",
+      "description": {
+        "pt": "Venha ouvir o que o Marcus Vinicius Araujo “Sherman” tem pra compartilhar com a gente. Ele é nascido no Morro da Mangueira Rio de Janeiro. Cria do Carnaval do Rio. Premiado em Hackathons como: ETH LATAM, ETH GLOBAL ,…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-07-o-jogo-da-atencao-como-as-audiencias-influenciam",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Agentic Commerce Summit",
+      "start": "2026-10-08T09:00:00-03:00",
+      "end": "2026-10-08T18:30:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Instituto 12",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/wn5tfcbn",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/h8/03bca755-06d5-4030-9c71-2f808448c837.png",
+      "organizer": "dolado .",
+      "description": {
+        "pt": "1º Agentic Commerce Summit do Brasil O Agentic Commerce Summit nasce para preparar as marcas brasileiras para vender nessa nova era. Estamos entrando em uma nova fase do comércio: consumidores passarão cada vez mais a…"
+      },
+      "tags": [
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-08-agentic-commerce-summit",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Happy Hour + Talk: Cibersegurança",
+      "start": "2026-10-08T17:00:00-03:00",
+      "end": "2026-10-08T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/1vid8a7z",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/7h/d9a9fdf5-ba7b-4821-864f-ce64243cee59.png",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "HAPPY HOUR + TALK: CIBERSEGURANÇA Na próxima edição do Happy Hour Maravalley, vamos receber Alexandre Brum, CEO da Vultus e Board Member do Brazil Regional Engagement Board, para uma conversa sobre os novos desafios da…"
+      },
+      "tags": [
+        "seguranca",
+        "networking",
+        "palestra"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-08-happy-hour-talk-ciberseguranca",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Meetup FIAP RIO | SPORTS TECH: como dados e IA, estão transformando o futuro",
+      "start": "2026-10-08T19:00:00-03:00",
+      "end": "2026-10-08T21:30:00-03:00",
+      "time_known": true,
+      "venue": "FIAP RIO",
+      "address": "Centro Empresarial Botafogo – Praia de Botafogo, 300 – Conjuntos 33 e 34 – Botafogo – Rio de Janeiro/RJ, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/fiapmeetups/events/316389963",
+      "image": "https://secure-content.meetupstatic.com/images/classic-events/535964670/676x676.jpg",
+      "organizer": "FIAP",
+      "description": {
+        "pt": "O esporte está vivendo uma transformação impulsionada por dados, IA e novas tecnologias. Da preparação de atletas à gestão de competições, passando pela in"
+      },
+      "tags": [
+        "ia",
+        "dados",
+        "meetup"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-08-meetup-fiap-rio-sports-tech-como-dados-e-ia-esta",
+      "source": "meetup.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Oficina Online: Google Perfil da Empresa  Segmento Serviços - IA para Empreender Google e Sebrae SP",
+      "start": "2026-10-08T19:00:00-03:00",
+      "end": "2026-10-08T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.sympla.com.br/evento-online/oficina-online-google-perfil-da-empresa-segmento-servicos-ia-para-empreender-google-e-sebrae-sp/3510493?isTTCP=true",
+      "image": "https://images.sympla.com.br/6a5f6cfe32e05-lg.png",
+      "organizer": "Sebrae SP e Google",
+      "description": {
+        "pt": "IA para Empreender O mercado mudou e a Inteligência Artificial já é a maior aliada do crescimento dos pequenos negócios. Pensando nisso, o Sebrae-SP e o Google Brasil uniram forças no projeto \"IA para Empreender nos…"
+      },
+      "tags": [
+        "ia",
+        "empreendedorismo",
+        "workshop"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-08-oficina-online-google-perfil-da-empresa-segmento",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Anuário da Saúde Mental nas Empresas 2026",
+      "start": "2026-10-09T08:30:00-03:00",
+      "end": "2026-10-09T12:30:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Instituto 12",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/dnt8fll1",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/rn/d96178f3-a66e-4216-9bbb-0cda80c9d1d7.jpg",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "O Instituto Philos Org convida você para participar do evento exclusivo de pré-lançamento do Anuário da Saúde Mental. O encontro reunirá executivos e especialistas para discutir tendências, indicadores e estratégias…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-09-anuario-da-saude-mental-nas-empresas-2026",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Café com Impact Hub Rio - Edição Especial ÁSIA",
+      "start": "2026-10-09T10:00:00-03:00",
+      "end": "2026-10-09T12:00:00-03:00",
+      "time_known": true,
+      "venue": "Impact Hub Rio de Janeiro",
+      "address": "Rua da Assembléia, 58",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/cafe-com-impact-hub-rio-edicao-especial-asia/3599465",
+      "image": "https://images.sympla.com.br/6abc185e36aef-lg.jpg",
+      "organizer": "Impact Hub Rio de Janeiro",
+      "description": {
+        "pt": "Café Impact Hub Rio Edição​ ÁSIA Nosso próximo Café Impact Hub Rio vai ser especial e presencial no Impact Hub. Recebemos de volta nossa Co-CEO Liliana Pinelli, jornalista e empresária que passou 30 dias imersa na…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-09-cafe-com-impact-hub-rio-edicao-especial-asia",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "EngenharIA - 2º Colóquio de Inteligência Artificial na Engenharia",
+      "start": "2026-10-13T13:00:00-03:00",
+      "end": null,
+      "time_known": true,
+      "venue": "Centro de Tecnologia da UFRJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://www.even3.com.br/engenharia-2-coloquio-de-inteligencia-artificial-na-engenharia-771423",
+      "image": "https://images.even3.com/qnmq_eQAJS2HEN4DN_UJTLbFNzk=/1100x440/smart/https://static.even3.com/banner/2.a8cfe2cbfd5744a08db1.png",
+      "organizer": "Núcleo de Transferência de Tecnologia da UFRJ e Secretaria de Estado de Transformação Digital do Rio de Janeiro",
+      "description": {
+        "pt": "O II EngenharIA 2 está reunindo academia, empresas e grandes nomes da Inteligência Artificial no Brasil. Nesta edição, ampliamos o EngenharIA para aproximar ainda mais a universidade, a pesquisa e o setor produtivo. Já…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-13-engenharia-2o-coloquio-de-inteligencia-artificia",
+      "source": "even3.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Roda de Conversa #2 - Guilherme da Deco",
+      "start": "2026-10-14T17:30:00-03:00",
+      "end": "2026-10-14T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/149ocunz",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/tb/44cad0fb-0e8e-4bcc-9da4-f39e810280e9.png",
+      "organizer": "Gente Boa UFRJ",
+      "description": {
+        "pt": "Na 2ª Roda de Conversa da Gente Boa, recebemos Guilherme Rodrigues, CEO e cofundador da deco — startup carioca que une engenharia, agentes de IA e CMS pra deixar times mais rápidos e autônomos na construção de sites e…"
+      },
+      "tags": [
+        "ia",
+        "startups"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-14-roda-de-conversa-2-guilherme-da-deco",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "CTTS #3 no Rio: Agentes, devo manter o PC ligado?",
+      "start": "2026-10-14T19:00:00-03:00",
+      "end": "2026-10-14T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/i1mg671l",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/7k/35a33a92-dfb6-427e-86e7-a3b52d503f00.png",
+      "organizer": "CTTS",
+      "description": {
+        "pt": "CTTS #3 - Rio de Janeiro em parceria com a Hostinger e a FIAP do Rio de Janeiro A CTTS (Cool Things To Share) nasceu da ideia de reunir pessoas que constroem produtos, escrevem código e experimentam novas ferramentas…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-14-ctts-3-no-rio-agentes-devo-manter-o-pc-ligado",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Tech Venture Law Summit 2ª edição",
+      "start": "2026-10-16T09:00:00-03:00",
+      "end": "2026-10-16T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Casa da Glória",
+      "address": "Ladeira da Glória, 98 - Glória, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/6afvz4vs",
+      "image": "https://images.lumacdn.com/uploads/py/1cfdc6f2-6e19-49a9-9617-5fb1dfd0b184.png",
+      "organizer": "Legalhack Tecnologia",
+      "description": {
+        "pt": "O encontro que conecta Direito, tecnologia e inovação está de volta. O Tech Venture Law Summit nasceu para aproximar advogados, fundadores, investidores e…"
+      },
+      "tags": [
+        "investimento",
+        "founders",
+        "inovacao",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-16-tech-venture-law-summit-2a-edicao",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "INOVA DAY 2026",
+      "start": "2026-10-16T09:00:00-03:00",
+      "end": "2026-10-16T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.sympla.com.br/evento-online/inova-day-2026/3514645",
+      "image": "https://images.sympla.com.br/6a627d36c1f55-lg.png",
+      "organizer": "Ecossistema Inova",
+      "description": {
+        "pt": "O encontro anual do Ecossistema Inova para compreender os movimentos que já estão transformando a gestão, os negócios e a liderança. Chegar à 10ª edição do Inova Day representa mais do que a continuidade de um evento.…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-16-inova-day-2026",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "RedotsClub Brasil | Secret Happy Hour",
+      "start": "2026-10-16T19:00:00-03:00",
+      "end": "2026-10-16T23:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/f603ktvf",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/x7/02e8e584-dd1a-458d-b0ef-8b67e8245cd5.png",
+      "organizer": "Flávia Jonsson",
+      "description": {
+        "pt": "Secret Happy Hour | Rio Crypto Club O que é melhor para começar o fim de semana no Rio do que um bar secreto, um chope gelado na mão e as pessoas que estão construindo no Brasil? Junte-se a nós na sexta, 16 de outubro,…"
+      },
+      "tags": [
+        "web3",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-16-redotsclub-brasil-secret-happy-hour",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Team1 Brasil Coworking Day: São Paulo",
+      "start": "2026-10-19T18:00:00-03:00",
+      "end": "2026-10-19T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Alameda Santos, 1165",
+      "address": "Alameda Santos, 1165",
+      "city": "São Paulo",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/8ewx1c2f",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/mc/bc73938d-c219-4ae6-a959-af3031529c69.png",
+      "organizer": "Team1 Brasil",
+      "description": {
+        "pt": "Team1 Brasil Coworking Day Sobre o evento No dia 26 de setembro, acontece o Team1 Brasil Coworking Day, um encontro dedicado à comunidade Web3, colaboração, networking e desenvolvimento de novas ideias. Durante o…"
+      },
+      "tags": [
+        "web3",
+        "networking",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-19-team1-brasil-coworking-day-sao-paulo",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Petit Salon: Astella & Endurance on AI Investing",
+      "start": "2026-10-20T11:00:00-03:00",
+      "end": "2026-10-20T13:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/petitsalon1",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/b1/fc9ed12a-f34e-4638-bcde-d69d89596bd7.png",
+      "organizer": "AI Salon Rio",
+      "description": {
+        "pt": "Petit Salon: Astella & Endurance on AI Investing For this intimate, invite-only conversation, Made in Rio brings together Astella and Endurance Global Ventures to look at AI investing from both ends of the market:…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-20-petit-salon-astella-endurance-on-ai-investing",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Construindo na Stellar",
+      "start": "2026-10-20T18:00:00-03:00",
+      "end": "2026-10-20T21:30:00-03:00",
+      "time_known": true,
+      "venue": "Associação de Comunicação Fala Roça",
+      "address": "Associação de Comunicação Fala Roça",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/wx8n2ule",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/6o/898ab823-8ee8-44b0-ac66-31d8e4457c66.png",
+      "organizer": "Instituto Florescer Caldeira",
+      "description": {
+        "pt": "Chega junto!!! Para essa sessão sobre Blockchain e web3, onde vamos desmistificar de vez o ecossistema da rede Stellar. Nossos especialistas vão falar sobre como é a carreira de desenvolvedor, experiência de participar…"
+      },
+      "tags": [
+        "web3",
+        "carreira"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-20-construindo-na-stellar",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "AI Salon Rio #16",
+      "start": "2026-10-20T18:30:00-03:00",
+      "end": "2026-10-20T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/aisalon16",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/x8/2a4d4977-af4a-411e-a1bb-b5e32295adf4.png",
+      "organizer": "AI Salon Rio",
+      "description": {
+        "pt": "Inside the Term Sheet: What VCs Are Backing in Brazilian AI The next $100 billion company in Latin America will be AI-native, said Julio Vasconcellos (Altlantico). We couldn't agree more. There’s just one small…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-20-ai-salon-rio-16",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Como vender suas ideias | Workshop Phonos",
+      "start": "2026-10-20T19:00:00-03:00",
+      "end": "2026-10-20T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Rua das Palmeiras, 13",
+      "address": "Rua das Palmeiras, 13",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/t7pg32p7",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/4q/c3a58995-cad3-4800-9a94-bec6cb5d6e05.jpg",
+      "organizer": "Cristiano Braz Augusto Da Matta",
+      "description": {
+        "pt": "Apresente com clareza. Desperte interesse. Conquiste adesão. Apresentar um projeto, defender uma proposta ou conquistar apoio para uma iniciativa exige uma comunicação que ajude as pessoas a compreender seu valor e…"
+      },
+      "tags": [
+        "workshop"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-20-como-vender-suas-ideias-workshop-phonos",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Building a Clean Data Room for Your Pre-Seed & Seed Round",
+      "start": "2026-10-21T13:00:00-03:00",
+      "end": "2026-10-21T14:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "pago",
+        "text": "R$ 49,00"
+      },
+      "registration": "ingresso",
+      "url": "https://luma.com/hubble-czuc",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/3y/18a3aa42-ecea-4cd0-b85d-7641a8f4a1bc.png",
+      "organizer": "Hubble",
+      "description": {
+        "pt": "Investors are interested, now they ask for your data room. For many first-time founders, this is where a raise stalls. Files are scattered across drives, the cap table is out of date, and the folder names only make…"
+      },
+      "tags": [
+        "dados",
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-21-building-a-clean-data-room-for-your-pre-seed-see",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Segurança do Paciente e Doenças Crônicas: Troca de experiências, saberes e vivências.",
+      "start": "2026-10-21T17:00:00-03:00",
+      "end": null,
+      "time_known": true,
+      "venue": "Universidade Federal De São João Del Rei, Campus Centro Oeste Dona Lindu",
+      "address": null,
+      "city": "Divinópolis",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://www.even3.com.br/seguranca-do-paciente-e-doencas-cronicas-troca-de-saberes-experiencias-e-vivencias-786887",
+      "image": "https://images.even3.com/ugUgdYKyR7yove1qjsmL1WZrelk=/1100x440/smart/https://static.even3.com/banner/ChatGPTImage21deset.de202621_39_03.0e31d87e549b427c8a02.png",
+      "organizer": "LASP",
+      "description": {
+        "pt": "A voz de quem vive a saúde dos dois lados! Neste evento, conheceremos o relato de experiência da nossa aluna de Farmácia, Líria Souza, que, ao vivenciar uma condição crônica, transformou seus desafios em protagonismo…"
+      },
+      "tags": [
+        "seguranca"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-21-seguranca-do-paciente-e-doencas-cronicas-troca-d",
+      "source": "even3.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Networking Night Rio",
+      "start": "2026-10-21T18:30:00-03:00",
+      "end": "2026-10-21T23:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/z9dvuzi7",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/tg/6019c802-400a-4961-9642-8e108737afce.png",
+      "organizer": "1565.io",
+      "description": {
+        "pt": "Uma noite de networking pra quem está construindo no rio. Quarta, 21 de Outubro, das 18h30 às 23h, no Rio. O endereço vai só pra quem for aprovado. Fundadores, engenheiros, designers, estudantes e professores numa sala…"
+      },
+      "tags": [
+        "founders",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-21-networking-night-rio",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Builder Sessions #8 | Como estruturar um negócio digital para operar internacionalmente",
+      "start": "2026-10-21T19:00:00-03:00",
+      "end": "2026-10-21T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/srrdzye2",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/c1/b63628f1-5fa5-4a8d-aeed-7495bad7adcd.png",
+      "organizer": "Let's CoCreate",
+      "description": {
+        "pt": "Seu produto pode operar no mundo inteiro. Mas sua empresa ainda precisa existir juridicamente em algum lugar. E essa escolha interfere em contratos, impostos, pagamentos internacionais, acesso a serviços financeiros,…"
+      },
+      "tags": [
+        "produto"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-21-builder-sessions-8-como-estruturar-um-negocio-di",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Happy Hour Oracle Startup Growth Engine",
+      "start": "2026-10-22T17:00:00-03:00",
+      "end": "2026-10-22T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/aokanwb0",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ck/2c4ee2fb-8ff1-40da-9efc-b4adb1bea74f.jpg",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "HAPPY HOUR ORACLE STARTUP GROWTH ENGINE Nesta edição do Happy Hour Maravalley, teremos a colaboração especial da Oracle, apresentando o Oracle Startup Growth Engine, programa que apoia startups de tecnologia e…"
+      },
+      "tags": [
+        "startups",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-22-happy-hour-oracle-startup-growth-engine",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Trade em perpétuo na prática: do gráfico à simulação",
+      "start": "2026-10-22T19:30:00-03:00",
+      "end": "2026-10-22T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/lqlwz70d",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/tf/cdf255c8-cc59-4549-95d7-b29bae750182.jpg",
+      "organizer": "SheFi Brasil",
+      "description": {
+        "pt": "Gráfico, alavancagem, margem, stop. Dá pra passar meses lendo sobre isso, ou dá pra abrir o gráfico e aprender fazendo. Nesse encontro da SheFi, a Ana Westfal traz o Trade On Markets, a ferramenta que ela criou pra…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-22-trade-em-perpetuo-na-pratica-do-grafico-a-simula",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Money Legos: Como Funcionam as Finanças Descentralizadas",
+      "start": "2026-10-23T19:30:00-03:00",
+      "end": "2026-10-23T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/bchx1mju",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ff/156a4720-c73a-4186-ba6d-4ce6dddd6979.png",
+      "organizer": "Instituto Florescer Caldeira",
+      "description": {
+        "pt": "Assim como as aplicações de software tradicionais combinam serviços e APIs para ganhar escala, a Web3 trouxe essa mesma modularidade para o dinheiro. Hoje, contratos inteligentes permitem integrar funções financeiras…"
+      },
+      "tags": [
+        "web3"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-23-money-legos-como-funcionam-as-financas-descentra",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Lovable Build Day Rio: seu primeiro app em um dia",
+      "start": "2026-10-24T09:00:00-03:00",
+      "end": "2026-10-24T17:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/z9c53a95",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/3c/9635dbb4-5f1e-44d4-9e9d-b873cda38739.webp",
+      "organizer": "Tássia Pacheco",
+      "description": {
+        "pt": "Tem uma ideia parada porque você acha que precisaria saber programar? No Build Day, você tira essa ideia do papel em uma tarde. É um encontro presencial e gratuito, mão na massa, para construir o seu primeiro app ou…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-24-lovable-build-day-rio-seu-primeiro-app-em-um-dia",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "DevDay Exchange Community: Rio de Janeiro",
+      "start": "2026-10-24T09:00:00-03:00",
+      "end": "2026-10-24T14:30:00-03:00",
+      "time_known": true,
+      "venue": "Unidade Ibmec",
+      "address": "Unidade Ibmec",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/wzk8q92k",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/nz/fa2d1808-c7c5-4bda-8cad-d6445e4a31c8.png",
+      "organizer": "Codex Community Events",
+      "description": {
+        "pt": "Participe do DevDay Exchange Community Meetup: Rio de Janeiro, organizado por Glaucia Lemos, Codex Ambassador, e venha conectar-se com desenvolvedores, estudantes e builders da comunidade de tecnologia e IA do Rio de…"
+      },
+      "tags": [
+        "ia",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-24-devday-exchange-community-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Imersão Lidere Como Forças Especiais",
+      "start": "2026-10-24T09:00:00-03:00",
+      "end": "2026-10-24T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Instituto 12",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/49gg1w91",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/r8/bdb3b3bb-c8a3-44ca-9c93-7b2e4c4be162.png",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "Liderar exige clareza, capacidade de decisão e execução consistente, especialmente diante de cenários de pressão e incerteza. Inspirada na mentalidade das Forças Especiais do Exército Brasileiro, a imersão Lidere Como…"
+      },
+      "tags": [
+        "workshop"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-24-imersao-lidere-como-forcas-especiais",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Meetup Pré-WordCamp Brasil BH 2026 - Como garantir a segurança do WP com IA.",
+      "start": "2026-10-24T09:30:00-03:00",
+      "end": "2026-10-24T12:30:00-03:00",
+      "time_known": true,
+      "venue": "Barra Cowork",
+      "address": "Av. das Américas, 1155, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/pt-BR/wp-rio/events/316680659",
+      "image": "https://secure-content.meetupstatic.com/images/classic-events/536280563/676x676.jpg",
+      "organizer": "WordPress Meetup Rio de Janeiro",
+      "description": {
+        "pt": "No dia 24 de Outubro, o WordPress Rio convida toda a comunidade para participar desta edição especial Pré-WordCamp Brasil 2026. Saiba como vai ser esse gra"
+      },
+      "tags": [
+        "ia",
+        "web",
+        "seguranca",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-24-meetup-pre-wordcamp-brasil-bh-2026-como-garantir",
+      "source": "meetup.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Meetup Pré-WordCamp Brasil BH 2026 - Como garantir a segurança do WP com IA.",
+      "start": "2026-10-24T09:30:00-03:00",
+      "end": "2026-10-24T12:30:00-03:00",
+      "time_known": true,
+      "venue": "Barra Cowork",
+      "address": "Av. das Américas, 1155, Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/wp-rio/events/316680659",
+      "image": "https://secure-content.meetupstatic.com/images/classic-events/536280563/676x676.jpg",
+      "organizer": "WordPress Meetup Rio de Janeiro",
+      "description": {
+        "pt": "No dia 24 de Outubro, o WordPress Rio convida toda a comunidade para participar desta edição especial Pré-WordCamp Brasil 2026. Saiba como vai ser esse gra"
+      },
+      "tags": [
+        "ia",
+        "web",
+        "seguranca",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-24-meetup-pre-wordcamp-brasil-bh-2026-como-garantir-wp-rio-events-316680",
+      "source": "meetup.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Créditos de Carbono: Projetos, tecnologia e dados que transformam soluções ambientais em ativos climáticos",
+      "start": "2026-10-26T19:00:00-03:00",
+      "end": "2026-10-26T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/gkthm61o",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/z6/db7dfd55-5fc7-4cdd-a35d-eaabd35580ec.png",
+      "organizer": "Instituto Web3EduBrasil",
+      "description": {
+        "pt": "🌿 3ª Edição da Semana Verde 👥 Apresentação: Paula André Paula André é Engenheira Química e de Bioprocessos, fundadora e CEO da Credita Carbon, com atuação no mercado de carbono e em soluções de descarbonização. 📚 Nesta…"
+      },
+      "tags": [
+        "dados"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-26-creditos-de-carbono-projetos-tecnologia-e-dados-",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Workshop NVIDIA: Criação de agentes de IA",
+      "start": "2026-10-27T15:00:00-03:00",
+      "end": "2026-10-27T17:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/ux9afxj7",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ek/c34752c5-2238-4a27-8ce0-2115a5f020bc.png",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "WORKSHOP DE CRIAÇÃO DE AGENTES DE IA, COM NVIDIA A próxima masterclass do Maravalley vai discutir a adoção de Inteligência Artificial nas empresas e os desafios de construir agentes escaláveis e prontos para produção.…"
+      },
+      "tags": [
+        "ia",
+        "workshop"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-27-workshop-nvidia-criacao-de-agentes-de-ia",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "COMEXLOG RJ 2026 | A Nova Lógica do Comércio Exterior e da Logística",
+      "start": "2026-10-28T08:00:00-03:00",
+      "end": "2026-10-29T16:00:00-03:00",
+      "time_known": true,
+      "venue": "Edifício Touring",
+      "address": "Praça Mauá",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/comexlog-rj-2026--a-nova-logica-do-comercio-exterior-e-da-logistica/3561763?d=WS50",
+      "image": "https://images.sympla.com.br/6a997d4481577-lg.png",
+      "organizer": "Distrito Empresarial do Porto",
+      "description": {
+        "pt": "﻿ COMEX LOG RJ 2026 Nos dias 28 e 29 de outubro , o COMEXLOG RJ 2026 reúne, no coração do Porto do Rio de Janeiro, lideranças, empresas, especialistas e profissionais que estão movimentando o presente e construindo o…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-28-comexlog-rj-2026-a-nova-logica-do-comercio-exter",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Rio de Janeiro | Claude Meetup",
+      "start": "2026-10-28T18:30:00-03:00",
+      "end": "2026-10-28T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/claude-2t10",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/tl/2150c0c1-261e-4ffe-a22c-b05c13e84d9c.png",
+      "organizer": "Claude Community Events",
+      "description": {
+        "pt": "Join a Claude Community Event, organized by local enthusiasts for everyone who loves building with Claude! A Claude community meetup in Rio de Janeiro. All are welcome! This event will be conducted primarily in…"
+      },
+      "tags": [
+        "ia",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-28-rio-de-janeiro-claude-meetup",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Collab Trends | ROI da Inovação",
+      "start": "2026-10-29T14:00:00-03:00",
+      "end": "2026-10-29T17:30:00-03:00",
+      "time_known": true,
+      "venue": "Consulado Geral de Portugal",
+      "address": "Consulado Geral de Portugal",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/8psavy8x",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/x3/b28e2b43-2ab5-423d-8887-6c2aa0f1e2c5.jpg",
+      "organizer": "Thaiza Reis",
+      "description": {
+        "pt": "Inovar já não é apenas criar o novo. É também demonstrar valor, sustentar decisões estratégicas e traduzir iniciativas em resultados concretos para o negócio. Nesta edição do Collab Trends, vamos reunir lideranças,…"
+      },
+      "tags": [
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-29-collab-trends-roi-da-inovacao",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Happy Hour Pitch Night",
+      "start": "2026-10-29T17:00:00-03:00",
+      "end": "2026-10-29T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76",
+      "address": "Av. Prof. Pereira Reis, 76",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/8t8e0lnn",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/0u/0c7f0025-7b69-4ae1-a1b3-97d14c5ecf7e.png",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "HAPPY HOUR PITCH NIGHT Nesta edição do nosso semanal Happy Hour, vamos realizar uma Pitch Night, onde alguns de nossos residentes vão apresentar seus negócios, compartilhar suas soluções e receber visibilidade diante…"
+      },
+      "tags": [
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-29-happy-hour-pitch-night",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Norte Compass no Rio ⚡",
+      "start": "2026-10-29T18:00:00-03:00",
+      "end": "2026-10-29T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Instituto 12",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/pua3f99y",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ua/fd96f8b0-8481-48ff-9dd5-83807342ec90.png",
+      "organizer": "Nox",
+      "description": {
+        "pt": "No dia 29 de outubro a Norte, em parceria com a Ume, vai para o Rio no Instituto 12!! Vamos reunir alunos e ex alunos das melhores faculdades do estado, founders, o time da Norte e o time da Ume para uma noite de…"
+      },
+      "tags": [
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-29-norte-compass-no-rio",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Prepare a sua carreira para a Era da Inteligência Artificial",
+      "start": "2026-10-29T19:30:00-03:00",
+      "end": "2026-10-29T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/qfbywjfv",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/tk/7d8dc221-1bc0-4c63-b6ba-d922118f8e63.png",
+      "organizer": "Instituto Florescer Caldeira",
+      "description": {
+        "pt": "Como a inteligência artificial pode transformar o nosso dia a dia profissional, independentemente da nossa área de atuação? Neste encontro, vamos conversar com Roseane Carreiro (@rose.dmelo), Tech Lead e Co-fundadora…"
+      },
+      "tags": [
+        "ia",
+        "carreira"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-29-prepare-a-sua-carreira-para-a-era-da-inteligenci",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
+      "title": "Colmeia-noite do terror",
+      "start": "2026-10-31T13:00:00-03:00",
+      "end": "2026-11-01T00:00:00-03:00",
+      "time_known": true,
+      "venue": "Colmeia Carioca COWORKING",
+      "address": "Colmeia Carioca COWORKING",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/9laaeons",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/xu/09141c02-df22-4936-87f6-b7c51d3264c2.png",
+      "organizer": "Octavio Lello",
+      "description": {
+        "pt": "🎃 Já tem planos para a noite mais assustadora do ano? 👻 Prepare sua fantasia e venha viver uma experiência cheia de música, games, conexões e diversão na Colmeia-Noite do Terror! 🕸️Juntamos as comunidades mais legais…"
+      },
+      "tags": [
+        "games"
+      ],
+      "status": "confirmado",
+      "id": "2026-10-31-colmeia-noite-do-terror",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
       "id": "2026-11-04-riotech-happy-hour",
       "title": "RioTech Happy Hour",
       "start": "2026-11-04T18:00:00-03:00",
@@ -32,6 +4497,34 @@
       "source": "meetup",
       "status": "confirmado",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Building Finance for Hypergrowth with Sowmya Ranganathan (Former Controller at OpenAI)",
+      "start": "2026-11-04T18:00:00-03:00",
+      "end": "2026-11-04T19:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "aprovacao",
+      "url": "https://luma.com/pcq83oam",
+      "image": "https://images.lumacdn.com/uploads/co/f6fce35c-11f8-499e-b724-d227ebbeab46.png",
+      "organizer": "Pedro Castro",
+      "description": {
+        "pt": "Finance doesn't get easier when a company grows 10x. The close gets more complex. Systems multiply. Processes that worked last year stop working. And finance…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-04-building-finance-for-hypergrowth-with-sowmya-ran",
+      "source": "luma.com",
+      "added": "2026-11-03"
     },
     {
       "id": "2026-11-05-frontier-ai-governance-in-a-global-context",
@@ -257,6 +4750,36 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Founders Running Club :: Rio de Janeiro",
+      "start": "2026-11-07T09:00:00-03:00",
+      "end": "2026-11-07T12:00:00-03:00",
+      "time_known": true,
+      "venue": "Cantina do Mam",
+      "address": "Cantina do Mam",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/glbwz0jr",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/event-covers/kl/14e10ecd-0fb9-4f74-8cb2-a008899df9dd.png",
+      "organizer": "Founders Running Club",
+      "description": {
+        "pt": "Founders Running Club (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable when we run and finish with coffee and…"
+      },
+      "tags": [
+        "startups",
+        "founders",
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-07-founders-running-club-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-03"
+    },
+    {
       "title": "Conexões Tech Founders | João Paulo Alves",
       "start": "2026-11-09T18:00:00-03:00",
       "end": "2026-11-09T20:30:00-03:00",
@@ -450,6 +4973,35 @@
       "source": "sympla",
       "status": "confirmado",
       "added": "2026-10-31"
+    },
+    {
+      "title": "DevFest Rio de Janeiro 2026: Inovação e Tecnologia",
+      "start": "2026-11-14T08:00:00-03:00",
+      "end": "2026-11-14T18:00:00-03:00",
+      "time_known": true,
+      "venue": "FIAP - Rio de Janeiro",
+      "address": "Marquês de Olinda, 11",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://gdg.community.dev/events/details/google-gdg-rio-de-janeiro-presents-devfest-rio-de-janeiro-2026-inovacao-e-tecnologia",
+      "image": "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-goog/event_banners/GDG_Bevy_DefaultEventThumbnail_2_MF2GjYZ.png",
+      "organizer": "Google Developer Groups",
+      "description": {
+        "pt": "Junte-se a nós para o DevFest Rio de Janeiro 2026, um mergulho no mundo da inovação e tecnologia!"
+      },
+      "tags": [
+        "inovacao",
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-14-devfest-rio-de-janeiro-2026-inovacao-e-tecnologi",
+      "source": "gdg.community.dev",
+      "added": "2026-11-03"
     },
     {
       "id": "2026-11-16-blockchaingov-2026",
@@ -670,6 +5222,34 @@
       "id": "2026-11-28-devin-meetup-rio-de-janeiro",
       "source": "luma.com",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Papo de Dev RJ 2º Edição",
+      "start": "2026-11-28T10:00:00-03:00",
+      "end": "2026-11-28T14:00:00-03:00",
+      "time_known": true,
+      "venue": "CAMPUS FIAP PRAIA DE BOTAFOGO",
+      "address": "Praia de Botafogo, 300",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento/papo-de-dev-rj-2-edicao/3554769?share_id=copiarlink",
+      "image": "https://images.sympla.com.br/6a90b6b449452-lg.jpg",
+      "organizer": "Comunidade Papo de Dev RJ",
+      "description": {
+        "pt": "Papo de Dev RJ: O Seu Primeiro Passo no Mundo Tech O Papo de Dev RJ é um evento criado para fortalecer o ecossistema de tecnologia e inovação no Rio de Janeiro. Contamos com o apoio oficial da FIAP , uma das maiores…"
+      },
+      "tags": [
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-28-papo-de-dev-rj-2o-edicao",
+      "source": "sympla.com.br",
+      "added": "2026-11-03"
     },
     {
       "id": "2026-12-02-riotech-happy-hour",

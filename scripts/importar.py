@@ -8,7 +8,8 @@ Fontes:
 
 Regras:
   - Nunca sobrescreve um campo já preenchido à mão: só completa campos vazios.
-  - Eventos passados e fora do Rio (que não sejam online) ficam de fora.
+  - Eventos passados e fora do Rio (que não sejam online) ficam de fora,
+    salvo com --historico: aí a origem do link vale, e o passado fica na agenda.
   - URLs em data/descartados.json não entram de novo.
   - Do WhatsApp só se guardam links: nada de nomes, telefones ou mensagens.
 
@@ -116,6 +117,11 @@ def to_iso(value: str | None) -> str | None:
     # Sympla manda «2026-11-26 08:30:00» (espaço). O fromisoformat do 3.10 exige «T».
     if re.match(r"\d{4}-\d{2}-\d{2} ", v):
         v = v.replace(" ", "T", 1)
+    # Doity cola o fuso na hora: «2026-09-15-0300:00» é 15/09 00:00 em -03,
+    # e «2026-12-04-0323:59» é 04/12 23:59 em -03.
+    colada = re.fullmatch(r"(\d{4}-\d{2}-\d{2})-(\d{2})(\d{2}:\d{2})", v)
+    if colada:
+        v = f"{colada.group(1)}T{colada.group(3)}:00-{colada.group(2)}:00"
     try:
         d = dt.datetime.fromisoformat(v)
     except ValueError:
@@ -613,8 +619,50 @@ def bloco_novo(ev: dict, url: str) -> str:
     return "\n".join(linhas)
 
 
-def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str] | None = None) -> str:
-    """Devolve 'novo', 'completado', 'igual', 'descartado' ou o motivo de ter ficado de fora."""
+def _mesmo_evento(new: dict, e: dict, historico: bool) -> bool:
+    chave = validar.url_chave(new.get("url") or "")
+    if chave and chave == validar.url_chave(e.get("url") or ""):
+        return True
+    if historico:
+        return False
+    _, title, day = key_of(new)
+    _, et, ed = key_of(e)
+    return bool(et == title and ed == day and day)
+
+
+def _id_livre(existing: list[dict], start: str, title: str, url: str) -> str:
+    base = f"{start[:10]}-{slug(title or 'evento')}"
+    usados = {e.get("id") for e in existing}
+    if base not in usados:
+        return base
+    extra = slug(urllib.parse.urlsplit(url or "").path)[:20] or "2"
+    cand = f"{base}-{extra}"
+    n = 2
+    while cand in usados:
+        cand = f"{base}-{extra}-{n}"
+        n += 1
+    return cand
+
+
+def unicos_por_chave(urls: list[str]) -> list[str]:
+    """Uma entrada por URL canônica. A query não cria um segundo evento."""
+    out: list[str] = []
+    vistos: set[str] = set()
+    for url in urls:
+        chave = validar.url_chave(url)
+        if chave in vistos:
+            continue
+        vistos.add(chave)
+        out.append(url)
+    return out
+
+
+def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str] | None = None, historico: bool = False) -> str:
+    """Devolve 'novo', 'completado', 'igual', 'descartado' ou o motivo de ter ficado de fora.
+
+    Com historico=True, evento passado e evento de outra cidade entram.
+    Não há corte por idade (nem de 3 meses). Campo preenchido não é trocado.
+    """
     if descartadas is None:
         descartadas = validar.chaves_descartadas()
     if not new.get("title"):
@@ -625,12 +673,14 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
     if not start:
         return "sem data na página (adicione à mão)"
     end = (new.get("end") or start)[:10]
-    if dt.date.fromisoformat(end) < today:
+    try:
+        fim = dt.date.fromisoformat(end)
+    except ValueError:
+        fim = dt.date.fromisoformat(start[:10])
+    if not historico and fim < today:
         return "passado"
-    url, title, day = key_of(new)
     for e in existing:
-        eu, et, ed = key_of(e)
-        if (url and eu == url) or (et == title and ed == day and day):
+        if _mesmo_evento(new, e, historico):
             changed = False
             for k, v in new.items():
                 if v in (None, "", [], {}):
@@ -640,12 +690,14 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
                     changed = True
             return "completado" if changed else "igual"
 
-    if new.get("format") != "online" and (new.get("city") or "") and not cidade_rio(new.get("city")):
+    if not historico and new.get("format") != "online" and (new.get("city") or "") and not cidade_rio(new.get("city")):
         return "fora do Rio"
     new = dict(new)
     new["city"] = new.get("city") or "Rio de Janeiro"
+    if new.get("end") and str(new["end"])[:10] < start[:10]:
+        new["end"] = None
 
-    new["id"] = f"{start[:10]}-{slug(new['title'])}"
+    new["id"] = _id_livre(existing, start, new["title"], new.get("url") or "")
     new["source"] = new.get("source") or urllib.parse.urlsplit(new.get("url") or "").netloc.replace("www.", "")
     new["added"] = today.isoformat()
     existing.append(new)
@@ -658,6 +710,8 @@ def main(argv=None) -> int:
     ap.add_argument("--url", action="append", default=[])
     ap.add_argument("--whatsapp", type=Path)
     ap.add_argument("--desde", help="AAAA-MM-DD: só links do WhatsApp a partir desta data")
+    ap.add_argument("--historico", action="store_true",
+                    help="guarda passados e qualquer cidade; não corta eventos com mais de 3 meses")
     ap.add_argument("--fontes", type=Path)
     ap.add_argument("--dry-run", action="store_true", help="não grava data/events.json")
     ap.add_argument("--relatorio", type=Path, help="grava um resumo em Markdown (corpo do PR)")
@@ -675,9 +729,11 @@ def main(argv=None) -> int:
         found = whatsapp_links(args.whatsapp, since)
         report.append(f"WhatsApp: {len(found)} links de eventos encontrados.")
         urls += found
+    urls = unicos_por_chave(urls)
 
     candidates: list[tuple[str, dict | None, str | None]] = []
-    for u in urls:
+    for i, u in enumerate(urls, 1):
+        print(f"… {i}/{len(urls)} {u}", file=sys.stderr)
         if validar.url_chave(u) in descartadas:
             candidates.append((u, None, "descartado"))
             continue
@@ -712,7 +768,7 @@ def main(argv=None) -> int:
         elif ev is None:
             result = "sem dados de evento"
         else:
-            result = merge(events, ev, today, descartadas)
+            result = merge(events, ev, today, descartadas, historico=args.historico)
         counts[result] = counts.get(result, 0) + 1
         if result == "novo":
             report.append(bloco_novo(ev, url))
