@@ -177,9 +177,10 @@ h1 .sun { color: var(--sun); }
 }
 .when { text-align: left; font-variant-numeric: tabular-nums; }
 .when .dow { display: block; font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.when .day { display: block; font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; letter-spacing: -.03em; }
-.when .day.range { font-size: 22px; white-space: nowrap; letter-spacing: -.045em; }
-.when .time { display: block; margin-top: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.when .day { display: block; font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; letter-spacing: -.03em; white-space: nowrap; }
+/* O fim («–4/12») é outra linha, inteira. Na coluna de 52px, «15–04/12» era cortado em «15-04/1». */
+.when .until { display: block; margin-top: 2px; font-family: var(--mono); font-size: 12px; font-weight: 600; line-height: 1.2; letter-spacing: 0; white-space: nowrap; }
+.when .time { display: block; margin-top: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
 
 .thumb {
   width: 76px; aspect-ratio: 1; max-width: 100%; border-radius: 12px; overflow: hidden; background: var(--chip);
@@ -336,7 +337,6 @@ footer p { margin: 4px 0; }
   .ev h3 { padding-right: 66px; font-size: 18px; }
   .ev .where { padding-right: 66px; }
   .when .day { font-size: 28px; }
-  .when .day.range { font-size: 16px; }
   .cover { font-size: 17px; }
   .week-label { font-size: 18px; }
   .wday .dn { font-size: 18px; }
@@ -682,23 +682,28 @@ footer p { margin: 4px 0; }
     return box;
   }
 
+  // O número grande é só o dia de início. O fim vai numa linha própria, inteira:
+  // «–27» no mesmo mês, «–4/12» se muda o mês. Nunca «15–04/12» num único texto.
+  function fimDoIntervalo(s, en) {
+    if (!en || ymd(en) === ymd(s)) return "";
+    var dia = String(Number(parts(en, { day: "2-digit" }).day));
+    var mesFim = parts(en, { month: "2-digit" }).month;
+    var mesmoMes = mesFim === parts(s, { month: "2-digit" }).month
+      && parts(en, { year: "numeric" }).year === parts(s, { year: "numeric" }).year;
+    return "–" + dia + (mesmoMes ? "" : "/" + mesFim);
+  }
+
   function whenBlock(e) {
     var s = parseStart(e.start), en = e.end ? parseEnd(e) : null;
-    var multi = en && ymd(en) !== ymd(s);
     var dow = parts(s, { weekday: "short" }).weekday.replace(".", "");
-    var d1 = parts(s, { day: "2-digit" }).day;
-    var dayTxt = d1, cls = "day";
-    if (multi) {
-      var sameMonth = parts(en, { month: "2-digit" }).month === parts(s, { month: "2-digit" }).month;
-      dayTxt = d1 + "–" + parts(en, { day: "2-digit" }).day + (sameMonth ? "" : "/" + parts(en, { month: "2-digit" }).month);
-      cls = "day range";
-    }
-    var time = e.time_known ? fmtTime(s) : t("timeTbd");
-    return el("div", { class: "when" }, [
+    var kids = [
       el("span", { class: "dow", text: dow }),
-      el("span", { class: cls, text: dayTxt }),
-      el("span", { class: "time", text: time })
-    ]);
+      el("span", { class: "day", text: parts(s, { day: "2-digit" }).day })
+    ];
+    var fim = fimDoIntervalo(s, en);
+    if (fim) kids.push(el("span", { class: "until", text: fim }));
+    kids.push(el("span", { class: "time", text: e.time_known ? fmtTime(s) : t("timeTbd") }));
+    return el("div", { class: "when" }, kids);
   }
 
   function card(e) {
