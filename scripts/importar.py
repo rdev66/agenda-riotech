@@ -81,13 +81,22 @@ def slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", s).strip("-")[:48]
 
 
+def _descolar_luma(path: str) -> str:
+    """Separa «/4cy8s78qBora»: no WhatsApp a palavra seguinte gruda no código."""
+    m = re.fullmatch(r"/([a-z0-9]{6,12})([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÁÉÍÓÚÂÊÔÃÕÇáéíóúâêôãõç]{2,})", path)
+    return "/" + m.group(1) if m else path
+
+
 def clean_url(url: str) -> str:
     url = url.strip().rstrip(".,;:!?)*]>")
     p = urllib.parse.urlsplit(url)
     q = [(k, v) for k, v in urllib.parse.parse_qsl(p.query) if k.lower() not in TRACKING and not k.lower().startswith("utm_")]
     path = p.path.rstrip("/") or "/"
     path = re.sub(r"/checkout.*$", "", path)
-    return urllib.parse.urlunsplit(("https", p.netloc.lower().replace("lu.ma", "luma.com"), path, urllib.parse.urlencode(q), ""))
+    host = p.netloc.lower().replace("lu.ma", "luma.com")
+    if host == "luma.com":
+        path = _descolar_luma(path)
+    return urllib.parse.urlunsplit(("https", host, path, urllib.parse.urlencode(q), ""))
 
 
 def fetch(url: str, timeout: int = 20) -> str:
@@ -346,18 +355,84 @@ def from_sympla_next(page: str, url: str, meta: dict) -> dict | None:
     }
 
 
+def from_luma_next(page: str, url: str, meta: dict) -> dict | None:
+    """Luma às vezes não manda JSON-LD. A data fica em initialData.data.event.start_at."""
+    data = next_data(page)
+    if not data:
+        return None
+    try:
+        bloco = data["props"]["pageProps"]["initialData"]["data"]
+        ev = bloco["event"]
+    except (KeyError, TypeError):
+        return None
+    if not isinstance(ev, dict) or not (ev.get("name") or ev.get("start_at")):
+        return None
+    geo = ev.get("geo_address_info") if isinstance(ev.get("geo_address_info"), dict) else {}
+    loc = str(ev.get("location_type") or "").lower()
+    tem_lugar = bool(geo.get("city") or geo.get("address"))
+    if loc in {"", "offline"}:
+        fmt = "presencial"
+    elif tem_lugar:
+        fmt = "hibrido"
+    else:
+        fmt = "online"
+    tickets = bloco.get("ticket_types") if isinstance(bloco.get("ticket_types"), list) else []
+    tipos = [str(t.get("type") or "").lower() for t in tickets if isinstance(t, dict)]
+    cents = [t.get("cents") for t in tickets if isinstance(t, dict) and isinstance(t.get("cents"), (int, float))]
+    approval = any(isinstance(t, dict) and t.get("require_approval") for t in tickets)
+    if any(c > 0 for c in cents) or "paid" in tipos:
+        cost = {"type": "pago", "text": None}
+        reg = "ingresso"
+    elif "free" in tipos:
+        cost = {"type": "gratis", "text": "Grátis"}
+        reg = "aprovacao" if approval else "inscricao"
+    else:
+        cost = {"type": "desconhecido", "text": None}
+        reg = "inscricao"
+    hosts = bloco.get("hosts") if isinstance(bloco.get("hosts"), list) else []
+    org = next((h.get("name") for h in hosts if isinstance(h, dict) and h.get("name")), None)
+    title = html.unescape(str(ev.get("name") or meta.get("og:title") or "")).strip()
+    desc = short(meta.get("og:description"))
+    start = to_iso(ev.get("start_at") if isinstance(ev.get("start_at"), str) else None)
+    venue = geo.get("address") or None
+    rua = geo.get("short_address") or None
+    if rua and venue and rua == venue:
+        rua = None
+    return {
+        "title": title,
+        "start": start,
+        "end": to_iso(ev.get("end_at") if isinstance(ev.get("end_at"), str) else None),
+        "time_known": bool(start and len(start) > 10),
+        "venue": venue,
+        "address": rua,
+        "city": geo.get("city") or None,
+        "format": fmt,
+        "cost": cost,
+        "registration": reg,
+        "url": url,
+        "image": ev.get("cover_url") or meta.get("og:image"),
+        "organizer": org,
+        "description": {"pt": desc} if desc else {},
+        "tags": auto_tags(" ".join(filter(None, [title, desc or ""]))),
+        "status": "confirmado" if start else "a-confirmar",
+    }
+
+
+def _completar(base: dict | None, extra: dict | None) -> dict | None:
+    if base and extra:
+        return fill_empty(base, extra)
+    return base or extra
+
+
 def event_from_page(page: str, url: str) -> dict | None:
     url = clean_url(url)
     meta = meta_tags(page)
     evs = jsonld_events(page)
     base = from_jsonld(evs[0], url, meta) if evs else None
-    extra = from_sympla_next(page, url, meta)
-    if base and extra:
-        return fill_empty(base, extra)
-    if base:
-        return base
-    if extra:
-        return extra
+    extra = _completar(from_sympla_next(page, url, meta), from_luma_next(page, url, meta))
+    pronto = _completar(base, extra)
+    if pronto:
+        return pronto
     if meta.get("og:title"):
         # Sem dados estruturados: entra como «a confirmar» e sem data, para revisão no PR.
         return {
@@ -483,18 +558,35 @@ def _palavras_tech() -> list[str]:
     return [w for w in words if w]
 
 
+def _sem_acento(s: str) -> str:
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
+
+
 def parece_tech(ev: dict) -> bool:
-    """Há alguma palavra do vocabulário de tags no título ou na descrição."""
+    """Há alguma palavra do vocabulário de tags no título ou na descrição.
+
+    «Empreendedor» conta como «empreendedorismo»: um termo de 6+ letras
+    vale se for prefixo do outro. Palavras curtas («ia», «web») continuam
+    exigindo a palavra inteira, para não casar no meio de outra.
+    """
     partes = [ev.get("title") or ""]
     desc = ev.get("description") or {}
     if isinstance(desc, dict):
         partes.extend(str(v) for v in desc.values() if v)
     elif isinstance(desc, str):
         partes.append(desc)
-    texto = " ".join(partes).lower()
+    texto = _sem_acento(" ".join(partes))
+    tokens = re.findall(r"[a-z0-9]+", texto)
     for palavra in _palavras_tech():
-        if re.search(r"(?<!\w)" + re.escape(palavra) + r"(?!\w)", texto):
+        w = _sem_acento(palavra)
+        if not w:
+            continue
+        if re.search(r"(?<!\w)" + re.escape(w) + r"(?!\w)", texto):
             return True
+        if len(w) >= 6:
+            for tok in tokens:
+                if len(tok) >= 6 and (tok.startswith(w) or w.startswith(tok)):
+                    return True
     return False
 
 

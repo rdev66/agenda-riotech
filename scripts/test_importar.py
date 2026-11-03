@@ -116,6 +116,75 @@ class TestImportar(unittest.TestCase):
     def test_clean_url(self):
         self.assertEqual(importar.clean_url("http://lu.ma/x?tk=1&utm_source=a&id=7"), "https://luma.com/x?id=7")
 
+    def test_luma_url_colada(self):
+        limpa = importar.clean_url("https://luma.com/4cy8s78qBora?")
+        self.assertEqual(limpa, "https://luma.com/4cy8s78q")
+        self.assertIn(validar.url_chave(limpa), validar.chaves_descartadas())
+        self.assertEqual(
+            importar.clean_url("https://luma.com/founderslive-rio-de-janeiro-2026-11"),
+            "https://luma.com/founderslive-rio-de-janeiro-2026-11",
+        )
+        self.assertEqual(importar.clean_url("https://luma.com/StellarHalftimeBR"), "https://luma.com/StellarHalftimeBR")
+
+    def test_luma_sem_jsonld_le_start_at(self):
+        page = (FIX / "evento_luma.html").read_text(encoding="utf-8")
+        self.assertEqual(importar.jsonld_events(page), [])
+        ev = importar.event_from_page(page, "https://luma.com/exemplo?tk=ABC")
+        self.assertEqual(ev["start"], "2026-11-04T18:00:00-03:00")
+        self.assertEqual(ev["end"], "2026-11-04T19:00:00-03:00")
+        self.assertEqual(ev["format"], "online")
+        self.assertEqual(ev["cost"]["type"], "gratis")
+        self.assertEqual(ev["organizer"], "Comunidade Exemplo")
+        self.assertEqual(ev["url"], "https://luma.com/exemplo")
+        self.assertIn("startups", ev["tags"])
+
+    def test_jsonld_nao_e_substituido_pela_data_do_luma(self):
+        page = """<html><head>
+<script type="application/ld+json">
+{"@type":"Event","name":"Título curado","startDate":"2030-05-01T19:00:00-03:00",
+ "location":{"@type":"Place","name":"Sala curada","address":{"addressLocality":"Rio de Janeiro"}}}
+</script>
+<script id="__NEXT_DATA__" type="application/json">
+{"props":{"pageProps":{"initialData":{"data":{"event":{
+  "name":"Outro","start_at":"2026-11-04T21:00:00.000Z","location_type":"meet"
+}}}}}}
+</script></head></html>"""
+        ev = importar.event_from_page(page, "https://luma.com/exemplo")
+        self.assertEqual(ev["title"], "Título curado")
+        self.assertEqual(ev["start"], "2030-05-01T19:00:00-03:00")
+        self.assertEqual(ev["venue"], "Sala curada")
+        self.assertEqual(ev["city"], "Rio de Janeiro")
+
+    def test_luma_presencial_preenche_cidade_vazia(self):
+        page = """<script id="__NEXT_DATA__" type="application/json">
+{"props":{"pageProps":{"initialData":{"data":{"event":{
+  "name":"Meetup de Python",
+  "start_at":"2026-11-10T22:00:00.000Z",
+  "location_type":"offline",
+  "geo_address_info":{"city":"Rio de Janeiro","address":"Casa Exemplo","short_address":"Rua 1"}
+}}}}}}
+</script>"""
+        ev = importar.event_from_page(page, "https://luma.com/py")
+        self.assertEqual(ev["start"], "2026-11-10T19:00:00-03:00")
+        self.assertEqual(ev["format"], "presencial")
+        self.assertEqual(ev["venue"], "Casa Exemplo")
+        self.assertEqual(ev["address"], "Rua 1")
+        self.assertEqual(ev["city"], "Rio de Janeiro")
+
+    def test_empreendedor_parece_tech(self):
+        ev = {
+            "title": "2º Encontro da Rede Dr. Empreendedor",
+            "city": "Rio de Janeiro",
+            "venue": "Ibmec",
+            "start": "2026-11-26T08:30:00-03:00",
+            "url": "https://www.sympla.com.br/evento/x/1",
+            "source": "sympla.com.br",
+            "tags": ["empreendedorismo"],
+            "description": {"pt": "Dois dias de conexão no Rio."},
+        }
+        self.assertTrue(importar.parece_tech(ev))
+        self.assertNotIn("não parece tech", importar.bloco_novo(ev, ev["url"]))
+
     def test_descartado_nao_entra(self):
         lista = []
         novo = {"title": "Aprendizagem", "start": "2030-02-01T19:00:00-03:00",
