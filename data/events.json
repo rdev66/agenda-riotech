@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-04",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -4810,6 +4810,35 @@
       "source": "Instituto 12 (Luma)",
       "id": "2026-11-09-conexoes-tech-founders-joao-paulo-alves",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Encontro Aberto: Boas práticas de uso de Inteligência Artificial para Acessibilidade Digital",
+      "start": "2026-11-09T19:30:00-03:00",
+      "end": "2026-11-09T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/qr5mibhe",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/oh/533c7128-daff-427b-aa64-31b84c18c938.png",
+      "organizer": "Grupo de Estudos de Design e Pesquisa",
+      "description": {
+        "pt": "Neste Encontro Aberto, vamos conversar sobre como transformar a especificação de acessibilidade — uma etapa muitas vezes manual e esquecida no handoff — em parte do processo de design. Vamos conhecer um plugin…"
+      },
+      "tags": [
+        "ia",
+        "design"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-09-encontro-aberto-boas-praticas-de-uso-de-intelige",
+      "source": "luma.com",
+      "added": "2026-11-04"
     },
     {
       "id": "2026-11-10-sebrae-rio-summit-2026",
