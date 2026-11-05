@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-04",
+  "updated": "2026-11-05",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -4682,6 +4682,34 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Neuromarketing: Como alavancar o seu negócio",
+      "start": "2026-11-06T19:30:00-03:00",
+      "end": "2026-11-06T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Online Event",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/ii1pe23e",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/en/96705b8f-1927-4e11-93a7-238cb2cc2c20.png",
+      "organizer": "Instituto Florescer Caldeira",
+      "description": {
+        "pt": "O que realmente faz o seu cliente decidir clicar, comprar e voltar a fazer negócios com você? Neste encontro, vamos conversar com Adalberto Jr. (@adalbertospj), Co-fundador do Instituto Florescer Caldeira, para…"
+      },
+      "tags": [
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-06-neuromarketing-como-alavancar-o-seu-negocio",
+      "source": "luma.com",
+      "added": "2026-11-05"
+    },
+    {
       "id": "2026-11-07-databricks-meetup-rio-de-janeiro-2026-data-ai-te",
       "title": "Databricks Meetup Rio de Janeiro 2026 — Data, AI & Tecnologia",
       "start": "2026-11-07T09:00:00-03:00",
@@ -4808,6 +4836,35 @@
       "added": "2026-11-03"
     },
     {
+      "title": "Feira de Empreendedoras - Bybit",
+      "start": "2026-11-09T14:00:00-03:00",
+      "end": "2026-11-09T15:00:00-03:00",
+      "time_known": true,
+      "venue": "FAETEC IPANEMA - POLO AVANÇADO DA ROCINHA",
+      "address": "FAETEC IPANEMA - POLO AVANÇADO DA ROCINHA",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/d6950vsi",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/eq/080c1c8a-5b0e-4a86-a43d-b88f0d83a89a.jpg",
+      "organizer": "Carol Santos",
+      "description": {
+        "pt": "A Bybit, o Instituto Educar+ e o Instituto Florescer Caldeira se unem para realizar uma feira que conecta empreendedorismo feminino, economia local e inovação financeira. O evento será uma oportunidade para conhecer e…"
+      },
+      "tags": [
+        "empreendedorismo",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-09-feira-de-empreendedoras-bybit",
+      "source": "luma.com",
+      "added": "2026-11-05"
+    },
+    {
       "title": "Conexões Tech Founders | João Paulo Alves",
       "start": "2026-11-09T18:00:00-03:00",
       "end": "2026-11-09T20:30:00-03:00",
@@ -4900,6 +4957,34 @@
       "status": "a-confirmar",
       "note": "Datas e local divulgados no grupo do WhatsApp; confirme no site oficial.",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Palestra | Seu Projeto não é Sexy! (ainda)",
+      "start": "2026-11-10T19:00:00-03:00",
+      "end": "2026-11-10T22:00:00-03:00",
+      "time_known": true,
+      "venue": "COLMEIA CARIOCA TREINAMENTO",
+      "address": "COLMEIA CARIOCA TREINAMENTO",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/fw0xoz0g",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/2s/5d84f1e8-6477-452c-8fa8-9d804ff906a5.jpg",
+      "organizer": "Phonos Comunicação",
+      "description": {
+        "pt": "Seu projeto não é Sexy! (ainda) O valor do seu projeto precisa ficar claro para quem você quer alcançar. A forma como você apresenta uma ideia influencia a atenção que ela recebe, o interesse que desperta e as…"
+      },
+      "tags": [
+        "palestra"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-10-palestra-seu-projeto-nao-e-sexy-ainda",
+      "source": "luma.com",
+      "added": "2026-11-05"
     },
     {
       "id": "2026-11-11-ai-festival-women-rio-de-janeiro-protagonismo-fe",
