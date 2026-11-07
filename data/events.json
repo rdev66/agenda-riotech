@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05",
+  "updated": "2026-11-07",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -5002,7 +5002,7 @@
       },
       "registration": "ingresso",
       "url": "https://www.sympla.com.br/evento/ai-festival-women-rio-de-janeiro-protagonismo-feminino-na-inteligencia-artificial/3592715",
-      "image": null,
+      "image": "https://images.sympla.com.br/6ab7348273d20-lg.png",
       "organizer": "AI Festival Brasil",
       "description": {
         "pt": "Festival de IA com foco em protagonismo feminino: palestras, casos práticos, demos ao vivo e workshops sobre IA para negócios, com certificado de participação.",
@@ -5275,7 +5275,7 @@
       "end": "2026-11-19T21:00:00-03:00",
       "time_known": true,
       "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
-      "address": null,
+      "address": "Av. Prof. Pereira Reis, 76",
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
@@ -5284,8 +5284,8 @@
       },
       "registration": "inscricao",
       "url": "https://luma.com/cn7ihqmg",
-      "image": null,
-      "organizer": null,
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/gd/ddcc065c-81c0-47b8-b46d-7c4f43d0e97f.png",
+      "organizer": "Maravalley",
       "description": {
         "pt": "Obtenha informações atualizadas em: https://luma.com/cn7ihqmg Endereço: Av. Prof. Pereira Reis, 76 Rio de Janeiro, RJ Brasil Organizado por Beatriz Baêta"
       },
@@ -5450,6 +5450,37 @@
       "id": "2026-11-28-devin-meetup-rio-de-janeiro",
       "source": "luma.com",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Hackathon EduMais x Le Wagon: IA, educação e favela",
+      "start": "2026-11-28T09:30:00-03:00",
+      "end": "2026-11-28T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/16649a0q",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/id/a6764537-442c-4c11-9375-c7fe0125e6db.png",
+      "organizer": "Gauthier Asselin de Williencourt",
+      "description": {
+        "pt": "Um dia inteiro construindo soluções de IA para a educação e para desafios reais da favela. Alunos da EduMais e desenvolvedores do Rio no mesmo time, trabalhando em problemas que afetam a comunidade deles de verdade.…"
+      },
+      "tags": [
+        "ia",
+        "hackathon",
+        "comunidade",
+        "impacto-social"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-28-hackathon-edumais-x-le-wagon-ia-educacao-e-favel",
+      "source": "luma.com",
+      "added": "2026-11-07"
     },
     {
       "title": "Papo de Dev RJ 2º Edição",
