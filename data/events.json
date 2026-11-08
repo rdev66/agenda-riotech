@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07",
+  "updated": "2026-11-08",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -5268,6 +5268,37 @@
       "source": "luma",
       "status": "confirmado",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Cloud Native Night Rio! Uma noite no cluster!",
+      "start": "2026-11-18T18:00:38-03:00",
+      "end": "2026-11-18T22:00:38-03:00",
+      "time_known": true,
+      "venue": "FIAP - Rio de Janeiro",
+      "address": "Rua Marques de Olinda, 11",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://gdg.community.dev/events/details/google-gdg-rio-de-janeiro-presents-cloud-native-night-rio-uma-noite-no-cluster",
+      "image": "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_900,q_auto:good,w_1200/v1/gcs/platform-data-goog/contentbuilder/GDG_Bevy_SocialSharingThumbnail_KFxxrrs.png",
+      "organizer": "Google Developer Groups",
+      "description": {
+        "pt": "Cloud Native Night Rio revives the cloud native community with interactive talks and discussions. Ideal for DevOps, Platform Engineers, SREs, and students, the event covers modern architectures, scalability, security,…"
+      },
+      "tags": [
+        "cloud",
+        "devops",
+        "seguranca",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-18-cloud-native-night-rio-uma-noite-no-cluster",
+      "source": "gdg.community.dev",
+      "added": "2026-11-08"
     },
     {
       "title": "Happy Hour + Download Web Summit Lisboa",
