@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07",
+  "updated": "2026-11-09",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -5330,6 +5330,34 @@
       "source": "Instituto 12 (Luma)",
       "id": "2026-11-23-inovar-na-velocidade-da-ia-como-garantir-que-a-s",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Rio Climate and Carbon Happy Hour",
+      "start": "2026-11-25T19:00:00-03:00",
+      "end": "2026-11-25T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Mercadinho 63",
+      "address": "Mercadinho 63",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/hybmd55y",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/0w/7a2b4f8b-b7f2-4d8b-8147-04cb6501c7fe.png",
+      "organizer": "Jeremy Casebeer",
+      "description": {
+        "pt": "We're back for round two of Rio's Climate and Carbon Happy Hour November 25th! It'll be a laidback evening catching up with friends and making new connections. We had nearly 40 people show up to our first happy hour,…"
+      },
+      "tags": [
+        "networking"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-25-rio-climate-and-carbon-happy-hour",
+      "source": "luma.com",
+      "added": "2026-11-09"
     },
     {
       "title": "2º Encontro da Rede Dr. Empreendedor",
