@@ -337,17 +337,9 @@ class TestValidar(unittest.TestCase):
         self.assertTrue(any("repetido" in e for e in errs))
 
     def test_yaml_do_repositorio(self):
-        errs, aviso = validar.check_github_yaml()
-        if aviso:
-            print("⚠️", aviso)
-            return
-        self.assertEqual(errs, [])
+        self.assertEqual(validar.check_github_yaml(), [])
 
     def test_descricao_sem_aspas_com_dois_pontos(self):
-        try:
-            import yaml  # noqa: F401
-        except ImportError:
-            self.skipTest("sem PyYAML")
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             pasta = root / ".github" / "ISSUE_TEMPLATE"
@@ -360,10 +352,57 @@ class TestValidar(unittest.TestCase):
                 "    id: link\n",
                 encoding="utf-8",
             )
-            errs, aviso = validar.check_github_yaml(root)
-            self.assertIsNone(aviso)
+            errs = validar.check_github_yaml(root)
             self.assertTrue(errs, errs)
             self.assertTrue(any("description" in e or "YAML" in e for e in errs), errs)
+
+    def test_checagem_yml_sem_pyyaml(self):
+        """Os .yml são validados mesmo quando o import de PyYAML falha."""
+        anterior = sys.modules.pop("yaml", None)
+        sys.modules["yaml"] = None
+        try:
+            with self.assertRaises(ModuleNotFoundError):
+                import importlib
+
+                importlib.import_module("yaml")
+            with tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                wf = root / ".github" / "workflows"
+                wf.mkdir(parents=True)
+                (wf / "ok.yml").write_text(
+                    "name: CI\n"
+                    "on:\n"
+                    "  push:\n"
+                    "    branches: [main]\n"
+                    "base: &runner ubuntu-latest\n"
+                    "jobs:\n"
+                    "  validar:\n"
+                    "    runs-on: *runner\n"
+                    "    steps:\n"
+                    "      - run: echo ok\n",
+                    encoding="utf-8",
+                )
+                (wf / "ruim.yml").write_text("name: Ruim\non: [push\n", encoding="utf-8")
+                errs = validar.check_github_yaml(root)
+            self.assertTrue(any("ruim.yml" in e and "YAML" in e for e in errs), errs)
+            self.assertFalse(any("ok.yml" in e for e in errs), errs)
+            self.assertFalse(any("pulada" in e or "PyYAML" in e for e in errs))
+        finally:
+            sys.modules.pop("yaml", None)
+            if anterior is not None:
+                sys.modules["yaml"] = anterior
+
+    def test_ancora_e_merge(self):
+        doc = validar.load_yaml(
+            "base: &b\n"
+            "  runs-on: ubuntu-latest\n"
+            "job:\n"
+            "  <<: *b\n"
+            "  name: x\n"
+        )
+        self.assertEqual(doc["job"], {"runs-on": "ubuntu-latest", "name": "x"})
+        with self.assertRaises(validar.YamlError):
+            validar.load_yaml("job:\n  uses: *nao_tem\n")
 
 
 if __name__ == "__main__":
