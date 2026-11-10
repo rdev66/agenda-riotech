@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09",
+  "updated": "2026-11-10",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -4959,6 +4959,34 @@
       "added": "2026-10-31"
     },
     {
+      "title": "O Capital do Futuro",
+      "start": "2026-11-10T18:30:00-03:00",
+      "end": "2026-11-10T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Instituto 12",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/oqxn773t",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/30/1d983e8d-0810-4ead-a308-57bafc456898.jpg",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "Qual dinheiro vai construir o amanhã? Em um momento de transformações econômicas, sociais e climáticas, o capital deixou de ser apenas um meio para gerar lucro e passou a ser também uma ferramenta de transformação. A…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-10-o-capital-do-futuro",
+      "source": "luma.com",
+      "added": "2026-11-10"
+    },
+    {
       "title": "Palestra | Seu Projeto não é Sexy! (ainda)",
       "start": "2026-11-10T19:00:00-03:00",
       "end": "2026-11-10T22:00:00-03:00",
@@ -5018,6 +5046,34 @@
       "status": "a-confirmar",
       "added": "2026-10-31",
       "note": "Conferido numa página de terceiros; confirme na página oficial."
+    },
+    {
+      "title": "Clube CHRO | Exame",
+      "start": "2026-11-11T19:00:00-03:00",
+      "end": "2026-11-11T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12",
+      "address": "Instituto 12",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/0qf3vds8",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/9h/5a963561-9bc6-4aa5-843d-bd93e93c920f.jpg",
+      "organizer": "Instituto 12",
+      "description": {
+        "pt": "Em nosso próximo evento estará conosco Ulisses Silva, fundador da Leve Saúde, nascida em 2020 como uma healthtech criada com o propósito de ampliar o acesso à saúde de qualidade, com foco no público acima de 45 anos. À…"
+      },
+      "tags": [
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-11-clube-chro-exame",
+      "source": "luma.com",
+      "added": "2026-11-10"
     },
     {
       "title": "Happy Hour Maravalley",
@@ -5112,6 +5168,36 @@
       "added": "2026-10-31"
     },
     {
+      "title": "IA e Blockchain: Tecnologias que estão transformando o futuro e criando novas oportunidades",
+      "start": "2026-11-13T19:00:00-03:00",
+      "end": "2026-11-13T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/rbus03as",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/tu/57857d9a-7a6f-462e-8e80-f56769bbab9a.jpg",
+      "organizer": "Instituto Florescer Caldeira",
+      "description": {
+        "pt": "A Inteligência Artificial e o Blockchain estão transformando o mercado, criando novas possibilidades de negócios, carreiras e inovação. Mas, afinal, quais oportunidades estão surgindo a partir dessas tecnologias e como…"
+      },
+      "tags": [
+        "ia",
+        "web3",
+        "inovacao"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-13-ia-e-blockchain-tecnologias-que-estao-transforma",
+      "source": "luma.com",
+      "added": "2026-11-10"
+    },
+    {
       "id": "2026-11-14-devfest-rio-de-janeiro-2026",
       "title": "DevFest Rio de Janeiro 2026",
       "start": "2026-11-14T08:00:00-03:00",
@@ -5172,6 +5258,34 @@
       "id": "2026-11-14-devfest-rio-de-janeiro-2026-inovacao-e-tecnologi",
       "source": "gdg.community.dev",
       "added": "2026-11-03"
+    },
+    {
+      "title": "Game Night: Conecte-se, Jogue e Descubra!",
+      "start": "2026-11-14T19:00:00-03:00",
+      "end": "2026-11-14T22:00:00-03:00",
+      "time_known": true,
+      "venue": "VELLORA",
+      "address": "VELLORA",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/fqel4gx7",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/41/008aa030-b46b-41bc-abec-f595e433b4ba.png",
+      "organizer": "Eventos Instituto",
+      "description": {
+        "pt": "Games, tecnologia, conexões e muita diversão: sábado é dia de dar play! 🎮 O Instituto Florescer Caldeira convida você para uma noite especial na Vellora, reunindo pessoas apaixonadas por tecnologia, games e cultura…"
+      },
+      "tags": [
+        "games"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-14-game-night-conecte-se-jogue-e-descubra",
+      "source": "luma.com",
+      "added": "2026-11-10"
     },
     {
       "id": "2026-11-16-blockchaingov-2026",
@@ -5691,6 +5805,34 @@
       "source": "site-oficial",
       "status": "confirmado",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Lovable Build Day - RJ",
+      "start": "2026-12-09T14:00:00-03:00",
+      "end": "2026-12-09T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/m9l90tdf",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/m6/3d2f675d-7b53-4241-94b2-2dd7b2f71c43.webp",
+      "organizer": "Tássia Pacheco",
+      "description": {
+        "pt": "Tem uma ideia parada porque você acha que precisaria saber programar? No Build Day, você tira essa ideia do papel em uma tarde. É um encontro presencial e gratuito, mão na massa, para construir o seu primeiro app ou…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-12-09-lovable-build-day-rj",
+      "source": "luma.com",
+      "added": "2026-11-10"
     },
     {
       "title": "Happy Hour Maravalley",
