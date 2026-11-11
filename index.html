@@ -290,26 +290,50 @@ details[open] summary::after { content: " –"; }
 .cta p { margin: 0; color: var(--muted); max-width: 60ch; }
 #pr-note a { color: var(--accent); font-weight: 600; }
 
+#list-end { height: 1px; }
 .feedback {
-  margin: 4px 0 22px; padding: 12px 14px;
+  position: relative; margin: 4px 0 22px; padding: 14px 16px;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
 }
 .feedback [hidden] { display: none !important; }
-.feedback-ask, .feedback-thanks {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+.feedback h2, .feedback-done, .feedback legend, .feedback-label {
+  font-family: var(--display); font-weight: 700; letter-spacing: -.02em; margin: 0 0 10px;
 }
-.feedback-ask p, .feedback-thanks p {
-  margin: 0; font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -.02em;
+.feedback h2, .feedback-done, .feedback legend { font-size: 18px; }
+.feedback-label { font-size: 16px; }
+.feedback-lights, .feedback-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.feedback-lights button {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  border-radius: 999px; padding: 8px 14px; font-weight: 600; font-size: 14px;
 }
-.feedback-votes { display: flex; gap: 8px; }
-.feedback-votes button {
-  width: 42px; height: 36px; padding: 0; border-radius: 999px; cursor: pointer;
-  border: 1px solid var(--line); background: var(--bg); font-size: 18px; line-height: 1;
+.feedback-lights button:hover { border-color: var(--ink); }
+.feedback-lights button[aria-checked="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.feedback-step2 { display: grid; gap: 14px; }
+.feedback fieldset { border: 0; margin: 0; padding: 0; }
+.feedback legend { padding: 0; float: none; width: 100%; }
+.feedback-choices { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.feedback-choices label { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; cursor: pointer; }
+.feedback-comment-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.feedback textarea {
+  width: 100%; margin-top: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  border-radius: 12px; padding: 10px 12px; font: inherit; resize: vertical; min-height: 72px;
 }
-.feedback-votes button:hover { border-color: var(--ink); }
-.feedback-votes button:focus-visible,
-.feedback a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.feedback .actions { margin-top: 0; }
+.feedback-count { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.feedback-hp {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.feedback-gh { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.feedback-gh a { color: var(--accent); font-weight: 600; }
+.feedback button:focus-visible, .feedback a:focus-visible,
+.feedback input:focus-visible, .feedback textarea:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+@media (max-width: 600px) {
+  .feedback-lights { flex-direction: column; }
+  .feedback-lights button { justify-content: flex-start; }
+}
 
 footer { padding-block: 8px 36px; color: var(--muted); font-size: 13px; }
 footer p { margin: 4px 0; }
@@ -462,6 +486,7 @@ footer p { margin: 4px 0; }
   <section id="list" aria-live="polite">
     <p class="empty" data-i18n="loading">Carregando eventos…</p>
   </section>
+  <div id="list-end" aria-hidden="true"></div>
 
   <section class="cta" id="cta" aria-labelledby="cta-full-title">
     <h2 id="cta-full-title" data-i18n="addTitle">Tem um evento?</h2>
@@ -470,21 +495,49 @@ footer p { margin: 4px 0; }
     <div class="actions" id="cta-actions"></div>
   </section>
 
-  <section class="feedback" id="feedback" aria-labelledby="feedback-q">
-    <div class="feedback-ask" id="feedback-ask">
-      <p id="feedback-q" data-i18n="feedbackAsk">Está curtindo a agenda?</p>
-      <div class="feedback-votes" role="group" aria-labelledby="feedback-q">
-        <button type="button" id="fb-yes" data-i18n-aria="feedbackYes" aria-label="Sim, estou curtindo">👍</button>
-        <button type="button" id="fb-no" data-i18n-aria="feedbackNo" aria-label="Não estou curtindo">👎</button>
+  <section class="feedback" id="feedback" hidden aria-labelledby="feedback-q">
+    <div id="feedback-step1">
+      <h2 id="feedback-q" data-i18n="fbAsk">Como a agenda está te servindo?</h2>
+      <div class="feedback-lights" id="fb-lights" role="radiogroup" aria-labelledby="feedback-q">
+        <button type="button" role="radio" aria-checked="false" data-light="verde" tabindex="0"><span aria-hidden="true">🟢</span> <span data-i18n="fbVerde">Uso sempre</span></button>
+        <button type="button" role="radio" aria-checked="false" data-light="amarelo" tabindex="-1"><span aria-hidden="true">🟡</span> <span data-i18n="fbAmarelo">Às vezes</span></button>
+        <button type="button" role="radio" aria-checked="false" data-light="vermelho" tabindex="-1"><span aria-hidden="true">🔴</span> <span data-i18n="fbVermelho">Não me serviu</span></button>
       </div>
     </div>
-    <div class="feedback-thanks" id="feedback-thanks" hidden>
-      <p id="feedback-thanks-text" data-i18n="feedbackThanks">Valeu! Quer contar mais?</p>
+    <form id="feedback-step2" class="feedback-step2" hidden>
+      <fieldset>
+        <legend id="fb-went" data-i18n="fbWent">Já foi a algum evento que descobriu aqui?</legend>
+        <div class="feedback-choices">
+          <label><input type="radio" name="foi_evento" value="sim" required> <span data-i18n="fbYes">Sim</span></label>
+          <label><input type="radio" name="foi_evento" value="nao"> <span data-i18n="fbNotYet">Ainda não</span></label>
+        </div>
+      </fieldset>
+      <div role="group" aria-labelledby="fb-suggest">
+        <p id="fb-suggest" class="feedback-label" data-i18n="fbSuggest">O que ajudaria?</p>
+        <div class="feedback-chips">
+          <button type="button" class="chip" data-sug="ia" aria-pressed="false" data-i18n="fbIa">Mais eventos de IA</button>
+          <button type="button" class="chip" data-sug="whatsapp" aria-pressed="false" data-i18n="fbWa">Aviso no WhatsApp</button>
+          <button type="button" class="chip" data-sug="bairro" aria-pressed="false" data-i18n="fbBairro">Filtro por bairro</button>
+          <button type="button" class="chip" data-sug="gratis" aria-pressed="false" data-i18n="fbGratis">Eventos gratuitos</button>
+        </div>
+      </div>
+      <div>
+        <div class="feedback-comment-head">
+          <label for="fb-comment" class="feedback-label" data-i18n="fbComment">O que faria você usar mais?</label>
+          <span id="fb-count" class="feedback-count">0/280</span>
+        </div>
+        <textarea id="fb-comment" maxlength="280" aria-describedby="fb-count"></textarea>
+      </div>
+      <div class="feedback-hp" aria-hidden="true">
+        <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
       <div class="actions">
-        <a class="btn" id="fb-wa" hidden data-i18n="feedbackWa">Pelo WhatsApp</a>
-        <a class="btn" id="fb-gh" target="_blank" rel="noopener" data-i18n="feedbackGh" href="https://github.com/rdev66/agenda-riotech/issues/new?template=feedback.yml">Pelo GitHub</a>
+        <button type="submit" class="btn primary" id="fb-send" data-i18n="fbSend">Enviar</button>
+        <button type="button" class="btn" id="fb-skip" data-i18n="fbSkip">Pular</button>
       </div>
-    </div>
+    </form>
+    <p id="feedback-done" class="feedback-done" hidden data-i18n="fbDone">Valeu! 🙌</p>
+    <p class="feedback-gh"><a id="fb-gh" target="_blank" rel="noopener" data-i18n="fbGithub" href="https://github.com/rdev66/agenda-riotech/issues/new?template=feedback.yml">Prefere o GitHub?</a></p>
   </section>
 </main>
 
@@ -498,8 +551,9 @@ footer p { margin: 4px 0; }
   "use strict";
   var TZ = "America/Sao_Paulo";
   var REPO = (document.querySelector('meta[name="riotech:repo"]') || {}).content || "";
-  // Convite do grupo. Vazio até existir um link no repositório: o botão fica escondido.
-  var WHATSAPP_URL = "";
+  var SUPABASE_URL = "https://oiqnfcrmhodkecdncwkr.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_yhQxJ3-1aE6FjLx3ctL25w_qLWuOvb4";
+  var SUGESTOES = ["ia", "whatsapp", "bairro", "gratis"];
 
   var T = {
     pt: {
@@ -524,8 +578,10 @@ footer p { margin: 4px 0; }
       addIssue: "Sugerir pelo GitHub", addPR: "Editar os dados (PR)",
       addNoRepo: "Por enquanto, mande o link no grupo da RioTech no WhatsApp.",
       updated: "Atualizado em", sources: "Fontes: Luma, Meetup, Sympla e o grupo da RioTech no WhatsApp. Confira sempre a página oficial antes de ir.",
-      feedbackAsk: "Está curtindo a agenda?", feedbackYes: "Sim, estou curtindo", feedbackNo: "Não estou curtindo",
-      feedbackThanks: "Valeu! Quer contar mais?", feedbackWa: "Pelo WhatsApp", feedbackGh: "Pelo GitHub",
+      fbAsk: "Como a agenda está te servindo?", fbVerde: "Uso sempre", fbAmarelo: "Às vezes", fbVermelho: "Não me serviu",
+      fbWent: "Já foi a algum evento que descobriu aqui?", fbYes: "Sim", fbNotYet: "Ainda não",
+      fbSuggest: "O que ajudaria?", fbIa: "Mais eventos de IA", fbWa: "Aviso no WhatsApp", fbBairro: "Filtro por bairro", fbGratis: "Eventos gratuitos",
+      fbComment: "O que faria você usar mais?", fbSend: "Enviar", fbSkip: "Pular", fbDone: "Valeu! 🙌", fbGithub: "Prefere o GitHub?",
       loadErr: "Não deu para carregar os eventos. Tente recarregar a página.", filtering: "Tag", locale: "pt-BR"
     },
     en: {
@@ -550,8 +606,10 @@ footer p { margin: 4px 0; }
       addIssue: "Suggest on GitHub", addPR: "Edit the data (PR)",
       addNoRepo: "For now, drop the link in the RioTech WhatsApp group.",
       updated: "Updated", sources: "Sources: Luma, Meetup, Sympla and the RioTech WhatsApp group. Always check the official page before you go.",
-      feedbackAsk: "Enjoying the agenda?", feedbackYes: "Yes, I'm enjoying it", feedbackNo: "No, I'm not enjoying it",
-      feedbackThanks: "Thanks! Want to say more?", feedbackWa: "On WhatsApp", feedbackGh: "On GitHub",
+      fbAsk: "How useful is the agenda for you?", fbVerde: "I use it all the time", fbAmarelo: "Sometimes", fbVermelho: "Not useful",
+      fbWent: "Have you been to an event you found here?", fbYes: "Yes", fbNotYet: "Not yet",
+      fbSuggest: "What would help?", fbIa: "More AI events", fbWa: "WhatsApp alerts", fbBairro: "Filter by neighborhood", fbGratis: "Free events",
+      fbComment: "What would make you use it more?", fbSend: "Send", fbSkip: "Skip", fbDone: "Thanks! 🙌", fbGithub: "Prefer GitHub?",
       loadErr: "Couldn't load the events. Try reloading the page.", filtering: "Tag", locale: "en-GB"
     },
     pn: {
@@ -576,8 +634,10 @@ footer p { margin: 4px 0; }
       addIssue: "Sugerí por GitHub", addPR: "Editá los datos (PR)",
       addNoRepo: "Por ahora, mandá el link no grupo da RioTech no WhatsApp.",
       updated: "Actualizado em", sources: "Fuentes: Luma, Meetup, Sympla y el grupo da RioTech no WhatsApp. Chequeá siempre la página oficial antes de ir.",
-      feedbackAsk: "¿Tá curtindo la agenda?", feedbackYes: "Sí, tô curtindo", feedbackNo: "No, não tô curtindo",
-      feedbackThanks: "¡Valeu! ¿Querés contar más?", feedbackWa: "Pelo WhatsApp", feedbackGh: "Pelo GitHub",
+      fbAsk: "¿Cómo la agenda te está sirviendo?", fbVerde: "La uso sempre", fbAmarelo: "Às veces", fbVermelho: "No me sirvió",
+      fbWent: "¿Ya fuiste a algún evento que descubriste acá?", fbYes: "Sí", fbNotYet: "Todavía no",
+      fbSuggest: "¿Qué te ayudaría?", fbIa: "Más eventos de IA", fbWa: "Aviso no WhatsApp", fbBairro: "Filtro por barrio", fbGratis: "Eventos de graça",
+      fbComment: "¿Qué te haría usarla más?", fbSend: "Mandar", fbSkip: "Pular", fbDone: "¡Valeu! 🙌", fbGithub: "¿Preferís el GitHub?",
       loadErr: "No deu para cargar los eventos. Recargá la página.", filtering: "Tag", locale: "es"
     }
   };
@@ -777,7 +837,7 @@ footer p { margin: 4px 0; }
       e.note ? el("p", { class: "meta", text: t("note") + " " + e.note }) : null,
       el("div", { class: "actions" }, [
         el("a", { class: "btn primary", href: e.url, target: "_blank", rel: "noopener", text: t("open") + " ↗", onclick: onEvent }),
-        el("a", { class: "btn", href: gcalLink(e), target: "_blank", rel: "noopener", text: t("gcal") })
+        el("a", { class: "btn", href: gcalLink(e), target: "_blank", rel: "noopener", text: t("gcal"), onclick: function () { track("calendario/" + slug, e.title || slug); } })
       ])
     ]);
     var tags = el("ul", { class: "tags" }, e.tags.map(function (g) {
@@ -959,34 +1019,189 @@ footer p { margin: 4px 0; }
     clearTimeout(qTimer); qTimer = setTimeout(function () { state.q = ev.target.value.trim(); render(); }, 120);
   });
 
-  function showFeedback(voted) {
-    var ask = document.getElementById("feedback-ask");
-    var thanks = document.getElementById("feedback-thanks");
-    ask.hidden = !!voted;
-    thanks.hidden = !voted;
-    document.getElementById("feedback").setAttribute("aria-labelledby", voted ? "feedback-thanks-text" : "feedback-q");
-    var wa = document.getElementById("fb-wa");
-    if (WHATSAPP_URL) {
-      wa.href = WHATSAPP_URL;
-      wa.target = "_blank";
-      wa.rel = "noopener";
-      wa.hidden = false;
-    } else {
-      wa.hidden = true;
-      wa.removeAttribute("href");
-    }
-    var base = (REPO || "https://github.com/rdev66/agenda-riotech").replace(/\/$/, "");
-    document.getElementById("fb-gh").href = base + "/issues/new?template=feedback.yml";
+  function readJson(key) {
+    var raw = load(key);
+    if (!raw) return null;
+    try { return JSON.parse(raw); } catch (e) { return null; }
   }
-  function castVote(value) {
-    store("agenda-feedback", value);
-    track("feedback/" + value, value === "sim" ? "Sim" : "Não");
-    showFeedback(true);
+  function readProgress() {
+    var o = readJson("agenda-feedback");
+    if (!o || typeof o.resposta !== "string" || (o.paso !== 1 && o.paso !== 2)) return null;
+    return o;
   }
-  document.getElementById("fb-yes").addEventListener("click", function () { castVote("sim"); });
-  document.getElementById("fb-no").addEventListener("click", function () { castVote("nao"); });
-  var priorVote = load("agenda-feedback");
-  showFeedback(priorVote === "sim" || priorVote === "nao");
+  function saveProgress(resposta, paso) {
+    store("agenda-feedback", JSON.stringify({ resposta: resposta, paso: paso }));
+  }
+  function readVisits() {
+    var o = readJson("agenda-visitas");
+    if (typeof o === "number") return { n: o, retorno: "" };
+    if (o && typeof o.n === "number") return { n: o.n, retorno: o.retorno || "" };
+    var raw = load("agenda-visitas");
+    var n = raw ? parseInt(raw, 10) : 0;
+    return { n: isNaN(n) ? 0 : n, retorno: "" };
+  }
+  function rioDay() {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  }
+  function postFeedback(body) {
+    return fetch(SUPABASE_URL + "/rest/v1/feedback", {
+      method: "POST",
+      headers: { apikey: SUPABASE_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
+      body: JSON.stringify(body)
+    }).then(function (r) { if (!r.ok) throw new Error(String(r.status)); });
+  }
+  function enqueue(body) {
+    var q = readJson("agenda-feedback-fila");
+    if (!Array.isArray(q)) q = [];
+    q.push(body);
+    store("agenda-feedback-fila", JSON.stringify(q));
+  }
+  function sendOrQueue(body) {
+    try {
+      postFeedback(body).then(function () {}, function () { enqueue(body); });
+    } catch (e) { enqueue(body); }
+  }
+  function retryQueue() {
+    var q = readJson("agenda-feedback-fila");
+    if (!Array.isArray(q) || !q.length) return;
+    store("agenda-feedback-fila", "[]");
+    q.forEach(function (body) {
+      try { postFeedback(body).then(function () {}, function () {}); } catch (e) {}
+    });
+  }
+  function bumpVisits() {
+    var v = readVisits();
+    v.n += 1;
+    store("agenda-visitas", JSON.stringify({ n: v.n, retorno: v.retorno || "" }));
+    if (v.n < 2 || v.retorno === rioDay()) return v.n;
+    var tries = 0;
+    (function waitGc() {
+      var gc = window.goatcounter;
+      if (gc && gc.count && !gc.no_onload) {
+        gc.count({ path: "retorno", title: "Retorno", event: true });
+        v.retorno = rioDay();
+        store("agenda-visitas", JSON.stringify({ n: v.n, retorno: v.retorno }));
+        return;
+      }
+      if (gc && gc.no_onload) return;
+      if (++tries < 24) setTimeout(waitGc, 250);
+    })();
+    return v.n;
+  }
+
+  var feedbackOpen = false;
+  var step1Sent = false;
+  var step2Done = false;
+  function showStep(step) {
+    document.getElementById("feedback-step1").hidden = step !== 1;
+    document.getElementById("feedback-step2").hidden = step !== 2;
+    document.getElementById("feedback-done").hidden = step !== "done";
+    var label = step === 2 ? "fb-went" : (step === "done" ? "feedback-done" : "feedback-q");
+    document.getElementById("feedback").setAttribute("aria-labelledby", label);
+  }
+  function revealFeedback() {
+    if (feedbackOpen) return;
+    var prior = readProgress();
+    if (prior && prior.paso === 2) return;
+    feedbackOpen = true;
+    document.getElementById("feedback").hidden = false;
+    showStep(prior && prior.paso === 1 ? 2 : 1);
+  }
+  function pickLight(light) {
+    if (step1Sent) return;
+    if (light !== "verde" && light !== "amarelo" && light !== "vermelho") return;
+    step1Sent = true;
+    var buttons = document.querySelectorAll("#fb-lights [role=radio]");
+    buttons.forEach(function (b) { b.setAttribute("aria-checked", b.getAttribute("data-light") === light ? "true" : "false"); });
+    var resposta;
+    try { resposta = crypto.randomUUID(); } catch (e) { resposta = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0; return (c === "x" ? r : (r & 3 | 8)).toString(16); }); }
+    var lang = state.lang === "en" || state.lang === "pn" ? state.lang : "pt";
+    saveProgress(resposta, 1);
+    track("feedback/" + light, light);
+    sendOrQueue({ resposta: resposta, etapa: 1, lang: lang, semaforo: light, visitas: visitasN });
+    showStep(2);
+  }
+  function honeypotFilled() {
+    var hp = document.querySelector("#feedback-step2 input[name=website]");
+    return !!(hp && hp.value && hp.value.trim());
+  }
+  function finishFeedback() {
+    if (step2Done) return;
+    step2Done = true;
+    var prior = readProgress();
+    saveProgress(prior && prior.resposta ? prior.resposta : "", 2);
+    showStep("done");
+  }
+  function submitStep2(ev) {
+    ev.preventDefault();
+    if (honeypotFilled()) { finishFeedback(); return; }
+    if (step2Done) return;
+    var prior = readProgress();
+    if (!prior || !prior.resposta) { finishFeedback(); return; }
+    var foi = document.querySelector("#feedback-step2 input[name=foi_evento]:checked");
+    var sugestoes = [];
+    document.querySelectorAll("#feedback-step2 [data-sug]").forEach(function (b) {
+      if (b.getAttribute("aria-pressed") === "true" && SUGESTOES.indexOf(b.getAttribute("data-sug")) >= 0 && sugestoes.length < 4) {
+        sugestoes.push(b.getAttribute("data-sug"));
+      }
+    });
+    var commentEl = document.getElementById("fb-comment");
+    var comentario = (commentEl.value || "").trim().slice(0, 280);
+    step2Done = true;
+    sendOrQueue({
+      resposta: prior.resposta,
+      etapa: 2,
+      foi_evento: !!(foi && foi.value === "sim"),
+      sugestoes: sugestoes,
+      comentario: comentario
+    });
+    saveProgress(prior.resposta, 2);
+    showStep("done");
+  }
+
+  var lightButtons = [].slice.call(document.querySelectorAll("#fb-lights [role=radio]"));
+  lightButtons.forEach(function (b, i) {
+    b.addEventListener("click", function () { pickLight(b.getAttribute("data-light")); });
+    b.addEventListener("keydown", function (ev) {
+      var next = -1;
+      if (ev.key === "ArrowRight" || ev.key === "ArrowDown") next = (i + 1) % lightButtons.length;
+      else if (ev.key === "ArrowLeft" || ev.key === "ArrowUp") next = (i - 1 + lightButtons.length) % lightButtons.length;
+      else return;
+      ev.preventDefault();
+      lightButtons.forEach(function (btn, idx) { btn.tabIndex = idx === next ? 0 : -1; });
+      lightButtons[next].focus();
+    });
+  });
+  document.querySelectorAll("#feedback-step2 [data-sug]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    });
+  });
+  var commentBox = document.getElementById("fb-comment");
+  commentBox.addEventListener("input", function () {
+    document.getElementById("fb-count").textContent = commentBox.value.length + "/280";
+  });
+  document.getElementById("fb-send").addEventListener("click", function (ev) {
+    if (honeypotFilled()) { ev.preventDefault(); finishFeedback(); }
+  });
+  document.getElementById("feedback-step2").addEventListener("submit", submitStep2);
+  document.getElementById("fb-skip").addEventListener("click", function () { finishFeedback(); });
+  var gh = document.getElementById("fb-gh");
+  gh.href = (REPO || "https://github.com/rdev66/agenda-riotech").replace(/\/$/, "") + "/issues/new?template=feedback.yml";
+
+  retryQueue();
+  var visitasN = bumpVisits();
+  var userScrolled = false;
+  window.addEventListener("scroll", function () { userScrolled = true; }, { passive: true });
+  var listEnd = document.getElementById("list-end");
+  if (listEnd && "IntersectionObserver" in window) {
+    var endWatch = new IntersectionObserver(function (entries) {
+      if (!userScrolled) return;
+      if (entries.some(function (e) { return e.isIntersecting; })) revealFeedback();
+    });
+    endWatch.observe(listEnd);
+  }
+  setTimeout(revealFeedback, 20000);
 
   // Idioma inicial: escolha salva, senão o do navegador.
   var saved = load("riotech.lang");

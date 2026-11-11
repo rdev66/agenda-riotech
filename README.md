@@ -59,9 +59,11 @@ O `_chat.txt` é lido para um arquivo temporário fora do repositório e apagado
 
 ## Estatísticas e feedback
 
-O site conta visitas com o [GoatCounter](https://agenda-riotech.goatcounter.com/), sem cookies e sem dados pessoais. O painel é público e mostra só totais: páginas vistas, cliques num evento, no botão «Sugerir evento», na troca de idioma e no voto de feedback (sim ou não). Nada identifica quem entrou.
+As visitas vão para o [GoatCounter](https://agenda-riotech.goatcounter.com/), sem cookies e sem dados pessoais. O painel público mostra só totais: páginas vistas, cliques num evento, cliques em «Pôr no Google Agenda», retornos de quem volta, o botão «Sugerir evento» e a troca de idioma. Nada identifica quem entrou.
 
-No fim da página dá para dizer se a agenda está boa. Quem quiser contar mais abre uma issue com o modelo **Feedback** (etiqueta `feedback`).
+O feedback anônimo fica no Supabase, só para inserção: o navegador não lê a tabela. Não guardamos dados pessoais nem IP. A pessoa marca um semáforo (uso sempre, às vezes, não me serviu) e, se quiser, conta se já foi a um evento, o que falta e um comentário curto.
+
+Quem preferir escreve pelo GitHub, no modelo **Feedback** (etiqueta `feedback`).
 
 ## Publicar
 
