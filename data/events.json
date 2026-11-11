@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10",
+  "updated": "2026-11-11",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -5168,6 +5168,62 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Antes de deixar a IA decidir por você",
+      "start": "2026-11-12T19:00:00-03:00",
+      "end": "2026-11-12T23:00:00-03:00",
+      "time_known": true,
+      "venue": "Colmeia Carioca COWORKING",
+      "address": "Colmeia Carioca COWORKING",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/23eosf3k",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/od/0afcb413-60b2-43d3-a01c-0fc1625419a1.png",
+      "organizer": "Karine Mansour",
+      "description": {
+        "pt": "Como a Inteligência Artificial já toma decisões no seu dia a dia, o risco de vieses e interferências e o que você pode fazer pra manter o controle"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-12-antes-de-deixar-a-ia-decidir-por-voce",
+      "source": "luma.com",
+      "added": "2026-11-11"
+    },
+    {
+      "title": "Replit Building Fest",
+      "start": "2026-11-13T18:00:00-03:00",
+      "end": "2026-11-13T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro",
+      "address": "Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/iuh4ednv",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ex/1c1afe9c-139a-4e23-88c8-ff77f441c593.png",
+      "organizer": "Josecarlos de Lima",
+      "description": {
+        "pt": "Junte-se a nós neste Building Fest by Replit! Compartilharemos um espaço para construir ideias, projetos e produtos usando o Replit enquanto construímos em comunidade. O que você poderá fazer aqui? Desenvolver seu…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-13-replit-building-fest",
+      "source": "luma.com",
+      "added": "2026-11-11"
+    },
+    {
       "title": "IA e Blockchain: Tecnologias que estão transformando o futuro e criando novas oportunidades",
       "start": "2026-11-13T19:00:00-03:00",
       "end": "2026-11-13T21:00:00-03:00",
@@ -5258,6 +5314,36 @@
       "id": "2026-11-14-devfest-rio-de-janeiro-2026-inovacao-e-tecnologi",
       "source": "gdg.community.dev",
       "added": "2026-11-03"
+    },
+    {
+      "title": "MetaMask Community Builder Night, Brasil Edition",
+      "start": "2026-11-14T16:00:00-03:00",
+      "end": "2026-11-14T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/cbnniteroioct2026",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/ya/727d071e-39ee-46d1-8cce-c1fb557df518.png",
+      "organizer": "Francesco Andreoli 🦊",
+      "description": {
+        "pt": "Community Builder Night is a community-first version of MetaMask’s global Builder Nights bringing Web3 education, onboarding and conversations closer to local ecosystems. This in-person meetup is designed for…"
+      },
+      "tags": [
+        "web3",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-14-metamask-community-builder-night-brasil-edition",
+      "source": "luma.com",
+      "added": "2026-11-11"
     },
     {
       "title": "Game Night: Conecte-se, Jogue e Descubra!",
@@ -5415,6 +5501,34 @@
       "added": "2026-11-08"
     },
     {
+      "title": "BNB Builder Session: Rio 🇧🇷",
+      "start": "2026-11-18T19:00:00-03:00",
+      "end": "2026-11-18T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Rio de Janeiro, RJ",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/izlft6gi",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/kh/05549b13-4c36-408e-836e-1edcbc464033.png",
+      "organizer": "BNB Chain LatAm",
+      "description": {
+        "pt": "A primeira BNB Builder Session do Brasil é no Rio. Uma tarde pra se juntar com outros builders da cidade, conectar com a cena local e criar seu próprio agente de IA rodando onchain. Se você já tem um agente, traz ele…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-18-bnb-builder-session-rio",
+      "source": "luma.com",
+      "added": "2026-11-11"
+    },
+    {
       "title": "Círculo Âncora Rio",
       "start": "2026-11-19T09:00:00-03:00",
       "end": "2026-11-19T13:00:00-03:00",
@@ -5471,6 +5585,34 @@
       "source": "Maravalley (Luma)",
       "id": "2026-11-19-happy-hour-download-web-summit-lisboa",
       "added": "2026-11-03"
+    },
+    {
+      "title": "Founders Running Club Special Edition in Niteroi",
+      "start": "2026-11-22T09:00:00-03:00",
+      "end": "2026-11-22T12:00:00-03:00",
+      "time_known": true,
+      "venue": "Praia de Icaraí",
+      "address": "Praia de Icaraí",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/kc45hkvc",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/zd/f8caf893-9d1c-49a4-a401-dc3f5d856dc7.png",
+      "organizer": "Founders Running Club Rio",
+      "description": {
+        "pt": "Founders Running Club is coming to Niteroi for a special edition at the city's anniversary. More details soon. Choose your own pace, whether you want to run or walk. See you there! 👋 Founders Running Club (FRC) brings…"
+      },
+      "tags": [
+        "founders"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-22-founders-running-club-special-edition-in-niteroi",
+      "source": "luma.com",
+      "added": "2026-11-11"
     },
     {
       "title": "Inovar na Velocidade da IA: Como garantir que a segurança seja potencializador de crescimento",
@@ -5768,6 +5910,34 @@
       "added": "2026-11-03"
     },
     {
+      "title": "Encontro FaithTech Rio de Janeiro",
+      "start": "2026-11-28T13:00:00-03:00",
+      "end": "2026-11-28T17:30:00-03:00",
+      "time_known": true,
+      "venue": "R. Alexandre Moura, 3",
+      "address": "R. Alexandre Moura, 3",
+      "city": "Niterói",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/yrhbma1w",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/vb/890fc370-ea5c-43d4-b364-91fc9f150195.png",
+      "organizer": "Pedro Amaro",
+      "description": {
+        "pt": "Chegou a hora de fechar 2026 com chave de ouro! O Encontro FaithTech Rio de Janeiro de novembro é um almoço de encerramento do ano, em Niterói, para celebrar tudo o que aconteceu e agradecer pelo caminho até aqui.…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2026-11-28-encontro-faithtech-rio-de-janeiro",
+      "source": "luma.com",
+      "added": "2026-11-11"
+    },
+    {
       "id": "2026-12-02-riotech-happy-hour",
       "title": "RioTech Happy Hour",
       "start": "2026-12-02T18:00:00-03:00",
@@ -5977,6 +6147,36 @@
       "source": "luma",
       "status": "confirmado",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Rio de Janeiro 2027 Venture Capital World Summit",
+      "start": "2027-06-04T10:00:00-03:00",
+      "end": "2027-06-04T17:00:00-03:00",
+      "time_known": true,
+      "venue": "Regus Bolsa de Valores",
+      "address": "Regus Bolsa de Valores",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/yn1bzs11",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/kt/a92f7742-9252-4833-b945-4c823ae938a6.jpg",
+      "organizer": "Venture Capital World Summit",
+      "description": {
+        "pt": "Venture Capital World Summit, World Series Seasons of Investment Conferences Global community for investors and investees Here to help businesses get more capital and expertise as they need to scale up, and grow…"
+      },
+      "tags": [
+        "investimento",
+        "conferencia",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "id": "2027-06-04-rio-de-janeiro-2027-venture-capital-world-summit",
+      "source": "luma.com",
+      "added": "2026-11-11"
     }
   ]
 }
