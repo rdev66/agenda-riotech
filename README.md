@@ -57,6 +57,12 @@ O `_chat.txt` é lido para um arquivo temporário fora do repositório e apagado
 - **O fluxo proposto:** toda semana, alguém exporta o chat para Downloads e roda `scripts/semanal.sh`. Ele extrai **só links** de plataformas de eventos.
 - **Privacidade:** nenhum nome, telefone ou mensagem é gravado. O `.gitignore` bloqueia `_chat.txt`: **nunca suba a exportação do chat para o repositório.**
 
+## Estatísticas e feedback
+
+O site conta visitas com o [GoatCounter](https://agenda-riotech.goatcounter.com/), sem cookies e sem dados pessoais. O painel é público e mostra só totais: páginas vistas, cliques num evento, no botão «Sugerir evento», na troca de idioma e no voto de feedback (sim ou não). Nada identifica quem entrou.
+
+No fim da página dá para dizer se a agenda está boa. Quem quiser contar mais abre uma issue com o modelo **Feedback** (etiqueta `feedback`).
+
 ## Publicar
 
 1. Crie o repositório e suba estes arquivos.
@@ -64,7 +70,7 @@ O `_chat.txt` é lido para um arquivo temporário fora do repositório e apagado
 3. *Settings → Actions → General → Workflow permissions*:
    - marque «Read and write»;
    - marque «Allow GitHub Actions to create and approve pull requests».
-4. Crie as etiquetas `novo-evento` e `importacao-automatica`.
+4. Crie as etiquetas `novo-evento`, `importacao-automatica` e `feedback`.
 5. Em `index.html`, preencha `<meta name="riotech:repo" content="https://github.com/ORG/REPO">`. Assim os botões «Sugerir pelo GitHub» passam a apontar para o repositório.
 
 ## Licença
