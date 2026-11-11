@@ -1,0 +1,17 @@
+name: "Feedback da agenda"
+description: "Conte o que achou da Agenda RioTech e o que ainda falta."
+title: "Feedback"
+labels: ["feedback"]
+body:
+  - type: textarea
+    id: achou
+    attributes:
+      label: "O que você achou?"
+      description: "O que funcionou, o que incomodou, o que você usaria de novo."
+    validations:
+      required: true
+  - type: textarea
+    id: falta
+    attributes:
+      label: "O que falta?"
+      description: "Opcional: um evento, um filtro ou um detalhe que ajudaria."

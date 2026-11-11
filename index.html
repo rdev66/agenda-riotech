@@ -290,6 +290,27 @@ details[open] summary::after { content: " –"; }
 .cta p { margin: 0; color: var(--muted); max-width: 60ch; }
 #pr-note a { color: var(--accent); font-weight: 600; }
 
+.feedback {
+  margin: 4px 0 22px; padding: 12px 14px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.feedback [hidden] { display: none !important; }
+.feedback-ask, .feedback-thanks {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.feedback-ask p, .feedback-thanks p {
+  margin: 0; font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -.02em;
+}
+.feedback-votes { display: flex; gap: 8px; }
+.feedback-votes button {
+  width: 42px; height: 36px; padding: 0; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); font-size: 18px; line-height: 1;
+}
+.feedback-votes button:hover { border-color: var(--ink); }
+.feedback-votes button:focus-visible,
+.feedback a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.feedback .actions { margin-top: 0; }
+
 footer { padding-block: 8px 36px; color: var(--muted); font-size: 13px; }
 footer p { margin: 4px 0; }
 
@@ -448,6 +469,23 @@ footer p { margin: 4px 0; }
     <p id="pr-note"></p>
     <div class="actions" id="cta-actions"></div>
   </section>
+
+  <section class="feedback" id="feedback" aria-labelledby="feedback-q">
+    <div class="feedback-ask" id="feedback-ask">
+      <p id="feedback-q" data-i18n="feedbackAsk">Está curtindo a agenda?</p>
+      <div class="feedback-votes" role="group" aria-labelledby="feedback-q">
+        <button type="button" id="fb-yes" data-i18n-aria="feedbackYes" aria-label="Sim, estou curtindo">👍</button>
+        <button type="button" id="fb-no" data-i18n-aria="feedbackNo" aria-label="Não estou curtindo">👎</button>
+      </div>
+    </div>
+    <div class="feedback-thanks" id="feedback-thanks" hidden>
+      <p id="feedback-thanks-text" data-i18n="feedbackThanks">Valeu! Quer contar mais?</p>
+      <div class="actions">
+        <a class="btn" id="fb-wa" hidden data-i18n="feedbackWa">Pelo WhatsApp</a>
+        <a class="btn" id="fb-gh" target="_blank" rel="noopener" data-i18n="feedbackGh" href="https://github.com/rdev66/agenda-riotech/issues/new?template=feedback.yml">Pelo GitHub</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="wrap">
@@ -460,6 +498,8 @@ footer p { margin: 4px 0; }
   "use strict";
   var TZ = "America/Sao_Paulo";
   var REPO = (document.querySelector('meta[name="riotech:repo"]') || {}).content || "";
+  // Convite do grupo. Vazio até existir um link no repositório: o botão fica escondido.
+  var WHATSAPP_URL = "";
 
   var T = {
     pt: {
@@ -484,6 +524,8 @@ footer p { margin: 4px 0; }
       addIssue: "Sugerir pelo GitHub", addPR: "Editar os dados (PR)",
       addNoRepo: "Por enquanto, mande o link no grupo da RioTech no WhatsApp.",
       updated: "Atualizado em", sources: "Fontes: Luma, Meetup, Sympla e o grupo da RioTech no WhatsApp. Confira sempre a página oficial antes de ir.",
+      feedbackAsk: "Está curtindo a agenda?", feedbackYes: "Sim, estou curtindo", feedbackNo: "Não estou curtindo",
+      feedbackThanks: "Valeu! Quer contar mais?", feedbackWa: "Pelo WhatsApp", feedbackGh: "Pelo GitHub",
       loadErr: "Não deu para carregar os eventos. Tente recarregar a página.", filtering: "Tag", locale: "pt-BR"
     },
     en: {
@@ -508,6 +550,8 @@ footer p { margin: 4px 0; }
       addIssue: "Suggest on GitHub", addPR: "Edit the data (PR)",
       addNoRepo: "For now, drop the link in the RioTech WhatsApp group.",
       updated: "Updated", sources: "Sources: Luma, Meetup, Sympla and the RioTech WhatsApp group. Always check the official page before you go.",
+      feedbackAsk: "Enjoying the agenda?", feedbackYes: "Yes, I'm enjoying it", feedbackNo: "No, I'm not enjoying it",
+      feedbackThanks: "Thanks! Want to say more?", feedbackWa: "On WhatsApp", feedbackGh: "On GitHub",
       loadErr: "Couldn't load the events. Try reloading the page.", filtering: "Tag", locale: "en-GB"
     },
     pn: {
@@ -532,6 +576,8 @@ footer p { margin: 4px 0; }
       addIssue: "Sugerí por GitHub", addPR: "Editá los datos (PR)",
       addNoRepo: "Por ahora, mandá el link no grupo da RioTech no WhatsApp.",
       updated: "Actualizado em", sources: "Fuentes: Luma, Meetup, Sympla y el grupo da RioTech no WhatsApp. Chequeá siempre la página oficial antes de ir.",
+      feedbackAsk: "¿Tá curtindo la agenda?", feedbackYes: "Sí, tô curtindo", feedbackNo: "No, não tô curtindo",
+      feedbackThanks: "¡Valeu! ¿Querés contar más?", feedbackWa: "Pelo WhatsApp", feedbackGh: "Pelo GitHub",
       loadErr: "No deu para cargar los eventos. Recargá la página.", filtering: "Tag", locale: "es"
     }
   };
@@ -547,6 +593,12 @@ footer p { margin: 4px 0; }
 
   function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function track(path, title) {
+    var gc = window.goatcounter;
+    if (!gc || !gc.count || gc.no_onload) return;
+    gc.count({ path: path, title: title, event: true });
+  }
+  function langSlug(code) { return code === "pn" ? "portunhol" : code; }
   function t(k) { return T[state.lang][k]; }
   function el(tag, attrs, kids) {
     var n = document.createElement(tag);
@@ -707,7 +759,9 @@ footer p { margin: 4px 0; }
   }
 
   function card(e) {
-    var title = el("h3", null, [el("a", { href: e.url, target: "_blank", rel: "noopener", text: e.title })]);
+    var slug = e.id || (e.title || "evento").toLowerCase().replace(/[^a-z0-9]+/gi, "-").replace(/^-+|-+$/g, "") || "evento";
+    var onEvent = function () { track("evento/" + slug, e.title || slug); };
+    var title = el("h3", null, [el("a", { href: e.url, target: "_blank", rel: "noopener", text: e.title, onclick: onEvent })]);
     if (e.status && e.status !== "confirmado") title.appendChild(el("span", { class: "badge", text: t("tbc") }));
     var where = [e.venue, e.address].filter(Boolean).join(" · ");
     var facts = el("ul", { class: "facts" }, [
@@ -722,7 +776,7 @@ footer p { margin: 4px 0; }
       e.organizer ? el("p", { class: "meta", text: t("org") + ": " + e.organizer }) : null,
       e.note ? el("p", { class: "meta", text: t("note") + " " + e.note }) : null,
       el("div", { class: "actions" }, [
-        el("a", { class: "btn primary", href: e.url, target: "_blank", rel: "noopener", text: t("open") + " ↗" }),
+        el("a", { class: "btn primary", href: e.url, target: "_blank", rel: "noopener", text: t("open") + " ↗", onclick: onEvent }),
         el("a", { class: "btn", href: gcalLink(e), target: "_blank", rel: "noopener", text: t("gcal") })
       ])
     ]);
@@ -851,7 +905,7 @@ footer p { margin: 4px 0; }
       var issue = base + "/issues/new?template=novo-evento.yml";
       suggest.href = issue;
       suggest.hidden = false;
-      box.appendChild(el("a", { class: "btn primary", href: issue, target: "_blank", rel: "noopener", text: t("addIssue") + " ↗" }));
+      box.appendChild(el("a", { class: "btn primary", href: issue, target: "_blank", rel: "noopener", text: t("addIssue") + " ↗", onclick: function () { track("cta/sugerir", "Sugerir evento"); } }));
       box.appendChild(el("a", { class: "btn", href: base + "/blob/main/data/events.json", target: "_blank", rel: "noopener", text: t("addPR") }));
     } else {
       suggest.hidden = true;
@@ -864,6 +918,7 @@ footer p { margin: 4px 0; }
     document.documentElement.lang = state.lang === "en" ? "en" : (state.lang === "pn" ? "es" : "pt-BR");
     document.querySelectorAll("[data-i18n]").forEach(function (n) { var v = t(n.dataset.i18n); if (typeof v === "string") n.textContent = v; });
     document.querySelectorAll("[data-i18n-placeholder]").forEach(function (n) { n.placeholder = t(n.dataset.i18nPlaceholder); });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (n) { var v = t(n.dataset.i18nAria); if (typeof v === "string") n.setAttribute("aria-label", v); });
     document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.lang === state.lang ? "true" : "false"); });
     if (DATA.updated) {
       var d = new Date(DATA.updated + "T12:00:00-03:00");
@@ -875,8 +930,15 @@ footer p { margin: 4px 0; }
 
   // Eventos
   document.querySelectorAll(".lang button").forEach(function (b) {
-    b.addEventListener("click", function () { store("riotech.lang", b.dataset.lang); applyLang(b.dataset.lang); });
+    b.addEventListener("click", function () {
+      var next = b.dataset.lang;
+      var changed = next !== state.lang;
+      store("riotech.lang", next);
+      applyLang(next);
+      if (changed) track("idioma/" + langSlug(next), next === "pn" ? "Portunhol" : (next === "en" ? "English" : "Português"));
+    });
   });
+  document.getElementById("cta-suggest").addEventListener("click", function () { track("cta/sugerir", "Sugerir evento"); });
   document.getElementById("theme").addEventListener("click", function () {
     var next = effectiveDark() ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
@@ -896,6 +958,35 @@ footer p { margin: 4px 0; }
   document.getElementById("q").addEventListener("input", function (ev) {
     clearTimeout(qTimer); qTimer = setTimeout(function () { state.q = ev.target.value.trim(); render(); }, 120);
   });
+
+  function showFeedback(voted) {
+    var ask = document.getElementById("feedback-ask");
+    var thanks = document.getElementById("feedback-thanks");
+    ask.hidden = !!voted;
+    thanks.hidden = !voted;
+    document.getElementById("feedback").setAttribute("aria-labelledby", voted ? "feedback-thanks-text" : "feedback-q");
+    var wa = document.getElementById("fb-wa");
+    if (WHATSAPP_URL) {
+      wa.href = WHATSAPP_URL;
+      wa.target = "_blank";
+      wa.rel = "noopener";
+      wa.hidden = false;
+    } else {
+      wa.hidden = true;
+      wa.removeAttribute("href");
+    }
+    var base = (REPO || "https://github.com/rdev66/agenda-riotech").replace(/\/$/, "");
+    document.getElementById("fb-gh").href = base + "/issues/new?template=feedback.yml";
+  }
+  function castVote(value) {
+    store("agenda-feedback", value);
+    track("feedback/" + value, value === "sim" ? "Sim" : "Não");
+    showFeedback(true);
+  }
+  document.getElementById("fb-yes").addEventListener("click", function () { castVote("sim"); });
+  document.getElementById("fb-no").addEventListener("click", function () { castVote("nao"); });
+  var priorVote = load("agenda-feedback");
+  showFeedback(priorVote === "sim" || priorVote === "nao");
 
   // Idioma inicial: escolha salva, senão o do navegador.
   var saved = load("riotech.lang");
@@ -922,5 +1013,15 @@ footer p { margin: 4px 0; }
  function f(){ var y=Math.min(window.scrollY, 600); ls.forEach(function(l){ l.style.transform="translateY("+(y*parseFloat(l.dataset.d)).toFixed(1)+"px)"; }); tick=false; }
  window.addEventListener("scroll", function(){ if(!tick){ tick=true; requestAnimationFrame(f);} }, {passive:true}); f(); })();
 </script>
+<script>
+/* GoatCounter, sem cookies. Não conta no localhost, em 127.0.0.1, nem com ?nocount. */
+(function () {
+  var host = location.hostname;
+  var local = host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
+  var nocount = /(?:^|[?&])nocount(?:[=&]|$)/.test(location.search);
+  window.goatcounter = { no_onload: local || nocount, allow_local: false };
+})();
+</script>
+<script data-goatcounter="https://agenda-riotech.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
