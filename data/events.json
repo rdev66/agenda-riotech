@@ -5529,6 +5529,34 @@
       "added": "2026-11-11"
     },
     {
+      "title": "Círculo Âncora Rio",
+      "start": "2026-11-19T09:00:00-03:00",
+      "end": "2026-11-19T13:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/7rg8eqx7",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/7rg8eqx7 Endereço: Av. Prof. Pereira Reis, 76 Rio de Janeiro, RJ Brasil Organizado por Carolina Court"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "id": "2026-11-19-circulo-ancora-rio",
+      "added": "2026-11-10"
+    },
+    {
       "title": "Happy Hour + Download Web Summit Lisboa",
       "start": "2026-11-19T17:00:00-03:00",
       "end": "2026-11-19T21:00:00-03:00",
@@ -5619,6 +5647,34 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Google News Summit: Diálogos Regionais",
+      "start": "2026-11-24T09:00:00-03:00",
+      "end": "2026-11-24T13:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/6vyb1wm8",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/6vyb1wm8 Endereço: Av. Prof. Pereira Reis, 76 Rio de Janeiro, RJ Brasil Organizado por Carolina Court"
+      },
+      "tags": [
+        "conferencia"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "id": "2026-11-24-google-news-summit-dialogos-regionais",
+      "added": "2026-11-10"
+    },
+    {
       "title": "Rio Climate and Carbon Happy Hour",
       "start": "2026-11-25T19:00:00-03:00",
       "end": "2026-11-25T22:00:00-03:00",
@@ -5673,6 +5729,34 @@
       "id": "2026-11-26-2o-encontro-da-rede-dr-empreendedor",
       "source": "sympla.com.br",
       "added": "2026-11-03"
+    },
+    {
+      "title": "AUTISMO, GESTÃO PÚBLICA E CUIDADO INTEGRADO",
+      "start": "2026-11-26T09:00:00-03:00",
+      "end": "2026-11-26T12:30:00-03:00",
+      "time_known": true,
+      "venue": "Porto Maravalley, Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/8kyh1bq1",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/8kyh1bq1 Endereço: Porto Maravalley Rio de Janeiro, RJ Brasil Organizado por Carolina Court"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "id": "2026-11-26-autismo-gestao-publica-e-cuidado-integrado",
+      "added": "2026-11-10"
     },
     {
       "title": "Happy Hour Maravalley",
