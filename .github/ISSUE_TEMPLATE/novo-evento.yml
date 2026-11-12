@@ -1,13 +1,36 @@
 name: Sugerir um evento
-description: Mande o link de um evento de tecnologia no Rio (ou online da comunidade). Um robô abre o PR.
+description: "Mande o link de um evento de tecnologia ou de um rolê no Rio. Um robô abre o PR."
 title: "Evento: "
 labels: ["novo-evento"]
 body:
+  - type: dropdown
+    id: agenda
+    attributes:
+      label: Agenda
+      description: "Tech é tecnologia. Rolês é a vida social no Rio."
+      options:
+        - Tech
+        - Rolês
+    validations:
+      required: true
+  - type: dropdown
+    id: categoria
+    attributes:
+      label: Categoria
+      description: "Para a agenda Rolês. Em Tech, deixe Nenhuma."
+      options:
+        - Nenhuma
+        - Festas
+        - "Música ao vivo"
+        - Cinema especial
+        - Comunidades
+        - Cultura
+        - "Ao ar livre"
   - type: input
     id: link
     attributes:
       label: Link do evento
-      description: Página oficial (Luma, Meetup, Sympla, Even3, Eventbrite ou site do evento).
+      description: "Página oficial (Luma, Meetup, Sympla, Even3, Eventbrite ou site do evento)."
       placeholder: https://luma.com/...
     validations:
       required: true

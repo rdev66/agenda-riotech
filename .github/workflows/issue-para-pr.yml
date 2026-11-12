@@ -26,6 +26,7 @@ jobs:
         if: steps.link.outputs.url != ''
         env:
           URL: ${{ steps.link.outputs.url }}
+          AGENDA_CORPO: ${{ github.event.issue.body }}
         run: |
           python scripts/importar.py --url "$URL" --relatorio relatorio.md
           python scripts/validar.py
@@ -38,4 +39,6 @@ jobs:
           commit-message: "Evento sugerido na issue #${{ github.event.issue.number }}"
           title: "Evento da issue #${{ github.event.issue.number }}"
           body-path: relatorio.md
-          add-paths: data/events.json
+          add-paths: |
+            data/events.json
+            data/roles.json

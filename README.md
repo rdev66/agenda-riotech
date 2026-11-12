@@ -6,24 +6,38 @@ Eventos de tecnologia no Rio de Janeiro num lugar só: meetups, conferências, h
 
 ## Como funciona
 
-- **O site** é um `index.html` estático que lê `data/events.json` e `data/tags.json`. Sem framework e sem build.
-- **Os dados** ficam em `data/events.json`, um evento por objeto. Todo PR passa pelo `scripts/validar.py` e pelos testes.
+- **O site** é um `index.html` estático, sem framework e sem build. A aba Tech lê `data/events.json` e `data/tags.json`. A aba Rolês lê `data/roles.json`, `data/tags_roles.json` e `data/roles_fixos.json` só quando abre.
+- **Os dados** ficam em JSON, um evento por objeto. Todo PR passa pelo `scripts/validar.py` e pelos testes.
 - **O importador** (`scripts/importar.py`, só biblioteca padrão do Python):
   - lê páginas de evento (Luma, Meetup, Sympla, Even3, Eventbrite) pelos dados estruturados `schema.org/Event`;
-  - lê calendários iCal listados em `fontes.json`;
-  - lê os links de uma exportação do grupo do WhatsApp.
-  Nunca sobrescreve o que alguém corrigiu à mão: só completa campos vazios.
+  - lê calendários iCal listados em `fontes.json` (Tech) ou `fontes_roles.json` (Rolês);
+  - lê os links de uma exportação do grupo do WhatsApp, só na agenda Tech.
+  Nunca sobrescreve o que alguém corrigiu à mão: só completa campos vazios. Na agenda Rolês, uma fonte só entra se o `robots.txt` e os termos deixam ler, e se a página tem iCal ou `schema.org/Event` em JSON-LD.
 - **Automação no GitHub Actions:**
-  - `importar.yml`: todo dia às 08:17 (Rio), lê `fontes.json` e abre um PR com os eventos novos;
-  - `issue-para-pr.yml`: quem abre uma issue «Sugerir um evento» com o link recebe um PR pronto;
+  - `importar.yml`: todo dia às 08:17 (Rio), lê `fontes.json` e abre um PR em `importador/diario`; no mesmo horário lê `fontes_roles.json` e abre outro PR em `importador/roles-diario`;
+  - `issue-para-pr.yml`: quem abre uma issue «Sugerir um evento» com o link recebe um PR pronto, na agenda escolhida;
   - `validar.yml`: valida dados e roda os testes em todo PR;
   - `pages.yml`: publica o site no GitHub Pages a cada push na `main`.
 
+## Agenda Rolês
+
+A mesma página tem uma segunda agenda, **Rolês**: festas, rodas, cinema especial, comunidades, cultura e rolê ao ar livre. A aba fica embaixo do título. `#roles` abre Rolês; sem hash, a última aba escolhida (ou Tech).
+
+Os dados são `data/roles.json`. Os encontros que se repetem toda semana ou todo mês ficam em `data/roles_fixos.json`, com a regra e o link que confirma. A página monta as próximas 4 semanas e marca o cartão com «Fixo · confira antes».
+
+O importador da Rolês não raspa HTML, Instagram, Facebook nem WhatsApp de terceiros. Cada fonte em `fontes_roles.json` precisa de iCal ou de JSON-LD `schema.org/Event`, e o `robots.txt` e os termos precisam deixar ler. Se um dos dois falha, a fonte fica `"ativo": false` com o motivo em `"nota"`.
+
+**InterNations é manual.** A comunidade é só para membros, então o importador não entra. Quem participa cola o link da página do encontro na issue «Sugerir um evento», escolhe a agenda **Rolês** e, se souber, a categoria.
+
+```bash
+python3 scripts/importar.py --agenda roles --fontes fontes_roles.json --dry-run
+```
+
 ## Como sugerir um evento
 
-1. **Mais fácil:** abra uma issue com o modelo **Sugerir um evento** e cole o link. O robô abre o PR.
-2. **Direto:** edite `data/events.json` e abra um PR. Veja os campos em [CONTRIBUTING.md](CONTRIBUTING.md).
-3. **Pelo WhatsApp:** mande o link no grupo. Quem mantém a agenda roda o importador com a exportação do chat (abaixo).
+1. **Mais fácil:** abra uma issue com o modelo **Sugerir um evento**, escolha **Tech** ou **Rolês** e cole o link. O robô abre o PR no arquivo certo.
+2. **Direto:** edite `data/events.json` (Tech) ou `data/roles.json` (Rolês) e abra um PR. Veja os campos em [CONTRIBUTING.md](CONTRIBUTING.md).
+3. **Pelo WhatsApp:** mande o link no grupo da RioTech. Quem mantém a agenda roda o importador com a exportação do chat (abaixo). Isso vale para a agenda Tech.
 
 ## Rodar localmente
 
@@ -36,8 +50,9 @@ python3 -m unittest discover -s scripts
 Importar à mão:
 
 ```bash
-python3 scripts/importar.py --url https://luma.com/xxxx
-python3 scripts/importar.py --fontes fontes.json --dry-run
+python3 scripts/importar.py --agenda tech --url https://luma.com/xxxx
+python3 scripts/importar.py --agenda tech --fontes fontes.json --dry-run
+python3 scripts/importar.py --agenda roles --fontes fontes_roles.json --dry-run
 # WhatsApp → «Exportar conversa» (sem mídia) → _chat.txt
 python3 scripts/importar.py --whatsapp ~/Downloads/_chat.txt --desde 2026-10-01
 ```
