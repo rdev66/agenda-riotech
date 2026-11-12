@@ -26,6 +26,11 @@
   try {
     var t = localStorage.getItem("riotech.theme");
     if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    var raw = localStorage.getItem("agenda-feedback");
+    if (!raw) return;
+    var saved = JSON.parse(raw);
+    if (saved && saved.paso === 2) document.documentElement.setAttribute("data-feedback", "done");
+    else if (saved && saved.paso === 1 && typeof saved.resposta === "string") document.documentElement.setAttribute("data-feedback", "step2");
   } catch (e) {}
 })();
 </script>
@@ -290,49 +295,72 @@ details[open] summary::after { content: " –"; }
 .cta p { margin: 0; color: var(--muted); max-width: 60ch; }
 #pr-note a { color: var(--accent); font-weight: 600; }
 
-#list-end { height: 1px; }
+html[data-feedback="done"] #feedback { display: none !important; }
 .feedback {
-  position: relative; margin: 4px 0 22px; padding: 14px 16px;
-  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  margin: 10px 0 0; padding: 6px 10px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: none;
 }
 .feedback [hidden] { display: none !important; }
-.feedback h2, .feedback-done, .feedback legend, .feedback-label {
-  font-family: var(--display); font-weight: 700; letter-spacing: -.02em; margin: 0 0 10px;
+.feedback-line { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.feedback h2, .feedback-done {
+  margin: 0; font-family: var(--display); font-weight: 700; font-size: 14px; line-height: 1.2; letter-spacing: -.02em;
 }
-.feedback h2, .feedback-done, .feedback legend { font-size: 18px; }
-.feedback-label { font-size: 16px; }
-.feedback-lights, .feedback-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.feedback-lights button {
-  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
-  border: 1px solid var(--line); background: var(--bg); color: var(--ink);
-  border-radius: 999px; padding: 8px 14px; font-weight: 600; font-size: 14px;
+.feedback h2 { flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.feedback-done { line-height: 32px; }
+.feedback-lights { display: flex; flex: none; flex-wrap: nowrap; gap: 6px; }
+.feedback-lights button, #fb-close {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 32px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer;
+  border-radius: 999px; font-weight: 600; font-size: 13px; line-height: 1;
 }
-.feedback-lights button:hover { border-color: var(--ink); }
+.feedback-lights button { padding: 0 10px; }
+.feedback-lights button:hover, #fb-close:hover { border-color: var(--ink); }
 .feedback-lights button[aria-checked="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.feedback-step2 { display: grid; gap: 14px; }
+#fb-close { flex: none; width: 32px; padding: 0; background: transparent; }
+.feedback-fold { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .28s ease; }
+.feedback-fold.is-open { grid-template-rows: 1fr; }
+html[data-feedback="step2"] .feedback-fold { grid-template-rows: 1fr; transition: none; }
+.feedback-fold-inner { overflow: hidden; min-height: 0; }
+.feedback-step2 { display: grid; gap: 10px; padding-top: 10px; }
 .feedback fieldset { border: 0; margin: 0; padding: 0; }
+.feedback legend, .feedback-label {
+  font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: -.02em; margin: 0 0 6px;
+}
 .feedback legend { padding: 0; float: none; width: 100%; }
-.feedback-choices { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.feedback-choices, .feedback-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .feedback-choices label { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; cursor: pointer; }
 .feedback-comment-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 .feedback textarea {
   width: 100%; margin-top: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink);
-  border-radius: 12px; padding: 10px 12px; font: inherit; resize: vertical; min-height: 72px;
+  border-radius: 12px; padding: 8px 10px; font: inherit; resize: vertical; min-height: 64px;
 }
 .feedback-count { font-family: var(--mono); font-size: 12px; color: var(--muted); }
 .feedback-hp {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
-.feedback-gh { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.feedback-gh { margin: 0; font-size: 13px; }
 .feedback-gh a { color: var(--accent); font-weight: 600; }
 .feedback button:focus-visible, .feedback a:focus-visible,
 .feedback input:focus-visible, .feedback textarea:focus-visible {
   outline: 2px solid var(--accent); outline-offset: 2px;
 }
-@media (max-width: 600px) {
-  .feedback-lights { flex-direction: column; }
-  .feedback-lights button { justify-content: flex-start; }
+.feedback.is-leaving { overflow: hidden; transition: height .28s ease, margin .28s ease, padding .28s ease, border-width .28s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .feedback-fold, .feedback.is-leaving { transition: none; }
+}
+@media (max-width: 480px) {
+  .feedback { padding: 6px 8px; }
+  .feedback-line { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; row-gap: 4px; align-items: center; }
+  .feedback h2 { grid-column: 1 / -1; white-space: normal; overflow: visible; text-overflow: clip; }
+  .feedback-lights { grid-column: 1; }
+  #fb-close { grid-column: 2; }
+  .feedback-lights .fb-label {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+  .feedback-lights button { padding: 0 8px; }
 }
 
 footer { padding-block: 8px 36px; color: var(--muted); font-size: 13px; }
@@ -446,6 +474,55 @@ footer p { margin: 4px 0; }
 </header>
 
 <main class="wrap">
+  <section class="feedback" id="feedback" aria-labelledby="feedback-q">
+    <div class="feedback-line" id="feedback-step1">
+      <h2 id="feedback-q" data-i18n="fbAsk">Como a agenda está te servindo?</h2>
+      <div class="feedback-lights" id="fb-lights" role="radiogroup" aria-labelledby="feedback-q">
+        <button type="button" role="radio" aria-checked="false" data-light="verde" tabindex="0" data-i18n-aria="fbVerde" aria-label="Uso sempre" title="Uso sempre"><span aria-hidden="true">🟢</span> <span class="fb-label" data-i18n="fbVerde">Uso sempre</span></button>
+        <button type="button" role="radio" aria-checked="false" data-light="amarelo" tabindex="-1" data-i18n-aria="fbAmarelo" aria-label="Às vezes" title="Às vezes"><span aria-hidden="true">🟡</span> <span class="fb-label" data-i18n="fbAmarelo">Às vezes</span></button>
+        <button type="button" role="radio" aria-checked="false" data-light="vermelho" tabindex="-1" data-i18n-aria="fbVermelho" aria-label="Não me serviu" title="Não me serviu"><span aria-hidden="true">🔴</span> <span class="fb-label" data-i18n="fbVermelho">Não me serviu</span></button>
+      </div>
+      <button type="button" id="fb-close" data-i18n-aria="fbClose" aria-label="Fechar" title="Fechar">✕</button>
+    </div>
+    <div class="feedback-fold" id="feedback-fold" inert>
+      <div class="feedback-fold-inner">
+        <form id="feedback-step2" class="feedback-step2">
+          <fieldset>
+            <legend id="fb-went" data-i18n="fbWent">Já foi a algum evento que descobriu aqui?</legend>
+            <div class="feedback-choices">
+              <label><input type="radio" name="foi_evento" value="sim"> <span data-i18n="fbYes">Sim</span></label>
+              <label><input type="radio" name="foi_evento" value="nao"> <span data-i18n="fbNotYet">Ainda não</span></label>
+            </div>
+          </fieldset>
+          <div role="group" aria-labelledby="fb-suggest">
+            <p id="fb-suggest" class="feedback-label" data-i18n="fbSuggest">O que ajudaria?</p>
+            <div class="feedback-chips">
+              <button type="button" class="chip" data-sug="ia" aria-pressed="false" data-i18n="fbIa">Mais eventos de IA</button>
+              <button type="button" class="chip" data-sug="whatsapp" aria-pressed="false" data-i18n="fbWa">Aviso no WhatsApp</button>
+              <button type="button" class="chip" data-sug="bairro" aria-pressed="false" data-i18n="fbBairro">Filtro por bairro</button>
+              <button type="button" class="chip" data-sug="gratis" aria-pressed="false" data-i18n="fbGratis">Eventos gratuitos</button>
+            </div>
+          </div>
+          <div>
+            <div class="feedback-comment-head">
+              <label for="fb-comment" class="feedback-label" data-i18n="fbComment">O que faria você usar mais?</label>
+              <span id="fb-count" class="feedback-count">0/280</span>
+            </div>
+            <textarea id="fb-comment" maxlength="280" aria-describedby="fb-count"></textarea>
+          </div>
+          <div class="feedback-hp" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <div class="actions">
+            <button type="submit" class="btn primary" id="fb-send" data-i18n="fbSend">Enviar</button>
+            <button type="button" class="btn" id="fb-skip" data-i18n="fbSkip">Pular</button>
+          </div>
+          <p class="feedback-gh"><a id="fb-gh" target="_blank" rel="noopener" data-i18n="fbGithub" href="https://github.com/rdev66/agenda-riotech/issues/new?template=feedback.yml">Prefere o GitHub?</a></p>
+        </form>
+      </div>
+    </div>
+    <p id="feedback-done" class="feedback-done" hidden data-i18n="fbDone">Valeu! 🙌</p>
+  </section>
   <section class="controls" aria-label="Filtros">
     <input id="q" class="search" type="search" autocomplete="off" data-i18n-placeholder="search" placeholder="Buscar evento, lugar ou tema">
     <div>
@@ -486,58 +563,12 @@ footer p { margin: 4px 0; }
   <section id="list" aria-live="polite">
     <p class="empty" data-i18n="loading">Carregando eventos…</p>
   </section>
-  <div id="list-end" aria-hidden="true"></div>
 
   <section class="cta" id="cta" aria-labelledby="cta-full-title">
     <h2 id="cta-full-title" data-i18n="addTitle">Tem um evento?</h2>
     <p data-i18n="addBody">A agenda é aberta e vive no GitHub. Mande o link e ele entra na próxima atualização.</p>
     <p id="pr-note"></p>
     <div class="actions" id="cta-actions"></div>
-  </section>
-
-  <section class="feedback" id="feedback" hidden aria-labelledby="feedback-q">
-    <div id="feedback-step1">
-      <h2 id="feedback-q" data-i18n="fbAsk">Como a agenda está te servindo?</h2>
-      <div class="feedback-lights" id="fb-lights" role="radiogroup" aria-labelledby="feedback-q">
-        <button type="button" role="radio" aria-checked="false" data-light="verde" tabindex="0"><span aria-hidden="true">🟢</span> <span data-i18n="fbVerde">Uso sempre</span></button>
-        <button type="button" role="radio" aria-checked="false" data-light="amarelo" tabindex="-1"><span aria-hidden="true">🟡</span> <span data-i18n="fbAmarelo">Às vezes</span></button>
-        <button type="button" role="radio" aria-checked="false" data-light="vermelho" tabindex="-1"><span aria-hidden="true">🔴</span> <span data-i18n="fbVermelho">Não me serviu</span></button>
-      </div>
-    </div>
-    <form id="feedback-step2" class="feedback-step2" hidden>
-      <fieldset>
-        <legend id="fb-went" data-i18n="fbWent">Já foi a algum evento que descobriu aqui?</legend>
-        <div class="feedback-choices">
-          <label><input type="radio" name="foi_evento" value="sim" required> <span data-i18n="fbYes">Sim</span></label>
-          <label><input type="radio" name="foi_evento" value="nao"> <span data-i18n="fbNotYet">Ainda não</span></label>
-        </div>
-      </fieldset>
-      <div role="group" aria-labelledby="fb-suggest">
-        <p id="fb-suggest" class="feedback-label" data-i18n="fbSuggest">O que ajudaria?</p>
-        <div class="feedback-chips">
-          <button type="button" class="chip" data-sug="ia" aria-pressed="false" data-i18n="fbIa">Mais eventos de IA</button>
-          <button type="button" class="chip" data-sug="whatsapp" aria-pressed="false" data-i18n="fbWa">Aviso no WhatsApp</button>
-          <button type="button" class="chip" data-sug="bairro" aria-pressed="false" data-i18n="fbBairro">Filtro por bairro</button>
-          <button type="button" class="chip" data-sug="gratis" aria-pressed="false" data-i18n="fbGratis">Eventos gratuitos</button>
-        </div>
-      </div>
-      <div>
-        <div class="feedback-comment-head">
-          <label for="fb-comment" class="feedback-label" data-i18n="fbComment">O que faria você usar mais?</label>
-          <span id="fb-count" class="feedback-count">0/280</span>
-        </div>
-        <textarea id="fb-comment" maxlength="280" aria-describedby="fb-count"></textarea>
-      </div>
-      <div class="feedback-hp" aria-hidden="true">
-        <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-      </div>
-      <div class="actions">
-        <button type="submit" class="btn primary" id="fb-send" data-i18n="fbSend">Enviar</button>
-        <button type="button" class="btn" id="fb-skip" data-i18n="fbSkip">Pular</button>
-      </div>
-    </form>
-    <p id="feedback-done" class="feedback-done" hidden data-i18n="fbDone">Valeu! 🙌</p>
-    <p class="feedback-gh"><a id="fb-gh" target="_blank" rel="noopener" data-i18n="fbGithub" href="https://github.com/rdev66/agenda-riotech/issues/new?template=feedback.yml">Prefere o GitHub?</a></p>
   </section>
 </main>
 
@@ -581,7 +612,7 @@ footer p { margin: 4px 0; }
       fbAsk: "Como a agenda está te servindo?", fbVerde: "Uso sempre", fbAmarelo: "Às vezes", fbVermelho: "Não me serviu",
       fbWent: "Já foi a algum evento que descobriu aqui?", fbYes: "Sim", fbNotYet: "Ainda não",
       fbSuggest: "O que ajudaria?", fbIa: "Mais eventos de IA", fbWa: "Aviso no WhatsApp", fbBairro: "Filtro por bairro", fbGratis: "Eventos gratuitos",
-      fbComment: "O que faria você usar mais?", fbSend: "Enviar", fbSkip: "Pular", fbDone: "Valeu! 🙌", fbGithub: "Prefere o GitHub?",
+      fbComment: "O que faria você usar mais?", fbSend: "Enviar", fbSkip: "Pular", fbDone: "Valeu! 🙌", fbGithub: "Prefere o GitHub?", fbClose: "Fechar",
       loadErr: "Não deu para carregar os eventos. Tente recarregar a página.", filtering: "Tag", locale: "pt-BR"
     },
     en: {
@@ -609,7 +640,7 @@ footer p { margin: 4px 0; }
       fbAsk: "How useful is the agenda for you?", fbVerde: "I use it all the time", fbAmarelo: "Sometimes", fbVermelho: "Not useful",
       fbWent: "Have you been to an event you found here?", fbYes: "Yes", fbNotYet: "Not yet",
       fbSuggest: "What would help?", fbIa: "More AI events", fbWa: "WhatsApp alerts", fbBairro: "Filter by neighborhood", fbGratis: "Free events",
-      fbComment: "What would make you use it more?", fbSend: "Send", fbSkip: "Skip", fbDone: "Thanks! 🙌", fbGithub: "Prefer GitHub?",
+      fbComment: "What would make you use it more?", fbSend: "Send", fbSkip: "Skip", fbDone: "Thanks! 🙌", fbGithub: "Prefer GitHub?", fbClose: "Close",
       loadErr: "Couldn't load the events. Try reloading the page.", filtering: "Tag", locale: "en-GB"
     },
     pn: {
@@ -637,7 +668,7 @@ footer p { margin: 4px 0; }
       fbAsk: "¿Cómo la agenda te está sirviendo?", fbVerde: "La uso sempre", fbAmarelo: "Às veces", fbVermelho: "No me sirvió",
       fbWent: "¿Ya fuiste a algún evento que descubriste acá?", fbYes: "Sí", fbNotYet: "Todavía no",
       fbSuggest: "¿Qué te ayudaría?", fbIa: "Más eventos de IA", fbWa: "Aviso no WhatsApp", fbBairro: "Filtro por barrio", fbGratis: "Eventos de graça",
-      fbComment: "¿Qué te haría usarla más?", fbSend: "Mandar", fbSkip: "Pular", fbDone: "¡Valeu! 🙌", fbGithub: "¿Preferís el GitHub?",
+      fbComment: "¿Qué te haría usarla más?", fbSend: "Mandar", fbSkip: "Pular", fbDone: "¡Valeu! 🙌", fbGithub: "¿Preferís el GitHub?", fbClose: "Cerrar",
       loadErr: "No deu para cargar los eventos. Recargá la página.", filtering: "Tag", locale: "es"
     }
   };
@@ -978,7 +1009,12 @@ footer p { margin: 4px 0; }
     document.documentElement.lang = state.lang === "en" ? "en" : (state.lang === "pn" ? "es" : "pt-BR");
     document.querySelectorAll("[data-i18n]").forEach(function (n) { var v = t(n.dataset.i18n); if (typeof v === "string") n.textContent = v; });
     document.querySelectorAll("[data-i18n-placeholder]").forEach(function (n) { n.placeholder = t(n.dataset.i18nPlaceholder); });
-    document.querySelectorAll("[data-i18n-aria]").forEach(function (n) { var v = t(n.dataset.i18nAria); if (typeof v === "string") n.setAttribute("aria-label", v); });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (n) {
+      var v = t(n.dataset.i18nAria);
+      if (typeof v !== "string") return;
+      n.setAttribute("aria-label", v);
+      if (n.closest && n.closest("#feedback")) n.title = v;
+    });
     document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.lang === state.lang ? "true" : "false"); });
     if (DATA.updated) {
       var d = new Date(DATA.updated + "T12:00:00-03:00");
@@ -1029,8 +1065,12 @@ footer p { margin: 4px 0; }
     if (!o || typeof o.resposta !== "string" || (o.paso !== 1 && o.paso !== 2)) return null;
     return o;
   }
-  function saveProgress(resposta, paso) {
-    store("agenda-feedback", JSON.stringify({ resposta: resposta, paso: paso }));
+  function saveProgress(resposta, paso, semaforo) {
+    var prev = readProgress();
+    var o = { resposta: resposta, paso: paso };
+    var light = semaforo || (prev && prev.semaforo);
+    if (light === "verde" || light === "amarelo" || light === "vermelho") o.semaforo = light;
+    store("agenda-feedback", JSON.stringify(o));
   }
   function readVisits() {
     var o = readJson("agenda-visitas");
@@ -1089,34 +1129,95 @@ footer p { margin: 4px 0; }
     return v.n;
   }
 
-  var feedbackOpen = false;
+  retryQueue();
+  var visitasN = bumpVisits();
+
+  var feedbackEl = document.getElementById("feedback");
+  if (feedbackEl && document.documentElement.getAttribute("data-feedback") === "done") {
+    feedbackEl.remove();
+    feedbackEl = null;
+  }
+
   var step1Sent = false;
   var step2Done = false;
-  function showStep(step) {
-    document.getElementById("feedback-step1").hidden = step !== 1;
-    document.getElementById("feedback-step2").hidden = step !== 2;
-    document.getElementById("feedback-done").hidden = step !== "done";
-    var label = step === 2 ? "fb-went" : (step === "done" ? "feedback-done" : "feedback-q");
-    document.getElementById("feedback").setAttribute("aria-labelledby", label);
+  function markLights(light) {
+    document.querySelectorAll("#fb-lights [role=radio]").forEach(function (b) {
+      var on = b.getAttribute("data-light") === light;
+      b.setAttribute("aria-checked", on ? "true" : "false");
+      b.tabIndex = on ? 0 : -1;
+    });
   }
-  function revealFeedback() {
-    if (feedbackOpen) return;
+  function showStep(step) {
+    var line = document.getElementById("feedback-step1");
+    var fold = document.getElementById("feedback-fold");
+    var done = document.getElementById("feedback-done");
+    var box = document.getElementById("feedback");
+    if (!line || !fold || !done || !box) return;
+    if (step === "done") {
+      line.hidden = true;
+      fold.hidden = true;
+      fold.inert = true;
+      done.hidden = false;
+      box.setAttribute("aria-labelledby", "feedback-done");
+      return;
+    }
+    done.hidden = true;
+    line.hidden = false;
+    fold.hidden = false;
+    if (step === 2) {
+      fold.inert = false;
+      if (document.documentElement.getAttribute("data-feedback") === "step2") fold.classList.add("is-open");
+      else requestAnimationFrame(function () { fold.classList.add("is-open"); });
+      box.setAttribute("aria-labelledby", "fb-went");
+    } else {
+      fold.classList.remove("is-open");
+      fold.inert = true;
+      box.setAttribute("aria-labelledby", "feedback-q");
+    }
+  }
+  function collapseStrip() {
+    var el = document.getElementById("feedback");
+    if (!el) return;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { el.remove(); return; }
+    el.style.height = el.getBoundingClientRect().height + "px";
+    el.classList.add("is-leaving");
+    void el.offsetHeight;
+    el.style.height = "0px";
+    el.style.marginTop = "0px";
+    el.style.marginBottom = "0px";
+    el.style.paddingTop = "0px";
+    el.style.paddingBottom = "0px";
+    el.style.borderTopWidth = "0px";
+    el.style.borderBottomWidth = "0px";
+    var gone = false;
+    function finish() {
+      if (gone) return;
+      gone = true;
+      if (el.parentNode) el.remove();
+    }
+    el.addEventListener("transitionend", function (ev) {
+      if (ev.target === el && ev.propertyName === "height") finish();
+    });
+    setTimeout(finish, 450);
+  }
+  function thankAndLeave() {
+    if (step2Done) return;
+    step2Done = true;
     var prior = readProgress();
-    if (prior && prior.paso === 2) return;
-    feedbackOpen = true;
-    document.getElementById("feedback").hidden = false;
-    showStep(prior && prior.paso === 1 ? 2 : 1);
+    saveProgress(prior && prior.resposta ? prior.resposta : "", 2, prior && prior.semaforo);
+    showStep("done");
+    setTimeout(collapseStrip, 3000);
   }
   function pickLight(light) {
     if (step1Sent) return;
     if (light !== "verde" && light !== "amarelo" && light !== "vermelho") return;
     step1Sent = true;
-    var buttons = document.querySelectorAll("#fb-lights [role=radio]");
-    buttons.forEach(function (b) { b.setAttribute("aria-checked", b.getAttribute("data-light") === light ? "true" : "false"); });
+    markLights(light);
     var resposta;
     try { resposta = crypto.randomUUID(); } catch (e) { resposta = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0; return (c === "x" ? r : (r & 3 | 8)).toString(16); }); }
     var lang = state.lang === "en" || state.lang === "pn" ? state.lang : "pt";
-    saveProgress(resposta, 1);
+    saveProgress(resposta, 1, light);
     track("feedback/" + light, light);
     sendOrQueue({ resposta: resposta, etapa: 1, lang: lang, semaforo: light, visitas: visitasN });
     showStep(2);
@@ -1125,19 +1226,12 @@ footer p { margin: 4px 0; }
     var hp = document.querySelector("#feedback-step2 input[name=website]");
     return !!(hp && hp.value && hp.value.trim());
   }
-  function finishFeedback() {
-    if (step2Done) return;
-    step2Done = true;
-    var prior = readProgress();
-    saveProgress(prior && prior.resposta ? prior.resposta : "", 2);
-    showStep("done");
-  }
   function submitStep2(ev) {
     ev.preventDefault();
-    if (honeypotFilled()) { finishFeedback(); return; }
+    if (honeypotFilled()) { thankAndLeave(); return; }
     if (step2Done) return;
     var prior = readProgress();
-    if (!prior || !prior.resposta) { finishFeedback(); return; }
+    if (!prior || !prior.resposta) { thankAndLeave(); return; }
     var foi = document.querySelector("#feedback-step2 input[name=foi_evento]:checked");
     var sugestoes = [];
     document.querySelectorAll("#feedback-step2 [data-sug]").forEach(function (b) {
@@ -1147,61 +1241,54 @@ footer p { margin: 4px 0; }
     });
     var commentEl = document.getElementById("fb-comment");
     var comentario = (commentEl.value || "").trim().slice(0, 280);
-    step2Done = true;
     sendOrQueue({
       resposta: prior.resposta,
       etapa: 2,
-      foi_evento: !!(foi && foi.value === "sim"),
+      foi_evento: foi ? foi.value === "sim" : null,
       sugestoes: sugestoes,
       comentario: comentario
     });
-    saveProgress(prior.resposta, 2);
-    showStep("done");
+    thankAndLeave();
   }
 
-  var lightButtons = [].slice.call(document.querySelectorAll("#fb-lights [role=radio]"));
-  lightButtons.forEach(function (b, i) {
-    b.addEventListener("click", function () { pickLight(b.getAttribute("data-light")); });
-    b.addEventListener("keydown", function (ev) {
-      var next = -1;
-      if (ev.key === "ArrowRight" || ev.key === "ArrowDown") next = (i + 1) % lightButtons.length;
-      else if (ev.key === "ArrowLeft" || ev.key === "ArrowUp") next = (i - 1 + lightButtons.length) % lightButtons.length;
-      else return;
-      ev.preventDefault();
-      lightButtons.forEach(function (btn, idx) { btn.tabIndex = idx === next ? 0 : -1; });
-      lightButtons[next].focus();
+  if (feedbackEl) {
+    var priorFb = readProgress();
+    if (priorFb && priorFb.paso === 1) {
+      step1Sent = true;
+      if (priorFb.semaforo) markLights(priorFb.semaforo);
+      showStep(2);
+    }
+    var lightButtons = [].slice.call(document.querySelectorAll("#fb-lights [role=radio]"));
+    lightButtons.forEach(function (b, i) {
+      b.addEventListener("click", function () { pickLight(b.getAttribute("data-light")); });
+      b.addEventListener("keydown", function (ev) {
+        var next = -1;
+        if (ev.key === "ArrowRight" || ev.key === "ArrowDown") next = (i + 1) % lightButtons.length;
+        else if (ev.key === "ArrowLeft" || ev.key === "ArrowUp") next = (i - 1 + lightButtons.length) % lightButtons.length;
+        else return;
+        ev.preventDefault();
+        lightButtons.forEach(function (btn, idx) { btn.tabIndex = idx === next ? 0 : -1; });
+        lightButtons[next].focus();
+      });
     });
-  });
-  document.querySelectorAll("#feedback-step2 [data-sug]").forEach(function (b) {
-    b.addEventListener("click", function () {
-      b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    document.querySelectorAll("#feedback-step2 [data-sug]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+      });
     });
-  });
-  var commentBox = document.getElementById("fb-comment");
-  commentBox.addEventListener("input", function () {
-    document.getElementById("fb-count").textContent = commentBox.value.length + "/280";
-  });
-  document.getElementById("fb-send").addEventListener("click", function (ev) {
-    if (honeypotFilled()) { ev.preventDefault(); finishFeedback(); }
-  });
-  document.getElementById("feedback-step2").addEventListener("submit", submitStep2);
-  document.getElementById("fb-skip").addEventListener("click", function () { finishFeedback(); });
-  var gh = document.getElementById("fb-gh");
-  gh.href = (REPO || "https://github.com/rdev66/agenda-riotech").replace(/\/$/, "") + "/issues/new?template=feedback.yml";
-
-  retryQueue();
-  var visitasN = bumpVisits();
-  var userScrolled = false;
-  window.addEventListener("scroll", function () { userScrolled = true; }, { passive: true });
-  var listEnd = document.getElementById("list-end");
-  if (listEnd && "IntersectionObserver" in window) {
-    var endWatch = new IntersectionObserver(function (entries) {
-      if (!userScrolled) return;
-      if (entries.some(function (e) { return e.isIntersecting; })) revealFeedback();
+    var commentBox = document.getElementById("fb-comment");
+    commentBox.addEventListener("input", function () {
+      document.getElementById("fb-count").textContent = commentBox.value.length + "/280";
     });
-    endWatch.observe(listEnd);
+    document.getElementById("fb-send").addEventListener("click", function (ev) {
+      if (honeypotFilled()) { ev.preventDefault(); thankAndLeave(); }
+    });
+    document.getElementById("feedback-step2").addEventListener("submit", submitStep2);
+    document.getElementById("fb-skip").addEventListener("click", thankAndLeave);
+    document.getElementById("fb-close").addEventListener("click", thankAndLeave);
+    var gh = document.getElementById("fb-gh");
+    gh.href = (REPO || "https://github.com/rdev66/agenda-riotech").replace(/\/$/, "") + "/issues/new?template=feedback.yml";
   }
-  setTimeout(revealFeedback, 20000);
 
   // Idioma inicial: escolha salva, senão o do navegador.
   var saved = load("riotech.lang");
