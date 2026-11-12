@@ -1,0 +1,386 @@
+{
+  "updated": "2026-11-12",
+  "events": [
+    {
+      "title": "Lançamento de \"O Evangelho Segundo Zico\"",
+      "start": "2026-11-12T18:00:00-03:00",
+      "end": "2026-11-12T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Borges de Medeiros, 997",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://luma.com/4psa2tnq",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/mc/e8d47bb9-9878-4c72-bc79-2b89cd35b567.png",
+      "organizer": "Roberto",
+      "description": {
+        "pt": "Noite gratuita para lançar o livro sobre o Zico, na sede da Gávea, na Borges de Medeiros.",
+        "en": "Free evening to launch a book about Zico, at the Gávea venue on Borges de Medeiros."
+      },
+      "tags": [
+        "palestras"
+      ],
+      "status": "confirmado",
+      "categoria": "cultura",
+      "bairro": "Gávea",
+      "source": "Luma (Rio)",
+      "id": "2026-11-12-lancamento-de-o-evangelho-segundo-zico",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Rio - Botafogo",
+      "start": "2026-11-12T19:00:00-03:00",
+      "end": "2026-11-13T05:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/317374529",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Intercâmbio gratuito em Botafogo. Gente da cidade e de fora conversa em várias línguas, sem aula marcada.",
+        "en": "Free language exchange in Botafogo. Locals and visitors talk in several languages, with no set lesson."
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-11-12-mundo-lingo-rio-botafogo",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Game Night: Conecte-se, Jogue e Descubra!",
+      "start": "2026-11-14T19:00:00-03:00",
+      "end": "2026-11-14T22:00:00-03:00",
+      "time_known": true,
+      "venue": "VELLORA",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://luma.com/fqel4gx7",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/41/008aa030-b46b-41bc-abec-f595e433b4ba.png",
+      "organizer": "Instituto Florescer Caldeira",
+      "description": {
+        "pt": "Noite gratuita de games na Vellora. Alunos mostram jogos feitos em aula e o pessoal joga junto.",
+        "en": "Free game night at Vellora. Students show games built in class, and everyone plays."
+      },
+      "tags": [
+        "nerd-geek"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "source": "Luma (Rio)",
+      "id": "2026-11-14-game-night-conecte-se-jogue-e-descubra",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Botafogo/Humaitá",
+      "start": "2026-11-17T19:00:00-03:00",
+      "end": "2026-11-18T13:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/pznfbvyjcpbwb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Intercâmbio gratuito entre Botafogo e Humaitá. A conversa é em várias línguas, sem aula marcada.",
+        "en": "Free language exchange between Botafogo and Humaitá. People talk in several languages, with no set lesson."
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-11-17-mundo-lingo-botafogo-humaita",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Rio - Botafogo",
+      "start": "2026-11-19T19:00:00-03:00",
+      "end": "2026-11-20T05:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/317303370",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Intercâmbio gratuito em Botafogo. Gente da cidade e de fora conversa em várias línguas, sem aula marcada.",
+        "en": "Free language exchange in Botafogo. Locals and visitors talk in several languages, with no set lesson."
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-11-19-mundo-lingo-rio-botafogo",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Botafogo/Humaitá",
+      "start": "2026-11-24T19:00:00-03:00",
+      "end": "2026-11-25T13:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/pznfbvyjcpbgc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Intercâmbio gratuito entre Botafogo e Humaitá. A conversa é em várias línguas, sem aula marcada.",
+        "en": "Free language exchange between Botafogo and Humaitá. People talk in several languages, with no set lesson."
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-11-24-mundo-lingo-botafogo-humaita",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Rio - Botafogo",
+      "start": "2026-11-26T19:00:00-03:00",
+      "end": "2026-11-27T05:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/rznfbvyjcpbjc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Intercâmbio gratuito em Botafogo. Gente da cidade e de fora conversa em várias línguas, sem aula marcada.",
+        "en": "Free language exchange in Botafogo. Locals and visitors talk in several languages, with no set lesson."
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-11-26-mundo-lingo-rio-botafogo",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Botafogo/Humaitá",
+      "start": "2026-12-01T19:00:00-03:00",
+      "end": "2026-12-02T13:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/pznfbvyjcqbcb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Intercâmbio gratuito entre Botafogo e Humaitá. A conversa é em várias línguas, sem aula marcada.",
+        "en": "Free language exchange between Botafogo and Humaitá. People talk in several languages, with no set lesson."
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-12-01-mundo-lingo-botafogo-humaita",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Rio - Botafogo",
+      "start": "2026-12-03T19:00:00-03:00",
+      "end": "2026-12-04T05:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/rznfbvyjcqbfb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Intercâmbio gratuito em Botafogo. Gente da cidade e de fora conversa em várias línguas, sem aula marcada.",
+        "en": "Free language exchange in Botafogo. Locals and visitors talk in several languages, with no set lesson."
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-12-03-mundo-lingo-rio-botafogo",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Botafogo/Humaitá",
+      "start": "2026-12-08T19:00:00-03:00",
+      "end": "2026-12-09T13:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/pznfbvyjcqblb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Intercâmbio gratuito entre Botafogo e Humaitá. A conversa é em várias línguas, sem aula marcada.",
+        "en": "Free language exchange between Botafogo and Humaitá. People talk in several languages, with no set lesson."
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-12-08-mundo-lingo-botafogo-humaita",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Rio - Botafogo",
+      "start": "2026-12-10T19:00:00-03:00",
+      "end": "2026-12-11T05:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/rznfbvyjcqbnb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Intercâmbio gratuito em Botafogo. Gente da cidade e de fora conversa em várias línguas, sem aula marcada.",
+        "en": "Free language exchange in Botafogo. Locals and visitors talk in several languages, with no set lesson."
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-12-10-mundo-lingo-rio-botafogo",
+      "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Botafogo/Humaitá",
+      "start": "2026-12-15T19:00:00-03:00",
+      "end": "2026-12-16T13:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/pznfbvyjcqbtb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Intercâmbio gratuito entre Botafogo e Humaitá. A conversa é em várias línguas, sem aula marcada.",
+        "en": "Free language exchange between Botafogo and Humaitá. People talk in several languages, with no set lesson."
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-12-15-mundo-lingo-botafogo-humaita",
+      "added": "2026-11-12"
+    }
+  ]
+}

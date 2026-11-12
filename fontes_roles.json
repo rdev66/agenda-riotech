@@ -1,0 +1,194 @@
+{
+  "_leia": "Fontes da agenda Rolês. O importador só lê iCal ou schema.org/Event em JSON-LD. «ativo»: false fica de fora. Sem HTML solto, Instagram, Facebook ou WhatsApp de terceiros.",
+  "fontes": [
+    {
+      "nome": "Resident Advisor (Rio)",
+      "tipo": "jsonld",
+      "url": "https://ra.co/events/br/rio-de-janeiro",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "robots.txt deixa a listagem (bloqueia /pro, /user e /api), mas a página responde 403 ao leitor e o ToS proíbe scripts, bots e scrapers. Sem iCal público confirmado."
+    },
+    {
+      "nome": "Shotgun (Rio)",
+      "tipo": "jsonld",
+      "url": "https://shotgun.live/cities/rio-de-janeiro",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "robots.txt tem Allow: /, mas a cidade e o sitemap respondem 429. Não deu para confirmar iCal nem JSON-LD de Event."
+    },
+    {
+      "nome": "Sympla (festas, shows, cultura, Rio)",
+      "tipo": "jsonld",
+      "url": "https://www.sympla.com.br/eventos/rio-de-janeiro-rj",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "robots.txt permite a leitura. A listagem não traz schema.org/Event nem iCal. As páginas de evento que a agenda Tech já lê usam __NEXT_DATA__, não JSON-LD. Sem raspagem de HTML."
+    },
+    {
+      "nome": "Luma (Rio)",
+      "tipo": "jsonld",
+      "url": "https://luma.com/rio",
+      "ativo": true,
+      "metodo": "jsonld",
+      "nota": "robots.txt não bloqueia /rio. A página traz ItemList com schema.org/Event. O ToS público não proíbe a leitura. Calendários sociais separados não aparecem com id de iCal; a lista mistura tech e rolê, e o classificador fica só com o que casa a categoria."
+    },
+    {
+      "nome": "Fever (Rio)",
+      "tipo": "jsonld",
+      "url": "https://feverup.com/pt/rio-de-janeiro",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "JSON-LD da cidade é Corporation, WebSite e ItemList de categorias, sem Event. A página de festas também não tem Event nem iCal."
+    },
+    {
+      "nome": "Eventbrite (Rio)",
+      "tipo": "jsonld",
+      "url": "https://www.eventbrite.com/d/brazil--rio-de-janeiro/music/",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "A listagem responde 405 e o ToS proíbe robôs e scrapers. Sem feed iCal confirmado."
+    },
+    {
+      "nome": "Bandsintown (Rio)",
+      "tipo": "jsonld",
+      "url": "https://www.bandsintown.com/c/rio-de-janeiro-brazil",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "A página da cidade responde 403. Não há feed iCal nem JSON-LD confirmado. A API pública pede app_id (cadastro), então não entra."
+    },
+    {
+      "nome": "Songkick (Rio)",
+      "tipo": "jsonld",
+      "url": "https://www.songkick.com/metro-areas/27232-brazil-rio-de-janeiro",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "Há MusicEvent em JSON-LD e o robots.txt deixa a página da cidade, mas o ToS (3.3.6) proíbe robôs e scrapers de copiar ou republicar o conteúdo."
+    },
+    {
+      "nome": "Nomads.com (Rio)",
+      "tipo": "jsonld",
+      "url": "https://nomads.com/meetups/rio-de-janeiro",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "robots.txt e a página de meetups respondem 403. Sem iCal nem JSON-LD confirmado."
+    },
+    {
+      "nome": "Meetup · Mundo Lingo Rio",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "comunidades",
+      "tags": ["idiomas"],
+      "idioma": "multi",
+      "nota": "iCal público. O robots.txt não bloqueia /events/ical/ (o Disallow: / é só do GPTBot). O ToS proíbe screen scraping de HTML, então o importador não abre a página do grupo: só o feed de calendário. O site mundolingo.org fica de fora porque o ToS proíbe data harvesting."
+    },
+    {
+      "nome": "Meetup · Ultimate Frisbee In Leblon",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/ultimate-frisbee-in-leblon/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "nota": "iCal público com encontros semanais. Frisbee não está no vocabulário (corrida, trilha, vôlei), então os eventos não entram na agenda."
+    },
+    {
+      "nome": "Meetup · Dokodemo World in Rio",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/dokodemo-world-in-rio/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "nota": "iCal público, sem eventos futuros no momento da verificação."
+    },
+    {
+      "nome": "Meetup · Jogos de Tabuleiro Niterói",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/meetup-de-jogos-de-tabuleiro-niteroi/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "comunidades",
+      "tags": ["jogos-tabuleiro"],
+      "nota": "iCal público, sem eventos futuros no momento da verificação. Niterói entra na região metropolitana."
+    },
+    {
+      "nome": "Meetup · Rio de Janeiro Espanhol",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/rio-de-janeiro-espanhol/events/ical/",
+      "ativo": false,
+      "metodo": "ical",
+      "nota": "O feed responde 403. Sem leitura confirmada."
+    },
+    {
+      "nome": "Mundo Lingo (site)",
+      "tipo": "jsonld",
+      "url": "https://mundolingo.org/rio-de-janeiro",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "A página tem schema.org/Event, mas o ToS proíbe data harvesting e data extracting. Os encontros entram pelo iCal do Meetup, que é o feed de calendário."
+    },
+    {
+      "nome": "Agenda cultural da Prefeitura do Rio",
+      "tipo": "jsonld",
+      "url": "https://cultura.prefeitura.rio/agenda/",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "cultura.prefeitura.rio/agenda/ e riotur.rio não trazem schema.org/Event nem iCal. A Riotur confirma rodas fixas à mão, em data/roles_fixos.json, não por raspagem."
+    },
+    {
+      "nome": "CCBB Rio",
+      "tipo": "jsonld",
+      "url": "https://ccbb.com.br/rio-de-janeiro/programacao/",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "A programação não traz schema.org/Event nem iCal. JSON-LD da casa é só Organization/WebPage."
+    },
+    {
+      "nome": "IMS",
+      "tipo": "jsonld",
+      "url": "https://ims.com.br/programacao/",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "A programação não traz schema.org/Event nem feed iCal."
+    },
+    {
+      "nome": "Cinemateca do MAM",
+      "tipo": "jsonld",
+      "url": "https://mam.rio/programacao/",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "Sem schema.org/Event e sem iCal. Não há feed só de mostras; a grade diária fica de fora de qualquer forma."
+    },
+    {
+      "nome": "Estação NET",
+      "tipo": "jsonld",
+      "url": "https://www.grupoestacao.com.br/",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "Não há feed público só de mostras, cineclubes ou pré-estreias. A grade diária de cinema não entra."
+    },
+    {
+      "nome": "Sesc RJ",
+      "tipo": "jsonld",
+      "url": "https://www.sescrio.org.br/programacao/",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "robots.txt permite o site. A programação não traz schema.org/Event nem iCal."
+    },
+    {
+      "nome": "Arte que Acontece",
+      "tipo": "jsonld",
+      "url": "https://www.artequeacontece.com.br/",
+      "ativo": false,
+      "metodo": "jsonld",
+      "nota": "Sem schema.org/Event e sem feed iCal. O site é revista, não uma agenda estruturada."
+    },
+    {
+      "nome": "InterNations Rio",
+      "tipo": "manual",
+      "url": "https://www.internations.org/rio-de-janeiro-expats",
+      "ativo": false,
+      "metodo": "manual",
+      "nota": "Comunidade só para membros. Não importar. Quem for membro cola o link da página do encontro na issue «Sugerir um evento», com a agenda Rolês."
+    }
+  ]
+}

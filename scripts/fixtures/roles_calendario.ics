@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//test//EN
+BEGIN:VEVENT
+UID:lingua@example
+DTSTART:20300506T190000Z
+DTEND:20300507T000000Z
+SUMMARY:Mundo Lingo Botafogo
+LOCATION:Bar Bukowski\, Botafogo
+URL:https://exemplo.org/lingua
+DESCRIPTION:Language exchange. Free entry.
+END:VEVENT
+END:VCALENDAR

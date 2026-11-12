@@ -27,6 +27,31 @@
 | `status` | não | `confirmado` (padrão) · `a-confirmar` |
 | `source`, `added`, `note` | não | origem, data em que entrou, observação |
 
+## Agenda Rolês
+
+A aba Rolês segue o mesmo cartão e a mesma faixa da semana. Os arquivos são outros.
+
+1. **Festas, música ao vivo, cinema especial, comunidades, cultura ou rolê ao ar livre**, no Rio. Cinema especial é mostra, cineclube, pré-estreia ou festival. A grade diária de cinema não entra.
+2. **Confira na página oficial** horário, preço e classificação etária. Sem um link público que confirme, o evento não entra.
+3. **Descrição com as suas palavras**, em 1–2 frases (máx. 280 caracteres). Não copie o texto do organizador.
+4. **O cartão aponta só para a página oficial.**
+
+`data/roles.json` usa os mesmos campos de `events.json`, mais estes, todos opcionais:
+
+| Campo | Valores |
+|---|---|
+| `bairro` | nome do bairro, para o filtro de zona |
+| `idade_minima` | número; o site mostra o selo «18+» |
+| `idioma` | `pt` · `en` · `es` · `multi` (o selo «EN» aparece em `en` e `multi`) |
+| `categoria` | `festas` · `shows` · `cinema` · `comunidades` · `cultura` · `ao-ar-livre` |
+| `urls` | outras páginas do mesmo rolê, além de `url` |
+
+As tags vêm de `data/tags_roles.json`.
+
+`data/roles_fixos.json` guarda o que se repete. Cada item precisa de `rrule` (`FREQ=WEEKLY` ou `FREQ=MONTHLY`, com `BYDAY`), `time`, `fonte` (URL que confirma) e `verificado_em` (`AAAA-MM-DD`). `end_time` no dia seguinte, como `00:00`, vale. A página gera as próximas 4 semanas. O cartão mostra «Fixo · confira antes».
+
+O importador da Rolês é `python3 scripts/importar.py --agenda roles --fontes fontes_roles.json`. Só lê iCal ou JSON-LD, e só de fonte cujo `robots.txt` e termos deixam. **InterNations não se importa:** é só para membros. Quem for membro sugere o encontro pela issue, com a agenda Rolês.
+
 ## Tags e filtros
 
 - `data/tags.json` define as tags (em PT, EN e Portunhol) e os filtros por intenção: «Sou dev», «Quero investir», «Tenho startup», etc.
