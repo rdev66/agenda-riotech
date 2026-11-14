@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-14",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -5785,6 +5785,34 @@
       "source": "Maravalley (Luma)",
       "id": "2026-11-26-happy-hour-maravalley",
       "added": "2026-11-03"
+    },
+    {
+      "title": "Altas Rendas, Lucros e Dividendos",
+      "start": "2026-11-27T08:30:00-03:00",
+      "end": "2026-11-27T11:00:00-03:00",
+      "time_known": true,
+      "venue": "Library - Instituto 12",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/y73jeffg",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/y73jeffg Endereço: Library - Instituto 12 Organizado por Instituto 12, Domingues e Pinho Contadores e DPC"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "id": "2026-11-27-altas-rendas-lucros-e-dividendos",
+      "added": "2026-11-14"
     },
     {
       "id": "2026-11-28-builders-day-1565-taicor",
