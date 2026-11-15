@@ -1,0 +1,43 @@
+{
+  "tags": {
+    "eletronica": {"pt": "Eletrônica", "en": "Electronic", "pn": "Eletrônica"},
+    "funk": {"pt": "Funk", "en": "Funk", "pn": "Funk"},
+    "samba-roda": {"pt": "Samba", "en": "Samba", "pn": "Samba"},
+    "pagode": {"pt": "Pagode", "en": "Pagode", "pn": "Pagode"},
+    "rock": {"pt": "Rock", "en": "Rock", "pn": "Rock"},
+    "hiphop": {"pt": "Hip hop", "en": "Hip hop", "pn": "Hip hop"},
+    "forro": {"pt": "Forró", "en": "Forró", "pn": "Forró"},
+    "lgbtqia": {"pt": "LGBTQIA+", "en": "LGBTQIA+", "pn": "LGBTQIA+"},
+    "festa-popular": {"pt": "Festa popular", "en": "Street party", "pn": "Festa popular"},
+    "shows": {"pt": "Show", "en": "Live show", "pn": "Show"},
+    "mostras": {"pt": "Mostra", "en": "Film series", "pn": "Mostra"},
+    "cineclubes": {"pt": "Cineclube", "en": "Film club", "pn": "Cineclub"},
+    "pre-estreias": {"pt": "Pré-estreia", "en": "Preview", "pn": "Preestreno"},
+    "festivais": {"pt": "Festival de cinema", "en": "Film festival", "pn": "Festival de cine"},
+    "nomades": {"pt": "Nômades", "en": "Nomads", "pn": "Nómades"},
+    "expats": {"pt": "Expats", "en": "Expats", "pn": "Expats"},
+    "idiomas": {"pt": "Idiomas", "en": "Languages", "pn": "Idiomas"},
+    "jogos-tabuleiro": {"pt": "Jogos de tabuleiro", "en": "Board games", "pn": "Juegos de mesa"},
+    "nerd-geek": {"pt": "Nerd / geek", "en": "Nerd / geek", "pn": "Nerd / geek"},
+    "leitura": {"pt": "Leitura", "en": "Reading", "pn": "Lectura"},
+    "exposicoes": {"pt": "Exposição", "en": "Exhibition", "pn": "Exposición"},
+    "palestras": {"pt": "Palestra", "en": "Talk", "pn": "Charla"},
+    "corrida": {"pt": "Corrida", "en": "Running", "pn": "Corrida"},
+    "trilha": {"pt": "Trilha", "en": "Hiking", "pn": "Trilha"},
+    "volei": {"pt": "Vôlei", "en": "Volleyball", "pn": "Vóley"}
+  },
+  "categories": [
+    {"id": "festas", "label": {"pt": "Festas", "en": "Parties", "pn": "Festas"}, "tags": ["eletronica", "funk", "samba-roda", "pagode", "rock", "hiphop", "forro", "lgbtqia", "festa-popular"]},
+    {"id": "shows", "label": {"pt": "Música ao vivo", "en": "Live music", "pn": "Música en vivo"}, "tags": ["shows"]},
+    {"id": "cinema", "label": {"pt": "Cinema especial", "en": "Special cinema", "pn": "Cine especial"}, "tags": ["mostras", "cineclubes", "pre-estreias", "festivais"]},
+    {"id": "comunidades", "label": {"pt": "Comunidades", "en": "Communities", "pn": "Comunidades"}, "tags": ["nomades", "expats", "idiomas", "jogos-tabuleiro", "nerd-geek", "leitura"]},
+    {"id": "cultura", "label": {"pt": "Cultura", "en": "Culture", "pn": "Cultura"}, "tags": ["exposicoes", "palestras"]},
+    {"id": "ao-ar-livre", "label": {"pt": "Ao ar livre", "en": "Outdoors", "pn": "Al aire libre"}, "tags": ["corrida", "trilha", "volei"]}
+  ],
+  "zones": [
+    {"id": "zona-sul", "label": {"pt": "Zona Sul", "en": "South Zone", "pn": "Zona Sur"}, "bairros": ["Botafogo", "Catete", "Copacabana", "Cosme Velho", "Flamengo", "Gávea", "Glória", "Humaitá", "Ipanema", "Jardim Botânico", "Lagoa", "Laranjeiras", "Leblon", "Leme", "São Conrado", "Urca", "Vidigal"]},
+    {"id": "centro-lapa", "label": {"pt": "Centro/Lapa", "en": "Centro/Lapa", "pn": "Centro/Lapa"}, "bairros": ["Centro", "Cinelândia", "Cidade Nova", "Estácio", "Gamboa", "Lapa", "Paquetá", "Rio Comprido", "Santa Teresa", "Santo Cristo", "Saúde"]},
+    {"id": "zona-norte", "label": {"pt": "Zona Norte", "en": "North Zone", "pn": "Zona Norte"}, "bairros": ["Alto da Boa Vista", "Andaraí", "Benfica", "Bonsucesso", "Caju", "Grajaú", "Ilha do Governador", "Irajá", "Madureira", "Maracanã", "Méier", "Penha", "Ramos", "São Cristóvão", "Tijuca", "Vila Isabel"]},
+    {"id": "barra-oeste", "label": {"pt": "Barra/Zona Oeste", "en": "Barra/West Zone", "pn": "Barra/Zona Oeste"}, "bairros": ["Bangu", "Barra da Tijuca", "Campo Grande", "Cidade de Deus", "Freguesia", "Itanhangá", "Jacarepaguá", "Jardim Oceânico", "Realengo", "Recreio dos Bandeirantes", "Santa Cruz", "Vargem Grande", "Vargem Pequena"]}
+  ]
+}

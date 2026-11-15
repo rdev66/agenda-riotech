@@ -23,8 +23,14 @@ FORMATS = {"presencial", "online", "hibrido"}
 COSTS = {"gratis", "pago", "desconhecido"}
 REGS = {"livre", "inscricao", "aprovacao", "ingresso"}
 STATUS = {"confirmado", "a-confirmar"}
+IDIOMAS = {"pt", "en", "es", "multi"}
+DIAS_RRULE = {"MO", "TU", "WE", "TH", "FR", "SA", "SU"}
+RIO = dt.timezone(dt.timedelta(hours=-3))
 REQUIRED = ["id", "title", "start", "format", "cost", "registration", "url", "tags"]
 DESCARTADOS = ROOT / "data" / "descartados.json"
+ROLES = ROOT / "data" / "roles.json"
+FIXOS = ROOT / "data" / "roles_fixos.json"
+TAGS_ROLES = ROOT / "data" / "tags_roles.json"
 
 
 def url_chave(url: str) -> str:
@@ -156,6 +162,163 @@ def check(data: dict, vocab: set[str], descartadas: set[str] | None = None) -> l
         desc = (e.get("description") or {}).get("pt") or ""
         if len(desc) > 280:
             errs.append(f"{where}: descrição com mais de 280 caracteres; resuma com suas palavras")
+    return errs
+
+
+def instante(valor: str, fim_do_dia: bool = False) -> dt.datetime | None:
+    """Data ISO. Dia sem hora vale o começo do dia, ou o fim se for o término."""
+    if len(valor) == 10:
+        hora = "23:59:59" if fim_do_dia else "00:00:00"
+        return dt.datetime.fromisoformat(f"{valor}T{hora}").replace(tzinfo=RIO)
+    try:
+        quando = dt.datetime.fromisoformat(valor)
+    except ValueError:
+        return None
+    if quando.tzinfo is None:
+        quando = quando.replace(tzinfo=RIO)
+    return quando
+
+
+def termina_antes(evento: dict) -> bool:
+    """True se o fim é anterior ou igual ao início.
+
+    Um fim na madrugada do dia seguinte (cruza a meia-noite) não conta:
+    o instante do fim ainda é depois do começo.
+    """
+    inicio, fim = evento.get("start"), evento.get("end")
+    if not isinstance(inicio, str) or not isinstance(fim, str):
+        return False
+    a, b = instante(inicio, False), instante(fim, True)
+    if a is None or b is None:
+        return False
+    return b <= a
+
+
+def erro_rrule(rrule: str) -> str | None:
+    """Aceita só FREQ=WEEKLY ou MONTHLY, com BYDAY. INTERVAL é opcional."""
+    if not isinstance(rrule, str) or not rrule.strip():
+        return "falta «rrule»"
+    partes: dict[str, str] = {}
+    for pedaco in rrule.split(";"):
+        if "=" not in pedaco:
+            return "rrule inválida"
+        chave, valor = pedaco.split("=", 1)
+        if chave in partes:
+            return f"rrule com «{chave}» repetido"
+        partes[chave] = valor
+    sobra = set(partes) - {"FREQ", "BYDAY", "INTERVAL"}
+    if sobra:
+        return "rrule só pode ter FREQ, BYDAY e INTERVAL"
+    if partes.get("FREQ") not in {"WEEKLY", "MONTHLY"}:
+        return "FREQ precisa ser WEEKLY ou MONTHLY"
+    if "BYDAY" not in partes or not partes["BYDAY"]:
+        return "falta BYDAY"
+    if "INTERVAL" in partes and not re.fullmatch(r"[1-9][0-9]*", partes["INTERVAL"]):
+        return "INTERVAL inválido"
+    for token in partes["BYDAY"].split(","):
+        if partes["FREQ"] == "WEEKLY":
+            if token not in DIAS_RRULE:
+                return f"BYDAY inválido ({token})"
+        elif not re.fullmatch(r"([+-]?[1-5])?(MO|TU|WE|TH|FR|SA|SU)", token):
+            return f"BYDAY inválido ({token})"
+    return None
+
+
+def _vocab_roles() -> tuple[set[str], set[str]]:
+    dados = json.loads(TAGS_ROLES.read_text(encoding="utf-8"))
+    tags = set(dados.get("tags") or {})
+    categorias = {c.get("id") for c in dados.get("categories") or [] if isinstance(c, dict)}
+    return tags, categorias
+
+
+def erros_extras_roles(eventos: list, categorias: set[str]) -> list[str]:
+    """Campos opcionais da Rolês e fim que cruza a meia-noite."""
+    errs: list[str] = []
+    for i, evento in enumerate(eventos):
+        if not isinstance(evento, dict):
+            continue
+        onde = f"evento {i + 1} ({evento.get('id') or evento.get('title') or '?'})"
+        if termina_antes(evento):
+            errs.append(f"{onde}: termina antes de começar")
+        categoria = evento.get("categoria")
+        if categoria is not None and categoria not in categorias:
+            errs.append(f"{onde}: categoria fora da lista ({categoria})")
+        idioma = evento.get("idioma")
+        if idioma is not None and idioma not in IDIOMAS:
+            errs.append(f"{onde}: idioma deve ser um de {sorted(IDIOMAS)}")
+        idade = evento.get("idade_minima")
+        if idade is not None and (not isinstance(idade, int) or isinstance(idade, bool) or idade < 0):
+            errs.append(f"{onde}: idade_minima precisa ser um número")
+        bairro = evento.get("bairro")
+        if bairro is not None and not str(bairro).strip():
+            errs.append(f"{onde}: bairro vazio")
+        urls = evento.get("urls")
+        if urls is not None:
+            if not isinstance(urls, list):
+                errs.append(f"{onde}: urls precisa ser uma lista")
+            else:
+                for url in urls:
+                    if not str(url).startswith("https://"):
+                        errs.append(f"{onde}: url extra precisa começar com https://")
+    return errs
+
+
+def erros_fixos(dados: dict, vocab: set[str], categorias: set[str]) -> list[str]:
+    errs: list[str] = []
+    if not isinstance(dados, dict):
+        return ["data/roles_fixos.json precisa ser um objeto"]
+    if not isinstance(dados.get("events"), list):
+        return ["data/roles_fixos.json precisa de uma lista «events»"]
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(dados.get("updated", ""))):
+        errs.append("data/roles_fixos.json: «updated» precisa ser AAAA-MM-DD")
+    ids: set[str] = set()
+    for i, evento in enumerate(dados["events"]):
+        onde = f"fixo {i + 1} ({evento.get('id') or evento.get('title') or '?'})"
+        if not isinstance(evento, dict):
+            errs.append(f"{onde}: precisa ser um objeto")
+            continue
+        for campo in ("id", "title", "rrule", "time", "format", "cost", "registration", "url", "fonte", "verificado_em", "tags"):
+            if evento.get(campo) in (None, "", []):
+                errs.append(f"{onde}: falta «{campo}»")
+        if evento.get("id") in ids:
+            errs.append(f"{onde}: id repetido")
+        if evento.get("id"):
+            ids.add(evento["id"])
+        problema = erro_rrule(str(evento.get("rrule") or ""))
+        if problema and evento.get("rrule"):
+            errs.append(f"{onde}: {problema}")
+        elif not evento.get("rrule"):
+            pass
+        if not re.fullmatch(r"\d{2}:\d{2}", str(evento.get("time") or "")):
+            if evento.get("time"):
+                errs.append(f"{onde}: «time» precisa ser HH:MM")
+        fim = evento.get("end_time")
+        if fim is not None and not re.fullmatch(r"\d{2}:\d{2}", str(fim)):
+            errs.append(f"{onde}: «end_time» precisa ser HH:MM")
+        if not str(evento.get("fonte") or "").startswith("https://"):
+            if evento.get("fonte"):
+                errs.append(f"{onde}: «fonte» precisa ser uma URL https://")
+        if not str(evento.get("url") or "").startswith("https://"):
+            if evento.get("url"):
+                errs.append(f"{onde}: a url precisa começar com https://")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(evento.get("verificado_em") or "")):
+            if evento.get("verificado_em"):
+                errs.append(f"{onde}: «verificado_em» precisa ser AAAA-MM-DD")
+        if evento.get("format") not in FORMATS:
+            errs.append(f"{onde}: format deve ser um de {sorted(FORMATS)}")
+        if (evento.get("cost") or {}).get("type") not in COSTS:
+            errs.append(f"{onde}: cost.type deve ser um de {sorted(COSTS)}")
+        if evento.get("registration") not in REGS:
+            errs.append(f"{onde}: registration deve ser um de {sorted(REGS)}")
+        ruins = [t for t in evento.get("tags", []) if t not in vocab]
+        if ruins:
+            errs.append(f"{onde}: tags fora do vocabulário {ruins}")
+        categoria = evento.get("categoria")
+        if categoria not in categorias:
+            errs.append(f"{onde}: categoria fora da lista ({categoria})")
+        # end_time anterior ao time é a madrugada seguinte, não um erro.
+        if fim and evento.get("time") and str(fim) <= str(evento.get("time")):
+            pass
     return errs
 
 
@@ -848,12 +1011,20 @@ def main() -> int:
         errs.append(bruto)
     else:
         errs.extend(erros_descartados(bruto))
+    roles = json.loads(ROLES.read_text(encoding="utf-8"))
+    vocab_roles, categorias = _vocab_roles()
+    errs.extend(f"roles.json: {e}" if not e.startswith("roles") else e for e in check(roles, vocab_roles))
+    if isinstance(roles.get("events"), list):
+        errs.extend(f"roles.json: {e}" for e in erros_extras_roles(roles["events"], categorias))
+    fixos = json.loads(FIXOS.read_text(encoding="utf-8"))
+    errs.extend(erros_fixos(fixos, vocab_roles, categorias))
     errs.extend(check_github_yaml())
     if errs:
         print("❌ a agenda tem problemas:")
         print("\n".join(f"  - {e}" for e in errs))
         return 1
-    print(f"✅ {len(data['events'])} eventos válidos.")
+    n_fixos = len(fixos.get("events") or [])
+    print(f"✅ {len(data['events'])} eventos de tech, {len(roles['events'])} rolês e {n_fixos} fixos válidos.")
     return 0
 
 

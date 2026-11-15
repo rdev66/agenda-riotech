@@ -1,0 +1,55 @@
+{
+  "updated": "2026-11-12",
+  "events": [
+    {
+      "id": "pedra-do-sal",
+      "title": "Roda de Samba da Pedra do Sal",
+      "rrule": "FREQ=WEEKLY;BYDAY=MO",
+      "time": "19:00",
+      "end_time": "00:00",
+      "venue": "Pedra do Sal",
+      "address": "Rua Tia Ciata, Largo de São Francisco da Prainha",
+      "bairro": "Gamboa",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {"type": "gratis", "text": "Grátis"},
+      "registration": "livre",
+      "url": "https://riotur.rio/evento/roda-de-samba-da-pedra-do-sal-toda-2afeira/",
+      "fonte": "https://riotur.rio/evento/roda-de-samba-da-pedra-do-sal-toda-2afeira/",
+      "verificado_em": "2026-11-12",
+      "organizer": "Roda de Samba da Pedra do Sal",
+      "description": {
+        "pt": "Samba de raiz ao ar livre, toda segunda, na Pequena África. A Riotur publica 19h às 00h e entrada gratuita.",
+        "en": "Outdoor samba circle every Monday in Pequena África. Riotur lists 7pm to midnight, free entry."
+      },
+      "tags": ["samba-roda"],
+      "categoria": "festas",
+      "idioma": "pt",
+      "status": "confirmado"
+    },
+    {
+      "id": "samba-da-lebara",
+      "title": "Samba da Lebara",
+      "rrule": "FREQ=MONTHLY;BYDAY=2SU",
+      "time": "14:00",
+      "venue": "Samba da Lebara",
+      "address": "Rua André Cavalcanti",
+      "bairro": "Lapa",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {"type": "desconhecido", "text": null},
+      "registration": "livre",
+      "url": "https://riotur.rio/editorial/conheca-as-rodas-de-samba-do-rio/",
+      "fonte": "https://riotur.rio/editorial/conheca-as-rodas-de-samba-do-rio/",
+      "verificado_em": "2026-11-12",
+      "description": {
+        "pt": "Roda no segundo domingo do mês, às 14h, na Rua André Cavalcanti. O horário está no levantamento da Riotur.",
+        "en": "Samba circle on the second Sunday of the month, at 2pm, on Rua André Cavalcanti. Time is on Riotur's roundup."
+      },
+      "tags": ["samba-roda"],
+      "categoria": "festas",
+      "idioma": "pt",
+      "status": "confirmado"
+    }
+  ]
+}

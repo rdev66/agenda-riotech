@@ -26,7 +26,12 @@
   try {
     var t = localStorage.getItem("riotech.theme");
     if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-    var raw = localStorage.getItem("agenda-feedback");
+    var hash = (location.hash || "").replace(/^#/, "").toLowerCase();
+    var agenda = hash === "roles" ? "roles" : (hash ? "tech" : (localStorage.getItem("riotech.agenda") === "roles" ? "roles" : "tech"));
+    if (agenda === "roles") document.title = "Rolês · Agenda Rio";
+    var key = agenda === "roles" ? "agenda-feedback-roles" : "agenda-feedback-tech";
+    var raw = localStorage.getItem(key);
+    if (!raw && agenda === "tech") raw = localStorage.getItem("agenda-feedback");
     if (!raw) return;
     var saved = JSON.parse(raw);
     if (saved && saved.paso === 2) document.documentElement.setAttribute("data-feedback", "done");
@@ -105,6 +110,20 @@ button { font: inherit; color: inherit; }
   font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
   color: var(--accent); margin: 0 0 6px;
 }
+.agendas-wrap { padding-top: 14px; }
+.agendas { display: flex; gap: 8px; margin: 0; }
+.agendas [role="tab"] {
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  border-radius: 999px; padding: 8px 16px; cursor: pointer;
+  font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: -.02em;
+}
+.agendas [role="tab"][aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.agenda-note {
+  margin: 0 0 4px; padding: 8px 12px; border-radius: 12px;
+  background: var(--warn-bg); color: var(--warn); font-size: 14px; font-weight: 600;
+}
+.agenda-note[hidden] { display: none; }
+.badge.age, .badge.lang { background: var(--chip); color: var(--ink); }
 h1 {
   font-family: var(--display); font-weight: 800; font-size: clamp(44px, 9vw, 76px); line-height: .92;
   letter-spacing: -.035em; margin: 0; text-wrap: balance;
@@ -438,7 +457,7 @@ footer p { margin: 4px 0; }
   <div class="wrap">
     <div class="top-row">
       <div>
-        <p class="kicker">RioTech · Rio de Janeiro</p>
+        <p class="kicker" id="kicker" data-i18n="kicker">RioTech · Rio de Janeiro</p>
         <h1>Agenda<span class="sun">.</span></h1>
         <p class="tagline" data-i18n="tagline">Eventos de tecnologia no Rio, num lugar só. Feito pela comunidade.</p>
       </div>
@@ -473,7 +492,13 @@ footer p { margin: 4px 0; }
   <div class="wave" aria-hidden="true"></div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="painel" role="tabpanel" aria-labelledby="tab-tech">
+  <div class="agendas-wrap">
+    <div class="agendas" role="tablist" id="agendas" aria-label="Agendas">
+      <button type="button" role="tab" id="tab-tech" data-agenda="tech" aria-controls="painel" aria-selected="true" tabindex="0">Tech</button>
+      <button type="button" role="tab" id="tab-roles" data-agenda="roles" aria-controls="painel" aria-selected="false" tabindex="-1">Rolês</button>
+    </div>
+  </div>
   <section class="feedback" id="feedback" aria-labelledby="feedback-q">
     <div class="feedback-line" id="feedback-step1">
       <h2 id="feedback-q" data-i18n="fbAsk">Como a agenda está te servindo?</h2>
@@ -545,6 +570,8 @@ footer p { margin: 4px 0; }
     </div>
   </section>
 
+  <p class="agenda-note" id="agenda-note" hidden>Confira sempre a página oficial: horário, preço e classificação etária mudam.</p>
+
   <nav class="week" id="week" aria-label="Semanas">
     <div class="week-nav">
       <button type="button" id="week-prev" class="week-arrow" aria-label="Semana anterior">‹</button>
@@ -613,7 +640,10 @@ footer p { margin: 4px 0; }
       fbWent: "Já foi a algum evento que descobriu aqui?", fbYes: "Sim", fbNotYet: "Ainda não",
       fbSuggest: "O que ajudaria?", fbIa: "Mais eventos de IA", fbWa: "Aviso no WhatsApp", fbBairro: "Filtro por bairro", fbGratis: "Eventos gratuitos",
       fbComment: "O que faria você usar mais?", fbSend: "Enviar", fbSkip: "Pular", fbDone: "Valeu! 🙌", fbGithub: "Prefere o GitHub?", fbClose: "Fechar",
-      loadErr: "Não deu para carregar os eventos. Tente recarregar a página.", filtering: "Tag", locale: "pt-BR"
+      loadErr: "Não deu para carregar os eventos. Tente recarregar a página.", filtering: "Tag", locale: "pt-BR",
+      kicker: "RioTech · Rio de Janeiro", title: "Agenda RioTech",
+      fixo: "Fixo · confira antes", hoje: "Hoje", fds: "Este fim de semana", ingles: "Em inglês/internacional",
+      noteRoles: "Confira sempre a página oficial: horário, preço e classificação etária mudam.", tablist: "Agendas"
     },
     en: {
       tagline: "Rio's tech events, all in one place. Made by the community.",
@@ -641,7 +671,10 @@ footer p { margin: 4px 0; }
       fbWent: "Have you been to an event you found here?", fbYes: "Yes", fbNotYet: "Not yet",
       fbSuggest: "What would help?", fbIa: "More AI events", fbWa: "WhatsApp alerts", fbBairro: "Filter by neighborhood", fbGratis: "Free events",
       fbComment: "What would make you use it more?", fbSend: "Send", fbSkip: "Skip", fbDone: "Thanks! 🙌", fbGithub: "Prefer GitHub?", fbClose: "Close",
-      loadErr: "Couldn't load the events. Try reloading the page.", filtering: "Tag", locale: "en-GB"
+      loadErr: "Couldn't load the events. Try reloading the page.", filtering: "Tag", locale: "en-GB",
+      kicker: "RioTech · Rio de Janeiro", title: "Agenda RioTech",
+      fixo: "Recurring · check first", hoje: "Today", fds: "This weekend", ingles: "In English / international",
+      noteRoles: "Always check the official page: time, price and age limit change.", tablist: "Calendars"
     },
     pn: {
       tagline: "Los eventos tech do Rio, todo junto num lugarcito só. Hecho por la comunidade.",
@@ -669,28 +702,98 @@ footer p { margin: 4px 0; }
       fbWent: "¿Ya fuiste a algún evento que descubriste acá?", fbYes: "Sí", fbNotYet: "Todavía no",
       fbSuggest: "¿Qué te ayudaría?", fbIa: "Más eventos de IA", fbWa: "Aviso no WhatsApp", fbBairro: "Filtro por barrio", fbGratis: "Eventos de graça",
       fbComment: "¿Qué te haría usarla más?", fbSend: "Mandar", fbSkip: "Pular", fbDone: "¡Valeu! 🙌", fbGithub: "¿Preferís el GitHub?", fbClose: "Cerrar",
-      loadErr: "No deu para cargar los eventos. Recargá la página.", filtering: "Tag", locale: "es"
+      loadErr: "No deu para cargar los eventos. Recargá la página.", filtering: "Tag", locale: "es",
+      kicker: "RioTech · Rio de Janeiro", title: "Agenda RioTech",
+      fixo: "Fixo · chequeá antes", hoje: "Hoy", fds: "Este finde", ingles: "En inglés / internacional",
+      noteRoles: "Chequeá siempre la página oficial: horário, precio y edad mudan.", tablist: "Agendas"
+    }
+  };
+
+  var AGENDA_COPY = {
+    roles: {
+      pt: {
+        kicker: "Rio · Rolês", title: "Rolês · Agenda Rio",
+        tagline: "A vida social do Rio para quem é de tech: festas, rodas, cinema, comunidades e rolê ao ar livre.",
+        search: "Buscar rolê, lugar ou estilo", what: "Que rolê?",
+        addTitle: "Tem um rolê?", addBody: "Manda o link da página oficial. A agenda confere e publica.",
+        suggest: "Sugerir rolê ↗", addIssue: "Sugerir pelo GitHub",
+        sources: "Confira sempre a página oficial: horário, preço e classificação etária mudam.",
+        fbAsk: "Como os rolês estão te servindo?",
+        fbIa: "Mais rolês de comunidade", fbWa: "Aviso no WhatsApp", fbBairro: "Filtro por bairro", fbGratis: "Rolês gratuitos"
+      },
+      en: {
+        kicker: "Rio · Rolês", title: "Rolês · Rio Agenda",
+        tagline: "Rio's social life for tech people: parties, music, special cinema, communities and the outdoors.",
+        search: "Search a hangout, place or vibe", what: "What kind of hangout?",
+        addTitle: "Got a hangout?", addBody: "Send the official page. The agenda checks it and publishes it.",
+        suggest: "Suggest a hangout ↗", addIssue: "Suggest on GitHub",
+        sources: "Always check the official page: time, price and age limit change.",
+        fbAsk: "How useful are the hangouts?",
+        fbIa: "More community hangouts", fbWa: "WhatsApp alerts", fbBairro: "Filter by neighborhood", fbGratis: "Free hangouts"
+      },
+      pn: {
+        kicker: "Rio · Rolês", title: "Rolês · Agenda Rio",
+        tagline: "La vida social do Rio pra quem é de tech: festas, rodas, cine, comunidades y rolê al aire libre.",
+        search: "Buscá rolê, lugar o estilo", what: "¿Qué rolê, parcero?",
+        addTitle: "¿Tenés un rolê?", addBody: "Mandá el link de la página oficial. La agenda chequea y publica.",
+        suggest: "Sugerí un rolê ↗", addIssue: "Sugerí por GitHub",
+        sources: "Chequeá siempre la página oficial: horário, precio y edad mudan.",
+        fbAsk: "¿Cómo los rolês te están sirviendo?",
+        fbIa: "Más rolês de comunidade", fbWa: "Aviso no WhatsApp", fbBairro: "Filtro por barrio", fbGratis: "Rolês de graça"
+      }
     }
   };
 
   var GLYPH = { ia: "IA", python: "Py", web: "</>", mobile: "App", dados: "{ }", cloud: "☁︎", devops: "CI", seguranca: "Sec",
+    eletronica: "♪", funk: "♪", "samba-roda": "♪", pagode: "♪", rock: "♪", hiphop: "♪", forro: "♪", lgbtqia: "♥", "festa-popular": "⚑",
+    shows: "♪", mostras: "▶", cineclubes: "▶", "pre-estreias": "▶", festivais: "▶", nomades: "✈", expats: "✈", idiomas: "Aa",
+    "jogos-tabuleiro": "GG", "nerd-geek": "GG", leitura: "Aa", exposicoes: "▣", palestras: "Mic", corrida: "→", trilha: "↗", volei: "●",
     web3: "W3", games: "GG", design: "Aa", produto: "PM", startups: "↗", investimento: "R$", founders: "↗",
     empreendedorismo: "↗", inovacao: "✦", networking: "Oi", conferencia: "Mic", meetup: "Oi", workshop: "Lab",
     hackathon: "#", palestra: "Mic", carreira: "CV", educacao: "Edu", comunidade: "Oi", "impacto-social": "♥", diversidade: "♥", "open-source": "OS" };
 
-  var state = { lang: "pt", q: "", intents: {}, free: false, presencial: false, online: false, past: false, tag: null, weekStart: null, weekOn: false };
+  var state = { lang: "pt", agenda: "tech", q: "", intents: {}, free: false, presencial: false, online: false, past: false, tag: null, weekStart: null, weekOn: false, hoje: false, fds: false, ingles: false, zonas: {}, countedPath: "" };
+  var filtros = { tech: null, roles: null };
+  var bundles = {};
   var DATA = { events: [], updated: null };
   var TAGS = { tags: {}, intents: [] };
 
   function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function trackingOff() {
+    var host = location.hostname;
+    var local = host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
+    return local || /(?:^|[?&])nocount(?:[=&]|$)/.test(location.search);
+  }
   function track(path, title) {
     var gc = window.goatcounter;
-    if (!gc || !gc.count || gc.no_onload) return;
+    if (!gc || !gc.count || trackingOff()) return;
     gc.count({ path: path, title: title, event: true });
   }
+  function countPage() {
+    var path = state.agenda === "roles" ? "/roles" : "/";
+    var title = document.title;
+    if (state.countedPath === path) return;
+    var tries = 0;
+    (function wait() {
+      if (trackingOff()) { state.countedPath = path; return; }
+      var gc = window.goatcounter;
+      if (gc && gc.count) {
+        if (state.countedPath === path) return;
+        state.countedPath = path;
+        gc.count({ path: path, title: title, event: false });
+        return;
+      }
+      if (++tries < 24) setTimeout(wait, 250);
+    })();
+  }
   function langSlug(code) { return code === "pn" ? "portunhol" : code; }
-  function t(k) { return T[state.lang][k]; }
+  function t(k) {
+    var pack = AGENDA_COPY[state.agenda] && AGENDA_COPY[state.agenda][state.lang];
+    if (pack && Object.prototype.hasOwnProperty.call(pack, k)) return pack[k];
+    return T[state.lang][k];
+  }
+  function agendaValor() { return state.agenda === "roles" ? "social" : "tech"; }
   function el(tag, attrs, kids) {
     var n = document.createElement(tag);
     if (attrs) for (var a in attrs) {
@@ -728,7 +831,43 @@ footer p { margin: 4px 0; }
   function mondayOf(ymdStr) { return addDaysYmd(ymdStr, -weekdayMon0(ymdStr)); }
   function rioTodayYmd() { return ymd(new Date()); }
   function spanYmd(e) { return [ymd(parseStart(e.start)), ymd(parseEnd(e))]; }
-  function overlaps(e, a, b) { var s = spanYmd(e); return s[0] <= b && s[1] >= a; }
+  // Festa que termina na madrugada seguinte marca só o dia em que começa.
+  function displaySpan(e) {
+    var s = spanYmd(e);
+    if (state.agenda === "roles" && e.end && String(e.end).length > 10 && s[1] === addDaysYmd(s[0], 1)) return [s[0], s[0]];
+    return s;
+  }
+  function overlaps(e, a, b) { var s = displaySpan(e); return s[0] <= b && s[1] >= a; }
+  function overlapsReal(e, a, b) { var s = spanYmd(e); return s[0] <= b && s[1] >= a; }
+  function weekendYmds() {
+    var today = rioTodayYmd();
+    var wd = weekdayMon0(today);
+    var sat = wd === 6 ? addDaysYmd(today, -1) : addDaysYmd(today, 5 - wd);
+    return [sat, addDaysYmd(sat, 1)];
+  }
+  function zonaDe(e) {
+    var zones = TAGS.zones || [];
+    var alvo = (e.bairro || "").toLowerCase();
+    var i, j, nome;
+    for (i = 0; i < zones.length; i++) {
+      var bs = zones[i].bairros || [];
+      for (j = 0; j < bs.length; j++) {
+        nome = String(bs[j]).toLowerCase();
+        if (alvo && alvo === nome) return zones[i].id;
+      }
+    }
+    if (alvo) return null;
+    var hay = [e.venue || "", e.address || ""].join(" ").toLowerCase();
+    var best = null, bestLen = 0;
+    for (i = 0; i < zones.length; i++) {
+      bs = zones[i].bairros || [];
+      for (j = 0; j < bs.length; j++) {
+        nome = String(bs[j]).toLowerCase();
+        if (nome.length > bestLen && hay.indexOf(nome) >= 0) { best = zones[i].id; bestLen = nome.length; }
+      }
+    }
+    return best;
+  }
   function anchorWeek() {
     var today = rioTodayYmd();
     var now = new Date();
@@ -739,7 +878,8 @@ footer p { margin: 4px 0; }
     return mondayOf(anchor);
   }
   function filtersActive() {
-    return !!(state.q || state.free || state.presencial || state.online || state.tag ||
+    var zona = Object.keys(state.zonas).some(function (k) { return state.zonas[k]; });
+    return !!(state.q || state.free || state.presencial || state.online || state.tag || state.hoje || state.fds || state.ingles || zona ||
       Object.keys(state.intents).some(function (k) { return state.intents[k]; }));
   }
   function effectiveDark() {
@@ -762,13 +902,29 @@ footer p { margin: 4px 0; }
     var on = Object.keys(state.intents).filter(function (k) { return state.intents[k]; });
     if (!on.length) return null;
     var set = {};
-    TAGS.intents.forEach(function (it) { if (state.intents[it.id]) it.tags.forEach(function (g) { set[g] = 1; }); });
+    TAGS.intents.forEach(function (it) {
+      if (state.intents[it.id]) {
+        set[it.id] = 1;
+        it.tags.forEach(function (g) { set[g] = 1; });
+      }
+    });
     return set;
   }
 
   function matches(e, now) {
     if (!state.past && parseEnd(e) < now) return false;
     if (state.free && e.cost.type !== "gratis") return false;
+    if (state.agenda === "roles") {
+      var today = rioTodayYmd();
+      if (state.hoje && !overlapsReal(e, today, today)) return false;
+      if (state.fds) {
+        var fds = weekendYmds();
+        if (!overlapsReal(e, fds[0], fds[1])) return false;
+      }
+      if (state.ingles && e.idioma !== "en" && e.idioma !== "multi" && (e.tags || []).indexOf("expats") < 0) return false;
+      var zonasOn = Object.keys(state.zonas).filter(function (k) { return state.zonas[k]; });
+      if (zonasOn.length && zonasOn.indexOf(zonaDe(e)) < 0) return false;
+    }
     if (state.presencial || state.online) {
       var okP = state.presencial && (e.format === "presencial" || e.format === "hibrido");
       var okO = state.online && (e.format === "online" || e.format === "hibrido");
@@ -776,9 +932,9 @@ footer p { margin: 4px 0; }
     }
     if (state.tag && e.tags.indexOf(state.tag) < 0) return false;
     var it = intentTags();
-    if (it && !e.tags.some(function (g) { return it[g]; })) return false;
+    if (it && !e.tags.some(function (g) { return it[g]; }) && !it[e.categoria]) return false;
     if (state.q) {
-      var hay = [e.title, e.venue, e.address, e.organizer, (e.description || {}).pt, (e.description || {}).en]
+      var hay = [e.title, e.venue, e.address, e.bairro, e.organizer, (e.description || {}).pt, (e.description || {}).en]
         .concat(e.tags.map(function (g) { var x = TAGS.tags[g] || {}; return [g, x.pt, x.en, x.pn].join(" "); }))
         .join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
       var needles = state.q.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").split(/\s+/).filter(Boolean);
@@ -853,8 +1009,13 @@ footer p { margin: 4px 0; }
     var slug = e.id || (e.title || "evento").toLowerCase().replace(/[^a-z0-9]+/gi, "-").replace(/^-+|-+$/g, "") || "evento";
     var onEvent = function () { track("evento/" + slug, e.title || slug); };
     var title = el("h3", null, [el("a", { href: e.url, target: "_blank", rel: "noopener", text: e.title, onclick: onEvent })]);
+    if (e.fixo) title.appendChild(el("span", { class: "badge", text: t("fixo") }));
     if (e.status && e.status !== "confirmado") title.appendChild(el("span", { class: "badge", text: t("tbc") }));
-    var where = [e.venue, e.address].filter(Boolean).join(" · ");
+    if (e.idade_minima) title.appendChild(el("span", { class: "badge age", text: "18+" }));
+    if (e.idioma === "en" || e.idioma === "multi") title.appendChild(el("span", { class: "badge lang", text: "EN" }));
+    var whereBits = [e.venue, e.address].filter(Boolean);
+    if (e.bairro && whereBits.join(" ").toLowerCase().indexOf(String(e.bairro).toLowerCase()) < 0) whereBits.push(e.bairro);
+    var where = whereBits.join(" · ");
     var facts = el("ul", { class: "facts" }, [
       el("li", { class: e.format === "online" ? "online" : "" }, [el("span", { class: "dot" }), t("fmt")[e.format] || e.format]),
       el("li", { class: e.cost.type === "gratis" ? "free" : (e.cost.type === "pago" ? "paid" : "") }, [el("span", { class: "dot" }), costText(e)]),
@@ -967,13 +1128,53 @@ footer p { margin: 4px 0; }
 
   function resetFilters() {
     state.q = ""; state.intents = {}; state.free = state.presencial = state.online = false; state.tag = null;
+    state.hoje = state.fds = state.ingles = false; state.zonas = {};
     document.getElementById("q").value = "";
     syncChips(); render();
   }
 
+  function toggleOn(id) {
+    if (id === "t-free") return state.free;
+    if (id === "t-presencial") return state.presencial;
+    if (id === "t-online") return state.online;
+    if (id === "t-past") return state.past;
+    if (id === "t-hoje") return state.hoje;
+    if (id === "t-fds") return state.fds;
+    if (id === "t-ingles") return state.ingles;
+    if (id.indexOf("z-") === 0) return !!state.zonas[id.slice(2)];
+    return false;
+  }
+
   function syncChips() {
     document.querySelectorAll("#intents .chip").forEach(function (b) { b.setAttribute("aria-pressed", state.intents[b.dataset.id] ? "true" : "false"); });
-    ["free", "presencial", "online", "past"].forEach(function (k) { document.getElementById("t-" + k).setAttribute("aria-pressed", state[k] ? "true" : "false"); });
+    document.querySelectorAll("#toggles .chip").forEach(function (b) { b.setAttribute("aria-pressed", toggleOn(b.id) ? "true" : "false"); });
+  }
+
+  function buildToggles() {
+    var ul = document.getElementById("toggles");
+    ul.replaceChildren();
+    var items = [];
+    if (state.agenda === "roles") {
+      items.push({ id: "t-hoje", text: t("hoje"), flip: function () { state.hoje = !state.hoje; } });
+      items.push({ id: "t-fds", text: t("fds"), flip: function () { state.fds = !state.fds; } });
+      items.push({ id: "t-free", text: t("free"), flip: function () { state.free = !state.free; } });
+      items.push({ id: "t-ingles", text: t("ingles"), flip: function () { state.ingles = !state.ingles; } });
+      (TAGS.zones || []).forEach(function (z) {
+        items.push({ id: "z-" + z.id, text: (z.label && (z.label[state.lang] || z.label.pt)) || z.id, flip: function () { state.zonas[z.id] = !state.zonas[z.id]; } });
+      });
+    } else {
+      items.push({ id: "t-free", text: t("free"), flip: function () { state.free = !state.free; } });
+      items.push({ id: "t-presencial", text: t("presencial"), flip: function () { state.presencial = !state.presencial; } });
+      items.push({ id: "t-online", text: t("online"), flip: function () { state.online = !state.online; } });
+      items.push({ id: "t-past", text: t("past"), flip: function () { state.past = !state.past; } });
+    }
+    items.forEach(function (it) {
+      ul.appendChild(el("li", null, [el("button", {
+        type: "button", class: "chip ghost", id: it.id, "aria-pressed": "false", text: it.text,
+        onclick: function () { it.flip(); syncChips(); render(); }
+      })]));
+    });
+    syncChips();
   }
 
   function buildIntents() {
@@ -993,11 +1194,13 @@ footer p { margin: 4px 0; }
     var box = document.getElementById("cta-actions"); box.replaceChildren();
     if (REPO) {
       var base = REPO.replace(/\/$/, "");
-      var issue = base + "/issues/new?template=novo-evento.yml";
+      var agendaNome = state.agenda === "roles" ? "Rolês" : "Tech";
+      var issue = base + "/issues/new?template=novo-evento.yml&agenda=" + encodeURIComponent(agendaNome);
       suggest.href = issue;
       suggest.hidden = false;
       box.appendChild(el("a", { class: "btn primary", href: issue, target: "_blank", rel: "noopener", text: t("addIssue") + " ↗", onclick: function () { track("cta/sugerir", "Sugerir evento"); } }));
-      box.appendChild(el("a", { class: "btn", href: base + "/blob/main/data/events.json", target: "_blank", rel: "noopener", text: t("addPR") }));
+      var arquivo = state.agenda === "roles" ? "data/roles.json" : "data/events.json";
+      box.appendChild(el("a", { class: "btn", href: base + "/blob/main/" + arquivo, target: "_blank", rel: "noopener", text: t("addPR") }));
     } else {
       suggest.hidden = true;
       box.appendChild(el("p", { class: "meta", text: t("addNoRepo") }));
@@ -1015,13 +1218,23 @@ footer p { margin: 4px 0; }
       n.setAttribute("aria-label", v);
       if (n.closest && n.closest("#feedback")) n.title = v;
     });
+    document.title = t("title");
+    var note = document.getElementById("agenda-note");
+    if (note) {
+      note.hidden = state.agenda !== "roles";
+      note.textContent = t("noteRoles");
+    }
+    var tablist = document.getElementById("agendas");
+    if (tablist) tablist.setAttribute("aria-label", t("tablist"));
     document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.lang === state.lang ? "true" : "false"); });
     if (DATA.updated) {
       var d = new Date(DATA.updated + "T12:00:00-03:00");
       document.getElementById("updated").textContent = t("updated") + " " +
         new Intl.DateTimeFormat(t("locale"), { timeZone: TZ, day: "numeric", month: "long", year: "numeric" }).format(d) + ".";
     }
-    buildIntents(); buildCta(); syncThemeButton(); render();
+    if (TAGS.categories && !TAGS.intents) TAGS.intents = TAGS.categories;
+    if (state.agenda === "roles" && TAGS.categories) TAGS.intents = TAGS.categories;
+    buildIntents(); buildToggles(); buildCta(); syncThemeButton(); render();
   }
 
   // Eventos
@@ -1047,9 +1260,6 @@ footer p { margin: 4px 0; }
   function shiftWeek(n) { state.weekStart = addDaysYmd(state.weekStart || anchorWeek(), n * 7); render(); }
   document.getElementById("week-prev").addEventListener("click", function () { shiftWeek(-1); });
   document.getElementById("week-next").addEventListener("click", function () { shiftWeek(1); });
-  ["free", "presencial", "online", "past"].forEach(function (k) {
-    document.getElementById("t-" + k).addEventListener("click", function () { state[k] = !state[k]; syncChips(); render(); });
-  });
   var qTimer;
   document.getElementById("q").addEventListener("input", function (ev) {
     clearTimeout(qTimer); qTimer = setTimeout(function () { state.q = ev.target.value.trim(); render(); }, 120);
@@ -1060,8 +1270,10 @@ footer p { margin: 4px 0; }
     if (!raw) return null;
     try { return JSON.parse(raw); } catch (e) { return null; }
   }
+  function fbKey() { return state.agenda === "roles" ? "agenda-feedback-roles" : "agenda-feedback-tech"; }
   function readProgress() {
-    var o = readJson("agenda-feedback");
+    var o = readJson(fbKey());
+    if ((!o || typeof o.resposta !== "string") && state.agenda === "tech") o = readJson("agenda-feedback");
     if (!o || typeof o.resposta !== "string" || (o.paso !== 1 && o.paso !== 2)) return null;
     return o;
   }
@@ -1070,7 +1282,7 @@ footer p { margin: 4px 0; }
     var o = { resposta: resposta, paso: paso };
     var light = semaforo || (prev && prev.semaforo);
     if (light === "verde" || light === "amarelo" || light === "vermelho") o.semaforo = light;
-    store("agenda-feedback", JSON.stringify(o));
+    store(fbKey(), JSON.stringify(o));
   }
   function readVisits() {
     var o = readJson("agenda-visitas");
@@ -1117,13 +1329,13 @@ footer p { margin: 4px 0; }
     var tries = 0;
     (function waitGc() {
       var gc = window.goatcounter;
-      if (gc && gc.count && !gc.no_onload) {
+      if (gc && gc.count && !trackingOff()) {
         gc.count({ path: "retorno", title: "Retorno", event: true });
         v.retorno = rioDay();
         store("agenda-visitas", JSON.stringify({ n: v.n, retorno: v.retorno }));
         return;
       }
-      if (gc && gc.no_onload) return;
+      if (trackingOff()) return;
       if (++tries < 24) setTimeout(waitGc, 250);
     })();
     return v.n;
@@ -1133,18 +1345,14 @@ footer p { margin: 4px 0; }
   var visitasN = bumpVisits();
 
   var feedbackEl = document.getElementById("feedback");
-  if (feedbackEl && document.documentElement.getAttribute("data-feedback") === "done") {
-    feedbackEl.remove();
-    feedbackEl = null;
-  }
-
   var step1Sent = false;
+  var stripGen = 0;
   var step2Done = false;
   function markLights(light) {
-    document.querySelectorAll("#fb-lights [role=radio]").forEach(function (b) {
-      var on = b.getAttribute("data-light") === light;
+    document.querySelectorAll("#fb-lights [role=radio]").forEach(function (b, i) {
+      var on = !!light && b.getAttribute("data-light") === light;
       b.setAttribute("aria-checked", on ? "true" : "false");
-      b.tabIndex = on ? 0 : -1;
+      b.tabIndex = on || (!light && i === 0) ? 0 : -1;
     });
   }
   function showStep(step) {
@@ -1178,8 +1386,9 @@ footer p { margin: 4px 0; }
   function collapseStrip() {
     var el = document.getElementById("feedback");
     if (!el) return;
+    var gen = ++stripGen;
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) { el.remove(); return; }
+    if (reduce) { el.hidden = true; document.documentElement.setAttribute("data-feedback", "done"); return; }
     el.style.height = el.getBoundingClientRect().height + "px";
     el.classList.add("is-leaving");
     void el.offsetHeight;
@@ -1192,9 +1401,11 @@ footer p { margin: 4px 0; }
     el.style.borderBottomWidth = "0px";
     var gone = false;
     function finish() {
-      if (gone) return;
+      if (gone || gen !== stripGen) return;
       gone = true;
-      if (el.parentNode) el.remove();
+      el.hidden = true;
+      el.classList.remove("is-leaving");
+      document.documentElement.setAttribute("data-feedback", "done");
     }
     el.addEventListener("transitionend", function (ev) {
       if (ev.target === el && ev.propertyName === "height") finish();
@@ -1219,7 +1430,7 @@ footer p { margin: 4px 0; }
     var lang = state.lang === "en" || state.lang === "pn" ? state.lang : "pt";
     saveProgress(resposta, 1, light);
     track("feedback/" + light, light);
-    sendOrQueue({ resposta: resposta, etapa: 1, lang: lang, semaforo: light, visitas: visitasN });
+    sendOrQueue({ resposta: resposta, etapa: 1, lang: lang, semaforo: light, visitas: visitasN, agenda: agendaValor() });
     showStep(2);
   }
   function honeypotFilled() {
@@ -1244,6 +1455,7 @@ footer p { margin: 4px 0; }
     sendOrQueue({
       resposta: prior.resposta,
       etapa: 2,
+      agenda: agendaValor(),
       foi_evento: foi ? foi.value === "sim" : null,
       sugestoes: sugestoes,
       comentario: comentario
@@ -1251,13 +1463,42 @@ footer p { margin: 4px 0; }
     thankAndLeave();
   }
 
-  if (feedbackEl) {
-    var priorFb = readProgress();
-    if (priorFb && priorFb.paso === 1) {
+  function syncFeedback() {
+    var el = document.getElementById("feedback");
+    if (!el) return;
+    stripGen++;
+    el.classList.remove("is-leaving");
+    ["height", "marginTop", "marginBottom", "paddingTop", "paddingBottom", "borderTopWidth", "borderBottomWidth"].forEach(function (k) { el.style[k] = ""; });
+    document.querySelectorAll("#feedback-step2 [data-sug]").forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+    document.querySelectorAll("#feedback-step2 input[name=foi_evento]").forEach(function (i) { i.checked = false; });
+    var comment = document.getElementById("fb-comment");
+    if (comment) comment.value = "";
+    var count = document.getElementById("fb-count");
+    if (count) count.textContent = "0/280";
+    var prior = readProgress();
+    if (prior && prior.paso === 2) {
       step1Sent = true;
-      if (priorFb.semaforo) markLights(priorFb.semaforo);
-      showStep(2);
+      step2Done = true;
+      el.hidden = true;
+      document.documentElement.setAttribute("data-feedback", "done");
+      return;
     }
+    el.hidden = false;
+    step2Done = false;
+    document.documentElement.removeAttribute("data-feedback");
+    if (prior && prior.paso === 1) {
+      step1Sent = true;
+      markLights(prior.semaforo || null);
+      document.documentElement.setAttribute("data-feedback", "step2");
+      showStep(2);
+    } else {
+      step1Sent = false;
+      markLights(null);
+      showStep(1);
+    }
+  }
+
+  if (feedbackEl) {
     var lightButtons = [].slice.call(document.querySelectorAll("#fb-lights [role=radio]"));
     lightButtons.forEach(function (b, i) {
       b.addEventListener("click", function () { pickLight(b.getAttribute("data-light")); });
@@ -1290,23 +1531,190 @@ footer p { margin: 4px 0; }
     gh.href = (REPO || "https://github.com/rdev66/agenda-riotech").replace(/\/$/, "") + "/issues/new?template=feedback.yml";
   }
 
+  var RDIAS = { MO: 0, TU: 1, WE: 2, TH: 3, FR: 4, SA: 5, SU: 6 };
+  function monthlyMatch(token, ymdStr, wd) {
+    var m = /^([+-]?\d)?(MO|TU|WE|TH|FR|SA|SU)$/.exec(token);
+    if (!m || RDIAS[m[2]] !== wd) return false;
+    if (!m[1]) return true;
+    var n = parseInt(m[1], 10);
+    var day = parseInt(ymdStr.slice(8), 10);
+    var dim = new Date(Date.UTC(+ymdStr.slice(0, 4), +ymdStr.slice(5, 7), 0)).getUTCDate();
+    if (n > 0) return Math.floor((day - 1) / 7) + 1 === n;
+    return day + 7 * (-n) > dim && day + 7 * (-n - 1) <= dim;
+  }
+  function rruleDays(rule, hoje, fim) {
+    var parts = {};
+    String(rule || "").split(";").forEach(function (p) {
+      var i = p.indexOf("=");
+      if (i > 0) parts[p.slice(0, i)] = p.slice(i + 1);
+    });
+    var by = (parts.BYDAY || "").split(",").filter(Boolean);
+    var out = [];
+    var d = hoje;
+    while (d < fim) {
+      var wd = weekdayMon0(d);
+      var ok = parts.FREQ === "WEEKLY" ? by.some(function (token) { return RDIAS[token] === wd; })
+        : parts.FREQ === "MONTHLY" ? by.some(function (token) { return monthlyMatch(token, d, wd); }) : false;
+      if (ok) out.push(d);
+      d = addDaysYmd(d, 1);
+    }
+    return out;
+  }
+  function expandirFixos(fixos) {
+    var hoje = rioTodayYmd();
+    var fim = addDaysYmd(hoje, 28);
+    var now = new Date();
+    var out = [];
+    ((fixos && fixos.events) || []).forEach(function (f) {
+      rruleDays(f.rrule, hoje, fim).forEach(function (day) {
+        var hm = String(f.time || "19:00");
+        var start = day + "T" + hm + ":00-03:00";
+        var end = null;
+        if (f.end_time) {
+          var endDay = f.end_time <= hm ? addDaysYmd(day, 1) : day;
+          end = endDay + "T" + f.end_time + ":00-03:00";
+        }
+        if ((end ? new Date(end) : new Date(start)) <= now) return;
+        var ev = {};
+        Object.keys(f).forEach(function (k) {
+          if (k !== "rrule" && k !== "time" && k !== "end_time" && k !== "verificado_em" && k !== "fonte") ev[k] = f[k];
+        });
+        ev.id = f.id + "-" + day;
+        ev.start = start;
+        ev.end = end;
+        ev.time_known = true;
+        ev.fixo = true;
+        ev.url = f.url || f.fonte;
+        out.push(ev);
+      });
+    });
+    return out;
+  }
+  function fetchJson(url) {
+    return fetch(url, { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error(String(r.status));
+      return r.json();
+    });
+  }
+  function aplicarBundle(agenda) {
+    var b = bundles[agenda];
+    if (agenda === "roles") {
+      DATA = { updated: b[0].updated, events: (b[0].events || []).concat(expandirFixos(b[2] || { events: [] })) };
+      TAGS = b[1];
+      TAGS.intents = TAGS.categories || [];
+    } else {
+      DATA = b[0];
+      TAGS = b[1];
+    }
+  }
+  function guardarFiltros() {
+    filtros[state.agenda] = JSON.parse(JSON.stringify({
+      q: state.q, intents: state.intents, free: state.free, presencial: state.presencial, online: state.online,
+      past: state.past, tag: state.tag, weekStart: state.weekStart, weekOn: state.weekOn,
+      hoje: state.hoje, fds: state.fds, ingles: state.ingles, zonas: state.zonas
+    }));
+  }
+  function restaurarFiltros(agenda) {
+    var s = filtros[agenda];
+    state.q = s ? s.q : "";
+    state.intents = s ? s.intents : {};
+    state.free = s ? s.free : false;
+    state.presencial = s ? s.presencial : false;
+    state.online = s ? s.online : false;
+    state.past = s ? s.past : false;
+    state.tag = s ? s.tag : null;
+    state.weekStart = s ? s.weekStart : null;
+    state.weekOn = s ? s.weekOn : false;
+    state.hoje = s ? s.hoje : false;
+    state.fds = s ? s.fds : false;
+    state.ingles = s ? s.ingles : false;
+    state.zonas = s ? s.zonas : {};
+    var q = document.getElementById("q");
+    if (q) q.value = state.q || "";
+  }
+  function agendaInicial() {
+    var h = (location.hash || "").replace(/^#/, "").toLowerCase();
+    if (h === "roles") return "roles";
+    if (h === "tech") return "tech";
+    if (!h) {
+      var savedAgenda = load("riotech.agenda");
+      if (savedAgenda === "roles" || savedAgenda === "tech") return savedAgenda;
+    }
+    return "tech";
+  }
+  function syncTabs() {
+    document.querySelectorAll("#agendas [role=tab]").forEach(function (tab) {
+      var on = tab.dataset.agenda === state.agenda;
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+      tab.tabIndex = on ? 0 : -1;
+    });
+    var painel = document.getElementById("painel");
+    if (painel) painel.setAttribute("aria-labelledby", state.agenda === "roles" ? "tab-roles" : "tab-tech");
+  }
+  function ensure(agenda, done) {
+    if (bundles[agenda]) { done(); return; }
+    var urls = agenda === "roles"
+      ? ["data/roles.json", "data/tags_roles.json", "data/roles_fixos.json"]
+      : ["data/events.json", "data/tags.json"];
+    Promise.all(urls.map(fetchJson)).then(function (res) {
+      bundles[agenda] = res;
+      done();
+    }).catch(function () { done(true); });
+  }
+  function selectAgenda(agenda, opts) {
+    opts = opts || {};
+    if (agenda !== "roles") agenda = "tech";
+    var mudou = state.agenda !== agenda;
+    if (mudou) guardarFiltros();
+    state.agenda = agenda;
+    store("riotech.agenda", agenda);
+    if (!opts.fromHash) {
+      history.replaceState(null, "", location.pathname + location.search + (agenda === "roles" ? "#roles" : ""));
+    }
+    syncTabs();
+    syncFeedback();
+    var list = document.getElementById("list");
+    var pedido = agenda;
+    if (!bundles[agenda]) list.replaceChildren(el("p", { class: "empty", text: t("loading") }));
+    ensure(agenda, function (err) {
+      if (state.agenda !== pedido) return;
+      if (err) {
+        list.replaceChildren(el("p", { class: "empty", text: t("loadErr") }));
+        return;
+      }
+      aplicarBundle(agenda);
+      if (mudou) restaurarFiltros(agenda);
+      applyLang(state.lang);
+      countPage();
+    });
+  }
+
+  document.querySelectorAll("#agendas [role=tab]").forEach(function (tab, i, all) {
+    tab.addEventListener("click", function () { selectAgenda(tab.dataset.agenda); });
+    tab.addEventListener("keydown", function (ev) {
+      var next = -1;
+      if (ev.key === "ArrowRight" || ev.key === "ArrowDown") next = (i + 1) % all.length;
+      else if (ev.key === "ArrowLeft" || ev.key === "ArrowUp") next = (i + all.length - 1) % all.length;
+      else if (ev.key === "Home") next = 0;
+      else if (ev.key === "End") next = all.length - 1;
+      else return;
+      ev.preventDefault();
+      all[next].focus();
+      selectAgenda(all[next].dataset.agenda);
+    });
+  });
+  window.addEventListener("hashchange", function () {
+    var h = (location.hash || "").replace(/^#/, "").toLowerCase();
+    var agenda = h === "roles" ? "roles" : "tech";
+    if (agenda !== state.agenda) selectAgenda(agenda, { fromHash: true });
+  });
+
   // Idioma inicial: escolha salva, senão o do navegador.
   var saved = load("riotech.lang");
   var nav = (navigator.language || "pt").toLowerCase();
   var initial = saved || (nav.indexOf("pt") === 0 ? "pt" : (nav.indexOf("es") === 0 ? "pn" : (nav.indexOf("en") === 0 ? "en" : "pt")));
   state.lang = T[initial] ? initial : "pt";
-
-  Promise.all([
-    fetch("data/events.json", { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }),
-    fetch("data/tags.json", { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-  ]).then(function (res) {
-    DATA = res[0]; TAGS = res[1];
-    applyLang(state.lang);
-  }).catch(function () {
-    applyLang(state.lang);
-    var list = document.getElementById("list");
-    list.replaceChildren(el("p", { class: "empty", text: t("loadErr") }));
-  });
+  selectAgenda(agendaInicial());
 })();
 </script>
 <script>
@@ -1321,7 +1729,7 @@ footer p { margin: 4px 0; }
   var host = location.hostname;
   var local = host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
   var nocount = /(?:^|[?&])nocount(?:[=&]|$)/.test(location.search);
-  window.goatcounter = { no_onload: local || nocount, allow_local: false };
+  window.goatcounter = { no_onload: true, allow_local: false };
 })();
 </script>
 <script data-goatcounter="https://agenda-riotech.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

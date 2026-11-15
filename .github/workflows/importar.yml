@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Ler calendários de fontes.json
-        run: python scripts/importar.py --fontes fontes.json --relatorio relatorio.md
+        run: python scripts/importar.py --agenda tech --fontes fontes.json --relatorio relatorio.md
       - name: Validar
         run: python scripts/validar.py
       - name: Abrir PR com o que mudou
@@ -27,4 +27,25 @@ jobs:
           title: "Novos eventos (importação automática)"
           body-path: relatorio.md
           add-paths: data/events.json
+          labels: importacao-automatica
+  importar-roles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Ler calendários de fontes_roles.json
+        run: python scripts/importar.py --agenda roles --fontes fontes_roles.json --relatorio relatorio.md
+      - name: Validar
+        run: python scripts/validar.py
+      - name: Abrir PR com o que mudou
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: importador/roles-diario
+          delete-branch: true
+          commit-message: "Importação automática de rolês"
+          title: "Novos rolês (importação automática)"
+          body-path: relatorio.md
+          add-paths: data/roles.json
           labels: importacao-automatica
