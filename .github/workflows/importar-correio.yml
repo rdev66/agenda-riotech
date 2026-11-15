@@ -1,0 +1,36 @@
+name: Importar correio
+on:
+  schedule:
+    - cron: "47 11 * * *" # 08:47 America/Sao_Paulo
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  importar-correio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Ler as caixas do Gmail
+        env:
+          GMAIL_EVENTOS_APP_PASSWORD: ${{ secrets.GMAIL_EVENTOS_APP_PASSWORD }}
+          GMAIL_ROLES_APP_PASSWORD: ${{ secrets.GMAIL_ROLES_APP_PASSWORD }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/importar_correio.py --relatorio relatorio.md
+      - name: Validar
+        run: python scripts/validar.py
+      - name: Abrir PR com o que mudou
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: importador/correio
+          delete-branch: true
+          commit-message: "Importação automática do correio"
+          title: "Novos eventos (correio)"
+          body-path: relatorio.md
+          add-paths: |
+            data/events.json
+            data/roles.json
+          labels: importacao-automatica

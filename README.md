@@ -15,6 +15,7 @@ Eventos de tecnologia no Rio de Janeiro num lugar só: meetups, conferências, h
   Nunca sobrescreve o que alguém corrigiu à mão: só completa campos vazios. Na agenda Rolês, uma fonte só entra se o `robots.txt` e os termos deixam ler, e se a página tem iCal ou `schema.org/Event` em JSON-LD.
 - **Automação no GitHub Actions:**
   - `importar.yml`: todo dia às 08:17 (Rio), lê `fontes.json` e abre um PR em `importador/diario`; no mesmo horário lê `fontes_roles.json` e abre outro PR em `importador/roles-diario`;
+  - `importar-correio.yml`: todo dia às 08:47 (Rio), lê as duas caixas do Gmail e abre um PR em `importador/correio`;
   - `issue-para-pr.yml`: quem abre uma issue «Sugerir um evento» com o link recebe um PR pronto, na agenda escolhida;
   - `validar.yml`: valida dados e roda os testes em todo PR;
   - `pages.yml`: publica o site no GitHub Pages a cada push na `main`.
@@ -55,6 +56,7 @@ python3 scripts/importar.py --agenda tech --fontes fontes.json --dry-run
 python3 scripts/importar.py --agenda roles --fontes fontes_roles.json --dry-run
 # WhatsApp → «Exportar conversa» (sem mídia) → _chat.txt
 python3 scripts/importar.py --whatsapp ~/Downloads/_chat.txt --desde 2026-10-01
+python3 scripts/importar_correio.py --dry-run
 ```
 
 Toda semana, com o export do grupo salvo em `~/Downloads` (o `.zip` serve, não precisa descompactar):
@@ -71,6 +73,25 @@ O `_chat.txt` é lido para um arquivo temporário fora do repositório e apagado
 - O WhatsApp não tem API oficial para ler grupos. Bots não oficiais (whatsapp-web.js, Baileys) violam os termos e podem levar o número a ser banido. Por isso a agenda não usa bot.
 - **O fluxo proposto:** toda semana, alguém exporta o chat para Downloads e roda `scripts/semanal.sh`. Ele extrai **só links** de plataformas de eventos.
 - **Privacidade:** nenhum nome, telefone ou mensagem é gravado. O `.gitignore` bloqueia `_chat.txt`: **nunca suba a exportação do chat para o repositório.**
+
+## Correio
+
+Duas caixas no Gmail alimentam a agenda. `scripts/importar_correio.py` lê o conteúdo por IMAP (`imap.gmail.com`, porta 993) e grava pelo mesmo caminho do importador. O importador do WhatsApp continua.
+
+- `agenda.rio.eventos@gmail.com` sugere a agenda Tech (`data/events.json`).
+- `agenda.rio.roles@gmail.com` sugere a agenda Rolês (`data/roles.json`). Mensagem para `agenda.rio.roles+cultura@gmail.com` fica na Rolês, na categoria cultura.
+- A caixa é uma dica. Se o evento é claramente da outra agenda, o script muda de arquivo e o PR diz isso.
+- Link de Luma, Meetup, Sympla, Eventbrite, Even3, Shotgun e dos outros hosts que o importador já lê segue o caminho `--url`, sem parâmetro de rastreio. Newsletter sem esse link (IMS, Sesc, Fever, Bandsintown e semelhantes) vai para o modelo `claude-haiku-5-5`, que não inventa data nem hora.
+- Só entra evento futuro, presencial ou híbrido, na cidade configurada (Rio). Online fica de fora.
+- Cada mensagem lida ganha a etiqueta `agenda/processado`. Nada é apagado nem movido. O repositório não guarda endereço, remetente nem o texto do e-mail: só o evento e o link público.
+
+Segredos no GitHub Actions, nunca no repositório:
+
+- `GMAIL_EVENTOS_APP_PASSWORD` — senha de app da caixa Tech
+- `GMAIL_ROLES_APP_PASSWORD` — senha de app da caixa Rolês
+- `ANTHROPIC_API_KEY` — extração das newsletters sem link de evento
+
+Se uma senha falta, o job avisa e termina sem erro. A rodada também para se passar de 300 mil tokens de entrada.
 
 ## Estatísticas e feedback
 
