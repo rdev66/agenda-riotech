@@ -1,5 +1,7 @@
 """Testes do importador e do validador. Rodar com:  python -m unittest discover -s scripts"""
+import contextlib
 import datetime as dt
+import io
 import json
 import sys
 import tempfile
@@ -137,9 +139,9 @@ class TestImportar(unittest.TestCase):
     def test_historico_nao_sobrescreve_e_nao_duplica_chave(self):
         lista = []
         primeiro = {"title": "Um", "start": "2030-02-01T19:00:00-03:00",
-                    "url": "https://luma.com/abc?locale=pt-BR", "format": "online", "venue": "Sala curada"}
+                    "url": "https://luma.com/abc?locale=pt-BR", "format": "presencial", "venue": "Sala curada"}
         outro = {"title": "Outro título", "start": "2030-02-01T19:00:00-03:00",
-                 "url": "https://luma.com/abc", "format": "online", "venue": "Sala do importador",
+                 "url": "https://luma.com/abc", "format": "presencial", "venue": "Sala do importador",
                  "image": "https://exemplo.org/capa.png"}
         self.assertEqual(importar.merge(lista, primeiro, HOJE, historico=True), "novo")
         self.assertEqual(importar.merge(lista, outro, HOJE, historico=True), "completado")
@@ -151,8 +153,8 @@ class TestImportar(unittest.TestCase):
 
     def test_historico_id_repetido_ganha_sufixo(self):
         lista = []
-        a = {"title": "Meetup", "start": "2030-02-01T19:00:00-03:00", "url": "https://luma.com/aaa111", "format": "online"}
-        b = {"title": "Meetup", "start": "2030-02-01T19:00:00-03:00", "url": "https://luma.com/bbb222", "format": "online"}
+        a = {"title": "Meetup", "start": "2030-02-01T19:00:00-03:00", "url": "https://luma.com/aaa111", "format": "presencial"}
+        b = {"title": "Meetup", "start": "2030-02-01T19:00:00-03:00", "url": "https://luma.com/bbb222", "format": "presencial"}
         self.assertEqual(importar.merge(lista, a, HOJE, historico=True), "novo")
         self.assertEqual(importar.merge(lista, b, HOJE, historico=True), "novo")
         self.assertNotEqual(lista[0]["id"], lista[1]["id"])
@@ -322,7 +324,7 @@ class TestValidar(unittest.TestCase):
     def test_url_em_ambos_os_arquivos(self):
         data = {"updated": "2030-01-01", "events": [{
             "id": "a", "title": "A", "start": "2030-02-01T19:00:00-03:00",
-            "format": "online", "cost": {"type": "gratis"}, "registration": "livre",
+            "format": "presencial", "cost": {"type": "gratis"}, "registration": "livre",
             "url": "https://www.luma.com/4cy8s78q/?utm_source=x", "tags": ["ia"],
         }]}
         errs = validar.check(data, {"ia"})
@@ -403,6 +405,176 @@ class TestValidar(unittest.TestCase):
         self.assertEqual(doc["job"], {"runs-on": "ubuntu-latest", "name": "x"})
         with self.assertRaises(validar.YamlError):
             validar.load_yaml("job:\n  uses: *nao_tem\n")
+
+
+def _pagina(titulo: str, formato: str, cidade: str = "Rio de Janeiro") -> str:
+    modo = {
+        "online": "https://schema.org/OnlineEventAttendanceMode",
+        "hibrido": "https://schema.org/MixedEventAttendanceMode",
+    }[formato]
+    if formato == "online":
+        local = '{"@type":"VirtualLocation","url":"https://meet.example/x"}'
+    else:
+        local = (
+            '{"@type":"Place","name":"Casa","address":{"addressLocality":"' + cidade + '"}}'
+        )
+    return (
+        '<script type="application/ld+json">'
+        '{"@type":"Event","name":"' + titulo + '","startDate":"2030-11-20T19:00:00-03:00",'
+        '"eventAttendanceMode":"' + modo + '","location":' + local + "}"
+        "</script>"
+    )
+
+
+class TestSoPresencial(unittest.TestCase):
+    """Online não entra. Híbrido entra. Um caso por caminho do importador."""
+
+    def setUp(self):
+        self._fetch = importar.fetch
+
+    def tearDown(self):
+        importar.fetch = self._fetch
+
+    def _rodar(self, argv, paginas):
+        def fake(url, timeout=20):
+            if str(url).endswith("/robots.txt"):
+                return "User-agent: *\nAllow: /\n"
+            if url not in paginas:
+                raise AssertionError(url)
+            return paginas[url]
+        importar.fetch = fake
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            code = importar.main(argv)
+        self.assertEqual(code, 0, buf.getvalue())
+        return buf.getvalue()
+
+    def _confere(self, texto, titulo_hibrido, titulo_online):
+        self.assertIn("online: 1", texto)
+        self.assertIn("novo: 1", texto)
+        self.assertIn("### " + titulo_hibrido, texto)
+        self.assertNotIn("### " + titulo_online, texto)
+
+    def test_merge_online_fora_e_hibrido_entra(self):
+        for agenda in ("tech", "roles"):
+            lista = []
+            online = {
+                "title": "Live", "start": "2030-11-20T19:00:00-03:00",
+                "url": "https://luma.com/merge-on-" + agenda,
+                "format": "online", "city": "São Paulo",
+            }
+            hibrido = {
+                "title": "Casa", "start": "2030-11-21T19:00:00-03:00",
+                "url": "https://luma.com/merge-hib-" + agenda,
+                "format": "hibrido", "city": "Rio de Janeiro", "tags": ["python"],
+            }
+            self.assertEqual(
+                importar.merge(lista, online, HOJE, set(), historico=True, agenda=agenda),
+                "online",
+            )
+            self.assertEqual(lista, [])
+            self.assertEqual(importar.merge(lista, hibrido, HOJE, set(), agenda=agenda), "novo")
+            self.assertEqual(lista[0]["format"], "hibrido")
+
+    def test_cidade_so_no_config(self):
+        self.assertEqual(importar.NOME_CIDADE, validar.CIDADE["nome"])
+        self.assertEqual(validar.FUSO.key, validar.CIDADE["fuso"])
+        self.assertTrue(importar.cidade_rio("Niterói"))
+        self.assertTrue(importar.cidade_rio("Petrópolis"))
+        self.assertTrue(importar.cidade_rio("RJ"))
+        self.assertFalse(importar.cidade_rio("São Paulo"))
+
+    def test_url_tech(self):
+        on, hib = "https://luma.com/so-on-url", "https://luma.com/so-hib-url"
+        tit_on, tit_hib = "Live online de Python", "Meetup híbrido de Python"
+        paginas = {on: _pagina(tit_on, "online", "São Paulo"), hib: _pagina(tit_hib, "hibrido")}
+        texto = self._rodar(["--agenda", "tech", "--dry-run", "--url", on, "--url", hib], paginas)
+        self._confere(texto, tit_hib, tit_on)
+
+    def test_fontes_tech(self):
+        on, hib = "https://luma.com/so-on-fontes", "https://luma.com/so-hib-fontes"
+        tit_on, tit_hib = "Live online de Python", "Meetup híbrido de Python"
+        paginas = {on: _pagina(tit_on, "online", "São Paulo"), hib: _pagina(tit_hib, "hibrido")}
+        with tempfile.TemporaryDirectory() as tmp:
+            fontes = Path(tmp) / "fontes.json"
+            fontes.write_text(json.dumps({"fontes": [
+                {"nome": "Fonte online", "tipo": "url", "url": on},
+                {"nome": "Fonte híbrida", "tipo": "url", "url": hib},
+            ]}), encoding="utf-8")
+            texto = self._rodar(
+                ["--agenda", "tech", "--dry-run", "--fontes", str(fontes)], paginas)
+        self._confere(texto, tit_hib, tit_on)
+
+    def test_whatsapp_tech(self):
+        on, hib = "https://luma.com/so-on-zap", "https://luma.com/so-hib-zap"
+        tit_on, tit_hib = "Live online de Python", "Meetup híbrido de Python"
+        paginas = {on: _pagina(tit_on, "online", "São Paulo"), hib: _pagina(tit_hib, "hibrido")}
+        with tempfile.TemporaryDirectory() as tmp:
+            chat = Path(tmp) / "_chat.txt"
+            chat.write_text(
+                "[20.11.30, 10:00:00] ~ Fulano: " + on + "\n"
+                "[20.11.30, 10:01:00] ~ Fulano: " + hib + "\n",
+                encoding="utf-8",
+            )
+            texto = self._rodar(
+                ["--agenda", "tech", "--dry-run", "--whatsapp", str(chat)], paginas)
+        self._confere(texto, tit_hib, tit_on)
+
+    def test_url_roles(self):
+        on, hib = "https://luma.com/so-on-roles", "https://luma.com/so-hib-roles"
+        tit_on, tit_hib = "Roda de samba online", "Roda de samba híbrida"
+        paginas = {on: _pagina(tit_on, "online", "São Paulo"), hib: _pagina(tit_hib, "hibrido")}
+        texto = self._rodar(["--agenda", "roles", "--dry-run", "--url", on, "--url", hib], paginas)
+        self._confere(texto, tit_hib, tit_on)
+
+    def test_fontes_roles(self):
+        url = "https://exemplo.org/lista-roles"
+        tit_on, tit_hib = "Roda de samba online", "Roda de samba híbrida"
+        pagina = _pagina(tit_on, "online", "São Paulo") + _pagina(tit_hib, "hibrido")
+        with tempfile.TemporaryDirectory() as tmp:
+            fontes = Path(tmp) / "fontes.json"
+            fontes.write_text(json.dumps({"fontes": [
+                {"nome": "Lista", "tipo": "jsonld", "url": url},
+            ]}), encoding="utf-8")
+            texto = self._rodar(
+                ["--agenda", "roles", "--dry-run", "--fontes", str(fontes)],
+                {url: pagina},
+            )
+        self._confere(texto, tit_hib, tit_on)
+
+    def test_ics_virtual_sem_lugar_nao_entra(self):
+        texto = (
+            "BEGIN:VCALENDAR\nBEGIN:VEVENT\n"
+            "SUMMARY:PyData Global\n"
+            "DTSTART:20301209T110000Z\n"
+            "DESCRIPTION:A 2-day virtual event for the community.\n"
+            "URL:https://exemplo.org/pydata-global\n"
+            "END:VEVENT\nEND:VCALENDAR\n"
+        )
+        ev = importar.ics_events(texto)[0]
+        self.assertEqual(ev["format"], "online")
+        lista = []
+        self.assertEqual(importar.merge(lista, ev, HOJE), "online")
+        self.assertEqual(lista, [])
+        presencial = importar.ics_events(
+            "BEGIN:VCALENDAR\nBEGIN:VEVENT\n"
+            "SUMMARY:Meetup\nDTSTART:20301209T110000Z\n"
+            "LOCATION:Casa\nURL:https://exemplo.org/meetup\n"
+            "END:VEVENT\nEND:VCALENDAR\n"
+        )[0]
+        self.assertEqual(presencial["format"], "presencial")
+
+    def test_rejeita_formato_online(self):
+        base = {
+            "id": "a", "title": "A", "start": "2030-02-01T19:00:00-03:00",
+            "cost": {"type": "gratis"}, "registration": "livre",
+            "url": "https://exemplo.org/so-online", "tags": ["ia"],
+        }
+        online = {"updated": "2030-01-01", "events": [{**base, "format": "online"}]}
+        errs = validar.check(online, {"ia"}, set())
+        self.assertTrue(any("format" in e for e in errs), errs)
+        hibrido = {"updated": "2030-01-01", "events": [{**base, "id": "b", "format": "hibrido", "url": "https://exemplo.org/so-hib"}]}
+        self.assertEqual(validar.check(hibrido, {"ia"}, set()), [])
 
 
 if __name__ == "__main__":

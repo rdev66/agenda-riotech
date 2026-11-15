@@ -7,7 +7,7 @@ import importar
 import validar
 
 FIX = Path(__file__).parent / "fixtures"
-RIO = dt.timezone(dt.timedelta(hours=-3))
+RIO = validar.FUSO
 
 
 class TestRoles(unittest.TestCase):

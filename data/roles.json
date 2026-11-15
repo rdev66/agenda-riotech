@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12",
+  "updated": "2026-11-15",
   "events": [
     {
       "title": "Lançamento de \"O Evangelho Segundo Zico\"",
@@ -124,7 +124,10 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-11-17-mundo-lingo-botafogo-humaita",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "urls": [
+        "https://www.meetup.com/mundo-lingo-rio/events/317402366"
+      ]
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -157,6 +160,35 @@
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-11-19-mundo-lingo-rio-botafogo",
       "added": "2026-11-12"
+    },
+    {
+      "title": "Pagode do Sofá",
+      "start": "2026-11-22T12:00:00-03:00",
+      "end": "2026-11-22T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Via Ápia da Rocinha",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://luma.com/n65tzulm",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/g4/0900e01f-a7a4-4eb2-8d74-1b88faa4701d.png",
+      "organizer": "Thayane Machado",
+      "description": {
+        "pt": "Domingo na Rocinha, a boa é uma só: O Pagode do Sofá!!! Tá ligado naquele climinha gostoso de domingo? Porta aberta pro beco, pagode 90 tocando, cerveja gelada, comida boa e aquela energia que só a Favela tem?! O…"
+      },
+      "tags": [
+        "pagode"
+      ],
+      "status": "confirmado",
+      "categoria": "festas",
+      "source": "Luma (Rio)",
+      "id": "2026-11-22-pagode-do-sofa",
+      "added": "2026-11-15"
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -381,6 +413,37 @@
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-15-mundo-lingo-botafogo-humaita",
       "added": "2026-11-12"
+    },
+    {
+      "title": "Mundo Lingo Rio - Botafogo",
+      "start": "2026-12-17T19:00:00-03:00",
+      "end": "2026-12-18T05:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/rznfbvyjcqbwb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Mundo Lingo Rio de Janeiro 100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free. 🟢 The Flags Place flags on your chest from top…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-12-17-mundo-lingo-rio-botafogo",
+      "added": "2026-11-15"
     }
   ]
 }

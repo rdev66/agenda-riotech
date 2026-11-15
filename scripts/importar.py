@@ -13,8 +13,12 @@ ou WhatsApp de terceiros.
 
 Regras:
   - Nunca sobrescreve um campo já preenchido à mão: só completa campos vazios.
-  - Eventos passados e fora do Rio (que não sejam online) ficam de fora,
-    salvo com --historico: aí a origem do link vale, e o passado fica na agenda.
+  - Só entra evento presencial ou híbrido. Formato online fica de fora nas duas
+    agendas e em todo caminho (--url, --fontes, --whatsapp), inclusive com
+    --historico.
+  - Eventos passados e de outra cidade ficam de fora, salvo com --historico:
+    aí o passado e a outra cidade entram. Online continua de fora.
+  - A cidade (nome, variantes e fuso) está só em config.json.
   - URLs em data/descartados.json não entram de novo.
   - Do WhatsApp só se guardam links: nada de nomes, telefones ou mensagens.
 
@@ -40,7 +44,8 @@ import validar
 ROOT = Path(__file__).resolve().parents[1]
 EVENTS = ROOT / "data" / "events.json"
 TAGS = ROOT / "data" / "tags.json"
-RIO = dt.timezone(dt.timedelta(hours=-3))
+RIO = validar.FUSO
+NOME_CIDADE = validar.CIDADE["nome"]
 UA = "Mozilla/5.0 (compatible; AgendaRioTech/1.0; +https://github.com)"
 
 EVENT_HOSTS = re.compile(
@@ -163,7 +168,7 @@ def fetch(url: str, timeout: int = 20) -> str:
 
 
 def to_iso(value: str | None) -> str | None:
-    """Normaliza datas para ISO com fuso -03:00. Datas sem hora ficam AAAA-MM-DD."""
+    """Normaliza datas para ISO no fuso da cidade. Datas sem hora ficam AAAA-MM-DD."""
     if not value:
         return None
     v = value.strip().replace("Z", "+00:00")
@@ -856,7 +861,7 @@ def event_from_page(page: str, url: str, agenda: str = "tech") -> dict | None:
         # Sem dados estruturados: entra como «a confirmar» e sem data, para revisão no PR.
         return {
             "title": meta["og:title"], "start": None, "end": None, "time_known": False,
-            "venue": None, "address": None, "city": "Rio de Janeiro", "format": "presencial",
+            "venue": None, "address": None, "city": NOME_CIDADE, "format": "presencial",
             "cost": {"type": "desconhecido", "text": None}, "registration": "inscricao", "url": url,
             "image": meta.get("og:image"), "organizer": None,
             "description": {"pt": short(meta.get("og:description"))} if meta.get("og:description") else {},
@@ -940,10 +945,14 @@ def ics_events(text: str, agenda: str = "tech") -> list[dict]:
         loc = unesc(val("LOCATION"))
         online = bool(loc and re.search(r"https?://|zoom|meet\.google|online", loc, re.I))
         blob = summary + " " + (desc or "") + " " + (loc or "")
+        # Sem lugar, «virtual event» / webinar não é presencial na cidade.
+        if not online and not (loc and loc.strip()):
+            if re.search(r"\b(virtual event|evento virtual|webinar)\b", _sem_acento(blob)):
+                online = True
         evento = {
             "title": summary, "start": start, "end": ics_date("DTEND"),
             "time_known": bool(start and len(start) > 10),
-            "venue": None if online else loc, "address": None, "city": "Rio de Janeiro",
+            "venue": None if online else loc, "address": None, "city": NOME_CIDADE,
             "format": "online" if online else "presencial",
             "cost": {"type": "desconhecido", "text": None}, "registration": "inscricao",
             "url": clean_url(url) if url else None, "image": None, "organizer": None,
@@ -998,18 +1007,33 @@ def whatsapp_links(path: Path, since: dt.date | None = None) -> list[str]:
 # ------------------------------------------------------------------ mescla
 RODAPE = "Para descartar um evento, acrescente a URL dele em data/descartados.json neste mesmo PR."
 
-RIO_CITY = re.compile(
-    r"rio de janeiro|\brj\b|niter[oó]i|duque de caxias|nova igua[cç]u|petr[oó]polis",
-    re.I,
-)
-
-
 def key_of(e: dict) -> tuple:
     return (e.get("url") or "").lower(), slug(e.get("title") or ""), (e.get("start") or "")[:10]
 
 
+def _variantes_cidade() -> list[str]:
+    """Nome de exibição e as grafias de config.json, sem acento."""
+    vistas: list[str] = []
+    itens = [validar.CIDADE.get("nome"), *(validar.CIDADE.get("variantes") or [])]
+    for item in itens:
+        texto = _sem_acento(str(item or ""))
+        if texto and texto not in vistas:
+            vistas.append(texto)
+    return vistas
+
+
 def cidade_rio(city: str | None) -> bool:
-    return bool(city and RIO_CITY.search(city))
+    """True se a cidade casa o nome ou uma variante de config.json."""
+    if not city:
+        return False
+    norm = _sem_acento(city)
+    for variante in _variantes_cidade():
+        if " " in variante or len(variante) > 3:
+            if variante in norm:
+                return True
+        elif re.search(r"(?<![a-z0-9])" + re.escape(variante) + r"(?![a-z0-9])", norm):
+            return True
+    return False
 
 
 def _palavras_tech() -> list[str]:
@@ -1078,7 +1102,7 @@ def bloco_novo(ev: dict, url: str, agenda: str = "tech") -> str:
     elif not parece_tech(ev):
         avisos.append("não parece tech")
     if not cidade_rio(ev.get("city")):
-        avisos.append("cidade não é Rio")
+        avisos.append(f"cidade não é {NOME_CIDADE}")
     if avisos:
         linhas.append("- ⚠️ revisar: " + "; ".join(avisos))
     return "\n".join(linhas)
@@ -1123,10 +1147,11 @@ def unicos_por_chave(urls: list[str]) -> list[str]:
 
 
 def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str] | None = None, historico: bool = False, agenda: str = "tech") -> str:
-    """Devolve 'novo', 'completado', 'igual', 'descartado' ou o motivo de ter ficado de fora.
+    """Devolve 'novo', 'completado', 'igual', 'online' ou o motivo de ter ficado de fora.
 
     Com historico=True, evento passado e evento de outra cidade entram.
-    Não há corte por idade (nem de 3 meses). Campo preenchido não é trocado.
+    Formato online nunca entra. Não há corte por idade (nem de 3 meses).
+    Campo preenchido não é trocado.
     """
     if descartadas is None:
         descartadas = validar.chaves_descartadas()
@@ -1134,6 +1159,8 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
         return "sem título"
     if validar.url_chave(new.get("url") or "") in descartadas:
         return "descartado"
+    if new.get("format") == "online":
+        return "online"
     start = new.get("start")
     if not start:
         return "sem data na página (adicione à mão)"
@@ -1164,10 +1191,10 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
                     changed = True
             return "completado" if changed else "igual"
 
-    if not historico and new.get("format") != "online" and (new.get("city") or "") and not cidade_rio(new.get("city")):
+    if not historico and (new.get("city") or "") and not cidade_rio(new.get("city")):
         return "fora do Rio"
     new = dict(new)
-    new["city"] = new.get("city") or "Rio de Janeiro"
+    new["city"] = new.get("city") or NOME_CIDADE
     if new.get("end") and str(new["end"])[:10] < start[:10]:
         new["end"] = None
 
@@ -1249,7 +1276,7 @@ def main(argv=None) -> int:
     ap.add_argument("--whatsapp", type=Path)
     ap.add_argument("--desde", help="AAAA-MM-DD: só links do WhatsApp a partir desta data")
     ap.add_argument("--historico", action="store_true",
-                    help="guarda passados e qualquer cidade; não corta eventos com mais de 3 meses")
+                    help="guarda passados e qualquer cidade; online continua de fora; não corta eventos com mais de 3 meses")
     ap.add_argument("--fontes", type=Path)
     ap.add_argument("--corpo", help="corpo da issue, para achar Agenda e Categoria")
     ap.add_argument("--dry-run", action="store_true", help="não grava o JSON")
@@ -1348,6 +1375,19 @@ def main(argv=None) -> int:
                 report.append(f"⚠️ Fonte «{f.get('nome')}» falhou: {exc.__class__.__name__}")
 
     counts: dict[str, int] = {}
+    tabela: dict[str, dict[str, int]] = {}
+
+    def registrar(url: str, ev: dict | None, result: str) -> None:
+        if ev is None:
+            return
+        nome = ev.get("source") or _host(ev.get("url") or url) or "—"
+        linha = tabela.setdefault(nome, {"encontrados": 0, "novos": 0, "online": 0})
+        linha["encontrados"] += 1
+        if result == "novo":
+            linha["novos"] += 1
+        elif result == "online":
+            linha["online"] += 1
+
     for url, ev, err in candidates:
         if err:
             result = err
@@ -1364,15 +1404,18 @@ def main(argv=None) -> int:
                 if not ev.get("tags"):
                     result = "fora das categorias"
                     counts[result] = counts.get(result, 0) + 1
+                    registrar(url, ev, result)
                     report.append(f"- fora das categorias: {ev.get('title') or url}")
                     continue
                 if not str(ev.get("url") or "").startswith("https://"):
                     result = "sem página https"
                     counts[result] = counts.get(result, 0) + 1
+                    registrar(url, ev, result)
                     report.append(f"- sem página https: {ev.get('title') or url}")
                     continue
             result = merge(events, ev, today, descartadas, historico=args.historico, agenda=agenda)
         counts[result] = counts.get(result, 0) + 1
+        registrar(url, ev, result)
         if result == "novo":
             origem = (ev or {}).get("source") or _host(url)
             por_fonte[origem] = por_fonte.get(origem, 0) + 1
@@ -1390,6 +1433,16 @@ def main(argv=None) -> int:
     if por_fonte:
         report.insert(1, "Por fonte: " + " · ".join(f"{k}: {v}" for k, v in sorted(por_fonte.items())))
         report.insert(2, "")
+    if tabela:
+        report.append("")
+        report.append("| Fonte | Encontrados | Novos | Online (descartados) |")
+        report.append("| --- | ---: | ---: | ---: |")
+        for nome in sorted(tabela):
+            linha = tabela[nome]
+            celula = str(nome).replace("|", "\\|")
+            report.append(
+                f"| {celula} | {linha['encontrados']} | {linha['novos']} | {linha['online']} |"
+            )
 
     if not args.dry_run and (counts.get("novo") or counts.get("completado")):
         destino.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
