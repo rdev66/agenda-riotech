@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14",
+  "updated": "2026-11-15",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -5470,6 +5470,64 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Building a Shared Trust Layer for Europe: EBSI Business Launch",
+      "start": "2026-11-18T12:00:00-03:00",
+      "end": "2026-11-18T13:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/lfdt-rio-de-janeiro/events/317259401",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "LFDT Rio de Janeiro Join us for a webinar with Europeum, an LFDT Associate member, on Building a Shared Trust Layer for Europe and an update on the EBSI Business Launch. As Europe advances toward a more connected and…"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "LFDT Rio de Janeiro (Meetup)",
+      "id": "2026-11-18-building-a-shared-trust-layer-for-europe-ebsi-bu",
+      "added": "2026-11-15"
+    },
+    {
+      "title": "An Architectural Deep Dive into New CLPR (Cross-Ledger Protocol) Lab",
+      "start": "2026-11-18T13:00:00-03:00",
+      "end": "2026-11-18T14:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/lfdt-rio-de-janeiro/events/316665204",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "LFDT Rio de Janeiro **LFDT Labs Introduces CLPR - An Architectural Deep Dive into CLPR (Cross-Ledger Protocol)** Join us for an in-depth technical session introducing CLPR (Cross-Ledger Protocol), a newly approved…"
+      },
+      "tags": [
+        "seguranca",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "LFDT Rio de Janeiro (Meetup)",
+      "id": "2026-11-18-an-architectural-deep-dive-into-new-clpr-cross-l",
+      "added": "2026-11-15"
+    },
+    {
       "title": "Cloud Native Night Rio! Uma noite no cluster!",
       "start": "2026-11-18T18:00:38-03:00",
       "end": "2026-11-18T22:00:38-03:00",
@@ -5557,6 +5615,64 @@
       "added": "2026-11-10"
     },
     {
+      "title": "AI ROI by Business Unit: FinOps for AI Platforms",
+      "start": "2026-11-19T13:00:00-03:00",
+      "end": "2026-11-19T14:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/kong-rio-de-janeiro/events/317360617",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Kong/RIO-DE-JANEIRO Every business unit wants more AI. Finance wants to know what each use case costs and what it returns. When LLM spend arrives as one shared bill, neither question has a clear answer. This webinar…"
+      },
+      "tags": [
+        "ia",
+        "dados"
+      ],
+      "status": "confirmado",
+      "source": "Kong/RIO-DE-JANEIRO (Meetup)",
+      "id": "2026-11-19-ai-roi-by-business-unit-finops-for-ai-platforms",
+      "added": "2026-11-15"
+    },
+    {
+      "title": "ZK Learning Group: ZK Identity, supporting AML/KYC with ZK",
+      "start": "2026-11-19T14:00:00-03:00",
+      "end": "2026-11-19T15:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/lfdt-rio-de-janeiro/events/317065011",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "LFDT Rio de Janeiro A learning group for zero knowledge and SNARK application development. During the year we will systematically explore different aspects of zero knowledge and SNARK programming in application…"
+      },
+      "tags": [
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "LFDT Rio de Janeiro (Meetup)",
+      "id": "2026-11-19-zk-learning-group-zk-identity-supporting-aml-kyc",
+      "added": "2026-11-15"
+    },
+    {
       "title": "Happy Hour + Download Web Summit Lisboa",
       "start": "2026-11-19T17:00:00-03:00",
       "end": "2026-11-19T21:00:00-03:00",
@@ -5585,6 +5701,37 @@
       "source": "Maravalley (Luma)",
       "id": "2026-11-19-happy-hour-download-web-summit-lisboa",
       "added": "2026-11-03"
+    },
+    {
+      "title": "Cloud Quest Event",
+      "start": "2026-11-21T19:00:00-03:00",
+      "end": "2026-11-21T22:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/aws-sbg-at-university-center-sao-jose/events/317412788",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "AWS SBG at UniSaoJose - University Center Sao Jose Participe de um evento dedicado ao aprendizado de Cloud Computing por meio do AWS Cloud Quest, uma experiência interativa e gamificada que permite explorar os…"
+      },
+      "tags": [
+        "web",
+        "cloud",
+        "seguranca",
+        "carreira"
+      ],
+      "status": "confirmado",
+      "source": "AWS SBG at UniSaoJose - University Center Sao Jose (Meetup)",
+      "id": "2026-11-21-cloud-quest-event",
+      "added": "2026-11-15"
     },
     {
       "title": "Founders Running Club Special Edition in Niteroi",
@@ -5966,6 +6113,36 @@
       "added": "2026-11-11"
     },
     {
+      "title": "Hyperledger Fabric for Aerospace Part Traceability: A Doctoral Research Overview",
+      "start": "2026-12-01T14:00:00-03:00",
+      "end": "2026-12-01T15:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/lfdt-rio-de-janeiro/events/317315250",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "LFDT Rio de Janeiro Aircraft parts and components move across airlines, manufacturers, suppliers, and maintenance organizations throughout their service lives. Keeping their maintenance and ownership records accurate…"
+      },
+      "tags": [
+        "web3",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "LFDT Rio de Janeiro (Meetup)",
+      "id": "2026-12-01-hyperledger-fabric-for-aerospace-part-traceabili",
+      "added": "2026-11-15"
+    },
+    {
       "id": "2026-12-02-riotech-happy-hour",
       "title": "RioTech Happy Hour",
       "start": "2026-12-02T18:00:00-03:00",
@@ -6058,6 +6235,68 @@
       "added": "2026-10-31"
     },
     {
+      "title": "Talk to EUDI Wallets Without Reading 1,400 Pages of Specs",
+      "start": "2026-12-08T14:00:00-03:00",
+      "end": "2026-12-08T15:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/lfdt-rio-de-janeiro/events/317415443",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "LFDT Rio de Janeiro Connecting a service to EUDI Wallets is like a family dinner with 27 relatives who each speak their own versioned dialect of the same language. You need fluent OID4VCI, OID4VP, SD-JWT VC, ISO mdoc,…"
+      },
+      "tags": [
+        "investimento",
+        "meetup",
+        "palestra",
+        "comunidade",
+        "open-source"
+      ],
+      "status": "confirmado",
+      "source": "LFDT Rio de Janeiro (Meetup)",
+      "id": "2026-12-08-talk-to-eudi-wallets-without-reading-1-400-pages",
+      "added": "2026-11-15"
+    },
+    {
+      "title": "PyData Global 2026",
+      "start": "2026-12-09T08:00:00-03:00",
+      "end": "2026-12-10T18:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/pydata-rio/events/317164761",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "PyData RJ PyData Global 2026 is a 2-day virtual event for the international community of data scientists, data engineers, and developers of data analysis tools to share ideas and learn from each other. During the…"
+      },
+      "tags": [
+        "dados",
+        "palestra",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "PyData RJ (Meetup)",
+      "id": "2026-12-09-pydata-global-2026",
+      "added": "2026-11-15"
+    },
+    {
       "id": "2026-12-09-inova-ia-2026",
       "title": "INOVA IA 2026",
       "start": "2026-12-09T09:00:00-03:00",
@@ -6115,6 +6354,97 @@
       "id": "2026-12-09-lovable-build-day-rj",
       "source": "luma.com",
       "added": "2026-11-10"
+    },
+    {
+      "title": "LFDT Mentorship: Talent Angels - Final Mentorship Presentation",
+      "start": "2026-12-09T14:00:00-03:00",
+      "end": "2026-12-09T15:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/lfdt-rio-de-janeiro/events/317065287",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "LFDT Rio de Janeiro This is a third event in a series about the Talent Angels mentorship project. **Speakers:** Alejandro Kantún, Shubhang Sinha, Aman Kumar Sarraf, Vishwajit Sarak-Patil **Mentors of the LFDT…"
+      },
+      "tags": [
+        "ia",
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "LFDT Rio de Janeiro (Meetup)",
+      "id": "2026-12-09-lfdt-mentorship-talent-angels-final-mentorship-p",
+      "added": "2026-11-15"
+    },
+    {
+      "title": "Introducing ThunderID: Open Source Identity for Humans, AI Agents, and Machines",
+      "start": "2026-12-10T13:00:00-03:00",
+      "end": "2026-12-10T14:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/lfdt-rio-de-janeiro/events/317272274",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "LFDT Rio de Janeiro ThunderID ([https://github.com/thunder-id](https://github.com/thunder-id)) is an open source identity and access management project, hosted by LF Decentralized Trust as an incubation project. It is…"
+      },
+      "tags": [
+        "ia",
+        "design",
+        "meetup",
+        "comunidade",
+        "open-source"
+      ],
+      "status": "confirmado",
+      "source": "LFDT Rio de Janeiro (Meetup)",
+      "id": "2026-12-10-introducing-thunderid-open-source-identity-for-h",
+      "added": "2026-11-15"
+    },
+    {
+      "title": "ZK Learning Group: Wrap-up 2026, ZK order book matching",
+      "start": "2026-12-10T14:00:00-03:00",
+      "end": "2026-12-10T15:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/lfdt-rio-de-janeiro/events/317272093",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "LFDT Rio de Janeiro ZK Learning Group: Wrap-up 2026, ZK order book matching A learning group for zero knowledge and SNARK application development. During the year we will systematically explore different aspects of…"
+      },
+      "tags": [
+        "meetup",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "LFDT Rio de Janeiro (Meetup)",
+      "id": "2026-12-10-zk-learning-group-wrap-up-2026-zk-order-book-mat",
+      "added": "2026-11-15"
     },
     {
       "title": "Happy Hour Maravalley",
@@ -6175,6 +6505,37 @@
       "source": "luma",
       "status": "confirmado",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Who Governs Blockchains? A Five-Stage Analysis of Bitcoin, Ethereum and Cardano",
+      "start": "2027-01-26T13:00:00-03:00",
+      "end": "2027-01-26T14:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "online",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/lfdt-rio-de-janeiro/events/317415692",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "LFDT Rio de Janeiro When people talk about decentralisation in blockchains, they usually mean who mines or validates blocks. A less-asked question is who decides how the rules change. In Bitcoin, Ethereum and Cardano,…"
+      },
+      "tags": [
+        "web3",
+        "meetup",
+        "palestra",
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "LFDT Rio de Janeiro (Meetup)",
+      "id": "2027-01-26-who-governs-blockchains-a-five-stage-analysis-of",
+      "added": "2026-11-15"
     },
     {
       "title": "Rio de Janeiro 2027 Venture Capital World Summit",
