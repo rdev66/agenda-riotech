@@ -15,7 +15,7 @@ Eventos de tecnologia no Rio de Janeiro num lugar só: meetups, conferências, h
   Nunca sobrescreve o que alguém corrigiu à mão: só completa campos vazios. Na agenda Rolês, uma fonte só entra se o `robots.txt` e os termos deixam ler, e se a página tem iCal ou `schema.org/Event` em JSON-LD.
 - **Automação no GitHub Actions:**
   - `importar.yml`: todo dia às 08:17 (Rio), lê `fontes.json` e abre um PR em `importador/diario`; no mesmo horário lê `fontes_roles.json` e abre outro PR em `importador/roles-diario`;
-  - `importar-correio.yml`: todo dia às 08:47 (Rio), lê as duas caixas do Gmail e abre um PR em `importador/correio`;
+  - `importar-correio.yml`: todo dia às 08:47 (Rio), lê as duas caixas do Gmail e abre um PR em `importador/correio-AAAA-MM-DD`; o ramo não é apagado;
   - `issue-para-pr.yml`: quem abre uma issue «Sugerir um evento» com o link recebe um PR pronto, na agenda escolhida;
   - `validar.yml`: valida dados e roda os testes em todo PR;
   - `pages.yml`: publica o site no GitHub Pages a cada push na `main`.
@@ -84,6 +84,8 @@ Duas caixas no Gmail alimentam a agenda. `scripts/importar_correio.py` lê o con
 - Link de Luma, Meetup, Sympla, Eventbrite, Even3, Shotgun e dos outros hosts que o importador já lê segue o caminho `--url`, sem parâmetro de rastreio. Newsletter sem esse link (IMS, Sesc, Fever, Bandsintown e semelhantes) vai para o modelo `claude-haiku-5-5`, que não inventa data nem hora.
 - Só entra evento futuro, presencial ou híbrido, na cidade configurada (Rio). Online fica de fora.
 - Cada mensagem lida ganha a etiqueta `agenda/processado`. Nada é apagado nem movido. O repositório não guarda endereço, remetente nem o texto do e-mail: só o evento e o link público.
+- O job abre um PR por dia, no ramo `importador/correio-AAAA-MM-DD` (data em São Paulo). O ramo fica no repositório, para uma rodada nova não reescrever eventos que ainda não entraram.
+- Link de descadastro, preferências ou «ver no navegador» não é aberto. O cabeçalho `List-Unsubscribe` também fica de fora.
 
 Segredos no GitHub Actions, nunca no repositório:
 
