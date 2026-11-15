@@ -1,0 +1,14 @@
+{
+  "cidade": {
+    "nome": "Rio de Janeiro",
+    "variantes": [
+      "rio de janeiro",
+      "rj",
+      "niteroi",
+      "duque de caxias",
+      "nova iguacu",
+      "petropolis"
+    ],
+    "fuso": "America/Sao_Paulo"
+  }
+}

@@ -17,15 +17,36 @@ import re
 import sys
 import urllib.parse
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
-FORMATS = {"presencial", "online", "hibrido"}
+FORMATS = {"presencial", "hibrido"}
 COSTS = {"gratis", "pago", "desconhecido"}
 REGS = {"livre", "inscricao", "aprovacao", "ingresso"}
 STATUS = {"confirmado", "a-confirmar"}
 IDIOMAS = {"pt", "en", "es", "multi"}
 DIAS_RRULE = {"MO", "TU", "WE", "TH", "FR", "SA", "SU"}
-RIO = dt.timezone(dt.timedelta(hours=-3))
+
+
+def carregar_cidade() -> dict:
+    """Nome, variantes e fuso. A agenda só tem uma cidade: config.json."""
+    dados = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
+    cidade = dados.get("cidade")
+    if not isinstance(cidade, dict):
+        raise SystemExit("config.json precisa de um objeto «cidade»")
+    if not str(cidade.get("nome") or "").strip():
+        raise SystemExit("config.json: cidade.nome vazio")
+    if not str(cidade.get("fuso") or "").strip():
+        raise SystemExit("config.json: cidade.fuso vazio")
+    variantes = cidade.get("variantes")
+    if not isinstance(variantes, list) or not variantes:
+        raise SystemExit("config.json: cidade.variantes precisa ser uma lista")
+    return cidade
+
+
+CIDADE = carregar_cidade()
+FUSO = ZoneInfo(str(CIDADE["fuso"]))
+RIO = FUSO
 REQUIRED = ["id", "title", "start", "format", "cost", "registration", "url", "tags"]
 DESCARTADOS = ROOT / "data" / "descartados.json"
 ROLES = ROOT / "data" / "roles.json"

@@ -12,10 +12,10 @@
     {
       "nome": "Shotgun (Rio)",
       "tipo": "jsonld",
-      "url": "https://shotgun.live/cities/rio-de-janeiro",
+      "url": "https://shotgun.live/pt-br/cities/rio-de-janeiro",
       "ativo": false,
       "metodo": "jsonld",
-      "nota": "robots.txt tem Allow: /, mas a cidade e o sitemap respondem 429. Não deu para confirmar iCal nem JSON-LD de Event."
+      "nota": "robots.txt tem Allow: /. Os Termos do Brasil (agosto de 2026, apêndice 1) proíbem copiar, reproduzir ou integrar o site em outro programa sem consentimento por escrito. A leitura automática de /pt-br/cities/rio-de-janeiro com o User-Agent do importador responde 429 (15/11/2026). Não ativar."
     },
     {
       "nome": "Sympla (festas, shows, cultura, Rio)",
