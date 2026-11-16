@@ -357,7 +357,7 @@ class TestCorreio(unittest.TestCase):
             "title": "Meetup remoto", "start": "2026-12-18T19:00:00-03:00",
             "url": "https://luma.com/online99", "format": "online", "city": "Rio de Janeiro",
         }
-        self.assertEqual(importar.merge([], online, HOJE), "novo")
+        self.assertEqual(importar.merge([], online, HOJE), "online")
         self.assertNotIn("online99", bruto)
 
     def test_reclassifica_e_grava_na_outra_agenda(self):
@@ -623,6 +623,102 @@ class TestCorreio(unittest.TestCase):
         self.assertIn("GMAIL_EVENTOS_APP_PASSWORD", texto)
         self.assertIn("GMAIL_ROLES_APP_PASSWORD", texto)
 
+    def test_mailchimp_nao_abre_descadastro(self):
+        direto = "https://example.us1.list-manage.com/unsubscribe?u=aaa&id=bbb"
+        embrulhado = "https://example.us1.list-manage.com/track/click?u=aaa&id=bbb&e=zzz"
+        preferencias = "https://mailchi.mp/abc/preferences"
+        navegador = "https://example.us1.list-manage.com/track/click?u=aaa&id=bbb&e=nav"
+        cabecalho = "https://example.us1.list-manage.com/track/click?u=soheader&id=bbb&e=hdr"
+        bom = "https://bit.ly/showrio"
+        self.assertTrue(correio.url_recusada(direto))
+        self.assertTrue(correio.url_recusada(preferencias))
+        self.assertFalse(correio.url_recusada(embrulhado))
+        self.assertFalse(correio.url_recusada(cabecalho))
+        self.assertTrue(correio.ancora_recusada("cancelar inscrição"))
+        raw = (
+            "From: Lista <lista@example.com>\r\n"
+            "To: agenda.rio.roles@gmail.com\r\n"
+            "Subject: boletim\r\n"
+            f"List-Unsubscribe: <{cabecalho}>, <mailto:unsub@example.com>\r\n"
+            "MIME-Version: 1.0\r\n"
+            "Content-Type: multipart/alternative; boundary=xyz\r\n"
+            "\r\n"
+            "--xyz\r\n"
+            "Content-Type: text/plain; charset=utf-8\r\n"
+            "\r\n"
+            f"Samba na Pedra\r\n{bom}\r\n{direto}\r\n{preferencias}\r\n"
+            "--xyz\r\n"
+            "Content-Type: text/html; charset=utf-8\r\n"
+            "\r\n"
+            "<html><body>"
+            f'<a href="{bom}">Samba na Pedra</a>'
+            f'<a href="{direto}">descadastrar</a>'
+            f'<a href="{embrulhado}">cancelar inscrição</a>'
+            f'<a href="{preferencias}">preferências</a>'
+            f'<a href="{navegador}">ver no navegador</a>'
+            f'<a href="{cabecalho}">o boletim</a>'
+            '<a href="https://example.com/view-in-browser">View in browser</a>'
+            "</body></html>\r\n"
+            "--xyz--\r\n"
+        ).encode()
+        abertos = []
+        vistos = []
+
+        def urlopen(req, timeout=None):
+            url = getattr(req, "full_url", str(req))
+            abertos.append(url)
+            if "bit.ly/showrio" not in url:
+                raise OSError(url)
+
+            class Destino:
+                def geturl(self):
+                    return "https://luma.com/showrio"
+
+                def __enter__(self):
+                    return self
+
+                def __exit__(self, *args):
+                    return False
+
+            return Destino()
+
+        def eventos_url(url, agenda):
+            vistos.append(url)
+            return [], "sem dados de evento"
+
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = destinos(Path(tmp))
+            with patch("urllib.request.urlopen", urlopen):
+                relatorio, codigo = correio.rodar(
+                    [correio.CaixaTrabalho(
+                        "Rolês", "agenda.rio.roles@gmail.com", "roles", [("mc", raw)],
+                    )],
+                    hoje=HOJE,
+                    destinos=paths,
+                    abrir_redirect=correio.seguir,
+                    eventos_da_url=eventos_url,
+                    modelo=lambda texto: (_ for _ in ()).throw(AssertionError(texto[:120])),
+                )
+        self.assertEqual(codigo, 0, relatorio)
+        self.assertEqual(abertos, [bom])
+        self.assertEqual(vistos, ["https://luma.com/showrio"])
+        junto = " ".join(abertos + vistos)
+        for trecho in ("unsubscribe", "list-manage.com", "mailchi.mp", "preferences", "view-in-browser"):
+            self.assertNotIn(trecho, junto)
+
+    def test_no_maximo_quinze_rastreadores(self):
+        urls = [f"https://bit.ly/n{i}" for i in range(16)]
+        abertos = []
+
+        def abrir(url):
+            abertos.append(url)
+            return f"https://luma.com/{url.rsplit('/', 1)[-1]}"
+
+        uteis = correio.links_uteis("\n".join(urls), abrir)
+        self.assertEqual(correio.MAX_RASTREADORES, 15)
+        self.assertEqual(abertos, urls[:15])
+        self.assertEqual(uteis, [f"https://luma.com/n{i}" for i in range(15)])
+
     def test_readme_e_workflow(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         for trecho in (
@@ -639,7 +735,12 @@ class TestCorreio(unittest.TestCase):
         doc = validar.load_yaml(texto)
         self.assertIn('cron: "47 11 * * *"', texto)
         self.assertIn("workflow_dispatch:", texto)
-        self.assertEqual(doc["jobs"]["importar-correio"]["steps"][-1]["with"]["branch"], "importador/correio")
+        passo = doc["jobs"]["importar-correio"]["steps"][-1]["with"]
+        self.assertEqual(passo["branch"], "importador/correio-${{ steps.data.outputs.dia }}")
+        self.assertEqual(passo["title"], "Novos eventos (correio, ${{ steps.data.outputs.dia }})")
+        self.assertIs(passo["delete-branch"], False)
+        self.assertIn("TZ=America/Sao_Paulo date +%F", texto)
+        self.assertNotIn("delete-branch: true", texto)
         self.assertIn("data/events.json", texto)
         self.assertIn("data/roles.json", texto)
         for nome in ("GMAIL_EVENTOS_APP_PASSWORD", "GMAIL_ROLES_APP_PASSWORD", "ANTHROPIC_API_KEY"):

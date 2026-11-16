@@ -22,13 +22,16 @@ jobs:
         run: python scripts/importar_correio.py --relatorio relatorio.md
       - name: Validar
         run: python scripts/validar.py
+      - name: Data no Rio
+        id: data
+        run: echo "dia=$(TZ=America/Sao_Paulo date +%F)" >> "$GITHUB_OUTPUT"
       - name: Abrir PR com o que mudou
         uses: peter-evans/create-pull-request@v6
         with:
-          branch: importador/correio
-          delete-branch: true
+          branch: "importador/correio-${{ steps.data.outputs.dia }}"
+          delete-branch: false
           commit-message: "Importação automática do correio"
-          title: "Novos eventos (correio)"
+          title: "Novos eventos (correio, ${{ steps.data.outputs.dia }})"
           body-path: relatorio.md
           add-paths: |
             data/events.json

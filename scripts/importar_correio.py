@@ -11,8 +11,9 @@ Even3, Shotgun e os outros hosts de importar.EVENT_HOSTS) segue o caminho
 --url. Newsletter sem esse link (IMS, Sesc, Fever, Bandsintown e semelhantes)
 vai para o modelo. Não inventa data nem hora.
 
-Filtros deste caminho, mesmo que o importador geral ainda aceite online:
-  futuro, presencial ou híbrido, cidade configurada (Rio) e validar.py.
+Filtros deste caminho: futuro, presencial ou híbrido (online fica de fora),
+cidade configurada (Rio) e validar.py. Não abre link de descadastro,
+preferências, perfil ou «ver no navegador», nem o List-Unsubscribe.
 
 IMAP só lê. Para não reprocessar, aplica a etiqueta agenda/processado.
 Não apaga nem move. O repositório não guarda endereço, remetente nem o texto.
@@ -49,6 +50,7 @@ IMAP_PORT = 993
 ROTULO = "agenda/processado"
 DIAS = 14
 MAX_MENSAGENS = 40
+MAX_RASTREADORES = 15
 MAX_TEXTO = 30_000
 MAX_INPUT_TOKENS = 300_000
 MODELO = "claude-haiku-5-5"
@@ -84,6 +86,17 @@ RASTREADORES = (
     "mailchi.mp", "list-manage.com", "sendgrid.net", "awstrack.me",
     "mandrillapp.com", "ctt.ec", "hubs.ly",
 )
+# No caminho ou na query, antes de seguir um rastreador.
+_PALAVRAS_URL = (
+    "unsubscribe", "unsub", "optout", "opt-out", "opt_out", "descadastr",
+    "cancelar-inscricao", "preferences", "preferencias", "manage", "profile",
+    "update-profile",
+)
+# No texto do <a>, também antes de seguir.
+_FRASES_ANCORA = (
+    "descadastr", "cancelar inscricao", "unsubscribe", "preferencias",
+    "preferences", "gerenciar", "ver no navegador", "view in browser",
+)
 EXTRAS_RASTREIO = {
     "mc_cid", "mc_eid", "mkt_tok", "_hsenc", "_hsmi", "igshid", "vero_id",
     "vero_conv", "_ke", "ml_subscriber", "ml_subscriber_hash", "sc_cid",
@@ -101,6 +114,9 @@ OUTRA_CIDADE = re.compile(
 )
 EMAIL_RE = re.compile(r"(?i)[\w.+-]+@[\w.-]+\.[a-z]{2,}")
 LINK_RE = re.compile(r"https?://[^\s<>()\[\]\"']+", re.I)
+_ANCORA_RE = re.compile(
+    r"(?is)<a\b[^>]*\bhref\s*=\s*[\"']([^\"']+)[\"'][^>]*>(.*?)</a>"
+)
 
 _CAMPOS_EVENTO = {
     "title": {"type": "string", "description": "Nome como no texto."},
@@ -287,7 +303,58 @@ def e_rastreador(url: str) -> bool:
     return any(host == item or host.endswith("." + item) for item in RASTREADORES)
 
 
-def resolver_link(url: str, abrir: Callable[[str], str | None]) -> str | None:
+def _chave_url(url: str) -> str:
+    return html_unescape((url or "").strip()).rstrip(".,;:!?)*]>\"'")
+
+
+def url_recusada(url: str) -> bool:
+    """Caminho ou query de descadastro, preferência, perfil ou gestão."""
+    try:
+        partes = urllib.parse.urlsplit(_chave_url(url))
+    except Exception:
+        return False
+    alvo = (
+        urllib.parse.unquote(partes.path or "")
+        + "?"
+        + urllib.parse.unquote_plus(partes.query or "")
+    ).lower()
+    return any(palavra in alvo for palavra in _PALAVRAS_URL)
+
+
+def ancora_recusada(texto: str) -> bool:
+    low = re.sub(r"\s+", " ", importar._sem_acento(texto or "")).strip()
+    return any(frase in low for frase in _FRASES_ANCORA)
+
+
+class FiltroLinks:
+    """O que uma mensagem não abre, e quantos rastreadores ela já seguiu."""
+
+    def __init__(self, limite: int = MAX_RASTREADORES):
+        self.limite = limite
+        self.usados = 0
+        self._bloqueados: set[str] = set()
+
+    def bloquear(self, url: str) -> None:
+        chave = _chave_url(url)
+        if chave:
+            self._bloqueados.add(chave)
+
+    def bloqueado(self, url: str) -> bool:
+        chave = _chave_url(url)
+        return bool(chave and chave in self._bloqueados)
+
+    def pode_seguir(self) -> bool:
+        if self.usados >= self.limite:
+            return False
+        self.usados += 1
+        return True
+
+
+def resolver_link(url: str, abrir: Callable[[str], str | None],
+                  filtro: FiltroLinks | None = None, *, seguir_rede: bool = True) -> str | None:
+    filtro = filtro or FiltroLinks()
+    if not url or filtro.bloqueado(url) or url_recusada(url):
+        return None
     atual = desembrulhar(url)
     if not atual.lower().startswith("http"):
         return None
@@ -295,8 +362,13 @@ def resolver_link(url: str, abrir: Callable[[str], str | None]) -> str | None:
         atual = sem_rastreio(atual)
     except Exception:
         return None
+    if filtro.bloqueado(atual) or url_recusada(atual):
+        return None
     if not e_rastreador(atual):
         return atual
+    # Descadastro e preferência não chegam aqui. O teto é por mensagem.
+    if seguir_rede and not filtro.pode_seguir():
+        return None
     try:
         final = abrir(atual)
     except Exception:
@@ -304,7 +376,7 @@ def resolver_link(url: str, abrir: Callable[[str], str | None]) -> str | None:
     if not final:
         return atual
     # O destino do rastreador pode ser outro invólucro. Não segue de novo pela rede.
-    return resolver_link(final, lambda _url: None)
+    return resolver_link(final, lambda _url: None, filtro, seguir_rede=False)
 
 
 def host_conhecido(url: str) -> bool:
@@ -325,11 +397,13 @@ def extrair_links(texto: str) -> list[str]:
     return saida
 
 
-def links_uteis(texto: str, abrir: Callable[[str], str | None]) -> list[str]:
+def links_uteis(texto: str, abrir: Callable[[str], str | None],
+                filtro: FiltroLinks | None = None) -> list[str]:
+    filtro = filtro or FiltroLinks()
     saida: list[str] = []
     vistos: set[str] = set()
     for bruto in extrair_links(texto):
-        url = resolver_link(bruto, abrir)
+        url = resolver_link(bruto, abrir, filtro)
         if not url or not host_conhecido(url):
             continue
         chave = validar.url_chave(url)
@@ -348,11 +422,7 @@ def html_para_texto(origem: str) -> str:
         miolo = re.sub(r"(?is)<[^>]+>", " ", achou.group(2))
         return f" {miolo} {href} "
 
-    sem = re.sub(
-        r"(?is)<a\b[^>]*\bhref\s*=\s*[\"']([^\"']+)[\"'][^>]*>(.*?)</a>",
-        ancora,
-        sem,
-    )
+    sem = _ANCORA_RE.sub(ancora, sem)
     sem = re.sub(r"(?i)<\s*br\s*/?>|</\s*p\s*>|</\s*div\s*>|</\s*li\s*>|</\s*tr\s*>|</\s*h[1-6]\s*>", "\n", sem)
     sem = re.sub(r"(?is)<[^>]+>", " ", sem)
     sem = html_unescape(sem).replace("\xa0", " ")
@@ -364,6 +434,31 @@ def html_para_texto(origem: str) -> str:
 
 def hrefs_html(origem: str) -> list[str]:
     return [html_unescape(item) for item in re.findall(r"(?is)\bhref\s*=\s*[\"']([^\"']+)[\"']", origem or "")]
+
+
+def ancoras_html(origem: str) -> list[tuple[str, str]]:
+    pares: list[tuple[str, str]] = []
+    for href, miolo in _ANCORA_RE.findall(origem or ""):
+        texto = re.sub(r"(?is)<[^>]+>", " ", miolo)
+        texto = re.sub(r"\s+", " ", html_unescape(texto)).strip()
+        pares.append((html_unescape(href).strip(), texto))
+    return pares
+
+
+def urls_list_unsubscribe(msg) -> list[str]:
+    saida: list[str] = []
+    vistos: set[str] = set()
+    for valor in msg.get_all("List-Unsubscribe") or []:
+        texto = str(valor)
+        candidatos = [html_unescape(item.strip()) for item in re.findall(r"<([^>]+)>", texto)]
+        candidatos.extend(extrair_links(texto))
+        for bruto in candidatos:
+            url = _chave_url(bruto)
+            if not url.lower().startswith("http") or url in vistos:
+                continue
+            vistos.add(url)
+            saida.append(url)
+    return saida
 
 
 def _partes(msg) -> tuple[str | None, str | None]:
@@ -400,6 +495,18 @@ def ler_mensagem(raw: bytes) -> tuple[object, str, str]:
         visivel = html_para_texto(html_src)
         return msg, visivel, visivel + "\n" + href
     return msg, "", href
+
+
+def filtro_da_mensagem(msg) -> FiltroLinks:
+    """Marca descadastro, preferências e o cabeçalho List-Unsubscribe."""
+    filtro = FiltroLinks()
+    for url in urls_list_unsubscribe(msg):
+        filtro.bloquear(url)
+    _plain, html_src = _partes(msg)
+    for href, ancora in ancoras_html(html_src or ""):
+        if ancora_recusada(ancora) or url_recusada(href):
+            filtro.bloquear(href)
+    return filtro
 
 
 def e_cultura(msg) -> bool:
@@ -734,14 +841,16 @@ def eventos_da_url(url: str, agenda: str) -> tuple[list[dict], str | None]:
         return [], f"erro ao abrir: {type(exc).__name__}"
 
 
-def limpar_url_evento(url: str, abrir: Callable[[str], str | None]) -> str | None:
+def limpar_url_evento(url: str, abrir: Callable[[str], str | None],
+                      filtro: FiltroLinks | None = None) -> str | None:
     url = (url or "").strip()
     if not url.lower().startswith("http"):
         return None
-    return resolver_link(url, abrir)
+    return resolver_link(url, abrir, filtro)
 
 
-def evento_do_modelo(item: dict, abrir: Callable[[str], str | None]) -> dict:
+def evento_do_modelo(item: dict, abrir: Callable[[str], str | None],
+                     filtro: FiltroLinks | None = None) -> dict:
     desc = str(item.get("description_pt") or "").strip()
     idioma = str(item.get("language") or "").strip().lower()
     ev = {
@@ -754,7 +863,7 @@ def evento_do_modelo(item: dict, abrir: Callable[[str], str | None]) -> dict:
         "format": str(item.get("format") or "").strip(),
         "cost": interpretar_custo(str(item.get("cost") or "")),
         "registration": None,
-        "url": limpar_url_evento(str(item.get("url") or ""), abrir),
+        "url": limpar_url_evento(str(item.get("url") or ""), abrir, filtro),
         "description": {"pt": desc} if desc else {},
         "tags": [],
         "status": "confirmado",
@@ -817,8 +926,9 @@ def processar_mensagem(raw: bytes, dica: str, *, hoje, listas, descartadas, abri
     except Exception:
         resumo.descartados.append("mensagem ilegível")
         return True
+    filtro = filtro_da_mensagem(msg)
     categoria = "cultura" if e_cultura(msg) else None
-    links = links_uteis(texto_links, abrir)
+    links = links_uteis(texto_links, abrir, filtro)
     if links:
         falhas_rede = 0
         algum = False
@@ -833,7 +943,7 @@ def processar_mensagem(raw: bytes, dica: str, *, hoje, listas, descartadas, abri
             for ev in eventos:
                 if isinstance(ev, dict):
                     ev = copiar_evento(ev)
-                    ev["url"] = limpar_url_evento(str(ev.get("url") or url), abrir) or url
+                    ev["url"] = limpar_url_evento(str(ev.get("url") or url), abrir, filtro) or url
                     incorporar(ev, dica, categoria, False, False, hoje, listas, descartadas, resumo)
         if falhas_rede and not algum:
             return False
@@ -859,19 +969,19 @@ def processar_mensagem(raw: bytes, dica: str, *, hoje, listas, descartadas, abri
     for item in extraidos or []:
         if not isinstance(item, dict):
             continue
-        url = limpar_url_evento(str(item.get("url") or ""), abrir)
+        url = limpar_url_evento(str(item.get("url") or ""), abrir, filtro)
         if url and host_conhecido(url):
             eventos, erro = eventos_url(url, dica)
             if eventos:
                 for ev in eventos:
                     ev = copiar_evento(ev)
-                    ev["url"] = limpar_url_evento(str(ev.get("url") or url), abrir) or url
+                    ev["url"] = limpar_url_evento(str(ev.get("url") or url), abrir, filtro) or url
                     incorporar(ev, dica, categoria, False, False, hoje, listas, descartadas, resumo)
                 continue
             if erro and not str(erro).startswith("erro ao abrir"):
                 resumo.descartados.append(f"{erro}: {url}")
                 continue
-        incorporar(evento_do_modelo(item, abrir), dica, categoria, True, True, hoje, listas, descartadas, resumo)
+        incorporar(evento_do_modelo(item, abrir, filtro), dica, categoria, True, True, hoje, listas, descartadas, resumo)
     return True
 
 
