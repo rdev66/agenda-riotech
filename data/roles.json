@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15",
+  "updated": "2026-11-22",
   "events": [
     {
       "title": "Lançamento de \"O Evangelho Segundo Zico\"",
@@ -255,6 +255,65 @@
       "added": "2026-11-12"
     },
     {
+      "title": "FRC Rio x Common Ground x More Hostels",
+      "start": "2026-11-28T16:30:00-03:00",
+      "end": "2026-11-28T22:00:00-03:00",
+      "time_known": true,
+      "venue": "More Ipanema Hostel",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://luma.com/32yapcfk",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/8n/1df17908-204e-44a7-890f-d94159fb59e5.jpg",
+      "organizer": "Founders Running Club Rio",
+      "description": {
+        "pt": "Join Founders Running Club, Common Ground and More Hostel for a special Saturday gathering in Ipanema, bringing together founders, creatives, travelers, entrepreneurs and anyone who enjoys meeting new people and…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Ipanema",
+      "source": "Luma (Rio)",
+      "id": "2026-11-28-frc-rio-x-common-ground-x-more-hostels",
+      "added": "2026-11-22"
+    },
+    {
+      "title": "RUNCLUB TIMEHÍBRIDO | RIO DE JANEIRO",
+      "start": "2026-11-29T07:45:00-03:00",
+      "end": "2026-11-29T09:45:00-03:00",
+      "time_known": true,
+      "venue": "Monumento Nacional aos Mortos da Segunda Guerra Mundial",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://luma.com/hvpaq5tm",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/l7/799aa6a2-91e7-44e2-9209-8fd0de194a3b.png",
+      "organizer": "Time Híbrido",
+      "description": {
+        "pt": "🐊 ÚLTIMO DOMINGO DO MÊS É DIA OFICIAL DE RUN CLUB TIME HÍBRIDO! O Run Club Time Híbrido nasceu para aproximar quem vive esse estilo de vida e fortalecer ainda mais a nossa comunidade de forma presencial. Esse encontro…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "source": "Luma (Rio)",
+      "id": "2026-11-29-runclub-timehibrido-rio-de-janeiro",
+      "added": "2026-11-22"
+    },
+    {
       "title": "Mundo Lingo Botafogo/Humaitá",
       "start": "2026-12-01T19:00:00-03:00",
       "end": "2026-12-02T13:00:00-03:00",
@@ -284,7 +343,10 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-01-mundo-lingo-botafogo-humaita",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "urls": [
+        "https://www.meetup.com/mundo-lingo-rio/events/317524463"
+      ]
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -443,7 +505,72 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-17-mundo-lingo-rio-botafogo",
-      "added": "2026-11-15"
+      "added": "2026-11-15",
+      "urls": [
+        "https://www.meetup.com/mundo-lingo-rio/events/317462026"
+      ]
+    },
+    {
+      "title": "Mundo Lingo Botafogo/Humaitá",
+      "start": "2026-12-22T19:00:00-03:00",
+      "end": "2026-12-23T13:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/317462010",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Mundo Lingo Rio de Janeiro 100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free. 🟢 The Flags Place flags on your chest from top…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-12-22-mundo-lingo-botafogo-humaita",
+      "added": "2026-11-22"
+    },
+    {
+      "title": "Mundo Lingo Rio - Botafogo",
+      "start": "2026-12-24T19:00:00-03:00",
+      "end": "2026-12-25T05:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/317462032",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Mundo Lingo Rio de Janeiro 100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free. 🟢 The Flags Place flags on your chest from top…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Mundo Lingo Rio",
+      "id": "2026-12-24-mundo-lingo-rio-botafogo",
+      "added": "2026-11-22"
     }
   ]
 }
