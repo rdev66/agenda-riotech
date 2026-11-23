@@ -1,5 +1,6 @@
 """Testes do importador de correio. Sem rede: IMAP e o modelo são falsos."""
 import datetime as dt
+import imaplib
 import io
 import json
 import os
@@ -40,9 +41,12 @@ class FakeIMAP:
         return "OK", [b'(\\HasNoChildren \\All) "/" "[Gmail]/All Mail"']
 
     def select(self, mailbox="INBOX", readonly=False):
+        self.comandos.append(("SELECT", mailbox, readonly))
+        # imaplib da stdlib não entreaspas nomes com espaço; Gmail responde BAD.
+        if " " in mailbox and not (mailbox.startswith('"') and mailbox.endswith('"')):
+            raise imaplib.IMAP4.error(b"BAD Could not parse command")
         self.selecionada = mailbox
         self.readonly = readonly
-        self.comandos.append(("SELECT", mailbox, readonly))
         return "OK", [b"1"]
 
     def uid(self, cmd, *args):
@@ -62,6 +66,18 @@ class FakeIMAP:
     def logout(self):
         self.comandos.append(("LOGOUT",))
         return "OK", [b"bye"]
+
+
+class FakeIMAPAllFalha(FakeIMAP):
+    """\\All existe no LIST, mas SELECT desse buzón falha → cai em INBOX."""
+
+    def select(self, mailbox="INBOX", readonly=False):
+        self.comandos.append(("SELECT", mailbox, readonly))
+        if mailbox != '"INBOX"':
+            raise imaplib.IMAP4.error(b"[NONEXISTENT] Unknown Mailbox: [Gmail]/All Mail")
+        self.selecionada = mailbox
+        self.readonly = readonly
+        return "OK", [b"1"]
 
 
 class Resposta:
@@ -132,8 +148,33 @@ class TestCorreio(unittest.TestCase):
         self.assertEqual(correio.MAX_INPUT_TOKENS, 300_000)
         self.assertEqual(correio.MAX_MENSAGENS, 40)
         self.assertIn("newer_than:14d", correio.BUSCA)
-        self.assertIn("agenda/processado", correio.BUSCA)
+        self.assertIn("-label:agenda-processado", correio.BUSCA)
+        self.assertNotIn("agenda/processado", correio.BUSCA)
+        self.assertEqual(correio.ROTULO, "agenda/processado")
         self.assertTrue(callable(importar.whatsapp_links))
+
+    def test_selecionar_entrecomilla_all_mail(self):
+        fake = FakeIMAP()
+        self.assertEqual(correio.selecionar(fake), "[Gmail]/All Mail")
+        self.assertEqual(fake.selecionada, '"[Gmail]/All Mail"')
+        selects = [c for c in fake.comandos if c[0] == "SELECT"]
+        self.assertEqual(selects[0][1], '"[Gmail]/All Mail"')
+
+    def test_selecionar_all_falha_cai_em_inbox(self):
+        fake = FakeIMAPAllFalha()
+        self.assertEqual(correio.selecionar(fake), "INBOX")
+        self.assertEqual(fake.selecionada, '"INBOX"')
+        selects = [c for c in fake.comandos if c[0] == "SELECT"]
+        self.assertEqual(selects[0][1], '"[Gmail]/All Mail"')
+        self.assertEqual(selects[1][1], '"INBOX"')
+
+    def test_busca_usa_agenda_processado_com_hifen(self):
+        self.assertEqual(correio.BUSCA, "newer_than:14d -label:agenda-processado")
+        fake = FakeIMAP({"1": b"x"})
+        correio.uids_pendentes(fake)
+        busca = [c for c in fake.comandos if c[0] == "UID" and c[1] == "SEARCH"]
+        self.assertIn("agenda-processado", busca[0][3])
+        self.assertNotIn("agenda/processado", busca[0][3])
 
     def test_hosts_conhecidos(self):
         self.assertTrue(correio.host_conhecido("https://luma.com/abc"))
@@ -586,11 +627,11 @@ class TestCorreio(unittest.TestCase):
         self.assertEqual(codigo, 0, relatorio + erro.getvalue())
         self.assertEqual(fake.user, "agenda.rio.eventos@gmail.com")
         self.assertEqual(fake.password, "segredo-eventos")
-        self.assertEqual(fake.selecionada, "[Gmail]/All Mail")
+        self.assertEqual(fake.selecionada, '"[Gmail]/All Mail"')
         self.assertFalse(fake.readonly)
         busca = [c for c in fake.comandos if len(c) > 2 and c[1] == "SEARCH"]
         self.assertIn("newer_than:14d", busca[0][3])
-        self.assertIn("-label:agenda/processado", busca[0][3])
+        self.assertIn("-label:agenda-processado", busca[0][3])
         stores = [c for c in fake.comandos if len(c) > 1 and c[1] == "STORE"]
         self.assertEqual(len(stores), 1)
         self.assertIn("+X-GM-LABELS", stores[0])
