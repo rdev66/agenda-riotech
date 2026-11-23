@@ -598,6 +598,35 @@ class TestSoPresencial(unittest.TestCase):
         )[0]
         self.assertEqual(presencial["format"], "presencial")
 
+    def test_ics_telegram_online_e_virtual_no_titulo(self):
+        """Meetup Rolês: Telegram / Online / encontro virtual sem LOCATION."""
+        casos = [
+            ("Conversação em espanhol no Telegram", "Encontro do grupo.", "online"),
+            ("Sunday Free Online Guided Meditation", "Meditate together.", "online"),
+            ("Encontro virtual Literatura e Criatividade", "Vamos ler.", "online"),
+            ("Corrida no Maracanã", "Treino leve.", "presencial"),
+            # Zoom citado na descrição não torna presencial na praia em online.
+            (
+                "Fale INGLÊS na PRAIA do LEME",
+                "Membros podem conectar por zoom ou whatsapp com alunos na California.",
+                "presencial",
+            ),
+        ]
+        for titulo, desc, esperado in casos:
+            ics = (
+                "BEGIN:VCALENDAR\nBEGIN:VEVENT\n"
+                f"SUMMARY:{titulo}\n"
+                "DTSTART:20301209T110000Z\n"
+                f"DESCRIPTION:{desc}\n"
+                "URL:https://www.meetup.com/exemplo/events/1/\n"
+                "END:VEVENT\nEND:VCALENDAR\n"
+            )
+            with self.subTest(titulo=titulo):
+                ev = importar.ics_events(ics, agenda="roles")[0]
+                self.assertEqual(ev["format"], esperado)
+                if esperado == "online":
+                    self.assertEqual(importar.merge([], ev, HOJE, agenda="roles"), "online")
+
     def test_rejeita_formato_online(self):
         base = {
             "id": "a", "title": "A", "start": "2030-02-01T19:00:00-03:00",

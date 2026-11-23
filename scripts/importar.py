@@ -992,11 +992,23 @@ def ics_events(text: str, agenda: str = "tech") -> list[dict]:
         url = val("URL") or (re.search(r"https?://\S+", desc or "") or [None])[0]
         start = ics_date("DTSTART")
         loc = unesc(val("LOCATION"))
-        online = bool(loc and re.search(r"https?://|zoom|meet\.google|online", loc, re.I))
+        online = bool(loc and re.search(r"https?://|zoom|meet\.google|online|telegram", loc, re.I))
         blob = summary + " " + (desc or "") + " " + (loc or "")
-        # Sem lugar, «virtual event» / webinar não é presencial na cidade.
+        title_low = _sem_acento(summary)
+        blob_low = _sem_acento(blob)
+        # Título: sinal forte (Meetup Rolês publica «Telegram» / «Online» / «virtual» no nome).
+        if not online and re.search(
+            r"\b(webinar|online|telegram|zoom|meet\.google|virtua\w*)\b", title_low
+        ):
+            online = True
+        # Sem LOCATION: só frases de modo virtual na descrição — evita falso positivo
+        # quando o texto cita Zoom/WhatsApp de outro país e o encontro é na praia.
         if not online and not (loc and loc.strip()):
-            if re.search(r"\b(virtual event|evento virtual|webinar)\b", _sem_acento(blob)):
+            if re.search(
+                r"\b(virtual event|evento virtual|encontro virtual|webinar|"
+                r"evento online|online event|pr[aá]ticas? virtua\w*)\b",
+                blob_low,
+            ):
                 online = True
         evento = {
             "title": summary, "start": start, "end": ics_date("DTEND"),

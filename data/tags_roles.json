@@ -22,17 +22,22 @@
     "leitura": {"pt": "Leitura", "en": "Reading", "pn": "Lectura"},
     "exposicoes": {"pt": "Exposição", "en": "Exhibition", "pn": "Exposición"},
     "palestras": {"pt": "Palestra", "en": "Talk", "pn": "Charla"},
+    "arte": {"pt": "Arte", "en": "Art", "pn": "Arte"},
+    "oficinas": {"pt": "Oficinas", "en": "Workshops", "pn": "Talleres"},
+    "gastronomia": {"pt": "Gastronomia", "en": "Food", "pn": "Gastronomía"},
+    "passeios": {"pt": "Passeios", "en": "Outings", "pn": "Paseos"},
     "corrida": {"pt": "Corrida", "en": "Running", "pn": "Corrida"},
     "trilha": {"pt": "Trilha", "en": "Hiking", "pn": "Trilha"},
-    "volei": {"pt": "Vôlei", "en": "Volleyball", "pn": "Vóley"}
+    "volei": {"pt": "Vôlei", "en": "Volleyball", "pn": "Vóley"},
+    "bem-estar": {"pt": "Bem-estar", "en": "Wellness", "pn": "Bienestar"}
   },
   "categories": [
     {"id": "festas", "label": {"pt": "Festas", "en": "Parties", "pn": "Festas"}, "tags": ["eletronica", "funk", "samba-roda", "pagode", "rock", "hiphop", "forro", "lgbtqia", "festa-popular"]},
     {"id": "shows", "label": {"pt": "Música ao vivo", "en": "Live music", "pn": "Música en vivo"}, "tags": ["shows"]},
     {"id": "cinema", "label": {"pt": "Cinema especial", "en": "Special cinema", "pn": "Cine especial"}, "tags": ["mostras", "cineclubes", "pre-estreias", "festivais"]},
     {"id": "comunidades", "label": {"pt": "Comunidades", "en": "Communities", "pn": "Comunidades"}, "tags": ["nomades", "expats", "idiomas", "jogos-tabuleiro", "nerd-geek", "leitura"]},
-    {"id": "cultura", "label": {"pt": "Cultura", "en": "Culture", "pn": "Cultura"}, "tags": ["exposicoes", "palestras"]},
-    {"id": "ao-ar-livre", "label": {"pt": "Ao ar livre", "en": "Outdoors", "pn": "Al aire libre"}, "tags": ["corrida", "trilha", "volei"]}
+    {"id": "cultura", "label": {"pt": "Cultura", "en": "Culture", "pn": "Cultura"}, "tags": ["exposicoes", "palestras", "arte", "oficinas", "gastronomia", "passeios"]},
+    {"id": "ao-ar-livre", "label": {"pt": "Ao ar livre", "en": "Outdoors", "pn": "Al aire libre"}, "tags": ["corrida", "trilha", "volei", "bem-estar"]}
   ],
   "zones": [
     {"id": "zona-sul", "label": {"pt": "Zona Sul", "en": "South Zone", "pn": "Zona Sur"}, "bairros": ["Botafogo", "Catete", "Copacabana", "Cosme Velho", "Flamengo", "Gávea", "Glória", "Humaitá", "Ipanema", "Jardim Botânico", "Lagoa", "Laranjeiras", "Leblon", "Leme", "São Conrado", "Urca", "Vidigal"]},

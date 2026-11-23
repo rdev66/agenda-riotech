@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22",
+  "updated": "2026-11-23",
   "events": [
     {
       "title": "Lançamento de \"O Evangelho Segundo Zico\"",
@@ -191,6 +191,67 @@
       "added": "2026-11-15"
     },
     {
+      "title": "Barra da Tijuca Food and Drinks Tour!",
+      "start": "2026-11-23T14:00:00-03:00",
+      "end": "2026-11-23T17:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-food-and-history/events/317547041",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio de Janeiro Food and History Welcome to the beautiful neighborhood of Barra da Tijuca, one of Rio de Janeiro's best zones for beaches, bars, and restaurants. In this tour we will explore some of the most iconic…"
+      },
+      "tags": [
+        "passeios",
+        "gastronomia"
+      ],
+      "status": "confirmado",
+      "bairro": "Barra da Tijuca",
+      "source": "Meetup · Rio Food and History",
+      "categoria": "cultura",
+      "id": "2026-11-23-barra-da-tijuca-food-and-drinks-tour",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Suco da Luz do Sol - Oficina Sabores&Saberes Livre",
+      "start": "2026-11-24T09:00:00-03:00",
+      "end": "2026-11-24T11:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/arte-viva-atelier/events/bmxsgqyjcpbgc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Arte Viva Atelier O Suco da Luz do Sol é o carro chefe do Arte Viva Atelier. É o Suco da Luz do Sol que possibilita um processo mais rápido de regeneração celular, desintoxicação e biogênese. Na Oficina do Suco da Luz…"
+      },
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Arte Viva Atelier",
+      "categoria": "cultura",
+      "id": "2026-11-24-suco-da-luz-do-sol-oficina-sabores-saberes-livre",
+      "added": "2026-11-23"
+    },
+    {
       "title": "Mundo Lingo Botafogo/Humaitá",
       "start": "2026-11-24T19:00:00-03:00",
       "end": "2026-11-25T13:00:00-03:00",
@@ -220,7 +281,130 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-11-24-mundo-lingo-botafogo-humaita",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "urls": [
+        "https://www.meetup.com/mundo-lingo-rio/events/317545253"
+      ]
+    },
+    {
+      "title": " corrida no Maracanã ",
+      "start": "2026-11-24T19:00:00-03:00",
+      "end": "2026-11-24T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/317289563",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro pessoal correremos todas as terças e quintas as 19:30. corrida tranquila, pois a ideia eh tornar isso um hábito, que posso garantir que eh muito bom. pace entre 5:30 e 6:30, dependendo…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "id": "2026-11-24-corrida-no-maracana",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Primeiro encontro de apresentação ",
+      "start": "2026-11-24T19:00:00-03:00",
+      "end": "2026-11-24T20:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/literatura-rio-de-janeiro/events/317541236",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Literatura Rio de Janeiro Encontro literário aberto Apresentação dos novos inscritos no grupo Quinzenalmente às terças. Neste encontro vamos definir dias e horários para cada estilo literário e oficinas de escrita…"
+      },
+      "tags": [
+        "leitura"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Literatura Rio de Janeiro",
+      "categoria": "comunidades",
+      "id": "2026-11-24-primeiro-encontro-de-apresentacao",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Conversação no Instituto Movimento em São Gonçalo",
+      "start": "2026-11-25T19:00:00-03:00",
+      "end": "2026-11-25T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/clubepoliglotarj/events/hdptxtyjcpbhc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Clube Poliglota Rio de Janeiro O Clube Poliglota Rio de Janeiro agora vai organizar seus encontros de conversação com lugar fixo em São Gonçalo. Venha praticar idiomas com a gente!"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "source": "Meetup · Clube Poliglota RJ",
+      "id": "2026-11-25-conversacao-no-instituto-movimento-em-sao-goncal",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Fale INGLÊS e PORTUGUÊS.  NOVO DIA e HORA. MESMO BAR na PRAIA do LEME",
+      "start": "2026-11-26T15:15:00-03:00",
+      "end": "2026-11-26T17:05:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/english-portuguese-in-leme/events/phgvxtyjcpbjc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "English & Portuguese In COPACABANA Aprenda inglês no ambiente descontraido da Praia do Leme. Faça amigos nativos e depois curta com eles o famoso POR DO SOL de COPACABANA num ambiente relaxado de HAPPY HOUR. #MAKE…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "bairro": "Copacabana",
+      "source": "Meetup · English & Portuguese in Leme",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "id": "2026-11-26-fale-ingles-e-portugues-novo-dia-e-hora-mesmo-ba",
+      "added": "2026-11-23"
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -255,6 +439,156 @@
       "added": "2026-11-12"
     },
     {
+      "title": " corrida no Maracanã ",
+      "start": "2026-11-26T19:00:00-03:00",
+      "end": "2026-11-26T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/317318433",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro pessoal correremos todas as terças e quintas as 19:30. corrida tranquila, pois a ideia eh tornar isso um hábito, que posso garantir que eh muito bom. pace entre 5:30 e 6:30, dependendo…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "id": "2026-11-26-corrida-no-maracana",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Prática de conversação ",
+      "start": "2026-11-27T19:00:00-03:00",
+      "end": "2026-11-27T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/clubepoliglotarj/events/vxklttyjcpbkc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Clube Poliglota Rio de Janeiro Prática de conversação em diferentes idiomas. Todos os idiomas são bem vindos! Venha praticar inglês, espanhol, italiano, francês... Se duas pessoas falarem, você pode praticar! Nos…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "source": "Meetup · Clube Poliglota RJ",
+      "id": "2026-11-27-pratica-de-conversacao",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Corrida na Quinta da Boa Vista",
+      "start": "2026-11-28T08:30:00-03:00",
+      "end": "2026-11-28T09:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/317337776",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro vamos correr na quinta da boa vista. costumo sempre correr por lá nos fins de semanas. o local eh bem movimentado e com policiais no parque, nunca tendo visto nada anormal. o lugar eh…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "id": "2026-11-28-corrida-na-quinta-da-boa-vista",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Founders Running Club :: Rio de Janeiro",
+      "start": "2026-11-28T09:00:00-03:00",
+      "end": "2026-11-28T11:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/founders-running-club-rio-de-janeiro/events/jfbvbvyjcpblc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Founders Running Club :: Rio de Janeiro **Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "source": "Meetup · Founders Running Club Rio",
+      "id": "2026-11-28-founders-running-club-rio-de-janeiro",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Rio Speaks English",
+      "start": "2026-11-28T10:30:00-03:00",
+      "end": "2026-11-28T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/316241198",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio Speaks English *Em português:* Um encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Rio de Janeiro ESL Friends",
+      "id": "2026-11-28-rio-speaks-english",
+      "added": "2026-11-23"
+    },
+    {
       "title": "FRC Rio x Common Ground x More Hostels",
       "start": "2026-11-28T16:30:00-03:00",
       "end": "2026-11-28T22:00:00-03:00",
@@ -283,6 +617,36 @@
       "source": "Luma (Rio)",
       "id": "2026-11-28-frc-rio-x-common-ground-x-more-hostels",
       "added": "2026-11-22"
+    },
+    {
+      "title": "Vivo Social Clube",
+      "start": "2026-11-28T17:00:00-03:00",
+      "end": "2026-11-28T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/arte-viva-atelier/events/317344458",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Arte Viva Atelier Este é um Evento para um momento de Música, Dança e Poesia aos Sabores&Saberes do Arte Viva Gourmet. ​ Brincar, conhecer e se reconhecer é o nosso desejo aqui. Vivo e Alcalino é estar se divertindo. ​…"
+      },
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Arte Viva Atelier",
+      "categoria": "cultura",
+      "id": "2026-11-28-vivo-social-clube",
+      "added": "2026-11-23"
     },
     {
       "title": "RUNCLUB TIMEHÍBRIDO | RIO DE JANEIRO",
@@ -349,6 +713,67 @@
       ]
     },
     {
+      "title": " corrida no Maracanã ",
+      "start": "2026-12-01T19:00:00-03:00",
+      "end": "2026-12-01T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/317387018",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro pessoal correremos todas as terças e quintas as 19:30. corrida tranquila, pois a ideia eh tornar isso um hábito, que posso garantir que eh muito bom. pace entre 5:30 e 6:30, dependendo…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "id": "2026-12-01-corrida-no-maracana",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Fale INGLÊS e PORTUGUÊS.  NOVO DIA e HORA. MESMO BAR na PRAIA do LEME",
+      "start": "2026-12-03T15:15:00-03:00",
+      "end": "2026-12-03T17:05:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/english-portuguese-in-leme/events/phgvxtyjcqbfb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "English & Portuguese In COPACABANA Aprenda inglês no ambiente descontraido da Praia do Leme. Faça amigos nativos e depois curta com eles o famoso POR DO SOL de COPACABANA num ambiente relaxado de HAPPY HOUR. #MAKE…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "bairro": "Copacabana",
+      "source": "Meetup · English & Portuguese in Leme",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "id": "2026-12-03-fale-ingles-e-portugues-novo-dia-e-hora-mesmo-ba",
+      "added": "2026-11-23"
+    },
+    {
       "title": "Mundo Lingo Rio - Botafogo",
       "start": "2026-12-03T19:00:00-03:00",
       "end": "2026-12-04T05:00:00-03:00",
@@ -379,6 +804,126 @@
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-03-mundo-lingo-rio-botafogo",
       "added": "2026-11-12"
+    },
+    {
+      "title": " corrida no Maracanã ",
+      "start": "2026-12-03T19:00:00-03:00",
+      "end": "2026-12-03T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/317416998",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro pessoal correremos todas as terças e quintas as 19:30. corrida tranquila, pois a ideia eh tornar isso um hábito, que posso garantir que eh muito bom. pace entre 5:30 e 6:30, dependendo…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "id": "2026-12-03-corrida-no-maracana",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Corrida na Quinta da Boa Vista",
+      "start": "2026-12-05T08:30:00-03:00",
+      "end": "2026-12-05T09:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/317438396",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro vamos correr na quinta da boa vista. costumo sempre correr por lá nos fins de semanas. o local eh bem movimentado e com policiais no parque, nunca tendo visto nada anormal. o lugar eh…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "id": "2026-12-05-corrida-na-quinta-da-boa-vista",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Founders Running Club :: Rio de Janeiro",
+      "start": "2026-12-05T09:00:00-03:00",
+      "end": "2026-12-05T11:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/founders-running-club-rio-de-janeiro/events/jfbvbvyjcqbhb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Founders Running Club :: Rio de Janeiro **Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "source": "Meetup · Founders Running Club Rio",
+      "id": "2026-12-05-founders-running-club-rio-de-janeiro",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Rio Speaks English",
+      "start": "2026-12-05T10:30:00-03:00",
+      "end": "2026-12-05T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/316241199",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio Speaks English *Em português:* Um encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Rio de Janeiro ESL Friends",
+      "id": "2026-12-05-rio-speaks-english",
+      "added": "2026-11-23"
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -413,6 +958,65 @@
       "added": "2026-11-12"
     },
     {
+      "title": " corrida no Maracanã ",
+      "start": "2026-12-08T19:00:00-03:00",
+      "end": "2026-12-08T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/317487722",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro pessoal correremos todas as terças e quintas as 19:30. corrida tranquila, pois a ideia eh tornar isso um hábito, que posso garantir que eh muito bom. pace entre 5:30 e 6:30, dependendo…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "id": "2026-12-08-corrida-no-maracana",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Primeiro encontro de apresentação ",
+      "start": "2026-12-08T19:00:00-03:00",
+      "end": "2026-12-08T20:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/literatura-rio-de-janeiro/events/rrqlmtyjcqblb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Literatura Rio de Janeiro Encontro literário aberto Apresentação dos novos inscritos no grupo Quinzenalmente às terças. Neste encontro vamos definir dias e horários para cada estilo literário e oficinas de escrita…"
+      },
+      "tags": [
+        "leitura"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Literatura Rio de Janeiro",
+      "categoria": "comunidades",
+      "id": "2026-12-08-primeiro-encontro-de-apresentacao",
+      "added": "2026-11-23"
+    },
+    {
       "title": "Mundo Lingo Rio - Botafogo",
       "start": "2026-12-10T19:00:00-03:00",
       "end": "2026-12-11T05:00:00-03:00",
@@ -445,6 +1049,156 @@
       "added": "2026-11-12"
     },
     {
+      "title": " corrida no Maracanã ",
+      "start": "2026-12-10T19:00:00-03:00",
+      "end": "2026-12-10T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/317518725",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro pessoal correremos todas as terças e quintas as 19:30. corrida tranquila, pois a ideia eh tornar isso um hábito, que posso garantir que eh muito bom. pace entre 5:30 e 6:30, dependendo…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "id": "2026-12-10-corrida-no-maracana",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Corrida na Quinta da Boa Vista",
+      "start": "2026-12-12T08:30:00-03:00",
+      "end": "2026-12-12T09:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/317536169",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro vamos correr na quinta da boa vista. costumo sempre correr por lá nos fins de semanas. o local eh bem movimentado e com policiais no parque, nunca tendo visto nada anormal. o lugar eh…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "id": "2026-12-12-corrida-na-quinta-da-boa-vista",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Founders Running Club :: Rio de Janeiro",
+      "start": "2026-12-12T09:00:00-03:00",
+      "end": "2026-12-12T11:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/founders-running-club-rio-de-janeiro/events/jfbvbvyjcqbqb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Founders Running Club :: Rio de Janeiro **Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "source": "Meetup · Founders Running Club Rio",
+      "id": "2026-12-12-founders-running-club-rio-de-janeiro",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Rio Speaks English",
+      "start": "2026-12-12T10:30:00-03:00",
+      "end": "2026-12-12T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/316241200",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio Speaks English *Em português:* Um encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Rio de Janeiro ESL Friends",
+      "id": "2026-12-12-rio-speaks-english",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Vivo Social Clube",
+      "start": "2026-12-12T17:00:00-03:00",
+      "end": "2026-12-12T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/arte-viva-atelier/events/317541998",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Arte Viva Atelier Este é um Evento para um momento de Música, Dança e Poesia aos Sabores&Saberes do Arte Viva Gourmet. ​ Brincar, conhecer e se reconhecer é o nosso desejo aqui. Vivo e Alcalino é estar se divertindo. ​…"
+      },
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Arte Viva Atelier",
+      "categoria": "cultura",
+      "id": "2026-12-12-vivo-social-clube",
+      "added": "2026-11-23"
+    },
+    {
       "title": "Mundo Lingo Botafogo/Humaitá",
       "start": "2026-12-15T19:00:00-03:00",
       "end": "2026-12-16T13:00:00-03:00",
@@ -475,6 +1229,36 @@
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-15-mundo-lingo-botafogo-humaita",
       "added": "2026-11-12"
+    },
+    {
+      "title": " corrida no Maracanã ",
+      "start": "2026-12-15T19:00:00-03:00",
+      "end": "2026-12-15T20:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/ptvbbpyjcqbtb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro pessoal correremos todas as terças e quintas as 19:30. corrida tranquila, pois a ideia eh tornar isso um hábito, que posso garantir que eh muito bom. pace entre 5:30 e 6:30, dependendo…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "id": "2026-12-15-corrida-no-maracana",
+      "added": "2026-11-23"
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -511,6 +1295,96 @@
       ]
     },
     {
+      "title": "Founders Running Club :: Rio de Janeiro",
+      "start": "2026-12-19T09:00:00-03:00",
+      "end": "2026-12-19T11:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/founders-running-club-rio-de-janeiro/events/jfbvbvyjcqbzb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Founders Running Club :: Rio de Janeiro **Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "source": "Meetup · Founders Running Club Rio",
+      "id": "2026-12-19-founders-running-club-rio-de-janeiro",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Rio Speaks English",
+      "start": "2026-12-19T10:30:00-03:00",
+      "end": "2026-12-19T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/316241201",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio Speaks English *Em português:* Um encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Rio de Janeiro ESL Friends",
+      "id": "2026-12-19-rio-speaks-english",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Suco da Luz do Sol - Oficina Sabores&Saberes Livre",
+      "start": "2026-12-22T09:00:00-03:00",
+      "end": "2026-12-22T11:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/arte-viva-atelier/events/bmxsgqyjcqbdc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Arte Viva Atelier O Suco da Luz do Sol é o carro chefe do Arte Viva Atelier. É o Suco da Luz do Sol que possibilita um processo mais rápido de regeneração celular, desintoxicação e biogênese. Na Oficina do Suco da Luz…"
+      },
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Arte Viva Atelier",
+      "categoria": "cultura",
+      "id": "2026-12-22-suco-da-luz-do-sol-oficina-sabores-saberes-livre",
+      "added": "2026-11-23"
+    },
+    {
       "title": "Mundo Lingo Botafogo/Humaitá",
       "start": "2026-12-22T19:00:00-03:00",
       "end": "2026-12-23T13:00:00-03:00",
@@ -542,6 +1416,35 @@
       "added": "2026-11-22"
     },
     {
+      "title": "Primeiro encontro de apresentação ",
+      "start": "2026-12-22T19:00:00-03:00",
+      "end": "2026-12-22T20:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/literatura-rio-de-janeiro/events/rrqlmtyjcqbdc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Literatura Rio de Janeiro Encontro literário aberto Apresentação dos novos inscritos no grupo Quinzenalmente às terças. Neste encontro vamos definir dias e horários para cada estilo literário e oficinas de escrita…"
+      },
+      "tags": [
+        "leitura"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Literatura Rio de Janeiro",
+      "categoria": "comunidades",
+      "id": "2026-12-22-primeiro-encontro-de-apresentacao",
+      "added": "2026-11-23"
+    },
+    {
       "title": "Mundo Lingo Rio - Botafogo",
       "start": "2026-12-24T19:00:00-03:00",
       "end": "2026-12-25T05:00:00-03:00",
@@ -571,6 +1474,522 @@
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-24-mundo-lingo-rio-botafogo",
       "added": "2026-11-22"
+    },
+    {
+      "title": "Founders Running Club :: Rio de Janeiro",
+      "start": "2026-12-26T09:00:00-03:00",
+      "end": "2026-12-26T11:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/founders-running-club-rio-de-janeiro/events/jfbvbvyjcqbjc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Founders Running Club :: Rio de Janeiro **Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "source": "Meetup · Founders Running Club Rio",
+      "id": "2026-12-26-founders-running-club-rio-de-janeiro",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Rio Speaks English",
+      "start": "2026-12-26T10:30:00-03:00",
+      "end": "2026-12-26T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/317536080",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio Speaks English *Em português:* Um encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Rio de Janeiro ESL Friends",
+      "id": "2026-12-26-rio-speaks-english",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Vivo Social Clube",
+      "start": "2026-12-26T17:00:00-03:00",
+      "end": "2026-12-26T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/arte-viva-atelier/events/trtshmyjcqbjc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Arte Viva Atelier Este é um Evento para um momento de Música, Dança e Poesia aos Sabores&Saberes do Arte Viva Gourmet. ​ Brincar, conhecer e se reconhecer é o nosso desejo aqui. Vivo e Alcalino é estar se divertindo. ​…"
+      },
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Arte Viva Atelier",
+      "categoria": "cultura",
+      "id": "2026-12-26-vivo-social-clube",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "☮️Let's Meditate New Year Eve. Celebrate within ❤️",
+      "start": "2026-12-31T22:45:00-03:00",
+      "end": "2026-12-31T23:45:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/rio-de-janeiro-yoga-meetup/events/313327537",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio de Janeiro Yoga Meetup *Beginners welcome to New Year's Eve- Online Meditation with Sahaja Yoga Meditation. Learn, practice and unwind with Sahaja Yoga Meditation* ### About this Event Life can be joyous when you…"
+      },
+      "tags": [
+        "bem-estar"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Rio de Janeiro Yoga",
+      "categoria": "ao-ar-livre",
+      "id": "2026-12-31-let-s-meditate-new-year-eve-celebrate-within",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Rio Speaks English",
+      "start": "2027-01-02T10:30:00-03:00",
+      "end": "2027-01-02T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/317536082",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio Speaks English *Em português:* Um encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Rio de Janeiro ESL Friends",
+      "id": "2027-01-02-rio-speaks-english",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Primeiro encontro de apresentação ",
+      "start": "2027-01-05T19:00:00-03:00",
+      "end": "2027-01-05T20:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/literatura-rio-de-janeiro/events/rrqlmtykccbhb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Literatura Rio de Janeiro Encontro literário aberto Apresentação dos novos inscritos no grupo Quinzenalmente às terças. Neste encontro vamos definir dias e horários para cada estilo literário e oficinas de escrita…"
+      },
+      "tags": [
+        "leitura"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Literatura Rio de Janeiro",
+      "categoria": "comunidades",
+      "id": "2027-01-05-primeiro-encontro-de-apresentacao",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Rio Speaks English",
+      "start": "2027-01-09T10:30:00-03:00",
+      "end": "2027-01-09T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/317536083",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio Speaks English *Em português:* Um encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Rio de Janeiro ESL Friends",
+      "id": "2027-01-09-rio-speaks-english",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Vivo Social Clube",
+      "start": "2027-01-09T17:00:00-03:00",
+      "end": "2027-01-09T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/arte-viva-atelier/events/trtshmykccbmb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Arte Viva Atelier Este é um Evento para um momento de Música, Dança e Poesia aos Sabores&Saberes do Arte Viva Gourmet. ​ Brincar, conhecer e se reconhecer é o nosso desejo aqui. Vivo e Alcalino é estar se divertindo. ​…"
+      },
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Arte Viva Atelier",
+      "categoria": "cultura",
+      "id": "2027-01-09-vivo-social-clube",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Rio Speaks English",
+      "start": "2027-01-16T10:30:00-03:00",
+      "end": "2027-01-16T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/sfjwztykccbvb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio Speaks English *Em português:* Um encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Rio de Janeiro ESL Friends",
+      "id": "2027-01-16-rio-speaks-english",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Primeiro encontro de apresentação ",
+      "start": "2027-01-19T19:00:00-03:00",
+      "end": "2027-01-19T20:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/literatura-rio-de-janeiro/events/rrqlmtykccbzb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Literatura Rio de Janeiro Encontro literário aberto Apresentação dos novos inscritos no grupo Quinzenalmente às terças. Neste encontro vamos definir dias e horários para cada estilo literário e oficinas de escrita…"
+      },
+      "tags": [
+        "leitura"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Literatura Rio de Janeiro",
+      "categoria": "comunidades",
+      "id": "2027-01-19-primeiro-encontro-de-apresentacao",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Rio Speaks English",
+      "start": "2027-01-23T10:30:00-03:00",
+      "end": "2027-01-23T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/sfjwztykccbfc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio Speaks English *Em português:* Um encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Rio de Janeiro ESL Friends",
+      "id": "2027-01-23-rio-speaks-english",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Vivo Social Clube",
+      "start": "2027-01-23T17:00:00-03:00",
+      "end": "2027-01-23T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/arte-viva-atelier/events/trtshmykccbfc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Arte Viva Atelier Este é um Evento para um momento de Música, Dança e Poesia aos Sabores&Saberes do Arte Viva Gourmet. ​ Brincar, conhecer e se reconhecer é o nosso desejo aqui. Vivo e Alcalino é estar se divertindo. ​…"
+      },
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Arte Viva Atelier",
+      "categoria": "cultura",
+      "id": "2027-01-23-vivo-social-clube",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Suco da Luz do Sol - Oficina Sabores&Saberes Livre",
+      "start": "2027-01-26T09:00:00-03:00",
+      "end": "2027-01-26T11:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/arte-viva-atelier/events/bmxsgqykccbjc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Arte Viva Atelier O Suco da Luz do Sol é o carro chefe do Arte Viva Atelier. É o Suco da Luz do Sol que possibilita um processo mais rápido de regeneração celular, desintoxicação e biogênese. Na Oficina do Suco da Luz…"
+      },
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Arte Viva Atelier",
+      "categoria": "cultura",
+      "id": "2027-01-26-suco-da-luz-do-sol-oficina-sabores-saberes-livre",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Rio Speaks English",
+      "start": "2027-01-30T10:30:00-03:00",
+      "end": "2027-01-30T12:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/sfjwztykccbnc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio Speaks English *Em português:* Um encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "source": "Meetup · Rio de Janeiro ESL Friends",
+      "id": "2027-01-30-rio-speaks-english",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Vivo Social Clube",
+      "start": "2027-02-06T17:00:00-03:00",
+      "end": "2027-02-06T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/arte-viva-atelier/events/trtshmykcdbjb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Arte Viva Atelier Este é um Evento para um momento de Música, Dança e Poesia aos Sabores&Saberes do Arte Viva Gourmet. ​ Brincar, conhecer e se reconhecer é o nosso desejo aqui. Vivo e Alcalino é estar se divertindo. ​…"
+      },
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Arte Viva Atelier",
+      "categoria": "cultura",
+      "id": "2027-02-06-vivo-social-clube",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Vivo Social Clube",
+      "start": "2027-02-20T17:00:00-03:00",
+      "end": "2027-02-20T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/arte-viva-atelier/events/trtshmykcdbbc",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Arte Viva Atelier Este é um Evento para um momento de Música, Dança e Poesia aos Sabores&Saberes do Arte Viva Gourmet. ​ Brincar, conhecer e se reconhecer é o nosso desejo aqui. Vivo e Alcalino é estar se divertindo. ​…"
+      },
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
+      "status": "confirmado",
+      "source": "Meetup · Arte Viva Atelier",
+      "categoria": "cultura",
+      "id": "2027-02-20-vivo-social-clube",
+      "added": "2026-11-23"
+    },
+    {
+      "title": "Next meeting May 13, 2027",
+      "start": "2027-05-13T15:00:00-03:00",
+      "end": "2027-05-13T17:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/english-portuguese-in-leme/events/316805529",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "English & Portuguese In COPACABANA **May 13, 2027, is our next meeting**"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "bairro": "Copacabana",
+      "source": "Meetup · English & Portuguese in Leme",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "id": "2027-05-13-next-meeting-may-13-2027",
+      "added": "2026-11-23",
+      "urls": [
+        "https://www.meetup.com/english-portuguese-in-leme/events/316805579"
+      ]
     }
   ]
 }
