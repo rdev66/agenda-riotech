@@ -383,8 +383,11 @@ class TestImportar(unittest.TestCase):
             "city": "Rio de Janeiro",
         }
         self.assertEqual(importar.merge(lista, base, hoje, set()), "novo")
-        self.assertEqual(importar.merge(lista, outro, hoje, set()), "igual")
+        self.assertEqual(importar.merge(lista, outro, hoje, set()), "completado")
         self.assertEqual(len(lista), 1)
+        self.assertEqual(lista[0]["start"], "2027-06-14T10:00:00-03:00")
+        self.assertEqual(lista[0]["historico"][0]["campo"], "start")
+        self.assertEqual(lista[0]["historico"][0]["depois"], "2027-06-14T00:00:00-03:00")
         longe = dict(outro, url="https://exemplo.org/summit-c", venue="Pier Mauá")
         self.assertEqual(importar.merge(lista, longe, hoje, set()), "novo")
         self.assertEqual(len(lista), 2)
@@ -742,6 +745,8 @@ class TestSoPresencial(unittest.TestCase):
             "id": "a", "title": "A", "start": "2030-02-01T19:00:00-03:00",
             "cost": {"type": "gratis"}, "registration": "livre",
             "url": "https://exemplo.org/so-online", "tags": ["ia"],
+            "fonte": "manual", "via": "manual",
+            "vistos": [{"fonte": "manual", "via": "manual", "data": "2030-01-01"}],
         }
         online = {"updated": "2030-01-01", "events": [{**base, "format": "online"}]}
         errs = validar.check(online, {"ia"}, set())

@@ -23,8 +23,54 @@ ROOT = Path(__file__).resolve().parents[1]
 FORMATS = {"presencial", "hibrido"}
 COSTS = {"gratis", "pago", "desconhecido"}
 REGS = {"livre", "inscricao", "aprovacao", "ingresso"}
-STATUS = {"confirmado", "a-confirmar"}
+STATUS = {"confirmado", "a-confirmar", "cancelado"}
 IDIOMAS = {"pt", "en", "es", "multi"}
+VIAS = {"feed", "correio", "whatsapp", "sugestao", "manual", "desconhecida"}
+CAMPOS_HISTORICO = {"start", "end", "venue", "status"}
+# Id estável: «luma», «luma:maravalley», «correio:sympla», «whatsapp:riotech».
+ID_FONTE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*(?::[a-z0-9]+(?:-[a-z0-9]+)*)?$")
+# Domínio solto, quando a origem não é um calendário de fontes.json.
+DOMINIOS = {
+    "luma.com": "luma",
+    "lu.ma": "luma",
+    "sympla.com.br": "sympla",
+    "meetup.com": "meetup",
+    "even3.com.br": "even3",
+    "doity.com.br": "doity",
+    "eventbrite.com": "eventbrite",
+    "eventbrite.com.br": "eventbrite",
+    "gdg.community.dev": "gdg",
+    "usergroups.databricks.com": "databricks",
+    "rio.websummit.com": "websummit",
+    "shotgun.live": "shotgun",
+    "feverup.com": "fever",
+    "ra.co": "ra",
+    "bandsintown.com": "bandsintown",
+    "songkick.com": "songkick",
+    "nomads.com": "nomads",
+    "ims.com.br": "ims",
+    "ccbb.com.br": "ccbb",
+    "mam.rio": "mam",
+    "sescrio.org.br": "sesc",
+    "mundolingo.org": "mundolingo",
+    "internations.org": "internations",
+}
+# Grafias antigas de «source» que não são o nome de um calendário.
+ALIASES = {
+    "luma": "luma",
+    "sympla": "sympla",
+    "meetup": "meetup",
+    "even3": "even3",
+    "whatsapp-riotech": "whatsapp:riotech",
+    "whatsapp": "whatsapp:riotech",
+    "site-oficial": "manual",
+    "manual": "manual",
+    "databricks-usergroups": "databricks",
+    "databricks": "databricks",
+    "correio": "manual",
+}
+FONTES_TECH = ROOT / "fontes.json"
+FONTES_ROLES = ROOT / "fontes_roles.json"
 DIAS_RRULE = {"MO", "TU", "WE", "TH", "FR", "SA", "SU"}
 
 
@@ -103,6 +149,10 @@ def erros_descartados(dados: dict) -> list[str]:
             errs.append(f"{onde}: falta «url»")
         if not str(item.get("motivo") or "").strip():
             errs.append(f"{onde}: falta «motivo»")
+        if not isinstance(item.get("fonte"), str) or not ID_FONTE.fullmatch(item["fonte"]):
+            errs.append(f"{onde}: falta «fonte» (id estável)")
+        if item.get("via") not in VIAS:
+            errs.append(f"{onde}: «via» deve ser um de {sorted(VIAS)}")
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(item.get("data") or "")):
             errs.append(f"{onde}: «data» precisa ser AAAA-MM-DD")
         chave = url_chave(item.get("url") or "")
@@ -124,6 +174,228 @@ def chaves_descartadas(path: Path | None = None) -> set[str]:
             if chave:
                 chaves.add(chave)
     return chaves
+
+
+def _host_limpo(valor: str | None) -> str:
+    """Host sem www. Nome com espaço não é host. lu.ma vira luma.com."""
+    bruto = (valor or "").strip()
+    if not bruto or any(c in bruto for c in " ()"):
+        return ""
+    if "://" not in bruto and "/" not in bruto:
+        host = bruto.lower()
+    else:
+        if "://" not in bruto:
+            bruto = "https://" + bruto
+        host = urllib.parse.urlsplit(bruto).netloc.lower()
+    if host.startswith("www."):
+        host = host[4:]
+    if host == "lu.ma":
+        host = "luma.com"
+    return host
+
+
+def _dominio_solto(host: str) -> str | None:
+    if not host:
+        return None
+    if host in DOMINIOS:
+        return DOMINIOS[host]
+    if "eventbrite." in host:
+        return "eventbrite"
+    return None
+
+
+class TabelaFontes:
+    """Uma tabela: nome do calendário → id, mais os domínios soltos."""
+
+    def __init__(self, por_nome: dict[str, str], ids: set[str]):
+        self.por_nome = por_nome
+        self.ids = ids
+
+
+def _ler_fontes(path: Path) -> list:
+    if not path.exists():
+        return []
+    dados = json.loads(path.read_text(encoding="utf-8"))
+    fontes = dados.get("fontes") if isinstance(dados, dict) else None
+    return fontes if isinstance(fontes, list) else []
+
+
+def tabela_fontes(root: Path | None = None) -> TabelaFontes:
+    """Lê o id de fontes.json e fontes_roles.json. O nome casa o calendário."""
+    base = root or ROOT
+    por_nome: dict[str, str] = {}
+    ids: set[str] = set()
+    for path in (base / "fontes.json", base / "fontes_roles.json"):
+        for fonte in _ler_fontes(path):
+            if not isinstance(fonte, dict):
+                continue
+            nome = str(fonte.get("nome") or "").strip()
+            ident = fonte.get("id")
+            if not nome or not isinstance(ident, str):
+                continue
+            por_nome[nome] = ident
+            ids.add(ident)
+    return TabelaFontes(por_nome, ids)
+
+
+def resolver(source: str | None, url: str | None = None, tabela: TabelaFontes | None = None) -> tuple[str, bool]:
+    """Devolve (id, conhecido).
+
+    Conhecido é um calendário de fontes.json ou fontes_roles.json, casado pelo
+    nome (ou pelo próprio id, se já vier com dois-pontos). Domínio solto
+    («luma.com», «sympla») não é calendário: cai em «luma», «sympla», ….
+    """
+    tab = tabela or tabela_fontes()
+    bruto = (source or "").strip()
+    if bruto in tab.por_nome:
+        return tab.por_nome[bruto], True
+    if ":" in bruto and ID_FONTE.fullmatch(bruto) and bruto in tab.ids:
+        return bruto, True
+    host = _host_limpo(bruto) or _host_limpo(url)
+    solto = _dominio_solto(host)
+    if solto:
+        return solto, False
+    alias = ALIASES.get(bruto.lower()) or ALIASES.get(host)
+    if alias:
+        return alias, False
+    if ":" in bruto and ID_FONTE.fullmatch(bruto):
+        return bruto, False
+    return "manual", False
+
+
+def canalizar(fonte: str, via: str, conhecido: bool) -> str:
+    """Correio de domínio solto vira «correio:sympla». Calendário conhecido fica."""
+    if (
+        via == "correio"
+        and not conhecido
+        and ":" not in fonte
+        and fonte not in {"manual", "whatsapp:riotech"}
+        and ID_FONTE.fullmatch(f"correio:{fonte}")
+    ):
+        return f"correio:{fonte}"
+    return fonte
+
+
+def via_migrada(fonte: str, conhecido: bool, added: str, datas_whatsapp: set[str]) -> str:
+    """Via a partir do que «source» já dizia.
+
+    luma.com (e qualquer domínio solto) sem calendário conhecido: «whatsapp»
+    se «added» cai num dia de importação do WhatsApp; senão «desconhecida».
+    """
+    if fonte == "whatsapp:riotech":
+        return "whatsapp"
+    if fonte == "manual":
+        return "manual"
+    if conhecido:
+        return "feed"
+    if added in datas_whatsapp:
+        return "whatsapp"
+    return "desconhecida"
+
+
+def anexar_visto(evento: dict, fonte: str, via: str, data: str) -> bool:
+    """Acrescenta {fonte, via, data} sem repetir o par fonte+via."""
+    if not fonte or not via:
+        return False
+    vistos = evento.get("vistos")
+    if not isinstance(vistos, list):
+        vistos = []
+        evento["vistos"] = vistos
+    for item in vistos:
+        if isinstance(item, dict) and item.get("fonte") == fonte and item.get("via") == via:
+            return False
+    vistos.append({"fonte": fonte, "via": via, "data": data})
+    return True
+
+
+def preencher_origem(evento: dict, via: str | None, data: str, tabela: TabelaFontes | None = None) -> None:
+    """Garante fonte, via e um visto. Não troca origem que já está preenchida."""
+    via_final = evento.get("via") or via or "manual"
+    if via_final not in VIAS:
+        via_final = "manual"
+    if not evento.get("fonte"):
+        fonte, conhecido = resolver(evento.get("source"), evento.get("url"), tabela)
+        evento["fonte"] = canalizar(fonte, via_final, conhecido)
+    evento["via"] = via_final
+    anexar_visto(evento, str(evento["fonte"]), str(evento["via"]), data)
+
+
+def erros_origem(evento: dict, onde: str) -> list[str]:
+    """fonte, via, vistos e, se houver, historico."""
+    errs: list[str] = []
+    fonte = evento.get("fonte")
+    if not isinstance(fonte, str) or not ID_FONTE.fullmatch(fonte):
+        errs.append(f"{onde}: «fonte» precisa ser um id estável (ex.: luma:maravalley)")
+    if evento.get("via") not in VIAS:
+        errs.append(f"{onde}: «via» deve ser um de {sorted(VIAS)}")
+    vistos = evento.get("vistos")
+    if not isinstance(vistos, list) or not vistos:
+        errs.append(f"{onde}: «vistos» precisa listar quem viu o evento")
+    else:
+        pares: set[tuple] = set()
+        for j, item in enumerate(vistos, 1):
+            if not isinstance(item, dict):
+                errs.append(f"{onde}: vistos {j} precisa ser um objeto")
+                continue
+            ident = item.get("fonte")
+            if not isinstance(ident, str) or not ID_FONTE.fullmatch(ident):
+                errs.append(f"{onde}: vistos {j} tem «fonte» inválido")
+            if item.get("via") not in VIAS:
+                errs.append(f"{onde}: vistos {j} tem «via» inválido")
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(item.get("data") or "")):
+                errs.append(f"{onde}: vistos {j} «data» precisa ser AAAA-MM-DD")
+            par = (item.get("fonte"), item.get("via"))
+            if par in pares:
+                errs.append(f"{onde}: vistos repete fonte+via")
+            pares.add(par)
+    hist = evento.get("historico")
+    if hist is None:
+        return errs
+    if not isinstance(hist, list):
+        errs.append(f"{onde}: «historico» precisa ser uma lista")
+        return errs
+    for j, item in enumerate(hist, 1):
+        if not isinstance(item, dict):
+            errs.append(f"{onde}: historico {j} precisa ser um objeto")
+            continue
+        if item.get("campo") not in CAMPOS_HISTORICO:
+            errs.append(f"{onde}: historico {j} «campo» inválido")
+        if not isinstance(item.get("antes"), str) or not isinstance(item.get("depois"), str):
+            errs.append(f"{onde}: historico {j} precisa de «antes» e «depois»")
+        ident = item.get("fonte")
+        if not isinstance(ident, str) or not ID_FONTE.fullmatch(ident):
+            errs.append(f"{onde}: historico {j} tem «fonte» inválido")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(item.get("data") or "")):
+            errs.append(f"{onde}: historico {j} «data» precisa ser AAAA-MM-DD")
+    return errs
+
+
+def erros_arquivo_fontes(path: Path) -> list[str]:
+    """Cada fonte tem um id único no formato estável."""
+    nome = path.name
+    if not path.exists():
+        return [f"{nome}: arquivo ausente"]
+    try:
+        dados = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return [f"{nome} não é JSON válido ({exc.msg})"]
+    if not isinstance(dados, dict) or not isinstance(dados.get("fontes"), list):
+        return [f"{nome} precisa de uma lista «fontes»"]
+    errs: list[str] = []
+    vistos: set[str] = set()
+    for i, fonte in enumerate(dados["fontes"], 1):
+        onde = f"{nome} fonte {i}"
+        if not isinstance(fonte, dict):
+            errs.append(f"{onde}: precisa ser um objeto")
+            continue
+        ident = fonte.get("id")
+        if not isinstance(ident, str) or not ID_FONTE.fullmatch(ident):
+            errs.append(f"{onde}: «id» inválido ({fonte.get('nome') or '?'})")
+            continue
+        if ident in vistos:
+            errs.append(f"{onde}: id repetido ({ident})")
+        vistos.add(ident)
+    return errs
 
 
 def check(data: dict, vocab: set[str], descartadas: set[str] | None = None) -> list[str]:
@@ -183,6 +455,7 @@ def check(data: dict, vocab: set[str], descartadas: set[str] | None = None) -> l
         desc = (e.get("description") or {}).get("pt") or ""
         if len(desc) > 280:
             errs.append(f"{where}: descrição com mais de 280 caracteres; resuma com suas palavras")
+        errs.extend(erros_origem(e, where))
     return errs
 
 
@@ -1039,6 +1312,8 @@ def main() -> int:
         errs.extend(f"roles.json: {e}" for e in erros_extras_roles(roles["events"], categorias))
     fixos = json.loads(FIXOS.read_text(encoding="utf-8"))
     errs.extend(erros_fixos(fixos, vocab_roles, categorias))
+    errs.extend(erros_arquivo_fontes(FONTES_TECH))
+    errs.extend(erros_arquivo_fontes(FONTES_ROLES))
     errs.extend(check_github_yaml())
     if errs:
         print("❌ a agenda tem problemas:")

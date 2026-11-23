@@ -731,7 +731,7 @@ def from_jsonld(ld: dict, url: str, meta: dict, agenda: str = "tech") -> dict:
         "organizer": org,
         "description": {"pt": desc} if desc else {},
         "tags": auto_tags(blob, agenda=agenda),
-        "status": "confirmado" if start else "a-confirmar",
+        "status": _status_publicado(ld.get("eventStatus"), start),
     }
     if agenda == "roles":
         tags, categoria = classificar_roles(blob)
@@ -1052,7 +1052,7 @@ def ics_events(text: str, agenda: str = "tech") -> list[dict]:
             "url": clean_url(url) if url else None, "image": None, "organizer": None,
             "description": {"pt": short(desc)} if desc else {},
             "tags": auto_tags(blob, agenda=agenda),
-            "status": "confirmado" if start else "a-confirmar",
+            "status": _status_publicado(val("STATUS"), start),
         }
         if agenda == "roles":
             tags, categoria = classificar_roles(blob)
@@ -1099,7 +1099,10 @@ def whatsapp_links(path: Path, since: dt.date | None = None) -> list[str]:
 
 
 # ------------------------------------------------------------------ mescla
-RODAPE = "Para descartar um evento, acrescente a URL dele em data/descartados.json neste mesmo PR."
+RODAPE = (
+    "Para descartar um evento, acrescente a URL dele em data/descartados.json "
+    "neste mesmo PR, com «fonte», «via», «motivo» e «data»."
+)
 
 def key_of(e: dict) -> tuple:
     return (e.get("url") or "").lower(), slug(e.get("title") or ""), (e.get("start") or "")[:10]
@@ -1266,6 +1269,109 @@ def unicos_por_chave(urls: list[str]) -> list[str]:
     return out
 
 
+_NAO_COPIA = {"url", "urls", "fonte", "via", "vistos", "historico", "id", "added"}
+_CAMPOS_HISTORICO = ("start", "end", "venue", "status")
+
+
+def _status_publicado(valor, start: str | None) -> str:
+    """STATUS/eventStatus com «cancel» vira cancelado. O resto segue a data."""
+    if re.search(r"cancel", str(valor or ""), re.I):
+        return "cancelado"
+    return "confirmado" if start else "a-confirmar"
+
+
+def _completar_campos(base: dict, extra: dict) -> bool:
+    """Copia só campo vazio. Não mexe em origem, id nem added."""
+    mudou = False
+    for k, v in extra.items():
+        if k in _NAO_COPIA or v in (None, "", [], {}):
+            continue
+        if base.get(k) in (None, "", [], {}):
+            base[k] = v
+            mudou = True
+    return mudou
+
+
+def _anotar_historico(evento: dict, novo: dict, fonte: str, data: str) -> bool:
+    """Registra diferença de start, end, venue ou status. Não troca o valor gravado."""
+    if not fonte:
+        return False
+    hist = evento.get("historico")
+    if not isinstance(hist, list):
+        hist = []
+    novos = []
+    for campo in _CAMPOS_HISTORICO:
+        depois = novo.get(campo)
+        antes = evento.get(campo)
+        if not isinstance(depois, str) or depois == "":
+            continue
+        if not isinstance(antes, str) or antes == "":
+            continue
+        if antes == depois:
+            continue
+        if any(
+            isinstance(h, dict)
+            and h.get("campo") == campo
+            and h.get("antes") == antes
+            and h.get("depois") == depois
+            and h.get("fonte") == fonte
+            for h in hist
+        ):
+            continue
+        novos.append({
+            "campo": campo, "antes": antes, "depois": depois, "fonte": fonte, "data": data,
+        })
+    if not novos:
+        return False
+    evento["historico"] = hist + novos
+    return True
+
+
+def _aplicar_origem(evento: dict, novo: dict, data: str) -> bool:
+    """Preenche fonte/via se faltarem, anexa vistos e registra historico."""
+    mudou = False
+    via = novo.get("via") or "manual"
+    if via not in validar.VIAS:
+        via = "manual"
+    fonte = novo.get("fonte")
+    if not fonte:
+        resolvida, conhecido = validar.resolver(novo.get("source"), novo.get("url"))
+        fonte = validar.canalizar(resolvida, via, conhecido)
+    if not evento.get("fonte"):
+        evento["fonte"] = fonte
+        mudou = True
+    if not evento.get("via"):
+        evento["via"] = via
+        mudou = True
+    if validar.anexar_visto(evento, str(fonte), str(via), data):
+        mudou = True
+    if _anotar_historico(evento, novo, str(fonte), data):
+        mudou = True
+    return mudou
+
+
+def _id_da_entrada(fonte: dict) -> str:
+    """Id do calendário. Sem id no JSON, não usa o domínio solto da URL."""
+    ident = fonte.get("id")
+    if isinstance(ident, str) and validar.ID_FONTE.fullmatch(ident):
+        return ident
+    resolvida, conhecido = validar.resolver(fonte.get("nome"), fonte.get("url"))
+    if conhecido:
+        return resolvida
+    base = slug(str(fonte.get("nome") or ""))
+    if base and validar.ID_FONTE.fullmatch(base):
+        return base
+    return resolvida
+
+
+def _marcar_fonte(ev: dict, fonte: dict) -> dict:
+    """Feed: source continua o nome (compatível) e fonte/via apontam o calendário."""
+    ev["source"] = fonte.get("nome") or ev.get("source")
+    ev["fonte"] = _id_da_entrada(fonte)
+    ev["via"] = "feed"
+    return ev
+
+
 def chaves_bloqueadas(descartadas: set[str] | None) -> set[str]:
     """Descartados também batem se a URL só muda o idioma."""
     return {chave_url(item) for item in (descartadas or set()) if chave_url(item)}
@@ -1276,8 +1382,10 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
 
     Com historico=True, evento passado e evento de outra cidade entram.
     Formato online nunca entra. Não há corte por idade (nem de 3 meses).
-    Campo preenchido não é trocado. `outra` é a lista da outra agenda: a mesma
-    URL normalizada não entra de novo.
+    Campo preenchido não é trocado. Diferença posterior de start, end, venue
+    ou status vai para «historico», sem apagar o valor gravado. «vistos»
+    ganha a fonte+via desta rodada, sem repetir o par. `outra` é a lista da
+    outra agenda: a mesma URL normalizada não entra de novo.
     """
     if descartadas is None:
         descartadas = validar.chaves_descartadas()
@@ -1300,29 +1408,22 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
         return "passado"
     for e in existing:
         if agenda == "roles" and mesmo_role(new, e):
-            antes = json.dumps(e, sort_keys=True, ensure_ascii=False)
             _juntar_urls(e, new)
-            for k, v in new.items():
-                if k in {"url", "urls"} or v in (None, "", [], {}):
-                    continue
-                if e.get(k) in (None, "", [], {}):
-                    e[k] = v
-            return "completado" if json.dumps(e, sort_keys=True, ensure_ascii=False) != antes else "igual"
+            mudou = _completar_campos(e, new)
+            mudou = _aplicar_origem(e, new, today.isoformat()) or mudou
+            return "completado" if mudou else "igual"
         if _mesmo_evento(new, e, historico):
-            changed = False
-            for k, v in new.items():
-                if v in (None, "", [], {}):
-                    continue
-                if e.get(k) in (None, "", [], {}):
-                    e[k] = v
-                    changed = True
-            return "completado" if changed else "igual"
+            mudou = _completar_campos(e, new)
+            mudou = _aplicar_origem(e, new, today.isoformat()) or mudou
+            return "completado" if mudou else "igual"
 
     if any(_chave_bate(new, item) for item in (outra or [])):
         return "já na outra agenda"
     if not historico and (new.get("city") or "") and not cidade_rio(new.get("city")):
         return "fora do Rio"
     new = dict(new)
+    if isinstance(new.get("vistos"), list):
+        new["vistos"] = [dict(v) if isinstance(v, dict) else v for v in new["vistos"]]
     new["city"] = new.get("city") or NOME_CIDADE
     if new.get("end") and str(new["end"])[:10] < start[:10]:
         new["end"] = None
@@ -1330,6 +1431,7 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
     new["id"] = _id_livre(existing, start, new["title"], new.get("url") or "")
     new["source"] = new.get("source") or urllib.parse.urlsplit(new.get("url") or "").netloc.replace("www.", "")
     new["added"] = today.isoformat()
+    _aplicar_origem(new, new, new["added"])
     existing.append(new)
     return "novo"
 
@@ -1440,11 +1542,17 @@ def main(argv=None) -> int:
             outra = bruto_outro["events"]
     por_fonte: dict[str, int] = {}
 
+    via_por_chave: dict[str, str] = {}
+    via_link = "sugestao" if corpo else "manual"
+    for u in args.url:
+        via_por_chave[chave_url(u)] = via_link
     urls = list(args.url)
     if args.whatsapp:
         since = dt.date.fromisoformat(args.desde) if args.desde else None
         found = whatsapp_links(args.whatsapp, since)
         report.append(f"WhatsApp: {len(found)} links de eventos encontrados.")
+        for u in found:
+            via_por_chave[chave_url(u)] = "whatsapp"
         urls += found
     urls = unicos_por_chave(urls)
 
@@ -1495,18 +1603,21 @@ def main(argv=None) -> int:
                             continue
                         lidos = [refinar_pagina(ev, f["url"]) for ev in lidos]
                     for ev in lidos:
-                        ev["source"] = f.get("nome")
+                        _marcar_fonte(ev, f)
                         aplicar_padrao(ev, f, hint)
                         candidates.append((ev.get("url") or f["url"], ev, None))
                 elif f["tipo"] == "ics":
                     for ev in ics_events(fetch(f["url"])):
-                        ev["source"] = f.get("nome")
+                        _marcar_fonte(ev, f)
                         candidates.append((ev.get("url") or f["url"], ev, None))
                 elif f["tipo"] == "url":
                     if chave_url(f["url"]) in bloqueadas:
                         candidates.append((f["url"], None, "descartado"))
                     else:
-                        candidates.append((f["url"], event_from_url(f["url"]), None))
+                        pagina = event_from_url(f["url"])
+                        if pagina:
+                            _marcar_fonte(pagina, f)
+                        candidates.append((f["url"], pagina, None))
             except Exception as exc:  # noqa: BLE001
                 report.append(f"⚠️ Fonte «{f.get('nome')}» falhou: {exc.__class__.__name__}")
 
@@ -1549,6 +1660,10 @@ def main(argv=None) -> int:
                     registrar(url, ev, result)
                     report.append(f"- sem página https: {ev.get('title') or url}")
                     continue
+            if ev is not None and not ev.get("via"):
+                via = via_por_chave.get(chave_url(url)) or via_por_chave.get(chave_url(ev.get("url") or ""))
+                if via:
+                    ev["via"] = via
             result = merge(events, ev, today, descartadas, historico=args.historico, agenda=agenda, outra=outra)
         counts[result] = counts.get(result, 0) + 1
         registrar(url, ev, result)

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Relatório semanal da agenda. Não grava data/events.json.
 
-Conta eventos à frente, sonda cada fonte de fontes.json e lista PRs do
-importador. Cria ou atualiza uma única issue aberta com a etiqueta
-saude-da-agenda.
+Conta eventos à frente, sonda cada fonte de fontes.json, lista PRs do
+importador e anexa o relatório de contribuição por fonte. Cria ou atualiza
+uma única issue aberta com a etiqueta saude-da-agenda.
 """
 from __future__ import annotations
 
@@ -18,6 +18,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+import relatorio_fontes
 import validar
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -131,6 +132,15 @@ def montar(
     return "\n".join(linhas)
 
 
+def anexar_fontes(corpo: str, extra: str) -> str:
+    """Cola o relatório de fontes no fim da issue semanal."""
+    texto = (extra or "").strip()
+    base = corpo if corpo.endswith("\n") else corpo + "\n"
+    if not texto:
+        return base
+    return base.rstrip() + "\n\n" + texto + "\n"
+
+
 def buscar_fonte(url: str) -> tuple[int | None, str]:
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/calendar,text/plain,*/*"})
     try:
@@ -191,6 +201,10 @@ def main(argv=None) -> int:
 
     hoje = dt.datetime.now(RIO).date()
     events = json.loads((ROOT / "data" / "events.json").read_text(encoding="utf-8"))["events"]
+    eventos = list(events)
+    roles = ROOT / "data" / "roles.json"
+    if roles.exists():
+        eventos += json.loads(roles.read_text(encoding="utf-8")).get("events") or []
     n14, n30 = contar(events, hoje)
     linhas = []
     for fonte in json.loads((ROOT / "fontes.json").read_text(encoding="utf-8")).get("fontes", []):
@@ -202,7 +216,12 @@ def main(argv=None) -> int:
             fonte_preocupa(ativo, status, n, ultima, hoje),
         ))
     prs, erro = listar_prs()
-    texto = montar(hoje, n14, n30, linhas, prs or [], erro)
+    bruto = validar.ler_descartados()
+    descartes = bruto.get("urls") if isinstance(bruto, dict) else []
+    texto = anexar_fontes(
+        montar(hoje, n14, n30, linhas, prs or [], erro),
+        relatorio_fontes.relatorio(eventos, descartes or [], hoje),
+    )
     if args.dry_run:
         print(texto)
         return 0

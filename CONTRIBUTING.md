@@ -24,8 +24,12 @@
 | `organizer` | não | quem organiza |
 | `description` | não | `{"pt": "…", "en": "…"}` |
 | `tags` | sim | 1–6, do vocabulário de `data/tags.json` |
-| `status` | não | `confirmado` (padrão) · `a-confirmar` |
-| `source`, `added`, `note` | não | origem, data em que entrou, observação |
+| `status` | não | `confirmado` (padrão) · `a-confirmar` · `cancelado` |
+| `source`, `added`, `note` | não | origem legível, data em que entrou, observação. `source` fica por compatibilidade |
+| `fonte` | sim | id estável: `luma:maravalley`, `meetup:mundo-lingo-rio`, `sympla`, `correio:sympla`, `whatsapp:riotech`, `manual`. O id dos calendários está em `fontes.json` e `fontes_roles.json`. Domínio solto (`luma.com`, `sympla.com.br`) vira `luma`, `sympla` |
+| `via` | sim | `feed` · `correio` · `whatsapp` · `sugestao` · `manual`. `desconhecida` só no que a migração não conseguiu classificar |
+| `vistos` | sim | lista de `{fonte, via, data}`: cada fonte que viu o evento, sem repetir o par fonte+via |
+| `historico` | não | mudança de `start`, `end`, `venue` ou `status` depois da primeira gravação: `{campo, antes, depois, fonte, data}`. O valor publicado não é trocado |
 
 ## Agenda Rolês
 
@@ -36,7 +40,7 @@ A aba Rolês segue o mesmo cartão e a mesma faixa da semana. Os arquivos são o
 3. **Descrição com as suas palavras**, em 1–2 frases (máx. 280 caracteres). Não copie o texto do organizador.
 4. **O cartão aponta só para a página oficial.**
 
-`data/roles.json` usa os mesmos campos de `events.json`, mais estes, todos opcionais:
+`data/roles.json` usa os mesmos campos de `events.json`, inclusive `fonte`, `via`, `vistos` e `historico`, mais estes, todos opcionais:
 
 | Campo | Valores |
 |---|---|
@@ -48,7 +52,7 @@ A aba Rolês segue o mesmo cartão e a mesma faixa da semana. Os arquivos são o
 
 As tags vêm de `data/tags_roles.json`.
 
-`data/roles_fixos.json` guarda o que se repete. Cada item precisa de `rrule` (`FREQ=WEEKLY` ou `FREQ=MONTHLY`, com `BYDAY`), `time`, `fonte` (URL que confirma) e `verificado_em` (`AAAA-MM-DD`). `end_time` no dia seguinte, como `00:00`, vale. A página gera as próximas 4 semanas. O cartão mostra «Fixo · confira antes».
+`data/roles_fixos.json` guarda o que se repete. Cada item precisa de `rrule` (`FREQ=WEEKLY` ou `FREQ=MONTHLY`, com `BYDAY`), `time`, `fonte` (URL que confirma, não o id da origem) e `verificado_em` (`AAAA-MM-DD`). `end_time` no dia seguinte, como `00:00`, vale. A página gera as próximas 4 semanas. O cartão mostra «Fixo · confira antes».
 
 O importador da Rolês é `python3 scripts/importar.py --agenda roles --fontes fontes_roles.json`. Só lê iCal ou JSON-LD, e só de fonte cujo `robots.txt` e termos deixam. **InterNations não se importa:** é só para membros. Quem for membro sugere o encontro pela issue, com a agenda Rolês.
 
