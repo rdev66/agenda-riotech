@@ -85,6 +85,99 @@
       "nota": "iCal público. O robots.txt não bloqueia /events/ical/ (o Disallow: / é só do GPTBot). O ToS proíbe screen scraping de HTML, então o importador não abre a página do grupo: só o feed de calendário. O site mundolingo.org fica de fora porque o ToS proíbe data harvesting."
     },
     {
+      "nome": "Meetup · Corrida Rio de Janeiro",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/Meetup-de-Corrida-Rio-de-Janeiro/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "ao-ar-livre",
+      "tags": ["corrida"],
+      "nota": "iCal público. Corridas presenciais no Rio."
+    },
+    {
+      "nome": "Meetup · Rio de Janeiro ESL Friends",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/rio-de-janeiro-esl-friends-meetup-group/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "comunidades",
+      "tags": ["idiomas"],
+      "idioma": "en",
+      "nota": "iCal público. Prática de inglês presencial."
+    },
+    {
+      "nome": "Meetup · English & Portuguese in Leme",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/english-portuguese-in-leme/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "comunidades",
+      "tags": ["idiomas"],
+      "idioma": "multi",
+      "nota": "iCal público. Intercâmbio de idiomas em Leme."
+    },
+    {
+      "nome": "Meetup · Founders Running Club Rio",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/founders-running-club-rio-de-janeiro/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "ao-ar-livre",
+      "tags": ["corrida"],
+      "nota": "iCal público. Corrida de founders no Rio."
+    },
+    {
+      "nome": "Meetup · Rio Food and History",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/rio-de-janeiro-food-and-history/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "cultura",
+      "tags": ["passeios", "gastronomia"],
+      "nota": "iCal público. Passeios gastronômicos e históricos."
+    },
+    {
+      "nome": "Meetup · Rio de Janeiro Yoga",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/Rio-de-Janeiro-Yoga-Meetup/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "ao-ar-livre",
+      "tags": ["bem-estar"],
+      "nota": "iCal público. Muitos encontros online/meditação virtual: o importador descarta formato online."
+    },
+    {
+      "nome": "Meetup · Arte Viva Atelier",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/Arte-Viva-Atelier/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "cultura",
+      "tags": ["arte", "oficinas"],
+      "nota": "iCal público. Oficinas e encontros de arte."
+    },
+    {
+      "nome": "Meetup · Literatura Rio de Janeiro",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/Literatura-Rio-de-Janeiro/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "comunidades",
+      "tags": ["leitura"],
+      "nota": "iCal público. Encontros «virtuais» caem no filtro online."
+    },
+    {
+      "nome": "Meetup · Clube Poliglota RJ",
+      "tipo": "ics",
+      "url": "https://www.meetup.com/clubepoliglotarj/events/ical/",
+      "ativo": true,
+      "metodo": "ical",
+      "categoria": "comunidades",
+      "tags": ["idiomas"],
+      "idioma": "multi",
+      "nota": "iCal público. Conversas no Telegram/online são descartadas pelo filtro presencial."
+    },
+    {
       "nome": "Meetup · Ultimate Frisbee In Leblon",
       "tipo": "ics",
       "url": "https://www.meetup.com/ultimate-frisbee-in-leblon/events/ical/",
