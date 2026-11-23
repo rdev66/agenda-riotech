@@ -92,7 +92,10 @@ KEYWORDS = [
     (r"\b(hardware|rob[oó]tica|robotics|iot|arduino|raspberry|drones?|eletr[oô]nica|semicondutor)", "hardware-robotica"),
     (r"\b(maker|fab ?lab|impress[aã]o 3d|3d printing)\b", "maker"),
     (r"\b(espa[cç]o|space|sat[eé]lite|aeroespacial|astronomia)\b", "espaco"),
-    (r"\b(ci[eê]ncia|science|pesquisa|research|f[ií]sica|matem[aá]tica|qu[aâ]ntic)", "ciencia"),
+    # Sem «pesquisa»/«research» soltos (viram data science / UX research).
+    # IMPA/CBPF/Fiocruz/laboratório bastam; UFRJ/PUC como venue não marcam sozinhos.
+    (r"\b(ci[eê]ncia|science|f[ií]sica|matem[aá]tica|qu[aâ]ntic|astronomia|laborat[oó]rio|"
+     r"impa|cbpf|fiocruz)\b", "ciencia"),
     (r"\b(govtech|governo digital|smart city|cidade inteligente|setor p[uú]blico)\b", "govtech"),
     (r"\b(edtech|educa[cç][aã]o\s+(?:digital|tecnol))", "edtech"),
     (r"\b(audiovisual|economia criativa|creative tech|anima[cç][aã]o|realidade virtual|xr)\b", "economia-criativa"),
@@ -115,6 +118,11 @@ TAG_EXCLUSIONS = {
     "energia-clima": re.compile(r"\bclima\s+de\b|\bbom\s+clima\b|\bclima\s+organiz", re.I),
     "espaco": re.compile(
         r"\bespa[cç]o\s+(?:colmeia|cowork|cultural|gourmet)|\bcoworking\b|\bspace\s+(?:bar|hotel|lounge)\b",
+        re.I,
+    ),
+    "ciencia": re.compile(
+        r"\bci[eê]ncia\s+de\s+dados\b|\bcientista\s+de\s+dados\b|\bdata\s+science\b|\bdata\s+scientist\b|"
+        r"\bux\s+research\b|\bpesquisa\s+de\s+usu[aá]rio\b|\buser\s+research\b",
         re.I,
     ),
 }

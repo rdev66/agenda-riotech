@@ -313,6 +313,14 @@ class TestImportar(unittest.TestCase):
         self.assertNotIn("energia-clima", importar.auto_tags("Bom clima para networking", limit=10))
         # Sem contexto aeroespacial, «espaço» sozinho não marca.
         self.assertNotIn("espaco", importar.auto_tags("Workshop no espaço da empresa", limit=10))
+        # Data science e UX research não são «ciência» deep tech.
+        self.assertNotIn("ciencia", importar.auto_tags("Meetup de data science no Rio", limit=10))
+        self.assertNotIn("ciencia", importar.auto_tags("Ciência de dados com Python", limit=10))
+        self.assertNotIn("ciencia", importar.auto_tags("UX research meetup e pesquisa de usuário", limit=10))
+
+    def test_ciencia_impa_e_laboratorio(self):
+        self.assertIn("ciencia", importar.auto_tags("Palestra de geometria no IMPA", limit=10))
+        self.assertIn("ciencia", importar.auto_tags("Visita ao laboratório do CBPF", limit=10))
 
 
 class TestValidar(unittest.TestCase):

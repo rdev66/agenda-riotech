@@ -56,7 +56,6 @@
     {"nome": "Impact Hub Brasil (Luma)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-WFaQzdbmCtJCtiw"},
     {"nome": "Claude Community (Luma, global)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-TOpA5LAFfuDeFpu", "ativo": false, "nota": "calendário mundial: ativar só com filtro por cidade"},
     {"nome": "Codex Community (Luma, global)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-63UOFcweB97l2gc", "ativo": false, "nota": "calendário mundial: ativar só com filtro por cidade"},
-    {"nome": "Web Summit Rio", "tipo": "url", "url": "https://rio.websummit.com/", "nota": "schema.org/Event em JSON-LD; robots permite"},
-    {"nome": "SPRINT Robotics — Caipirinhas & Tech (Rio)", "tipo": "url", "url": "https://sprintrobotics.org/event/caipirinhas-tech-may-2026/", "nota": "schema.org/Event em JSON-LD; networking de robótica no Rio"}
+    {"nome": "Web Summit Rio", "tipo": "url", "url": "https://rio.websummit.com/", "nota": "schema.org/Event em JSON-LD; robots permite"}
   ]
 }
