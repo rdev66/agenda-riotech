@@ -760,6 +760,166 @@ class TestCorreio(unittest.TestCase):
         self.assertEqual(abertos, urls[:15])
         self.assertEqual(uteis, [f"https://luma.com/n{i}" for i in range(15)])
 
+    def test_frc_da_caixa_eventos_vai_para_roles(self):
+        descricao = (
+            "Join Founders Running Club, Common Ground and More Hostel for a special "
+            "Saturday gathering in Ipanema, bringing together founders, creatives, "
+            "travelers and entrepreneurs."
+        )
+        frc = evento_base(
+            "https://luma.com/frcnovo",
+            title="FRC Rio x Common Ground x More Hostels",
+            start="2026-11-28T16:30:00-03:00",
+            end="2026-11-28T22:00:00-03:00",
+            venue="More Ipanema Hostel",
+            description={"pt": descricao},
+            tags=["founders"],
+        )
+        self.assertEqual(correio.escolher_agenda(frc, "tech"), ("roles", True))
+        corrida_tech = {
+            "title": "Web Summit Run",
+            "description": {"pt": "Running club during the Web Summit with founders."},
+            "city": "Rio de Janeiro",
+        }
+        self.assertEqual(correio.escolher_agenda(corrida_tech, "tech")[0], "tech")
+        idiomas = {
+            "title": "Mundo Lingo",
+            "description": {"pt": "Language exchange for founders in Botafogo."},
+        }
+        self.assertEqual(correio.escolher_agenda(idiomas, "tech"), ("roles", True))
+        samba = {
+            "title": "Roda de samba",
+            "description": {"pt": "Samba dos founders na Pedra do Sal."},
+        }
+        self.assertEqual(correio.escolher_agenda(samba, "tech"), ("roles", True))
+
+        def cru(url):
+            return (
+                "From: a@example.com\r\nTo: agenda.rio.eventos@gmail.com\r\n"
+                "Content-Type: text/plain; charset=utf-8\r\n\r\n"
+                f"FRC Rio x Common Ground x More Hostels\r\n{url}\r\n"
+            ).encode()
+
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = destinos(Path(tmp))
+            relatorio, codigo = correio.rodar(
+                [correio.CaixaTrabalho(
+                    "Tech", "agenda.rio.eventos@gmail.com", "tech",
+                    [("novo", cru("https://luma.com/frcnovo"))],
+                )],
+                hoje=HOJE,
+                destinos=paths,
+                abrir_redirect=lambda url: None,
+                eventos_da_url=lambda url, agenda: ([dict(frc, url=url)], None),
+                modelo=lambda texto: (_ for _ in ()).throw(AssertionError(texto[:80])),
+            )
+            tech = json.loads(paths["tech"].read_text(encoding="utf-8"))
+            gravados = json.loads(paths["roles"].read_text(encoding="utf-8"))
+        self.assertEqual(codigo, 0, relatorio)
+        self.assertEqual(tech["events"], [])
+        self.assertEqual(len(gravados["events"]), 1)
+        novo = gravados["events"][0]
+        self.assertEqual(novo["url"], "https://luma.com/frcnovo")
+        self.assertIn("corrida", novo["tags"])
+        self.assertNotIn("founders", novo["tags"])
+        self.assertEqual(novo["categoria"], "ao-ar-livre")
+        self.assertIn("foi para a agenda Rolês; a caixa era Tech", relatorio)
+
+    def test_ignora_asset_loja_e_luma_que_nao_e_evento(self):
+        recusados = [
+            "https://luma.com/capa.png",
+            "https://luma.com/foto.jpg",
+            "https://luma.com/foto.jpeg",
+            "https://luma.com/foto.gif",
+            "https://luma.com/foto.svg",
+            "https://luma.com/foto.webp",
+            "https://luma.com/favicon.ico",
+            "https://cdn.exemplo.com/a.jpg",
+            "https://luma.com/email/open",
+            "https://apps.apple.com/br/app/luma/id1",
+            "https://itunes.apple.com/app/id1",
+            "https://play.google.com/store/apps/details?id=com.luma",
+            "https://luma.com/",
+            "https://luma.com/settings",
+            "https://luma.com/ios",
+            "https://luma.com/android",
+            "https://luma.com/home",
+            "https://luma.com/discover",
+            "https://lu.ma/discover?utm_source=x",
+        ]
+        for url in recusados:
+            self.assertTrue(correio.url_irrelevante(url), url)
+            self.assertTrue(correio.url_recusada(url), url)
+        self.assertFalse(correio.url_irrelevante("https://luma.com/evento123"))
+        self.assertFalse(correio.url_irrelevante("https://luma.com/homecoming"))
+        texto = "\n".join(["https://luma.com/evento123", *recusados])
+        self.assertEqual(
+            correio.links_uteis(texto, lambda url: (_ for _ in ()).throw(AssertionError(url))),
+            ["https://luma.com/evento123"],
+        )
+        self.assertEqual(
+            correio.links_uteis(
+                "https://luma.com/en/evento-rio\nhttps://luma.com/pt-br/evento-rio?lang=pt",
+                lambda url: None,
+            ),
+            ["https://luma.com/en/evento-rio"],
+        )
+        bruto = (
+            "From: a@example.com\r\nTo: agenda.rio.eventos@gmail.com\r\n"
+            "Content-Type: text/plain; charset=utf-8\r\n\r\n"
+            + texto + "\n"
+        ).encode()
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = destinos(Path(tmp))
+            relatorio, codigo = correio.rodar(
+                [correio.CaixaTrabalho(
+                    "Tech", "agenda.rio.eventos@gmail.com", "tech", [("1", bruto)],
+                )],
+                hoje=HOJE, destinos=paths, abrir_redirect=lambda url: None,
+                eventos_da_url=lambda url, agenda: ([], "sem dados de evento"),
+                modelo=lambda texto: (_ for _ in ()).throw(AssertionError("modelo")),
+            )
+        self.assertEqual(codigo, 0, relatorio)
+        self.assertIn("https://luma.com/evento123", relatorio)
+        self.assertEqual(relatorio.count("https://luma.com/evento123"), 1)
+        for trecho in (
+            "capa.png", "foto.jpg", "foto.jpeg", "foto.gif", "foto.svg", "foto.webp",
+            "favicon.ico", "cdn.exemplo.com", "/email/", "apps.apple.com",
+            "itunes.apple.com", "play.google.com", "luma.com/settings", "luma.com/ios",
+            "luma.com/android", "luma.com/home", "luma.com/discover",
+        ):
+            self.assertNotIn(trecho, relatorio, trecho)
+
+    def test_descartados_unicos_por_url(self):
+        def cru(url):
+            return (
+                "From: a@example.com\r\nTo: agenda.rio.eventos@gmail.com\r\n"
+                "Content-Type: text/plain; charset=utf-8\r\n\r\n"
+                f"Veja {url}\n{url}\n"
+            ).encode()
+
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = destinos(Path(tmp))
+            relatorio, codigo = correio.rodar(
+                [correio.CaixaTrabalho(
+                    "Tech", "agenda.rio.eventos@gmail.com", "tech",
+                    [
+                        ("a", cru("https://luma.com/online99")),
+                        ("b", cru("https://luma.com/online99?utm_source=nl")),
+                        ("c", cru("https://luma.com/velho")),
+                    ],
+                )],
+                hoje=HOJE, destinos=paths, abrir_redirect=lambda url: None,
+                eventos_da_url=falso_url,
+                modelo=lambda texto: (_ for _ in ()).throw(AssertionError("modelo")),
+            )
+        self.assertEqual(codigo, 0, relatorio)
+        self.assertEqual(relatorio.count("https://luma.com/online99"), 1)
+        self.assertIn("2 e-mails", relatorio)
+        self.assertIn("formato online", relatorio)
+        self.assertIn("1 e-mail", relatorio)
+        self.assertIn("passado", relatorio)
+
     def test_readme_e_workflow(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         for trecho in (

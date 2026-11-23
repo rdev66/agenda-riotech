@@ -4860,34 +4860,6 @@
       "added": "2026-11-11"
     },
     {
-      "title": "FRC Rio x Common Ground x More Hostels",
-      "start": "2026-11-28T16:30:00-03:00",
-      "end": "2026-11-28T22:00:00-03:00",
-      "time_known": true,
-      "venue": "More Ipanema Hostel",
-      "address": "More Ipanema Hostel",
-      "city": "Rio de Janeiro",
-      "format": "presencial",
-      "cost": {
-        "type": "gratis",
-        "text": "Grátis"
-      },
-      "registration": "inscricao",
-      "url": "https://luma.com/32yapcfk",
-      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/8n/1df17908-204e-44a7-890f-d94159fb59e5.jpg",
-      "organizer": "Founders Running Club Rio",
-      "description": {
-        "pt": "Join Founders Running Club, Common Ground and More Hostel for a special Saturday gathering in Ipanema, bringing together founders, creatives, travelers, entrepreneurs and anyone who enjoys meeting new people and…"
-      },
-      "tags": [
-        "founders"
-      ],
-      "status": "confirmado",
-      "source": "luma.com",
-      "id": "2026-11-28-frc-rio-x-common-ground-x-more-hostels",
-      "added": "2026-11-23"
-    },
-    {
       "id": "2026-12-02-riotech-happy-hour",
       "title": "RioTech Happy Hour",
       "start": "2026-12-02T18:00:00-03:00",
@@ -5198,33 +5170,6 @@
         "text": null
       },
       "registration": "inscricao",
-      "url": "https://rio.websummit.com/en",
-      "description": {
-        "pt": "Conferência de tecnologia Web Summit Rio, de 14 a 17 de junho de 2027, no Riocentro. A newsletter informa que haverá anúncios de palestrantes, lançamentos de ingressos e atualizações do evento."
-      },
-      "tags": [
-        "web",
-        "conferencia"
-      ],
-      "status": "confirmado",
-      "time_known": true,
-      "source": "rio.websummit.com",
-      "id": "2027-06-14-web-summit-rio",
-      "added": "2026-11-23"
-    },
-    {
-      "title": "Web Summit Rio 2027",
-      "start": "2027-06-14T00:00:00-03:00",
-      "end": "2027-06-17T23:59:00-03:00",
-      "venue": "Riocentro",
-      "address": null,
-      "city": "Rio de Janeiro",
-      "format": "presencial",
-      "cost": {
-        "type": "desconhecido",
-        "text": null
-      },
-      "registration": "inscricao",
       "url": "https://rio.websummit.com/pt-br",
       "description": {
         "pt": "Conferência Web Summit Rio de 14 a 17 de junho de 2027, reunindo líderes de tecnologia, fundadores, startups, investidores e jornalistas. Há promoção de 2 ingressos pelo preço de um em breve."
@@ -5239,7 +5184,7 @@
       "status": "confirmado",
       "time_known": true,
       "source": "rio.websummit.com",
-      "id": "2027-06-14-web-summit-rio-2027",
+      "id": "2027-06-14-web-summit-rio",
       "added": "2026-11-23"
     }
   ]
