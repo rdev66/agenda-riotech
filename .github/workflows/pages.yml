@@ -20,8 +20,26 @@ jobs:
       - name: Montar o site
         run: |
           mkdir -p _site/data
-          cp index.html og.png favicon.svg _site/
-          cp data/events.json data/tags.json _site/data/
+          cp index.html og.png favicon.svg config.json _site/
+          cp data/events.json data/tags.json data/roles.json data/tags_roles.json data/roles_fixos.json _site/data/
+      - name: Conferir arquivos que o index.html pede
+        run: |
+          set -e
+          faltando=0
+          # Caminhos literais em fetch/fetchJson: config.json e data/*.json
+          while IFS= read -r path; do
+            [ -z "$path" ] && continue
+            if [ ! -f "_site/$path" ]; then
+              echo "faltando em _site: $path"
+              faltando=1
+            else
+              echo "ok: $path"
+            fi
+          done < <(grep -oE 'config\.json|data/[A-Za-z0-9_.-]+\.json' index.html | sort -u)
+          if [ "$faltando" -ne 0 ]; then
+            echo "O _site não tem todos os JSON que index.html pede."
+            exit 1
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
