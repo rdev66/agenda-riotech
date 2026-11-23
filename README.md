@@ -1,6 +1,6 @@
 # Agenda RioTech
 
-Eventos de tecnologia no Rio de Janeiro num lugar só: meetups, conferências, hackathons, encontros de founders e investidores. Feita e mantida pela comunidade RioTech.
+Eventos de tecnologia no Rio: software, IA, ciência, biotech, energia, hardware, fintech, economia criativa…. Feita e mantida pela comunidade RioTech.
 
 *Rio's tech events in one place, made by the RioTech community. The page speaks Portuguese, English and Portunhol.*
 
