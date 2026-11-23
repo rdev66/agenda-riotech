@@ -74,7 +74,9 @@ CAIXAS = (
     },
 )
 ALIAS_CULTURA = "agenda.rio.roles+cultura"
-BUSCA = f"newer_than:{DIAS}d -label:{ROTULO}"
+# Na busca Gmail, etiqueta aninhada «agenda/processado» vira «agenda-processado».
+# O STORE +X-GM-LABELS continua com ROTULO («agenda/processado»).
+BUSCA = f"newer_than:{DIAS}d -label:agenda-processado"
 
 # Hosts que importar.py já lê, mais Shotgun (está nos agregadores, não no regex).
 _HOSTS_CONHECIDOS = re.compile(
@@ -1114,6 +1116,22 @@ def _fechar(conn) -> None:
         pass
 
 
+def _caixa_imap(nome: str) -> str:
+    """Nome do buzón entre aspas IMAP (espaços em «[Gmail]/All Mail»)."""
+    return '"' + nome.replace("\\", "\\\\").replace('"', '\\"') + '"'
+
+
+def _detalhe_imap(data) -> str:
+    if not data:
+        return ""
+    parte = data[0] if isinstance(data, (list, tuple)) else data
+    if isinstance(parte, bytes):
+        return parte.decode("utf-8", "replace")
+    if parte is None:
+        return ""
+    return str(parte)
+
+
 def selecionar(conn) -> str:
     nome = "INBOX"
     try:
@@ -1124,7 +1142,11 @@ def selecionar(conn) -> str:
         for item in data or []:
             if not item:
                 continue
-            linha_lista = item.decode("utf-8", "replace") if isinstance(item, bytes) else str(item)
+            # LIST pode trazer UTF-7 modificado: não decodificar, só texto do fio.
+            if isinstance(item, bytes):
+                linha_lista = item.decode("ascii", "surrogateescape")
+            else:
+                linha_lista = str(item)
             flags = linha_lista.split(")", 1)[0]
             if "\\All" not in flags:
                 continue
@@ -1132,12 +1154,20 @@ def selecionar(conn) -> str:
             if aspas:
                 nome = aspas[-1]
                 break
-    typ, _ = conn.select(nome)
+
+    def abrir(caixa: str):
+        try:
+            return conn.select(_caixa_imap(caixa))
+        except imaplib.IMAP4.error as exc:
+            detalhe = exc.args[0] if exc.args else str(exc)
+            return "NO", [detalhe]
+
+    typ, data = abrir(nome)
     if typ != "OK" and nome != "INBOX":
-        typ, _ = conn.select("INBOX")
+        typ, data = abrir("INBOX")
         nome = "INBOX"
     if typ != "OK":
-        raise RuntimeError("não foi possível abrir a caixa")
+        raise RuntimeError(_detalhe_imap(data) or "não foi possível abrir a caixa")
     return nome
 
 
