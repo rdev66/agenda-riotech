@@ -1003,6 +1003,8 @@ def incorporar(ev: dict, dica: str, categoria_dica: str | None, exigir_hora: boo
     ev = copiar_evento(ev)
     limpar_campos(ev)
     garantir_minimo(ev)
+    quando = hoje.isoformat() if hasattr(hoje, "isoformat") else str(hoje)[:10]
+    validar.preencher_origem(ev, "correio", quando)
     motivo = motivo_antes(ev, exigir_hora)
     if motivo:
         resumo.descartar(f"{motivo}: {linha(ev)}", ev.get("url"))

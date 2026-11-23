@@ -30,7 +30,16 @@
       "bairro": "Gávea",
       "source": "Luma (Rio)",
       "id": "2026-11-12-lancamento-de-o-evangelho-segundo-zico",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "fonte": "luma:rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "luma:rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -62,7 +71,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-11-12-mundo-lingo-rio-botafogo",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
+      ]
     },
     {
       "title": "Game Night: Conecte-se, Jogue e Descubra!",
@@ -92,7 +110,16 @@
       "categoria": "comunidades",
       "source": "Luma (Rio)",
       "id": "2026-11-14-game-night-conecte-se-jogue-e-descubra",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "fonte": "luma:rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "luma:rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -127,6 +154,15 @@
       "added": "2026-11-12",
       "urls": [
         "https://www.meetup.com/mundo-lingo-rio/events/317402366"
+      ],
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
       ]
     },
     {
@@ -159,7 +195,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-11-19-mundo-lingo-rio-botafogo",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
+      ]
     },
     {
       "title": "Pagode do Sofá",
@@ -188,7 +233,16 @@
       "categoria": "festas",
       "source": "Luma (Rio)",
       "id": "2026-11-22-pagode-do-sofa",
-      "added": "2026-11-15"
+      "added": "2026-11-15",
+      "fonte": "luma:rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "luma:rio",
+          "via": "feed",
+          "data": "2026-11-15"
+        }
+      ]
     },
     {
       "title": "Barra da Tijuca Food and Drinks Tour!",
@@ -219,7 +273,16 @@
       "source": "Meetup · Rio Food and History",
       "categoria": "cultura",
       "id": "2026-11-23-barra-da-tijuca-food-and-drinks-tour",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-food-and-history",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-food-and-history",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Suco da Luz do Sol - Oficina Sabores&Saberes Livre",
@@ -249,7 +312,16 @@
       "source": "Meetup · Arte Viva Atelier",
       "categoria": "cultura",
       "id": "2026-11-24-suco-da-luz-do-sol-oficina-sabores-saberes-livre",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:arte-viva-atelier",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:arte-viva-atelier",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -284,6 +356,15 @@
       "added": "2026-11-12",
       "urls": [
         "https://www.meetup.com/mundo-lingo-rio/events/317545253"
+      ],
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
       ]
     },
     {
@@ -314,7 +395,16 @@
       "bairro": "Maracanã",
       "source": "Meetup · Corrida Rio de Janeiro",
       "id": "2026-11-24-corrida-no-maracana",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Primeiro encontro de apresentação ",
@@ -343,7 +433,16 @@
       "source": "Meetup · Literatura Rio de Janeiro",
       "categoria": "comunidades",
       "id": "2026-11-24-primeiro-encontro-de-apresentacao",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:literatura-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:literatura-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Conversação no Instituto Movimento em São Gonçalo",
@@ -373,7 +472,16 @@
       "idioma": "multi",
       "source": "Meetup · Clube Poliglota RJ",
       "id": "2026-11-25-conversacao-no-instituto-movimento-em-sao-goncal",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:clubepoliglotarj",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:clubepoliglotarj",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Fale INGLÊS e PORTUGUÊS.  NOVO DIA e HORA. MESMO BAR na PRAIA do LEME",
@@ -404,7 +512,16 @@
       "categoria": "comunidades",
       "idioma": "multi",
       "id": "2026-11-26-fale-ingles-e-portugues-novo-dia-e-hora-mesmo-ba",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:english-portuguese-in-leme",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:english-portuguese-in-leme",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -436,7 +553,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-11-26-mundo-lingo-rio-botafogo",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
+      ]
     },
     {
       "title": " corrida no Maracanã ",
@@ -466,7 +592,16 @@
       "bairro": "Maracanã",
       "source": "Meetup · Corrida Rio de Janeiro",
       "id": "2026-11-26-corrida-no-maracana",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Prática de conversação ",
@@ -496,7 +631,16 @@
       "idioma": "multi",
       "source": "Meetup · Clube Poliglota RJ",
       "id": "2026-11-27-pratica-de-conversacao",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:clubepoliglotarj",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:clubepoliglotarj",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Corrida na Quinta da Boa Vista",
@@ -526,7 +670,16 @@
       "bairro": "Maracanã",
       "source": "Meetup · Corrida Rio de Janeiro",
       "id": "2026-11-28-corrida-na-quinta-da-boa-vista",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Founders Running Club :: Rio de Janeiro",
@@ -555,7 +708,16 @@
       "categoria": "ao-ar-livre",
       "source": "Meetup · Founders Running Club Rio",
       "id": "2026-11-28-founders-running-club-rio-de-janeiro",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:founders-running-club-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:founders-running-club-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Rio Speaks English",
@@ -586,7 +748,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Rio de Janeiro ESL Friends",
       "id": "2026-11-28-rio-speaks-english",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "FRC Rio x Common Ground x More Hostels",
@@ -616,7 +787,16 @@
       "bairro": "Ipanema",
       "source": "Luma (Rio)",
       "id": "2026-11-28-frc-rio-x-common-ground-x-more-hostels",
-      "added": "2026-11-22"
+      "added": "2026-11-22",
+      "fonte": "luma:rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "luma:rio",
+          "via": "feed",
+          "data": "2026-11-22"
+        }
+      ]
     },
     {
       "title": "Vivo Social Clube",
@@ -646,7 +826,16 @@
       "source": "Meetup · Arte Viva Atelier",
       "categoria": "cultura",
       "id": "2026-11-28-vivo-social-clube",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:arte-viva-atelier",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:arte-viva-atelier",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "RUNCLUB TIMEHÍBRIDO | RIO DE JANEIRO",
@@ -675,7 +864,16 @@
       "categoria": "ao-ar-livre",
       "source": "Luma (Rio)",
       "id": "2026-11-29-runclub-timehibrido-rio-de-janeiro",
-      "added": "2026-11-22"
+      "added": "2026-11-22",
+      "fonte": "luma:rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "luma:rio",
+          "via": "feed",
+          "data": "2026-11-22"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -710,6 +908,15 @@
       "added": "2026-11-12",
       "urls": [
         "https://www.meetup.com/mundo-lingo-rio/events/317524463"
+      ],
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
       ]
     },
     {
@@ -740,7 +947,16 @@
       "bairro": "Maracanã",
       "source": "Meetup · Corrida Rio de Janeiro",
       "id": "2026-12-01-corrida-no-maracana",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Fale INGLÊS e PORTUGUÊS.  NOVO DIA e HORA. MESMO BAR na PRAIA do LEME",
@@ -771,7 +987,16 @@
       "categoria": "comunidades",
       "idioma": "multi",
       "id": "2026-12-03-fale-ingles-e-portugues-novo-dia-e-hora-mesmo-ba",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:english-portuguese-in-leme",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:english-portuguese-in-leme",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -803,7 +1028,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-03-mundo-lingo-rio-botafogo",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
+      ]
     },
     {
       "title": " corrida no Maracanã ",
@@ -833,7 +1067,16 @@
       "bairro": "Maracanã",
       "source": "Meetup · Corrida Rio de Janeiro",
       "id": "2026-12-03-corrida-no-maracana",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Corrida na Quinta da Boa Vista",
@@ -863,7 +1106,16 @@
       "bairro": "Maracanã",
       "source": "Meetup · Corrida Rio de Janeiro",
       "id": "2026-12-05-corrida-na-quinta-da-boa-vista",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Founders Running Club :: Rio de Janeiro",
@@ -892,7 +1144,16 @@
       "categoria": "ao-ar-livre",
       "source": "Meetup · Founders Running Club Rio",
       "id": "2026-12-05-founders-running-club-rio-de-janeiro",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:founders-running-club-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:founders-running-club-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Rio Speaks English",
@@ -923,7 +1184,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Rio de Janeiro ESL Friends",
       "id": "2026-12-05-rio-speaks-english",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -955,7 +1225,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-08-mundo-lingo-botafogo-humaita",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
+      ]
     },
     {
       "title": " corrida no Maracanã ",
@@ -985,7 +1264,16 @@
       "bairro": "Maracanã",
       "source": "Meetup · Corrida Rio de Janeiro",
       "id": "2026-12-08-corrida-no-maracana",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Primeiro encontro de apresentação ",
@@ -1014,7 +1302,16 @@
       "source": "Meetup · Literatura Rio de Janeiro",
       "categoria": "comunidades",
       "id": "2026-12-08-primeiro-encontro-de-apresentacao",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:literatura-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:literatura-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -1046,7 +1343,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-10-mundo-lingo-rio-botafogo",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
+      ]
     },
     {
       "title": " corrida no Maracanã ",
@@ -1076,7 +1382,16 @@
       "bairro": "Maracanã",
       "source": "Meetup · Corrida Rio de Janeiro",
       "id": "2026-12-10-corrida-no-maracana",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Corrida na Quinta da Boa Vista",
@@ -1106,7 +1421,16 @@
       "bairro": "Maracanã",
       "source": "Meetup · Corrida Rio de Janeiro",
       "id": "2026-12-12-corrida-na-quinta-da-boa-vista",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Founders Running Club :: Rio de Janeiro",
@@ -1135,7 +1459,16 @@
       "categoria": "ao-ar-livre",
       "source": "Meetup · Founders Running Club Rio",
       "id": "2026-12-12-founders-running-club-rio-de-janeiro",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:founders-running-club-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:founders-running-club-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Rio Speaks English",
@@ -1166,7 +1499,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Rio de Janeiro ESL Friends",
       "id": "2026-12-12-rio-speaks-english",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Vivo Social Clube",
@@ -1196,7 +1538,16 @@
       "source": "Meetup · Arte Viva Atelier",
       "categoria": "cultura",
       "id": "2026-12-12-vivo-social-clube",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:arte-viva-atelier",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:arte-viva-atelier",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -1228,7 +1579,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-15-mundo-lingo-botafogo-humaita",
-      "added": "2026-11-12"
+      "added": "2026-11-12",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-12"
+        }
+      ]
     },
     {
       "title": " corrida no Maracanã ",
@@ -1258,7 +1618,16 @@
       "bairro": "Maracanã",
       "source": "Meetup · Corrida Rio de Janeiro",
       "id": "2026-12-15-corrida-no-maracana",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -1292,6 +1661,15 @@
       "added": "2026-11-15",
       "urls": [
         "https://www.meetup.com/mundo-lingo-rio/events/317462026"
+      ],
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-15"
+        }
       ]
     },
     {
@@ -1321,7 +1699,16 @@
       "categoria": "ao-ar-livre",
       "source": "Meetup · Founders Running Club Rio",
       "id": "2026-12-19-founders-running-club-rio-de-janeiro",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:founders-running-club-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:founders-running-club-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Rio Speaks English",
@@ -1352,7 +1739,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Rio de Janeiro ESL Friends",
       "id": "2026-12-19-rio-speaks-english",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Suco da Luz do Sol - Oficina Sabores&Saberes Livre",
@@ -1382,7 +1778,16 @@
       "source": "Meetup · Arte Viva Atelier",
       "categoria": "cultura",
       "id": "2026-12-22-suco-da-luz-do-sol-oficina-sabores-saberes-livre",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:arte-viva-atelier",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:arte-viva-atelier",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -1413,7 +1818,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-22-mundo-lingo-botafogo-humaita",
-      "added": "2026-11-22"
+      "added": "2026-11-22",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-22"
+        }
+      ]
     },
     {
       "title": "Primeiro encontro de apresentação ",
@@ -1442,7 +1856,16 @@
       "source": "Meetup · Literatura Rio de Janeiro",
       "categoria": "comunidades",
       "id": "2026-12-22-primeiro-encontro-de-apresentacao",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:literatura-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:literatura-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -1473,7 +1896,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Mundo Lingo Rio",
       "id": "2026-12-24-mundo-lingo-rio-botafogo",
-      "added": "2026-11-22"
+      "added": "2026-11-22",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-22"
+        }
+      ]
     },
     {
       "title": "Founders Running Club :: Rio de Janeiro",
@@ -1502,7 +1934,16 @@
       "categoria": "ao-ar-livre",
       "source": "Meetup · Founders Running Club Rio",
       "id": "2026-12-26-founders-running-club-rio-de-janeiro",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:founders-running-club-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:founders-running-club-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Rio Speaks English",
@@ -1533,7 +1974,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Rio de Janeiro ESL Friends",
       "id": "2026-12-26-rio-speaks-english",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Vivo Social Clube",
@@ -1563,7 +2013,16 @@
       "source": "Meetup · Arte Viva Atelier",
       "categoria": "cultura",
       "id": "2026-12-26-vivo-social-clube",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:arte-viva-atelier",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:arte-viva-atelier",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "☮️Let's Meditate New Year Eve. Celebrate within ❤️",
@@ -1592,7 +2051,16 @@
       "source": "Meetup · Rio de Janeiro Yoga",
       "categoria": "ao-ar-livre",
       "id": "2026-12-31-let-s-meditate-new-year-eve-celebrate-within",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-yoga-meetup",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-yoga-meetup",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Rio Speaks English",
@@ -1623,7 +2091,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Rio de Janeiro ESL Friends",
       "id": "2027-01-02-rio-speaks-english",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Primeiro encontro de apresentação ",
@@ -1652,7 +2129,16 @@
       "source": "Meetup · Literatura Rio de Janeiro",
       "categoria": "comunidades",
       "id": "2027-01-05-primeiro-encontro-de-apresentacao",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:literatura-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:literatura-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Rio Speaks English",
@@ -1683,7 +2169,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Rio de Janeiro ESL Friends",
       "id": "2027-01-09-rio-speaks-english",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Vivo Social Clube",
@@ -1713,7 +2208,16 @@
       "source": "Meetup · Arte Viva Atelier",
       "categoria": "cultura",
       "id": "2027-01-09-vivo-social-clube",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:arte-viva-atelier",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:arte-viva-atelier",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Rio Speaks English",
@@ -1744,7 +2248,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Rio de Janeiro ESL Friends",
       "id": "2027-01-16-rio-speaks-english",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Primeiro encontro de apresentação ",
@@ -1773,7 +2286,16 @@
       "source": "Meetup · Literatura Rio de Janeiro",
       "categoria": "comunidades",
       "id": "2027-01-19-primeiro-encontro-de-apresentacao",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:literatura-rio-de-janeiro",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:literatura-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Rio Speaks English",
@@ -1804,7 +2326,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Rio de Janeiro ESL Friends",
       "id": "2027-01-23-rio-speaks-english",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Vivo Social Clube",
@@ -1834,7 +2365,16 @@
       "source": "Meetup · Arte Viva Atelier",
       "categoria": "cultura",
       "id": "2027-01-23-vivo-social-clube",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:arte-viva-atelier",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:arte-viva-atelier",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Suco da Luz do Sol - Oficina Sabores&Saberes Livre",
@@ -1864,7 +2404,16 @@
       "source": "Meetup · Arte Viva Atelier",
       "categoria": "cultura",
       "id": "2027-01-26-suco-da-luz-do-sol-oficina-sabores-saberes-livre",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:arte-viva-atelier",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:arte-viva-atelier",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Rio Speaks English",
@@ -1895,7 +2444,16 @@
       "bairro": "Botafogo",
       "source": "Meetup · Rio de Janeiro ESL Friends",
       "id": "2027-01-30-rio-speaks-english",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-esl-friends-meetup-group",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Vivo Social Clube",
@@ -1925,7 +2483,16 @@
       "source": "Meetup · Arte Viva Atelier",
       "categoria": "cultura",
       "id": "2027-02-06-vivo-social-clube",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:arte-viva-atelier",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:arte-viva-atelier",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Vivo Social Clube",
@@ -1955,7 +2522,16 @@
       "source": "Meetup · Arte Viva Atelier",
       "categoria": "cultura",
       "id": "2027-02-20-vivo-social-clube",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "fonte": "meetup:arte-viva-atelier",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:arte-viva-atelier",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
+      ]
     },
     {
       "title": "Next meeting May 13, 2027",
@@ -1989,6 +2565,15 @@
       "added": "2026-11-23",
       "urls": [
         "https://www.meetup.com/english-portuguese-in-leme/events/316805579"
+      ],
+      "fonte": "meetup:english-portuguese-in-leme",
+      "via": "feed",
+      "vistos": [
+        {
+          "fonte": "meetup:english-portuguese-in-leme",
+          "via": "feed",
+          "data": "2026-11-23"
+        }
       ]
     }
   ]
