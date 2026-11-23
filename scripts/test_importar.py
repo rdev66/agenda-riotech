@@ -322,6 +322,108 @@ class TestImportar(unittest.TestCase):
         self.assertIn("ciencia", importar.auto_tags("Palestra de geometria no IMPA", limit=10))
         self.assertIn("ciencia", importar.auto_tags("Visita ao laboratório do CBPF", limit=10))
 
+    def test_urls_de_idioma_sao_o_mesmo_evento(self):
+        en = "https://rio.websummit.com/en"
+        pt = "https://rio.websummit.com/pt-br"
+        self.assertEqual(importar.chave_url(en), importar.chave_url(pt))
+        self.assertEqual(
+            importar.chave_url("https://rio.websummit.com/pt-br?lang=pt"),
+            importar.chave_url("https://rio.websummit.com/es?lang=es"),
+        )
+        self.assertEqual(
+            importar.chave_url("https://rio.websummit.com/?lang=en"),
+            importar.chave_url("https://rio.websummit.com/?lang=pt-br"),
+        )
+        self.assertNotEqual(
+            importar.chave_url("https://rio.websummit.com/en/startups"),
+            importar.chave_url("https://rio.websummit.com/pt-br/investors"),
+        )
+        hoje = dt.date(2026, 1, 1)
+        lista = []
+        primeiro = {
+            "title": "Web Summit Rio",
+            "start": "2027-06-14T00:00:00-03:00",
+            "venue": "Riocentro",
+            "url": en,
+            "format": "presencial",
+            "city": "Rio de Janeiro",
+        }
+        segundo = {
+            "title": "Web Summit Rio 2027",
+            "start": "2027-06-14T00:00:00-03:00",
+            "venue": "Riocentro",
+            "url": pt,
+            "format": "presencial",
+            "city": "Rio de Janeiro",
+            "description": {"pt": "Conferência no Riocentro."},
+        }
+        self.assertEqual(importar.merge(lista, primeiro, hoje, set()), "novo")
+        self.assertEqual(importar.merge(lista, segundo, hoje, set()), "completado")
+        self.assertEqual(len(lista), 1)
+        self.assertEqual(lista[0]["url"], en)
+        self.assertEqual(lista[0]["description"]["pt"], "Conferência no Riocentro.")
+
+    def test_mesmo_dia_e_lugar_com_titulo_contido(self):
+        hoje = dt.date(2026, 1, 1)
+        lista = []
+        base = {
+            "title": "Web Summit Rio",
+            "start": "2027-06-14T10:00:00-03:00",
+            "venue": "Riocentro",
+            "url": "https://exemplo.org/summit-a",
+            "format": "presencial",
+            "city": "Rio de Janeiro",
+        }
+        outro = {
+            "title": "Web Summit Rio 2027",
+            "start": "2027-06-14T00:00:00-03:00",
+            "venue": "Riocentro",
+            "url": "https://exemplo.org/summit-b",
+            "format": "presencial",
+            "city": "Rio de Janeiro",
+        }
+        self.assertEqual(importar.merge(lista, base, hoje, set()), "novo")
+        self.assertEqual(importar.merge(lista, outro, hoje, set()), "igual")
+        self.assertEqual(len(lista), 1)
+        longe = dict(outro, url="https://exemplo.org/summit-c", venue="Pier Mauá")
+        self.assertEqual(importar.merge(lista, longe, hoje, set()), "novo")
+        self.assertEqual(len(lista), 2)
+
+    def test_url_na_outra_agenda_nao_entra(self):
+        hoje = dt.date(2026, 1, 1)
+        outra = [{
+            "title": "FRC Rio x Common Ground x More Hostels",
+            "url": "https://luma.com/32yapcfk",
+            "start": "2026-11-28T16:30:00-03:00",
+        }]
+        novo = {
+            "title": "Meetup de Python",
+            "start": "2026-11-28T16:30:00-03:00",
+            "url": "https://www.luma.com/32yapcfk?utm_source=x",
+            "format": "presencial",
+            "city": "Rio de Janeiro",
+            "venue": "Ipanema",
+        }
+        lista = []
+        self.assertEqual(importar.merge(lista, novo, hoje, set(), outra=outra), "já na outra agenda")
+        self.assertEqual(lista, [])
+        outra_idioma = [{
+            "title": "Web Summit Rio",
+            "url": "https://rio.websummit.com/en",
+            "start": "2027-06-14T00:00:00-03:00",
+            "venue": "Riocentro",
+        }]
+        pt = {
+            "title": "Web Summit Rio 2027",
+            "start": "2027-06-14T00:00:00-03:00",
+            "url": "https://rio.websummit.com/pt-br?lang=pt-br",
+            "format": "presencial",
+            "city": "Rio de Janeiro",
+            "venue": "Riocentro",
+        }
+        self.assertEqual(importar.merge(lista, pt, hoje, set(), outra=outra_idioma), "já na outra agenda")
+        self.assertEqual(lista, [])
+
 
 class TestValidar(unittest.TestCase):
     def test_dados_do_repositorio(self):
@@ -329,6 +431,14 @@ class TestValidar(unittest.TestCase):
         data = json.loads((root / "data" / "events.json").read_text(encoding="utf-8"))
         vocab = set(json.loads((root / "data" / "tags.json").read_text(encoding="utf-8"))["tags"])
         self.assertEqual(validar.check(data, vocab), [])
+        summit = [e for e in data["events"] if e.get("title") == "Web Summit Rio"]
+        self.assertEqual(len(summit), 1)
+        self.assertEqual(summit[0]["url"], "https://rio.websummit.com/pt-br")
+        self.assertEqual(summit[0]["start"][:10], "2027-06-14")
+        self.assertEqual(summit[0]["venue"], "Riocentro")
+        self.assertFalse(any("FRC Rio x Common Ground" in (e.get("title") or "") for e in data["events"]))
+        roles = json.loads((root / "data" / "roles.json").read_text(encoding="utf-8"))["events"]
+        self.assertTrue(any(e.get("title") == "FRC Rio x Common Ground x More Hostels" for e in roles))
 
     def test_detecta_erros(self):
         data = {"updated": "2030-01-01", "events": [

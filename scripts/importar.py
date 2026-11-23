@@ -20,6 +20,9 @@ Regras:
     aí o passado e a outra cidade entram. Online continua de fora.
   - A cidade (nome, variantes e fuso) está só em config.json.
   - URLs em data/descartados.json não entram de novo.
+  - URL que só muda o idioma (/en, /pt-br, /es, /pt ou ?lang=) é o mesmo evento.
+    No mesmo dia e no mesmo lugar, um título normalizado que contém o outro também junta.
+  - Se a URL normalizada já está na outra agenda, o evento não entra.
   - Do WhatsApp só se guardam links: nada de nomes, telefones ou mensagens.
 
 Só usa a biblioteca padrão do Python (3.10+).
@@ -280,6 +283,36 @@ def norm_titulo(texto: str | None) -> str:
     """Título para deduplicar: sem acento, sem «rio»/«de»/«do»."""
     tokens = re.findall(r"[a-z0-9]+", _sem_acento(texto or ""))
     return " ".join(t for t in tokens if t not in {"rio", "de", "do", "da", "janeiro", "rj", "the", "a", "o"})
+
+
+# Segmento de caminho que só escolhe o idioma da página.
+_IDIOMAS_URL = {"en", "pt", "pt-br", "es"}
+
+
+def chave_url(url: str) -> str:
+    """Chave do evento. /en, /pt-br, /es, /pt e ?lang= não criam outro evento.
+
+    A query inteira já sai em url_chave, então ?lang= não distingue.
+    """
+    chave = validar.url_chave(url)
+    if not chave:
+        return ""
+    corte = chave.find("/")
+    if corte == -1:
+        return chave
+    host, path = chave[:corte], chave[corte:]
+    partes = [p for p in path.split("/") if p and p not in _IDIOMAS_URL]
+    return host + ("/" + "/".join(partes) if partes else "")
+
+
+def _frase_contem(a: str, b: str) -> bool:
+    """True se o texto normalizado de um contém o outro, em palavras inteiras."""
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    curto, longo = (a, b) if len(a) <= len(b) else (b, a)
+    return longo.startswith(curto + " ") or longo.endswith(" " + curto) or f" {curto} " in f" {longo} "
 
 
 def _host(url: str) -> str:
@@ -1169,15 +1202,41 @@ def bloco_novo(ev: dict, url: str, agenda: str = "tech") -> str:
     return "\n".join(linhas)
 
 
+def _urls_do(ev: dict) -> list[str]:
+    urls = [str(ev.get("url") or "")]
+    for extra in ev.get("urls") or []:
+        if isinstance(extra, str):
+            urls.append(extra)
+    return urls
+
+
+def _chave_bate(a: dict, b: dict) -> bool:
+    chaves_a = {chave_url(u) for u in _urls_do(a)} - {""}
+    chaves_b = {chave_url(u) for u in _urls_do(b)} - {""}
+    return bool(chaves_a & chaves_b)
+
+
+def _mesmo_dia_lugar_titulo(a: dict, b: dict) -> bool:
+    """Mesmo dia e lugar, e um título normalizado contém o outro."""
+    dia_a = (a.get("start") or "")[:10]
+    dia_b = (b.get("start") or "")[:10]
+    if len(dia_a) != 10 or dia_a != dia_b:
+        return False
+    if not _frase_contem(norm_titulo(a.get("venue")), norm_titulo(b.get("venue"))):
+        return False
+    return _frase_contem(norm_titulo(a.get("title")), norm_titulo(b.get("title")))
+
+
 def _mesmo_evento(new: dict, e: dict, historico: bool) -> bool:
-    chave = validar.url_chave(new.get("url") or "")
-    if chave and chave == validar.url_chave(e.get("url") or ""):
+    if _chave_bate(new, e):
         return True
     if historico:
         return False
     _, title, day = key_of(new)
     _, et, ed = key_of(e)
-    return bool(et == title and ed == day and day)
+    if et == title and ed == day and day:
+        return True
+    return _mesmo_dia_lugar_titulo(new, e)
 
 
 def _id_livre(existing: list[dict], start: str, title: str, url: str) -> str:
@@ -1195,11 +1254,11 @@ def _id_livre(existing: list[dict], start: str, title: str, url: str) -> str:
 
 
 def unicos_por_chave(urls: list[str]) -> list[str]:
-    """Uma entrada por URL canônica. A query não cria um segundo evento."""
+    """Uma entrada por URL canônica. Query, ?lang= e /en|/pt-br|/es|/pt não criam outro."""
     out: list[str] = []
     vistos: set[str] = set()
     for url in urls:
-        chave = validar.url_chave(url)
+        chave = chave_url(url)
         if chave in vistos:
             continue
         vistos.add(chave)
@@ -1207,18 +1266,25 @@ def unicos_por_chave(urls: list[str]) -> list[str]:
     return out
 
 
-def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str] | None = None, historico: bool = False, agenda: str = "tech") -> str:
+def chaves_bloqueadas(descartadas: set[str] | None) -> set[str]:
+    """Descartados também batem se a URL só muda o idioma."""
+    return {chave_url(item) for item in (descartadas or set()) if chave_url(item)}
+
+
+def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str] | None = None, historico: bool = False, agenda: str = "tech", outra: list[dict] | None = None) -> str:
     """Devolve 'novo', 'completado', 'igual', 'online' ou o motivo de ter ficado de fora.
 
     Com historico=True, evento passado e evento de outra cidade entram.
     Formato online nunca entra. Não há corte por idade (nem de 3 meses).
-    Campo preenchido não é trocado.
+    Campo preenchido não é trocado. `outra` é a lista da outra agenda: a mesma
+    URL normalizada não entra de novo.
     """
     if descartadas is None:
         descartadas = validar.chaves_descartadas()
+    bloqueadas = chaves_bloqueadas(descartadas)
     if not new.get("title"):
         return "sem título"
-    if validar.url_chave(new.get("url") or "") in descartadas:
+    if chave_url(new.get("url") or "") in bloqueadas:
         return "descartado"
     if new.get("format") == "online":
         return "online"
@@ -1252,6 +1318,8 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
                     changed = True
             return "completado" if changed else "igual"
 
+    if any(_chave_bate(new, item) for item in (outra or [])):
+        return "já na outra agenda"
     if not historico and (new.get("city") or "") and not cidade_rio(new.get("city")):
         return "fora do Rio"
     new = dict(new)
@@ -1363,6 +1431,13 @@ def main(argv=None) -> int:
     events = data["events"]
     report: list[str] = []
     descartadas = validar.chaves_descartadas()
+    bloqueadas = chaves_bloqueadas(descartadas)
+    outro = ROOT / "data" / ("events.json" if agenda == "roles" else "roles.json")
+    outra: list[dict] = []
+    if outro.exists():
+        bruto_outro = json.loads(outro.read_text(encoding="utf-8"))
+        if isinstance(bruto_outro, dict) and isinstance(bruto_outro.get("events"), list):
+            outra = bruto_outro["events"]
     por_fonte: dict[str, int] = {}
 
     urls = list(args.url)
@@ -1376,7 +1451,7 @@ def main(argv=None) -> int:
     candidates: list[tuple[str, dict | None, str | None]] = []
     for i, u in enumerate(urls, 1):
         print(f"… {i}/{len(urls)} {u}", file=sys.stderr)
-        if validar.url_chave(u) in descartadas:
+        if chave_url(u) in bloqueadas:
             candidates.append((u, None, "descartado"))
             continue
         try:
@@ -1428,7 +1503,7 @@ def main(argv=None) -> int:
                         ev["source"] = f.get("nome")
                         candidates.append((ev.get("url") or f["url"], ev, None))
                 elif f["tipo"] == "url":
-                    if validar.url_chave(f["url"]) in descartadas:
+                    if chave_url(f["url"]) in bloqueadas:
                         candidates.append((f["url"], None, "descartado"))
                     else:
                         candidates.append((f["url"], event_from_url(f["url"]), None))
@@ -1452,7 +1527,7 @@ def main(argv=None) -> int:
     for url, ev, err in candidates:
         if err:
             result = err
-        elif ev is not None and validar.url_chave(ev.get("url") or "") in descartadas:
+        elif ev is not None and chave_url(ev.get("url") or "") in bloqueadas:
             result = "descartado"
         elif ev is None:
             result = "sem dados de evento"
@@ -1474,7 +1549,7 @@ def main(argv=None) -> int:
                     registrar(url, ev, result)
                     report.append(f"- sem página https: {ev.get('title') or url}")
                     continue
-            result = merge(events, ev, today, descartadas, historico=args.historico, agenda=agenda)
+            result = merge(events, ev, today, descartadas, historico=args.historico, agenda=agenda, outra=outra)
         counts[result] = counts.get(result, 0) + 1
         registrar(url, ev, result)
         if result == "novo":

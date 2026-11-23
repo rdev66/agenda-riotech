@@ -14,6 +14,13 @@ vai para o modelo. Não inventa data nem hora.
 Filtros deste caminho: futuro, presencial ou híbrido (online fica de fora),
 cidade configurada (Rio) e validar.py. Não abre link de descadastro,
 preferências, perfil ou «ver no navegador», nem o List-Unsubscribe.
+Também ignora imagem, CDN, loja de aplicativo e página da Luma que não é
+evento (/, /settings, /ios, /android, /home, /discover). Isso não entra
+na lista de descartados. O relatório lista cada URL descartada uma vez,
+com quantos e-mails ela apareceu.
+
+A caixa Tech manda para a Rolês o evento cuja tag é só esporte ou lazer
+(corrida, samba, idiomas e o mesmo tipo) e não tem tema tech.
 
 IMAP só lê. Para não reprocessar, aplica a etiqueta agenda/processado.
 Não apaga nem move. O repositório não guarda endereço, remetente nem o texto.
@@ -109,6 +116,21 @@ TAGS_TECH_FRACAS = {
     "workshop", "carreira", "educacao", "inovacao",
 }
 TAGS_ROLES_FRACAS = {"palestras"}
+# Esporte e lazer. Palestra e nerd/geek ficam de fora: cruzam com a agenda Tech.
+TAGS_LAZER = {
+    "corrida", "trilha", "volei",
+    "samba-roda", "pagode", "funk", "forro", "hiphop", "eletronica", "rock",
+    "lgbtqia", "festa-popular", "shows",
+    "idiomas", "jogos-tabuleiro", "leitura", "nomades", "expats",
+    "exposicoes", "mostras", "cineclubes", "pre-estreias", "festivais",
+}
+# Nome de clube ou comunidade. Não segura o evento na Tech se a atividade é lazer.
+TAGS_SOCIAIS = {
+    "founders", "comunidade", "networking", "diversidade", "empreendedorismo",
+}
+_EXT_ASSET = (".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".ico")
+_LUMA_NAO_EVENTO = {"settings", "ios", "android", "home", "discover"}
+_LOJAS = ("apps.apple.com", "itunes.apple.com", "play.google.com")
 OUTRA_CIDADE = re.compile(
     r"\bs[aã]o paulo\b|\bbelo horizonte\b|\bcuritiba\b|\bporto alegre\b|"
     r"\bsalvador\b|\brecife\b|\bbras[ií]lia\b|\bflorian[oó]polis\b|\bcampinas\b",
@@ -207,12 +229,38 @@ class ResumoCaixa:
         self.encontrados = 0
         self.novos: list[str] = []
         self.completados: list[str] = []
-        self.descartados: list[str] = []
         self.reclassificados: list[str] = []
         self.adiados: list[str] = []
         self.avisos: list[str] = []
         self.entrada = 0
         self.saida = 0
+        self.mail_id = 0
+        self._mail_seq = 0
+        self._descartes: dict[str, dict] = {}
+        self._ordem: list[str] = []
+
+    def novo_mail(self) -> None:
+        self._mail_seq += 1
+        self.mail_id = self._mail_seq
+
+    def descartar(self, texto: str, url: str | None = None) -> None:
+        """Uma linha por URL. O número é de e-mails, não de repetições no mesmo."""
+        chave = importar.chave_url(url or "") or texto
+        item = self._descartes.get(chave)
+        if item is None:
+            item = {"texto": texto, "mails": set()}
+            self._descartes[chave] = item
+            self._ordem.append(chave)
+        item["mails"].add(self.mail_id)
+
+    def linhas_descartados(self) -> list[str]:
+        linhas = []
+        for chave in self._ordem:
+            item = self._descartes[chave]
+            n = len(item["mails"])
+            rotulo = "e-mail" if n == 1 else "e-mails"
+            linhas.append(f"{item['texto']} · {n} {rotulo}")
+        return linhas
 
 
 class CaixaTrabalho:
@@ -309,8 +357,51 @@ def _chave_url(url: str) -> str:
     return html_unescape((url or "").strip()).rstrip(".,;:!?)*]>\"'")
 
 
+def _host_link(url: str) -> str:
+    try:
+        host = urllib.parse.urlsplit(_chave_url(url)).netloc.lower()
+    except Exception:
+        return ""
+    if host.startswith("www."):
+        host = host[4:]
+    if host == "lu.ma":
+        host = "luma.com"
+    return host
+
+
+def url_irrelevante(url: str) -> bool:
+    """Imagem, CDN, loja de aplicativo ou página da Luma que não é um evento.
+
+    Não entra na lista de descartados: o link é ignorado.
+    """
+    bruto = _chave_url(url)
+    if not bruto:
+        return False
+    try:
+        partes = urllib.parse.urlsplit(bruto if "://" in bruto else "https://" + bruto)
+    except Exception:
+        return False
+    host = _host_link(bruto if "://" in bruto else "https://" + bruto)
+    if host.startswith("cdn."):
+        return True
+    if any(host == loja or host.endswith("." + loja) for loja in _LOJAS):
+        return True
+    path = urllib.parse.unquote(partes.path or "").lower()
+    if "/email/" in f"/{path.strip('/')}/" or "/app-store" in path or "/store/apps" in path:
+        return True
+    if any(path.rstrip("/").endswith(ext) for ext in _EXT_ASSET):
+        return True
+    if host == "luma.com":
+        miolo = path.strip("/")
+        if not miolo or miolo.split("/")[0] in _LUMA_NAO_EVENTO:
+            return True
+    return False
+
+
 def url_recusada(url: str) -> bool:
-    """Caminho ou query de descadastro, preferência, perfil ou gestão."""
+    """Caminho ou query de descadastro, preferência, perfil, gestão ou link que não é evento."""
+    if url_irrelevante(url):
+        return True
     try:
         partes = urllib.parse.urlsplit(_chave_url(url))
     except Exception:
@@ -408,7 +499,7 @@ def links_uteis(texto: str, abrir: Callable[[str], str | None],
         url = resolver_link(bruto, abrir, filtro)
         if not url or not host_conhecido(url):
             continue
-        chave = validar.url_chave(url)
+        chave = importar.chave_url(url)
         if not chave or chave in vistos:
             continue
         vistos.add(chave)
@@ -549,8 +640,36 @@ def roles_forte(texto: str) -> str | None:
     return None
 
 
+def _tags_tech(texto: str) -> list[str]:
+    low = (texto or "").lower()
+    achados: list[str] = []
+    for pat, tag in importar.KEYWORDS:
+        if tag in achados or tag in TAGS_SOCIAIS:
+            continue
+        if re.search(pat, low):
+            achados.append(tag)
+    return achados
+
+
+def so_lazer(ev: dict) -> bool:
+    """Tag só de esporte ou lazer (corrida, samba, idiomas e o mesmo tipo), sem tema tech.
+
+    «Founders» no nome do clube não conta como tema tech.
+    """
+    texto = texto_evento(ev)
+    tags, _categoria = importar.classificar_roles(texto)
+    if not tags or any(tag not in TAGS_LAZER for tag in tags):
+        return False
+    return not _tags_tech(texto)
+
+
 def escolher_agenda(ev: dict, dica: str) -> tuple[str, bool]:
-    """A caixa é a dica. Só muda quando o texto é claramente da outra agenda."""
+    """A caixa é a dica. Só muda quando o texto é claramente da outra agenda.
+
+    Na caixa Tech, esporte ou lazer sem tema tech vai para a Rolês.
+    """
+    if dica == "tech" and so_lazer(ev):
+        return "roles", True
     texto = texto_evento(ev)
     tech = tech_forte(texto)
     roles = roles_forte(texto) is not None
@@ -877,13 +996,16 @@ def evento_do_modelo(item: dict, abrir: Callable[[str], str | None],
 
 def incorporar(ev: dict, dica: str, categoria_dica: str | None, exigir_hora: bool, substituir: bool,
                hoje, listas: dict, descartadas: set[str], resumo: ResumoCaixa) -> None:
+    link = str(ev.get("url") or "")
+    if link and url_irrelevante(link):
+        return
     resumo.encontrados += 1
     ev = copiar_evento(ev)
     limpar_campos(ev)
     garantir_minimo(ev)
     motivo = motivo_antes(ev, exigir_hora)
     if motivo:
-        resumo.descartados.append(f"{motivo}: {linha(ev)}")
+        resumo.descartar(f"{motivo}: {linha(ev)}", ev.get("url"))
         return
     agenda, mudou = escolher_agenda(ev, dica)
     if agenda == "roles":
@@ -891,15 +1013,18 @@ def incorporar(ev: dict, dica: str, categoria_dica: str | None, exigir_hora: boo
     else:
         erro = completar_tech(ev, substituir or mudou)
     if erro:
-        resumo.descartados.append(f"{erro}: {linha(ev)}")
+        resumo.descartar(f"{erro}: {linha(ev)}", ev.get("url"))
         return
     if not str(ev.get("city") or "").strip():
         ev["city"] = CIDADE
     erros = problemas(ev, agenda)
     if erros:
-        resumo.descartados.append("validação: " + "; ".join(erros))
+        resumo.descartar("validação: " + "; ".join(erros), ev.get("url"))
         return
-    resultado = importar.merge(listas[agenda], ev, hoje, descartadas, agenda=agenda)
+    outra = "roles" if agenda == "tech" else "tech"
+    resultado = importar.merge(
+        listas[agenda], ev, hoje, descartadas, agenda=agenda, outra=listas.get(outra),
+    )
     if resultado == "novo":
         gravado = listas[agenda][-1]
         resumo.novos.append(importar.bloco_novo(gravado, gravado.get("url") or "", agenda))
@@ -911,7 +1036,7 @@ def incorporar(ev: dict, dica: str, categoria_dica: str | None, exigir_hora: boo
     elif resultado == "completado":
         resumo.completados.append(linha(ev))
     elif resultado != "igual":
-        resumo.descartados.append(f"{resultado}: {linha(ev)}")
+        resumo.descartar(f"{resultado}: {linha(ev)}", ev.get("url"))
 
 
 def _somar_tokens(resumo: ResumoCaixa, conta: ContaTokens, entrada: int, saida: int) -> None:
@@ -923,10 +1048,11 @@ def _somar_tokens(resumo: ResumoCaixa, conta: ContaTokens, entrada: int, saida: 
 def processar_mensagem(raw: bytes, dica: str, *, hoje, listas, descartadas, abrir, eventos_url, modelo,
                        conta: ContaTokens, resumo: ResumoCaixa) -> bool:
     """Processa uma mensagem. Devolve True se ela pode ganhar a etiqueta."""
+    resumo.novo_mail()
     try:
         msg, texto, texto_links = ler_mensagem(raw)
     except Exception:
-        resumo.descartados.append("mensagem ilegível")
+        resumo.descartar("mensagem ilegível")
         return True
     filtro = filtro_da_mensagem(msg)
     categoria = "cultura" if e_cultura(msg) else None
@@ -935,9 +1061,11 @@ def processar_mensagem(raw: bytes, dica: str, *, hoje, listas, descartadas, abri
         falhas_rede = 0
         algum = False
         for url in links:
+            if url_irrelevante(url):
+                continue
             eventos, erro = eventos_url(url, dica)
             if erro:
-                resumo.descartados.append(f"{erro}: {url}")
+                resumo.descartar(f"{erro}: {url}", url)
                 if str(erro).startswith("erro ao abrir"):
                     falhas_rede += 1
                 continue
@@ -972,6 +1100,8 @@ def processar_mensagem(raw: bytes, dica: str, *, hoje, listas, descartadas, abri
         if not isinstance(item, dict):
             continue
         url = limpar_url_evento(str(item.get("url") or ""), abrir, filtro)
+        if url and url_irrelevante(url):
+            continue
         if url and host_conhecido(url):
             eventos, erro = eventos_url(url, dica)
             if eventos:
@@ -981,7 +1111,7 @@ def processar_mensagem(raw: bytes, dica: str, *, hoje, listas, descartadas, abri
                     incorporar(ev, dica, categoria, False, False, hoje, listas, descartadas, resumo)
                 continue
             if erro and not str(erro).startswith("erro ao abrir"):
-                resumo.descartados.append(f"{erro}: {url}")
+                resumo.descartar(f"{erro}: {url}", url)
                 continue
         incorporar(evento_do_modelo(item, abrir, filtro), dica, categoria, True, True, hoje, listas, descartadas, resumo)
     return True
@@ -1011,9 +1141,10 @@ def montar_relatorio(resumos: list[ResumoCaixa], conta: ContaTokens, avisos: lis
             linhas.append(f"- Adiados: {len(res.adiados)}")
             for item in res.adiados:
                 linhas.append(f"  - {item}")
-        if res.descartados:
+        descartes = res.linhas_descartados()
+        if descartes:
             linhas.append("- Descartados:")
-            for item in res.descartados:
+            for item in descartes:
                 linhas.append(f"  - {item}")
         else:
             linhas.append("- Descartados: nenhum")
