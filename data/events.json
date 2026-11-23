@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15",
+  "updated": "2026-11-22",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -4540,6 +4540,34 @@
       "added": "2026-11-10"
     },
     {
+      "title": "Sankhya Day 2026",
+      "start": "2026-11-24T15:00:00-03:00",
+      "end": "2026-11-24T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/ryx8hyhl",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/ryx8hyhl Endereço: Av. Prof. Pereira Reis, 76 Rio de Janeiro, RJ Brasil Organizado por Beatriz Baêta"
+      },
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "id": "2026-11-24-sankhya-day-2026",
+      "added": "2026-11-22"
+    },
+    {
       "title": "Rio Climate and Carbon Happy Hour",
       "start": "2026-11-25T19:00:00-03:00",
       "end": "2026-11-25T22:00:00-03:00",
@@ -4892,6 +4920,34 @@
       "added": "2026-11-03"
     },
     {
+      "title": "Happy Hour de Fim de Ano",
+      "start": "2026-12-03T18:00:00-03:00",
+      "end": "2026-12-03T23:00:00-03:00",
+      "time_known": true,
+      "venue": "Library - Instituto 12",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/3lg94yjy",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/3lg94yjy Endereço: Library - Instituto 12 Organizado por Instituto 12"
+      },
+      "tags": [
+        "networking"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "id": "2026-12-03-happy-hour-de-fim-de-ano",
+      "added": "2026-11-22"
+    },
+    {
       "title": "AI Salon Rio #18",
       "start": "2026-12-03T18:30:00-03:00",
       "end": "2026-12-03T22:00:00-03:00",
@@ -4922,6 +4978,34 @@
       "source": "AI Salon Rio (Luma)",
       "id": "2026-12-03-ai-salon-rio-18",
       "added": "2026-10-31"
+    },
+    {
+      "title": "Encontro de Mulheres com Patricia Muricy",
+      "start": "2026-12-08T18:00:00-03:00",
+      "end": "2026-12-08T22:00:00-03:00",
+      "time_known": true,
+      "venue": "Library - Instituto 12",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/6m6jce2s",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Obtenha informações atualizadas em: https://luma.com/6m6jce2s Endereço: Library - Instituto 12 Organizado por Instituto 12"
+      },
+      "tags": [
+        "diversidade"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "id": "2026-12-08-encontro-de-mulheres-com-patricia-muricy",
+      "added": "2026-11-22"
     },
     {
       "id": "2026-12-09-inova-ia-2026",
