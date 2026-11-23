@@ -147,9 +147,11 @@ class TestImportar(unittest.TestCase):
         self.assertEqual(importar.merge(lista, outro, HOJE, historico=True), "completado")
         self.assertEqual(len(lista), 1)
         self.assertEqual(lista[0]["title"], "Um")
-        self.assertEqual(lista[0]["venue"], "Sala curada")
+        self.assertEqual(lista[0]["venue"], "Sala do importador")
         self.assertEqual(lista[0]["url"], "https://luma.com/abc?locale=pt-BR")
         self.assertEqual(lista[0]["image"], "https://exemplo.org/capa.png")
+        self.assertEqual(lista[0]["historico"][0]["campo"], "venue")
+        self.assertTrue(lista[0]["historico"][0]["aplicado"])
 
     def test_historico_id_repetido_ganha_sufixo(self):
         lista = []

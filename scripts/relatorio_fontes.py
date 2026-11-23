@@ -101,7 +101,8 @@ def relatorio(eventos: list[dict], descartes: list[dict], hoje: dt.date) -> str:
         "«Únicos» é evento que só essa fonte viu. «Primeira» é quem anunciou no dia mais cedo "
         "(empate no mesmo dia conta para as duas). «Mudou» teve alteração posterior de data, fim, local ou status. "
         "«Cancelado» está com status cancelado ou o histórico marca cancelamento. "
-        "O valor publicado não é trocado: o histórico só registra o que o importador viu depois.",
+        "A mesma URL da plataforma aplica data, fim, local e status. Correio, WhatsApp "
+        "e outra plataforma só entram no histórico e na lista «a revisar».",
         "",
     ]
     for dias in JANELAS:
@@ -147,6 +148,37 @@ def relatorio(eventos: list[dict], descartes: list[dict], hoje: dt.date) -> str:
                 f"{_pct(cancelado, n)} | {_linha_descartes(motivos.get(fonte, Counter()))} |"
             )
         linhas.append("")
+    return "\n".join(linhas).rstrip() + "\n"
+
+
+def a_revisar(eventos: list[dict]) -> str:
+    """Mudança que outra fonte viu e a agenda ainda não aplicou."""
+    itens = []
+    for ev in eventos:
+        if not isinstance(ev, dict):
+            continue
+        titulo = _celula(ev.get("title") or ev.get("id") or "evento")
+        for item in ev.get("historico") or []:
+            if not isinstance(item, dict) or item.get("aplicado") is not False:
+                continue
+            campo = item.get("campo")
+            publicado = ev.get(campo)
+            if publicado != item.get("antes") or publicado == item.get("depois"):
+                continue
+            itens.append(
+                f"- **{titulo}** — {campo}: «{_celula(item.get('antes') or '')}» → "
+                f"«{_celula(item.get('depois') or '')}» ({_celula(item.get('fonte') or '')}, {item.get('data') or ''})"
+            )
+    linhas = ["### A revisar", ""]
+    if not itens:
+        linhas.append("Nada a revisar.")
+    else:
+        linhas.append(
+            "Correio, WhatsApp ou outra plataforma viu data, fim, local ou status diferente. "
+            "O valor publicado não mudou."
+        )
+        linhas.append("")
+        linhas.extend(itens)
     return "\n".join(linhas).rstrip() + "\n"
 
 

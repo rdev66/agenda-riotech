@@ -220,7 +220,9 @@ def main(argv=None) -> int:
     descartes = bruto.get("urls") if isinstance(bruto, dict) else []
     texto = anexar_fontes(
         montar(hoje, n14, n30, linhas, prs or [], erro),
-        relatorio_fontes.relatorio(eventos, descartes or [], hoje),
+        relatorio_fontes.relatorio(eventos, descartes or [], hoje).rstrip()
+        + "\n\n"
+        + relatorio_fontes.a_revisar(eventos),
     )
     if args.dry_run:
         print(texto)

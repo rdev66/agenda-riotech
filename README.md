@@ -12,7 +12,7 @@ Eventos de tecnologia no Rio: software, IA, ciência, biotech, energia, hardware
   - lê páginas de evento (Luma, Meetup, Sympla, Even3, Eventbrite) pelos dados estruturados `schema.org/Event`;
   - lê calendários iCal listados em `fontes.json` (Tech) ou `fontes_roles.json` (Rolês);
   - lê os links de uma exportação do grupo do WhatsApp, só na agenda Tech.
-  Nunca sobrescreve o que alguém corrigiu à mão: só completa campos vazios. Na agenda Rolês, uma fonte só entra se o `robots.txt` e os termos deixam ler, e se a página tem iCal ou `schema.org/Event` em JSON-LD.
+  Só completa campos vazios. Data, fim, local e status mudam quando a própria página do evento (Luma, Meetup, Sympla e os outros hosts oficiais) traz um valor novo; correio, WhatsApp e outra plataforma ficam no histórico, para a lista «a revisar». Evento cancelado continua no site, marcado como cancelado. Na agenda Rolês, uma fonte só entra se o `robots.txt` e os termos deixam ler, e se a página tem iCal ou `schema.org/Event` em JSON-LD.
 - **Automação no GitHub Actions:**
   - `importar.yml`: todo dia às 08:17 (Rio), lê `fontes.json` e abre um PR em `importador/diario`; no mesmo horário lê `fontes_roles.json` e abre outro PR em `importador/roles-diario`;
   - `importar-correio.yml`: todo dia às 08:47 (Rio), lê as duas caixas do Gmail e abre um PR em `importador/correio-AAAA-MM-DD`; o ramo não é apagado;

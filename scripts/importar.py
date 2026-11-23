@@ -1292,13 +1292,47 @@ def _completar_campos(base: dict, extra: dict) -> bool:
     return mudou
 
 
-def _anotar_historico(evento: dict, novo: dict, fonte: str, data: str) -> bool:
-    """Registra diferença de start, end, venue ou status. Não troca o valor gravado."""
+def _plataforma_oficial(url: str) -> bool:
+    """Luma, Meetup, Sympla e os outros hosts que o importador já lê como a página do evento."""
+    host = _host(url)
+    if host == "lu.ma":
+        host = "luma.com"
+    return bool(host and EVENT_HOSTS.search(host))
+
+
+def _vem_da_pagina(evento: dict, novo: dict) -> bool:
+    """A mudança veio da mesma URL canônica da plataforma que organiza.
+
+    Correio, WhatsApp e outra plataforma só registram.
+    """
+    via = novo.get("via") or "manual"
+    if via in {"correio", "whatsapp"}:
+        return False
+    url = str(novo.get("url") or "")
+    if not _plataforma_oficial(url):
+        return False
+    chave = chave_url(url)
+    return bool(chave and chave == chave_url(str(evento.get("url") or "")))
+
+
+def _aplicar_campo(evento: dict, campo: str, depois: str) -> None:
+    evento[campo] = depois
+    if campo == "start":
+        evento["time_known"] = len(depois) > 10
+
+
+def _anotar_historico(evento: dict, novo: dict, fonte: str, data: str, aplicar: bool) -> bool:
+    """Registra diferença de start, end, venue ou status.
+
+    A página oficial grava o valor novo. Correio, WhatsApp e outra plataforma
+    ficam no histórico com aplicado=false, para a lista «a revisar».
+    """
     if not fonte:
         return False
     hist = evento.get("historico")
     if not isinstance(hist, list):
         hist = []
+    mudou = False
     novos = []
     for campo in _CAMPOS_HISTORICO:
         depois = novo.get(campo)
@@ -1309,22 +1343,33 @@ def _anotar_historico(evento: dict, novo: dict, fonte: str, data: str) -> bool:
             continue
         if antes == depois:
             continue
-        if any(
-            isinstance(h, dict)
-            and h.get("campo") == campo
-            and h.get("antes") == antes
-            and h.get("depois") == depois
-            and h.get("fonte") == fonte
-            for h in hist
-        ):
+        achou = next(
+            (
+                h for h in hist
+                if isinstance(h, dict)
+                and h.get("campo") == campo
+                and h.get("antes") == antes
+                and h.get("depois") == depois
+                and h.get("fonte") == fonte
+            ),
+            None,
+        )
+        if achou is not None:
+            if aplicar and achou.get("aplicado") is not True:
+                achou["aplicado"] = True
+                _aplicar_campo(evento, campo, depois)
+                mudou = True
             continue
         novos.append({
-            "campo": campo, "antes": antes, "depois": depois, "fonte": fonte, "data": data,
+            "campo": campo, "antes": antes, "depois": depois,
+            "fonte": fonte, "data": data, "aplicado": aplicar,
         })
-    if not novos:
-        return False
-    evento["historico"] = hist + novos
-    return True
+        if aplicar:
+            _aplicar_campo(evento, campo, depois)
+    if novos:
+        evento["historico"] = hist + novos
+        return True
+    return mudou
 
 
 def _aplicar_origem(evento: dict, novo: dict, data: str) -> bool:
@@ -1345,7 +1390,7 @@ def _aplicar_origem(evento: dict, novo: dict, data: str) -> bool:
         mudou = True
     if validar.anexar_visto(evento, str(fonte), str(via), data):
         mudou = True
-    if _anotar_historico(evento, novo, str(fonte), data):
+    if _anotar_historico(evento, novo, str(fonte), data, _vem_da_pagina(evento, novo)):
         mudou = True
     return mudou
 
@@ -1382,10 +1427,13 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
 
     Com historico=True, evento passado e evento de outra cidade entram.
     Formato online nunca entra. Não há corte por idade (nem de 3 meses).
-    Campo preenchido não é trocado. Diferença posterior de start, end, venue
-    ou status vai para «historico», sem apagar o valor gravado. «vistos»
-    ganha a fonte+via desta rodada, sem repetir o par. `outra` é a lista da
-    outra agenda: a mesma URL normalizada não entra de novo.
+    Campo preenchido só muda se a mesma URL da plataforma (Luma, Meetup,
+    Sympla e os outros hosts oficiais) trouxer start, end, venue ou status
+    novo: o valor entra e o «historico» guarda o anterior. Correio, WhatsApp
+    e outra plataforma só registram, com aplicado=false. «vistos» ganha a
+    fonte+via desta rodada, sem repetir o par. `outra` é a lista da outra
+    agenda: a mesma URL normalizada não entra de novo. Evento cancelado
+    continua na lista.
     """
     if descartadas is None:
         descartadas = validar.chaves_descartadas()

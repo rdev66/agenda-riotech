@@ -367,6 +367,8 @@ def erros_origem(evento: dict, onde: str) -> list[str]:
             errs.append(f"{onde}: historico {j} tem «fonte» inválido")
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(item.get("data") or "")):
             errs.append(f"{onde}: historico {j} «data» precisa ser AAAA-MM-DD")
+        if "aplicado" in item and not isinstance(item.get("aplicado"), bool):
+            errs.append(f"{onde}: historico {j} «aplicado» precisa ser verdadeiro ou falso")
     return errs
 
 

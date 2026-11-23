@@ -124,6 +124,7 @@ button { font: inherit; color: inherit; }
 }
 .agenda-note[hidden] { display: none; }
 .badge.age, .badge.lang { background: var(--chip); color: var(--ink); }
+.badge.cancel { background: var(--chip); color: var(--muted); }
 h1 {
   font-family: var(--display); font-weight: 800; font-size: clamp(44px, 9vw, 76px); line-height: .92;
   letter-spacing: -.035em; margin: 0; text-wrap: balance;
@@ -633,7 +634,7 @@ footer p { margin: 4px 0; }
       },
       none: "Nenhum evento com esses filtros.", clear: "Limpar filtros", seeAll: "Ver todos",
       details: "Detalhes", open: "Página do evento", gcal: "Pôr no Google Agenda", org: "Organiza", note: "Obs.",
-      tbc: "a confirmar", timeTbd: "horário a confirmar",
+      tbc: "a confirmar", cancelled: "cancelado", timeTbd: "horário a confirmar",
       prevWeek: "Semana anterior", nextWeek: "Próxima semana", noneWeek: "Nenhum evento nesta semana.", weeks: "Semanas",
       themeToDark: "Usar tema escuro", themeToLight: "Usar tema claro",
       prNote: "Contribuições são bem-vindas via pull request.",
@@ -664,7 +665,7 @@ footer p { margin: 4px 0; }
       },
       none: "No events match these filters.", clear: "Clear filters", seeAll: "See all",
       details: "Details", open: "Event page", gcal: "Add to Google Calendar", org: "Hosted by", note: "Note",
-      tbc: "to be confirmed", timeTbd: "time TBC",
+      tbc: "to be confirmed", cancelled: "cancelled", timeTbd: "time TBC",
       prevWeek: "Previous week", nextWeek: "Next week", noneWeek: "Nothing this week.", weeks: "Weeks",
       themeToDark: "Use dark theme", themeToLight: "Use light theme",
       prNote: "Contributions are welcome via a pull request.",
@@ -695,7 +696,7 @@ footer p { margin: 4px 0; }
       },
       none: "Nada por acá con esos filtros, mermão.", clear: "Limpiá los filtros", seeAll: "Ver todos",
       details: "Detallitos", open: "Ver el evento", gcal: "Botá no Google Agenda", org: "Organiza", note: "Ojo",
-      tbc: "por confirmar", timeTbd: "horário a confirmar",
+      tbc: "por confirmar", cancelled: "cancelado", timeTbd: "horário a confirmar",
       prevWeek: "Semana anterior", nextWeek: "Próxima semana", noneWeek: "Nada nesta semana.", weeks: "Semanas",
       themeToDark: "Usar o tema escuro", themeToLight: "Usar o tema claro",
       prNote: "Contribuições são bem-vindas via pull request.",
@@ -1015,7 +1016,8 @@ footer p { margin: 4px 0; }
     var onEvent = function () { track("evento/" + slug, e.title || slug); };
     var title = el("h3", null, [el("a", { href: e.url, target: "_blank", rel: "noopener", text: e.title, onclick: onEvent })]);
     if (e.fixo) title.appendChild(el("span", { class: "badge", text: t("fixo") }));
-    if (e.status && e.status !== "confirmado") title.appendChild(el("span", { class: "badge", text: t("tbc") }));
+    if (e.status === "cancelado") title.appendChild(el("span", { class: "badge cancel", text: t("cancelled") }));
+    else if (e.status && e.status !== "confirmado") title.appendChild(el("span", { class: "badge", text: t("tbc") }));
     if (e.idade_minima) title.appendChild(el("span", { class: "badge age", text: "18+" }));
     if (e.idioma === "en" || e.idioma === "multi") title.appendChild(el("span", { class: "badge lang", text: "EN" }));
     var whereBits = [e.venue, e.address].filter(Boolean);
