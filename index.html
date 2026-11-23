@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Agenda RioTech</title>
-<meta name="description" content="Eventos de tecnologia num lugar só: meetups, conferências, hackathons e encontros de startups. Feito pela comunidade RioTech.">
+<meta name="description" content="Eventos de tecnologia no Rio: software, IA, ciência, biotech, energia, hardware, fintech, economia criativa…">
 <meta property="og:title" content="Agenda RioTech">
-<meta property="og:description" content="Eventos de tecnologia no Rio, num lugar só. Feito pela comunidade.">
+<meta property="og:description" content="Eventos de tecnologia no Rio: software, IA, ciência, biotech, energia, hardware, fintech, economia criativa…">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rdev66.github.io/agenda-riotech/">
 <meta property="og:image" content="https://rdev66.github.io/agenda-riotech/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Agenda RioTech — eventos de tecnologia no Rio, num lugar só">
+<meta property="og:image:alt" content="Agenda RioTech — eventos de tecnologia no Rio: software, IA, ciência, biotech…">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F3F5F1" media="(prefers-color-scheme: light)">
@@ -1719,7 +1719,7 @@ footer p { margin: 4px 0; }
     CIDADE = c;
     TZ = c.fuso;
     var desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", "Eventos de tecnologia em " + c.nome + " num lugar só: meetups, conferências, hackathons e encontros de startups. Feito pela comunidade RioTech.");
+    if (desc) desc.setAttribute("content", "Eventos de tecnologia no " + c.nome + ": software, IA, ciência, biotech, energia, hardware, fintech, economia criativa…");
     selectAgenda(agendaInicial());
   }).catch(function () {
     var list = document.getElementById("list");

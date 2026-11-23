@@ -28,7 +28,17 @@
     "comunidade":     {"pt": "Comunidade",      "en": "Community",       "pn": "Comunidad"},
     "impacto-social": {"pt": "Impacto social",  "en": "Social impact",   "pn": "Impacto social"},
     "diversidade":    {"pt": "Diversidade",     "en": "Diversity",       "pn": "Diversidad"},
-    "open-source":    {"pt": "Open source",     "en": "Open source",     "pn": "Open source"}
+    "open-source":    {"pt": "Open source",     "en": "Open source",     "pn": "Open source"},
+    "saude-biotech":  {"pt": "Saúde & biotech", "en": "Health & biotech","pn": "Salud & biotech"},
+    "energia-clima":  {"pt": "Energia & clima", "en": "Energy & climate","pn": "Energía & clima"},
+    "fintech":        {"pt": "Fintech",         "en": "Fintech",         "pn": "Fintech"},
+    "hardware-robotica": {"pt": "Hardware & robótica", "en": "Hardware & robotics", "pn": "Hardware & robótica"},
+    "maker":          {"pt": "Maker",           "en": "Maker",           "pn": "Maker"},
+    "espaco":         {"pt": "Espaço",          "en": "Space",           "pn": "Espacio"},
+    "ciencia":        {"pt": "Ciência",         "en": "Science",         "pn": "Ciencia"},
+    "govtech":        {"pt": "Govtech",         "en": "Govtech",         "pn": "Govtech"},
+    "edtech":         {"pt": "Edtech",          "en": "Edtech",          "pn": "Edtech"},
+    "economia-criativa": {"pt": "Economia criativa", "en": "Creative tech", "pn": "Economía creativa"}
   },
   "intents": [
     {"id": "dev",     "label": {"pt": "Sou dev",          "en": "I write code",   "pn": "Soy dev, né"},          "tags": ["python", "web", "mobile", "dados", "cloud", "devops", "seguranca", "open-source", "workshop", "hackathon"]},
@@ -37,6 +47,7 @@
     {"id": "founder", "label": {"pt": "Tenho startup",    "en": "I'm a founder",  "pn": "Tengo startup"},        "tags": ["founders", "startups", "empreendedorismo", "investimento", "produto"]},
     {"id": "conf",    "label": {"pt": "Conferências",     "en": "Conferences",    "pn": "Conferencias"},         "tags": ["conferencia", "palestra"]},
     {"id": "hack",    "label": {"pt": "Hackathons",       "en": "Hackathons",     "pn": "Hackatones"},           "tags": ["hackathon"]},
-    {"id": "network", "label": {"pt": "Networking",       "en": "Networking",     "pn": "Networkeando"},         "tags": ["networking", "comunidade", "meetup"]}
+    {"id": "network", "label": {"pt": "Networking",       "en": "Networking",     "pn": "Networkeando"},         "tags": ["networking", "comunidade", "meetup"]},
+    {"id": "deeptech","label": {"pt": "Ciência & deep tech", "en": "Science & deep tech", "pn": "Ciencia & deep tech"}, "tags": ["ciencia", "saude-biotech", "energia-clima", "hardware-robotica", "espaco"]}
   ]
 }

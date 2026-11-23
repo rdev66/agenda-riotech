@@ -288,6 +288,40 @@ class TestImportar(unittest.TestCase):
         ev = {"title": "Oficial", "description": {"pt": "Diária da equipe"}, "city": "Rio de Janeiro"}
         self.assertFalse(importar.parece_tech(ev))
 
+    def test_tags_toda_tecnologia_positivos(self):
+        casos = [
+            ("Meetup de biotech e saúde digital no Rio", "saude-biotech"),
+            ("Fórum de energia solar e cleantech", "energia-clima"),
+            ("Open finance e fintech no Centro", "fintech"),
+            ("Arduino Day e robótica com IoT", "hardware-robotica"),
+            ("Oficina de impressão 3D no fab lab", "maker"),
+            ("Palestra de satélites e astronomia", "espaco"),
+            ("Encontro de ciência e pesquisa quântica", "ciencia"),
+            ("Govtech e governo digital na cidade inteligente", "govtech"),
+            ("Edtech: educação digital na escola", "edtech"),
+            ("Festival de audiovisual e creative tech", "economia-criativa"),
+        ]
+        for texto, tag in casos:
+            with self.subTest(tag=tag):
+                self.assertIn(tag, importar.auto_tags(texto, limit=10))
+
+    def test_tags_toda_tecnologia_negativos(self):
+        # «Espaço Colmeia» e «clima de festa» não podem virar tags de deep tech.
+        self.assertNotIn("espaco", importar.auto_tags("Meetup no Espaço Colmeia", limit=10))
+        self.assertNotIn("espaco", importar.auto_tags("Coworking space no Centro", limit=10))
+        self.assertNotIn("energia-clima", importar.auto_tags("Rolê com clima de festa", limit=10))
+        self.assertNotIn("energia-clima", importar.auto_tags("Bom clima para networking", limit=10))
+        # Sem contexto aeroespacial, «espaço» sozinho não marca.
+        self.assertNotIn("espaco", importar.auto_tags("Workshop no espaço da empresa", limit=10))
+        # Data science e UX research não são «ciência» deep tech.
+        self.assertNotIn("ciencia", importar.auto_tags("Meetup de data science no Rio", limit=10))
+        self.assertNotIn("ciencia", importar.auto_tags("Ciência de dados com Python", limit=10))
+        self.assertNotIn("ciencia", importar.auto_tags("UX research meetup e pesquisa de usuário", limit=10))
+
+    def test_ciencia_impa_e_laboratorio(self):
+        self.assertIn("ciencia", importar.auto_tags("Palestra de geometria no IMPA", limit=10))
+        self.assertIn("ciencia", importar.auto_tags("Visita ao laboratório do CBPF", limit=10))
+
 
 class TestValidar(unittest.TestCase):
     def test_dados_do_repositorio(self):

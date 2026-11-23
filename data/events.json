@@ -78,7 +78,9 @@
         "pt": "Arduino Day: O Futuro é Feito Aqui! Você está pronto para um dia inteiro de criatividade, inovação e tecnologia? O Rio Maker Space te convida para um evento imperdível, repleto de experiências práticas, palestras…"
       },
       "tags": [
-        "inovacao"
+        "inovacao",
+        "hardware-robotica",
+        "maker"
       ],
       "status": "confirmado",
       "id": "2026-04-25-arduino-day-2026",
@@ -166,7 +168,8 @@
       "tags": [
         "ia",
         "startups",
-        "meetup"
+        "meetup",
+        "hardware-robotica"
       ],
       "status": "confirmado",
       "id": "2026-04-29-conect-ai-startup-rio-de-janeiro-rj",
@@ -196,7 +199,8 @@
       "tags": [
         "ia",
         "startups",
-        "meetup"
+        "meetup",
+        "hardware-robotica"
       ],
       "status": "confirmado",
       "id": "2026-04-29-conect-ai-startup-rio-de-janeiro-rj-evento-conect-ai-sta",
@@ -639,7 +643,8 @@
       },
       "tags": [
         "web",
-        "conferencia"
+        "conferencia",
+        "fintech"
       ],
       "status": "confirmado",
       "id": "2026-06-09-yield-and-fintechs-rooftop-cocktail-by-defindex-",
@@ -1661,7 +1666,8 @@
         "pt": "Merkle Science Meet Rio 2026, co-hosted with Movantis, Utexo, Duane Morris LLP, and BMA Advogados, brings together crypto compliance leaders, regulators, financial institutions, law firms, and blockchain innovators for…"
       },
       "tags": [
-        "web3"
+        "web3",
+        "ciencia"
       ],
       "status": "confirmado",
       "id": "2026-08-12-merkle-science-meet-rio-the-future-of-crypto-com",
@@ -1863,7 +1869,8 @@
       "tags": [
         "web3",
         "networking",
-        "workshop"
+        "workshop",
+        "fintech"
       ],
       "status": "confirmado",
       "id": "2026-08-28-o-legado-do-meridian",
@@ -2178,7 +2185,8 @@
         "pt": "STABLECOINS & PAYMENTS O Futuro dos Ativos Virtuais O dinheiro está mudando e os pagamentos também. No dia 17 de setembro de 2026, o Programa de Embaixadores Stellar reúne especialistas, builders, empresas e…"
       },
       "tags": [
-        "comunidade"
+        "comunidade",
+        "fintech"
       ],
       "status": "confirmado",
       "id": "2026-09-17-stablecoins-payments-o-futuro-dos-ativos-virtuai",
@@ -2322,7 +2330,8 @@
       },
       "tags": [
         "ia",
-        "hackathon"
+        "hackathon",
+        "energia-clima"
       ],
       "status": "confirmado",
       "id": "2026-09-25-coppe-made-in-rio-hackathon-opening-day",
@@ -2380,7 +2389,8 @@
         "pt": "Criatividade movimenta ideias. Cultura movimenta pessoas. Eventos criam conexões. Mas como transformar tudo isso em oportunidades reais de negócio? Nesta edição, o Café do Aldeia coloca a Economia Criativa no centro da…"
       },
       "tags": [
-        "comunidade"
+        "comunidade",
+        "economia-criativa"
       ],
       "status": "confirmado",
       "id": "2026-09-29-13o-cafe-do-aldeia-como-transformar-criatividade",
@@ -3891,7 +3901,8 @@
         "pt": "Em nosso próximo evento estará conosco Ulisses Silva, fundador da Leve Saúde, nascida em 2020 como uma healthtech criada com o propósito de ampliar o acesso à saúde de qualidade, com foco no público acima de 45 anos. À…"
       },
       "tags": [
-        "founders"
+        "founders",
+        "saude-biotech"
       ],
       "status": "confirmado",
       "id": "2026-11-11-clube-chro-exame",
@@ -4577,7 +4588,8 @@
         "pt": "2º Encontro da Rede Dr. Empreendedor Ciência, conexão e oportunidades para transformar o futuro. O 2º Encontro da Rede Dr. Empreendedor será um espaço de conexão, troca de experiências e fortalecimento do…"
       },
       "tags": [
-        "empreendedorismo"
+        "empreendedorismo",
+        "ciencia"
       ],
       "status": "confirmado",
       "id": "2026-11-26-2o-encontro-da-rede-dr-empreendedor",
@@ -4936,7 +4948,8 @@
       "tags": [
         "ia",
         "conferencia",
-        "inovacao"
+        "inovacao",
+        "ciencia"
       ],
       "source": "site-oficial",
       "status": "confirmado",

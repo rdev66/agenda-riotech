@@ -40,6 +40,12 @@
     {"nome": "Meetup Tableau Rio de Janeiro (Meetup)", "tipo": "ics", "url": "https://www.meetup.com/Meetup-Tableau-Rio-de-Janeiro/events/ical/"},
     {"nome": "Odoo ERP (Meetup)", "tipo": "ics", "url": "https://www.meetup.com/odoo-erp/events/ical/"},
     {"nome": "Meetup Criativos da BXD - Baixada Fluminense,RJ (Meetup)", "tipo": "ics", "url": "https://www.meetup.com/CriativosBaixadaRJ/events/ical/"},
+    {"nome": "Wearable Wednesday Rio de Janeiro (Meetup)", "tipo": "ics", "url": "https://www.meetup.com/Wearable-Wednesday-Rio-de-Janeiro/events/ical/", "nota": "IoT / wearables"},
+    {"nome": "Digital Transformation Leadership Rio (Meetup)", "tipo": "ics", "url": "https://www.meetup.com/digital-transformation-leadership-rio-de-janeiro/events/ical/", "nota": "IA, web3, cybersecurity, IoT"},
+    {"nome": "ACM Rio de Janeiro (Meetup)", "tipo": "ics", "url": "https://www.meetup.com/acm-rio-de-janeiro/events/ical/", "nota": "ciência da computação"},
+    {"nome": "Unreal Engine Rio de Janeiro (Meetup)", "tipo": "ics", "url": "https://www.meetup.com/Unreal-Engine-Rio-de-Janeiro/events/ical/", "nota": "games / economia criativa"},
+    {"nome": "Cinema 4D Motion (Meetup)", "tipo": "ics", "url": "https://www.meetup.com/Cinema-4D-Motion/events/ical/", "nota": "animação / audiovisual"},
+    {"nome": "Sapiens RJ (Meetup)", "tipo": "ics", "url": "https://www.meetup.com/Sapiens-RJ/events/ical/", "nota": "ciência e tecnologia"},
     {"nome": "AI Salon Rio (Luma)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-NCUN8Vk3ZemQ6Jz", "nota": "página: luma.com/aisalonrio"},
     {"nome": "1565.io (Luma)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-iF4A1eMxdCAMyeH", "nota": "Founders Night, Builders Day"},
     {"nome": "Instituto 12 (Luma)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-EIqsMuvE8WPMg0i", "nota": "mistura eventos culturais"},
@@ -49,6 +55,7 @@
     {"nome": "Fabulosa Lab / Web3 Café (Luma)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-seqgchXtjuwWeWW"},
     {"nome": "Impact Hub Brasil (Luma)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-WFaQzdbmCtJCtiw"},
     {"nome": "Claude Community (Luma, global)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-TOpA5LAFfuDeFpu", "ativo": false, "nota": "calendário mundial: ativar só com filtro por cidade"},
-    {"nome": "Codex Community (Luma, global)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-63UOFcweB97l2gc", "ativo": false, "nota": "calendário mundial: ativar só com filtro por cidade"}
+    {"nome": "Codex Community (Luma, global)", "tipo": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-63UOFcweB97l2gc", "ativo": false, "nota": "calendário mundial: ativar só com filtro por cidade"},
+    {"nome": "Web Summit Rio", "tipo": "url", "url": "https://rio.websummit.com/", "nota": "schema.org/Event em JSON-LD; robots permite"}
   ]
 }
