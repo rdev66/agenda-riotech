@@ -1,21 +1,48 @@
 name: Saúde da agenda
 on:
   schedule:
-    - cron: "30 11 * * 1"   # 08:30 no Rio, segunda-feira
+    - cron: "30 11 * * *"   # 08:30 no Rio, todo dia (ping); relatório só na segunda
   workflow_dispatch:
 permissions:
   contents: read
   issues: write
   pull-requests: read
 jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase (anti-pause)
+        # Mesma chave publishable de index.html (SUPABASE_KEY).
+        run: |
+          set -e
+          code=$(curl -sS -o /tmp/supabase-ping-body -w "%{http_code}" \
+            -X POST "https://oiqnfcrmhodkecdncwkr.supabase.co/rest/v1/rpc/ping" \
+            -H "apikey: sb_publishable_yhQxJ3-1aE6FjLx3ctL25w_qLWuOvb4" \
+            -H "Content-Type: application/json")
+          echo "HTTP $code"
+          cat /tmp/supabase-ping-body || true
+          echo
+          test "$code" = "200"
   saude:
     runs-on: ubuntu-latest
     steps:
+      - name: Só na segunda (America/Sao_Paulo) ou dispatch
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || \
+             [ "$(TZ=America/Sao_Paulo date +%u)" = "1" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
         with:
           python-version: "3.12"
       - name: Publicar relatório
+        if: steps.gate.outputs.run == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
