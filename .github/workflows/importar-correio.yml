@@ -20,6 +20,10 @@ jobs:
           GMAIL_ROLES_APP_PASSWORD: ${{ secrets.GMAIL_ROLES_APP_PASSWORD }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scripts/importar_correio.py --relatorio relatorio.md
+      - name: Resumir eventos futuros
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/resumir.py
       - name: Validar
         run: python scripts/validar.py
       - name: Data no Rio

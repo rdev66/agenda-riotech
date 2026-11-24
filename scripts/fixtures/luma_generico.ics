@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:Python na Lapa
+DTSTART:20300601T220000Z
+DTEND:20300601T233000Z
+LOCATION:Casa da Lapa\, Rio de Janeiro
+URL:https://luma.com/py-lapa
+DESCRIPTION:Obtenha informações atualizadas em: https://luma.com/py-lapa\nEndereço: Lapa Rio de Janeiro Organizado por Python Rio
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:English Luma night
+DTSTART:20300602T220000Z
+LOCATION:Botafogo\, Rio de Janeiro
+URL:https://luma.com/en-night
+DESCRIPTION:Get up-to-date information at: https://luma.com/en-night\nOrganized by Rio Python
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Só o anfitrião
+DTSTART:20300603T220000Z
+LOCATION:Centro\, Rio de Janeiro
+URL:https://luma.com/so-host
+DESCRIPTION:Organizado por Instituto 12
+END:VEVENT
+END:VCALENDAR

@@ -15,6 +15,7 @@ import datetime as dt
 import json
 import re
 import sys
+import unicodedata
 import urllib.parse
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -25,6 +26,8 @@ COSTS = {"gratis", "pago", "desconhecido"}
 REGS = {"livre", "inscricao", "aprovacao", "ingresso"}
 STATUS = {"confirmado", "a-confirmar", "cancelado"}
 IDIOMAS = {"pt", "en", "es", "multi"}
+RESUMO_IDIOMAS = ("pt", "en", "es")
+RESUMO_MAX = 240
 VIAS = {"feed", "correio", "whatsapp", "sugestao", "manual", "desconhecida"}
 CAMPOS_HISTORICO = {"start", "end", "venue", "status"}
 # Id estável: «luma», «luma:maravalley», «correio:sympla», «whatsapp:riotech».
@@ -400,6 +403,73 @@ def erros_arquivo_fontes(path: Path) -> list[str]:
     return errs
 
 
+def _sem_acento(texto: str) -> str:
+    base = unicodedata.normalize("NFKD", texto)
+    return "".join(c for c in base if not unicodedata.combining(c))
+
+
+def descricao_luma_generica(texto: str | None) -> bool:
+    """Texto padrão do ICS da Luma, não a descrição de quem organiza.
+
+    «Obtenha informações atualizadas em…», «Get up-to-date information at…»
+    ou só «Organizado por…» / «Organized by…». Um texto real que cita
+    «organized by» no meio não entra aqui.
+    """
+    if not isinstance(texto, str) or not texto.strip():
+        return False
+    t = re.sub(r"\s+", " ", _sem_acento(texto)).strip().lower()
+    if t.startswith("obtenha informacoes atualizadas em"):
+        return True
+    if t.startswith("get up-to-date information at"):
+        return True
+    sem = re.sub(r"https?://\S+", " ", t)
+    sem = re.sub(r"\s+", " ", sem).strip(" .:-")
+    if re.fullmatch(r"organizad[oa] por [^.]{1,180}", sem):
+        return True
+    if re.fullmatch(r"organized by [^.]{1,180}", sem):
+        return True
+    return False
+
+
+def erros_resumo_e_descricao(evento: dict, onde: str) -> list[str]:
+    """Aceita resumo e descricao_completa. Recusa o texto genérico da Luma."""
+    errs: list[str] = []
+    desc = evento.get("description") or {}
+    if desc and not isinstance(desc, dict):
+        errs.append(f"{onde}: «description» precisa ser um objeto")
+    elif isinstance(desc, dict):
+        for texto in desc.values():
+            if isinstance(texto, str) and descricao_luma_generica(texto):
+                errs.append(f"{onde}: descrição é o texto genérico da Luma")
+                break
+        pt = desc.get("pt") or ""
+        if isinstance(pt, str) and len(pt) > 280:
+            errs.append(f"{onde}: descrição com mais de 280 caracteres; resuma com suas palavras")
+    if "resumo" in evento:
+        resumo = evento.get("resumo")
+        if not isinstance(resumo, dict):
+            errs.append(f"{onde}: «resumo» precisa ser um objeto com pt, en e es")
+        else:
+            if set(resumo) - set(RESUMO_IDIOMAS):
+                errs.append(f"{onde}: «resumo» só pode ter pt, en e es")
+            for lingua in RESUMO_IDIOMAS:
+                texto = resumo.get(lingua)
+                if not isinstance(texto, str) or not texto.strip():
+                    errs.append(f"{onde}: «resumo.{lingua}» precisa ser um texto")
+                    continue
+                if len(texto) > RESUMO_MAX:
+                    errs.append(f"{onde}: «resumo.{lingua}» passa de {RESUMO_MAX} caracteres")
+                if descricao_luma_generica(texto):
+                    errs.append(f"{onde}: «resumo.{lingua}» é o texto genérico da Luma")
+    if "descricao_completa" in evento:
+        completa = evento.get("descricao_completa")
+        if not isinstance(completa, str) or not completa.strip():
+            errs.append(f"{onde}: «descricao_completa» precisa ser texto")
+        elif descricao_luma_generica(completa):
+            errs.append(f"{onde}: «descricao_completa» é o texto genérico da Luma")
+    return errs
+
+
 def check(data: dict, vocab: set[str], descartadas: set[str] | None = None) -> list[str]:
     errs: list[str] = []
     if descartadas is None:
@@ -454,9 +524,7 @@ def check(data: dict, vocab: set[str], descartadas: set[str] | None = None) -> l
             errs.append(f"{where}: tags fora do vocabulário {bad} (veja data/tags.json)")
         if len(e.get("tags", [])) > 6:
             errs.append(f"{where}: no máximo 6 tags")
-        desc = (e.get("description") or {}).get("pt") or ""
-        if len(desc) > 280:
-            errs.append(f"{where}: descrição com mais de 280 caracteres; resuma com suas palavras")
+        errs.extend(erros_resumo_e_descricao(e, where))
         errs.extend(erros_origem(e, where))
     return errs
 

@@ -24,6 +24,9 @@ Regras:
     No mesmo dia e no mesmo lugar, um título normalizado que contém o outro também junta.
   - Se a URL normalizada já está na outra agenda, o evento não entra.
   - Do WhatsApp só se guardam links: nada de nomes, telefones ou mensagens.
+  - O texto genérico do ICS da Luma («Obtenha informações atualizadas em»,
+    «Get up-to-date information at», «Organizado por») não é gravado. A página
+    do evento entra em descricao_completa, inteira, sem o corte de 220.
 
 Só usa a biblioteca padrão do Python (3.10+).
 """
@@ -592,11 +595,59 @@ def expandir_fixo(fixo: dict, hoje: dt.date, semanas: int = 4, agora: dt.datetim
     return saida
 
 
-def short(text: str | None, n: int = 220) -> str | None:
+def _como_texto(valor) -> str | None:
+    if isinstance(valor, str):
+        return valor
+    if isinstance(valor, dict):
+        return _como_texto(valor.get("text") or valor.get("@value"))
+    if isinstance(valor, list):
+        for parte in valor:
+            texto = _como_texto(parte)
+            if texto and texto.strip():
+                return texto
+    return None
+
+
+def plain(text: str | None, *, manter_quebras: bool = False) -> str | None:
+    """Tira HTML. manter_quebras conserva parágrafos; o padrão junta tudo numa linha."""
     if not text:
         return None
-    t = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", text))).strip()
+    t = html.unescape(re.sub(r"<[^>]+>", " ", text))
+    if manter_quebras:
+        t = t.replace("\r\n", "\n").replace("\r", "\n")
+        t = re.sub(r"[ \t\f\v]+", " ", t)
+        t = re.sub(r" *\n *", "\n", t)
+        t = re.sub(r"\n{3,}", "\n\n", t).strip()
+    else:
+        t = re.sub(r"\s+", " ", t).strip()
+    return t or None
+
+
+def short(text: str | None, n: int = 220) -> str | None:
+    t = plain(text)
+    if not t:
+        return None
     return t if len(t) <= n else t[: n - 1].rsplit(" ", 1)[0] + "…"
+
+
+def preparar_descricao(bruto) -> tuple[str | None, str | None, str | None]:
+    """(integral, curta, colapsada). O texto genérico da Luma vira vazio."""
+    cheia = plain(_como_texto(bruto), manter_quebras=True)
+    if not cheia or validar.descricao_luma_generica(cheia):
+        return None, None, None
+    colapsada = plain(cheia)
+    return cheia, short(colapsada), colapsada
+
+
+def _aplicar_descricao(evento: dict, bruto) -> str | None:
+    """Grava descricao_completa sem corte e a versão curta em description.pt."""
+    cheia, curta, colapsada = preparar_descricao(bruto)
+    evento["description"] = {"pt": curta} if curta else {}
+    if cheia:
+        evento["descricao_completa"] = cheia
+    else:
+        evento.pop("descricao_completa", None)
+    return colapsada
 
 
 # ------------------------------------------------------------ páginas web
@@ -707,7 +758,7 @@ def from_jsonld(ld: dict, url: str, meta: dict, agenda: str = "tech") -> dict:
     mesmo_pagina = not proprio_ld or clean_url(str(proprio_ld)) == clean_url(url)
     title = html.unescape(ld.get("name") or (meta.get("og:title") if mesmo_pagina else "") or "").strip()
     desc_bruta = ld.get("description") or (meta.get("og:description") if mesmo_pagina else None)
-    desc = short(desc_bruta)
+    cheia, curta, desc = preparar_descricao(desc_bruta)
     start = to_iso(ld.get("startDate"))
     proprio = ld.get("url") or url
     if isinstance(proprio, list):
@@ -729,10 +780,12 @@ def from_jsonld(ld: dict, url: str, meta: dict, agenda: str = "tech") -> dict:
         "url": url,
         "image": image or (meta.get("og:image") if mesmo_pagina else None),
         "organizer": org,
-        "description": {"pt": desc} if desc else {},
+        "description": {"pt": curta} if curta else {},
         "tags": auto_tags(blob, agenda=agenda),
         "status": _status_publicado(ld.get("eventStatus"), start),
     }
+    if cheia:
+        evento["descricao_completa"] = cheia
     if agenda == "roles":
         tags, categoria = classificar_roles(blob)
         evento["tags"] = tags
@@ -827,7 +880,9 @@ def from_sympla_next(page: str, url: str, meta: dict) -> dict | None:
     image = images.get("logoLarge") or images.get("logoUrl") or ev.get("logoUrl") or meta.get("og:image")
     host = ev.get("eventsHost") if isinstance(ev.get("eventsHost"), dict) else {}
     title = html.unescape(str(ev.get("name") or meta.get("og:title") or "")).strip()
-    desc = short(ev.get("detail") or ev.get("strippedDetail") or meta.get("og:description"))
+    cheia, curta, colapsada = preparar_descricao(
+        ev.get("detail") or ev.get("strippedDetail") or meta.get("og:description")
+    )
     start = _sympla_quando(ev, "startDate")
     kind = str(ev.get("paymentEventType") or "").lower()
     if kind in {"free", "gratis", "gratuit"}:
@@ -839,7 +894,7 @@ def from_sympla_next(page: str, url: str, meta: dict) -> dict | None:
     else:
         cost = {"type": "desconhecido", "text": None}
         reg = "inscricao"
-    return {
+    saida = {
         "title": title,
         "start": start,
         "end": _sympla_quando(ev, "endDate"),
@@ -853,10 +908,13 @@ def from_sympla_next(page: str, url: str, meta: dict) -> dict | None:
         "url": url,
         "image": image,
         "organizer": host.get("name") or None,
-        "description": {"pt": desc} if desc else {},
-        "tags": auto_tags(" ".join(filter(None, [title, desc or ""]))),
+        "description": {"pt": curta} if curta else {},
+        "tags": auto_tags(" ".join(filter(None, [title, colapsada or ""]))),
         "status": "confirmado" if start else "a-confirmar",
     }
+    if cheia:
+        saida["descricao_completa"] = cheia
+    return saida
 
 
 def from_luma_next(page: str, url: str, meta: dict) -> dict | None:
@@ -896,13 +954,14 @@ def from_luma_next(page: str, url: str, meta: dict) -> dict | None:
     hosts = bloco.get("hosts") if isinstance(bloco.get("hosts"), list) else []
     org = next((h.get("name") for h in hosts if isinstance(h, dict) and h.get("name")), None)
     title = html.unescape(str(ev.get("name") or meta.get("og:title") or "")).strip()
-    desc = short(meta.get("og:description"))
+    bruto_desc = ev.get("description") if isinstance(ev.get("description"), str) else None
+    cheia, curta, colapsada = preparar_descricao(bruto_desc or meta.get("og:description"))
     start = to_iso(ev.get("start_at") if isinstance(ev.get("start_at"), str) else None)
     venue = geo.get("address") or None
     rua = geo.get("short_address") or None
     if rua and venue and rua == venue:
         rua = None
-    return {
+    saida = {
         "title": title,
         "start": start,
         "end": to_iso(ev.get("end_at") if isinstance(ev.get("end_at"), str) else None),
@@ -916,10 +975,13 @@ def from_luma_next(page: str, url: str, meta: dict) -> dict | None:
         "url": url,
         "image": ev.get("cover_url") or meta.get("og:image"),
         "organizer": org,
-        "description": {"pt": desc} if desc else {},
-        "tags": auto_tags(" ".join(filter(None, [title, desc or ""]))),
+        "description": {"pt": curta} if curta else {},
+        "tags": auto_tags(" ".join(filter(None, [title, colapsada or ""]))),
         "status": "confirmado" if start else "a-confirmar",
     }
+    if cheia:
+        saida["descricao_completa"] = cheia
+    return saida
 
 
 def _completar(base: dict | None, extra: dict | None) -> dict | None:
@@ -941,15 +1003,19 @@ def event_from_page(page: str, url: str, agenda: str = "tech") -> dict | None:
         return pronto
     if meta.get("og:title"):
         # Sem dados estruturados: entra como «a confirmar» e sem data, para revisão no PR.
-        return {
+        cheia, curta, colapsada = preparar_descricao(meta.get("og:description"))
+        saida = {
             "title": meta["og:title"], "start": None, "end": None, "time_known": False,
             "venue": None, "address": None, "city": NOME_CIDADE, "format": "presencial",
             "cost": {"type": "desconhecido", "text": None}, "registration": "inscricao", "url": url,
             "image": meta.get("og:image"), "organizer": None,
-            "description": {"pt": short(meta.get("og:description"))} if meta.get("og:description") else {},
-            "tags": auto_tags(meta["og:title"] + " " + (meta.get("og:description") or "")),
+            "description": {"pt": curta} if curta else {},
+            "tags": auto_tags(meta["og:title"] + " " + (colapsada or "")),
             "status": "a-confirmar",
         }
+        if cheia:
+            saida["descricao_completa"] = cheia
+        return saida
     return None
 
 
@@ -989,6 +1055,70 @@ def refinar_pagina(ev: dict, pagina_url: str) -> dict:
 def event_from_url(url: str, agenda: str = "tech") -> dict | None:
     url = clean_url(url)
     return event_from_page(fetch(url), url, agenda)
+
+
+def _e_luma(url: str | None) -> bool:
+    return _host(url or "") in {"luma.com", "lu.ma"}
+
+
+def descricao_jsonld(page: str, url: str = "") -> str | None:
+    """Descrição do Event em JSON-LD. Prefere o bloco da própria URL."""
+    lista = jsonld_events(page)
+    if not lista:
+        return None
+    chave = chave_url(url)
+    escolhido = None
+    for ld in lista:
+        proprio = ld.get("url") or ""
+        if isinstance(proprio, list):
+            proprio = proprio[0] if proprio else ""
+        if chave and isinstance(proprio, str) and proprio.startswith("http") and chave_url(proprio) == chave:
+            escolhido = ld
+            break
+    if escolhido is None:
+        escolhido = lista[0]
+    return _como_texto(escolhido.get("description"))
+
+
+def _tem_descricao_real(ev: dict) -> bool:
+    completa = ev.get("descricao_completa")
+    if isinstance(completa, str) and completa.strip() and not validar.descricao_luma_generica(completa):
+        return True
+    desc = ev.get("description") or {}
+    if isinstance(desc, dict):
+        return any(
+            isinstance(valor, str) and valor.strip() and not validar.descricao_luma_generica(valor)
+            for valor in desc.values()
+        )
+    return False
+
+
+def _baixar_evento(url: str, agenda: str) -> str | None:
+    if agenda == "roles":
+        corpo, motivo = ler_permitido(url)
+        return None if motivo else corpo
+    try:
+        return fetch(url)
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def enriquecer_descricao_luma(ev: dict, agenda: str = "tech", baixar=None) -> dict:
+    """ICS da Luma sem descrição real: abre a página e fica com o JSON-LD."""
+    if not isinstance(ev, dict) or not _e_luma(ev.get("url")):
+        return ev
+    if _tem_descricao_real(ev):
+        return ev
+    _aplicar_descricao(ev, None)
+    baixar = baixar or (lambda destino: _baixar_evento(destino, agenda))
+    try:
+        pagina = baixar(ev["url"])
+    except Exception:  # noqa: BLE001
+        return ev
+    if not pagina:
+        return ev
+    _aplicar_descricao(ev, descricao_jsonld(pagina, ev["url"]))
+    return ev
 
 
 # ------------------------------------------------------------------ iCal
@@ -1050,7 +1180,7 @@ def ics_events(text: str, agenda: str = "tech") -> list[dict]:
             "format": "online" if online else "presencial",
             "cost": {"type": "desconhecido", "text": None}, "registration": "inscricao",
             "url": clean_url(url) if url else None, "image": None, "organizer": None,
-            "description": {"pt": short(desc)} if desc else {},
+            "description": {},
             "tags": auto_tags(blob, agenda=agenda),
             "status": _status_publicado(val("STATUS"), start),
         }
@@ -1068,6 +1198,10 @@ def ics_events(text: str, agenda: str = "tech") -> list[dict]:
             bairro = inferir_bairro(blob)
             if bairro:
                 evento["bairro"] = bairro
+        bruto = val("DESCRIPTION")
+        if bruto:
+            bruto = bruto.replace("\\n", "\n").replace("\\,", ",").replace("\\;", ";")
+        _aplicar_descricao(evento, bruto)
         out.append(evento)
     return out
 
@@ -1280,9 +1414,35 @@ def _status_publicado(valor, start: str | None) -> str:
     return "confirmado" if start else "a-confirmar"
 
 
-def _completar_campos(base: dict, extra: dict) -> bool:
-    """Copia só campo vazio. Não mexe em origem, id nem added."""
+def _tirar_descricao_generica(ev: dict) -> bool:
+    """Tira o texto padrão do ICS da Luma. Descrição real fica."""
     mudou = False
+    desc = ev.get("description")
+    if isinstance(desc, dict):
+        limpo = {
+            k: v for k, v in desc.items()
+            if not (isinstance(v, str) and validar.descricao_luma_generica(v))
+        }
+        if limpo != desc:
+            ev["description"] = limpo
+            mudou = True
+    elif isinstance(desc, str) and validar.descricao_luma_generica(desc):
+        ev["description"] = {}
+        mudou = True
+    completa = ev.get("descricao_completa")
+    if isinstance(completa, str) and validar.descricao_luma_generica(completa):
+        ev.pop("descricao_completa", None)
+        mudou = True
+    return mudou
+
+
+def _completar_campos(base: dict, extra: dict) -> bool:
+    """Copia só campo vazio. Não mexe em origem, id nem added.
+
+    Descrição genérica da Luma conta como vazia e pode ser substituída.
+    """
+    mudou = _tirar_descricao_generica(base)
+    _tirar_descricao_generica(extra)
     for k, v in extra.items():
         if k in _NAO_COPIA or v in (None, "", [], {}):
             continue
@@ -1470,6 +1630,7 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
     if not historico and (new.get("city") or "") and not cidade_rio(new.get("city")):
         return "fora do Rio"
     new = dict(new)
+    _tirar_descricao_generica(new)
     if isinstance(new.get("vistos"), list):
         new["vistos"] = [dict(v) if isinstance(v, dict) else v for v in new["vistos"]]
     new["city"] = new.get("city") or NOME_CIDADE
@@ -1643,7 +1804,10 @@ def main(argv=None) -> int:
                         if "BEGIN:VCALENDAR" not in (corpo_fonte or ""):
                             report.append(f"⚠️ Fonte «{f.get('nome')}»: a resposta não é um iCal")
                             continue
-                        lidos = ics_events(corpo_fonte or "", agenda="roles")
+                        lidos = [
+                            enriquecer_descricao_luma(ev, "roles")
+                            for ev in ics_events(corpo_fonte or "", agenda="roles")
+                        ]
                     else:
                         lidos = events_from_page(corpo_fonte or "", f["url"], "roles")
                         if not lidos:
@@ -1657,6 +1821,7 @@ def main(argv=None) -> int:
                 elif f["tipo"] == "ics":
                     for ev in ics_events(fetch(f["url"])):
                         _marcar_fonte(ev, f)
+                        enriquecer_descricao_luma(ev, "tech")
                         candidates.append((ev.get("url") or f["url"], ev, None))
                 elif f["tipo"] == "url":
                     if chave_url(f["url"]) in bloqueadas:

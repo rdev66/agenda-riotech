@@ -16,6 +16,10 @@ jobs:
           python-version: "3.12"
       - name: Ler calendários de fontes.json
         run: python scripts/importar.py --agenda tech --fontes fontes.json --relatorio relatorio.md
+      - name: Resumir eventos futuros
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/resumir.py --agenda tech
       - name: Validar
         run: python scripts/validar.py
       - name: Abrir PR com o que mudou
@@ -37,6 +41,10 @@ jobs:
           python-version: "3.12"
       - name: Ler calendários de fontes_roles.json
         run: python scripts/importar.py --agenda roles --fontes fontes_roles.json --relatorio relatorio.md
+      - name: Resumir rolês futuros
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/resumir.py --agenda roles
       - name: Validar
         run: python scripts/validar.py
       - name: Abrir PR com o que mudou

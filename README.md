@@ -14,7 +14,7 @@ Eventos de tecnologia no Rio: software, IA, ciência, biotech, energia, hardware
   - lê os links de uma exportação do grupo do WhatsApp, só na agenda Tech.
   Só completa campos vazios. Data, fim, local e status mudam quando a própria página do evento (Luma, Meetup, Sympla e os outros hosts oficiais) traz um valor novo; correio, WhatsApp e outra plataforma ficam no histórico, para a lista «a revisar». Evento cancelado continua no site, marcado como cancelado. Na agenda Rolês, uma fonte só entra se o `robots.txt` e os termos deixam ler, e se a página tem iCal ou `schema.org/Event` em JSON-LD.
 - **Automação no GitHub Actions:**
-  - `importar.yml`: todo dia às 08:17 (Rio), lê `fontes.json` e abre um PR em `importador/diario`; no mesmo horário lê `fontes_roles.json` e abre outro PR em `importador/roles-diario`;
+  - `importar.yml`: todo dia às 08:17 (Rio), lê `fontes.json` e abre um PR em `importador/diario`; no mesmo horário lê `fontes_roles.json` e abre outro PR em `importador/roles-diario`. Em seguida `scripts/resumir.py` preenche o resumo dos eventos futuros. Sem `ANTHROPIC_API_KEY`, essa etapa avisa e o job segue;
   - `importar-correio.yml`: todo dia às 08:47 (Rio), lê as duas caixas do Gmail e abre um PR em `importador/correio-AAAA-MM-DD`; o ramo não é apagado;
   - `issue-para-pr.yml`: quem abre uma issue «Sugerir um evento» com o link recebe um PR pronto, na agenda escolhida;
   - `validar.yml`: valida dados e roda os testes em todo PR;
@@ -57,6 +57,7 @@ python3 scripts/importar.py --agenda roles --fontes fontes_roles.json --dry-run
 # WhatsApp → «Exportar conversa» (sem mídia) → _chat.txt
 python3 scripts/importar.py --whatsapp ~/Downloads/_chat.txt --desde 2026-10-01
 python3 scripts/importar_correio.py --dry-run
+python3 scripts/resumir.py          # resumo dos eventos futuros; sem a chave, não faz nada
 ```
 
 Toda semana, com o export do grupo salvo em `~/Downloads` (o `.zip` serve, não precisa descompactar):
@@ -91,7 +92,7 @@ Segredos no GitHub Actions, nunca no repositório:
 
 - `GMAIL_EVENTOS_APP_PASSWORD` — senha de app da caixa Tech
 - `GMAIL_ROLES_APP_PASSWORD` — senha de app da caixa Rolês
-- `ANTHROPIC_API_KEY` — extração das newsletters sem link de evento
+- `ANTHROPIC_API_KEY` — extração das newsletters sem link de evento e o resumo em «Detalhes»
 
 Se uma senha falta, o job avisa e termina sem erro. A rodada também para se passar de 300 mil tokens de entrada.
 

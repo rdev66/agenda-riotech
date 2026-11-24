@@ -283,6 +283,10 @@ summary::-webkit-details-marker { display: none; }
 summary::after { content: " +"; font-family: var(--mono); }
 details[open] summary::after { content: " –"; }
 .desc { margin: 8px 0 0; max-width: 62ch; }
+.resumo { margin: 8px 0 0; max-width: 62ch; }
+.mais { margin-top: 4px; }
+.mais summary { font-size: 13.5px; }
+.mais .desc { white-space: pre-line; }
 .meta { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .btn {
@@ -633,7 +637,7 @@ footer p { margin: 4px 0; }
         return n + " de " + total + " " + (total === 1 ? "evento" : "eventos");
       },
       none: "Nenhum evento com esses filtros.", clear: "Limpar filtros", seeAll: "Ver todos",
-      details: "Detalhes", open: "Página do evento", gcal: "Pôr no Google Agenda", org: "Organiza", note: "Obs.",
+      details: "Detalhes", more: "ver mais", open: "Página do evento", gcal: "Pôr no Google Agenda", org: "Organiza", note: "Obs.",
       tbc: "a confirmar", cancelled: "cancelado", timeTbd: "horário a confirmar",
       prevWeek: "Semana anterior", nextWeek: "Próxima semana", noneWeek: "Nenhum evento nesta semana.", weeks: "Semanas",
       themeToDark: "Usar tema escuro", themeToLight: "Usar tema claro",
@@ -664,7 +668,7 @@ footer p { margin: 4px 0; }
         return n + " of " + total + " " + (total === 1 ? "event" : "events");
       },
       none: "No events match these filters.", clear: "Clear filters", seeAll: "See all",
-      details: "Details", open: "Event page", gcal: "Add to Google Calendar", org: "Hosted by", note: "Note",
+      details: "Details", more: "see more", open: "Event page", gcal: "Add to Google Calendar", org: "Hosted by", note: "Note",
       tbc: "to be confirmed", cancelled: "cancelled", timeTbd: "time TBC",
       prevWeek: "Previous week", nextWeek: "Next week", noneWeek: "Nothing this week.", weeks: "Weeks",
       themeToDark: "Use dark theme", themeToLight: "Use light theme",
@@ -695,7 +699,7 @@ footer p { margin: 4px 0; }
         return n + " de " + total + " " + (total === 1 ? "eventito" : "eventos");
       },
       none: "Nada por acá con esos filtros, mermão.", clear: "Limpiá los filtros", seeAll: "Ver todos",
-      details: "Detallitos", open: "Ver el evento", gcal: "Botá no Google Agenda", org: "Organiza", note: "Ojo",
+      details: "Detallitos", more: "ver más", open: "Ver el evento", gcal: "Botá no Google Agenda", org: "Organiza", note: "Ojo",
       tbc: "por confirmar", cancelled: "cancelado", timeTbd: "horário a confirmar",
       prevWeek: "Semana anterior", nextWeek: "Próxima semana", noneWeek: "Nada nesta semana.", weeks: "Semanas",
       themeToDark: "Usar o tema escuro", themeToLight: "Usar o tema claro",
@@ -922,6 +926,31 @@ footer p { margin: 4px 0; }
     return set;
   }
 
+  function genericaLuma(texto) {
+    var t = String(texto || "").replace(/\s+/g, " ").trim();
+    if (!t) return false;
+    var dobrado = t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+    if (dobrado.indexOf("obtenha informacoes atualizadas em") === 0) return true;
+    if (dobrado.indexOf("get up-to-date information at") === 0) return true;
+    var sem = dobrado.replace(/https?:\/\/\S+/g, " ").replace(/\s+/g, " ").replace(/^[\s.:\-]+|[\s.:\-]+$/g, "");
+    return /^organizad[oa] por [^.]{1,180}$/.test(sem) || /^organized by [^.]{1,180}$/.test(sem);
+  }
+  function textoVisivel(texto) {
+    var t = String(texto || "").trim();
+    return t && !genericaLuma(t) ? t : "";
+  }
+  function resumoDe(e) {
+    var r = e.resumo;
+    if (!r) return "";
+    var chave = state.lang === "en" ? "en" : (state.lang === "pn" ? "es" : "pt");
+    return textoVisivel(r[chave] || r.pt);
+  }
+  function descricaoCurta(e) {
+    var d = e.description || {};
+    var texto = state.lang === "en" ? (d.en || d.pt) : d.pt;
+    return textoVisivel(texto);
+  }
+
   function matches(e, now) {
     if (!state.past && parseEnd(e) < now) return false;
     if (state.free && e.cost.type !== "gratis") return false;
@@ -940,7 +969,10 @@ footer p { margin: 4px 0; }
     var it = intentTags();
     if (it && !e.tags.some(function (g) { return it[g]; }) && !it[e.categoria]) return false;
     if (state.q) {
-      var hay = [e.title, e.venue, e.address, e.bairro, e.organizer, (e.description || {}).pt, (e.description || {}).en]
+      var r = e.resumo || {};
+      var hay = [e.title, e.venue, e.address, e.bairro, e.organizer,
+        textoVisivel((e.description || {}).pt), textoVisivel((e.description || {}).en),
+        textoVisivel(e.descricao_completa), r.pt, r.en, r.es]
         .concat(e.tags.map(function (g) { var x = TAGS.tags[g] || {}; return [g, x.pt, x.en, x.pn].join(" "); }))
         .join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
       var needles = state.q.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").split(/\s+/).filter(Boolean);
@@ -1028,17 +1060,29 @@ footer p { margin: 4px 0; }
       el("li", { class: e.cost.type === "gratis" ? "free" : (e.cost.type === "pago" ? "paid" : "") }, [el("span", { class: "dot" }), costText(e)]),
       el("li", null, [el("span", { class: "dot" }), t("reg")[e.registration] || e.registration])
     ]);
-    var desc = (e.description && (state.lang === "en" ? (e.description.en || e.description.pt) : e.description.pt)) || "";
-    var det = el("details", null, [
-      el("summary", { text: t("details") }),
-      desc ? el("p", { class: "desc", text: desc }) : null,
+    var resumo = resumoDe(e);
+    var completa = textoVisivel(e.descricao_completa);
+    var desc = descricaoCurta(e);
+    var miolo = [el("summary", { text: t("details") })];
+    if (resumo) {
+      miolo.push(el("p", { class: "resumo", text: resumo }));
+      if (completa) {
+        miolo.push(el("details", { class: "mais" }, [
+          el("summary", { text: t("more") }),
+          el("p", { class: "desc", text: completa })
+        ]));
+      }
+    } else if (desc || completa) {
+      miolo.push(el("p", { class: "desc", text: desc || completa }));
+    }
+    var det = el("details", null, miolo.concat([
       e.organizer ? el("p", { class: "meta", text: t("org") + ": " + e.organizer }) : null,
       e.note ? el("p", { class: "meta", text: t("note") + " " + e.note }) : null,
       el("div", { class: "actions" }, [
         el("a", { class: "btn primary", href: e.url, target: "_blank", rel: "noopener", text: t("open") + " ↗", onclick: onEvent }),
         el("a", { class: "btn", href: gcalLink(e), target: "_blank", rel: "noopener", text: t("gcal"), onclick: function () { track("calendario/" + slug, e.title || slug); } })
       ])
-    ]);
+    ]));
     var tags = el("ul", { class: "tags" }, e.tags.map(function (g) {
       return el("li", null, [el("button", { type: "button", text: "#" + tagLabel(g), onclick: function () { state.tag = g; render(); window.scrollTo({ top: 0, behavior: "smooth" }); } })]);
     }));
