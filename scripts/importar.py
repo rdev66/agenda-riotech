@@ -27,6 +27,12 @@ Regras:
   - O texto genérico do ICS da Luma («Obtenha informações atualizadas em»,
     «Get up-to-date information at», «Organizado por») não é gravado. A página
     do evento entra em descricao_completa, inteira, sem o corte de 220.
+    A página só abre para quem já passou nos filtros (futuro, cidade
+    configurada, presencial ou híbrido, tema) e cuja URL canônica ainda
+    não está na agenda com descrição real. No máximo 25 páginas por
+    rodada, com 1 segundo entre cada pedido. O resto fica para a próxima.
+    Se a Luma responder 429, a rodada para de baixar. O relatório conta
+    quantas páginas foram abertas.
 
 Só usa a biblioteca padrão do Python (3.10+).
 """
@@ -39,6 +45,7 @@ import json
 import os
 import re
 import sys
+import time
 import unicodedata
 import urllib.error
 import urllib.parse
@@ -1093,18 +1100,37 @@ def _tem_descricao_real(ev: dict) -> bool:
     return False
 
 
+# Páginas de evento da Luma abertas numa rodada. O resto espera a próxima.
+MAX_PAGINAS_LUMA = 25
+PAUSA_PAGINAS_LUMA = 1
+
+
+class LumaLimite(Exception):
+    """A Luma respondeu 429. Esta rodada para de abrir páginas."""
+
+
 def _baixar_evento(url: str, agenda: str) -> str | None:
-    if agenda == "roles":
-        corpo, motivo = ler_permitido(url)
-        return None if motivo else corpo
     try:
+        if agenda == "roles":
+            corpo, motivo = ler_permitido(url)
+            return None if motivo else corpo
         return fetch(url)
+    except LumaLimite:
+        raise
+    except urllib.error.HTTPError as exc:
+        if exc.code == 429 and _e_luma(url):
+            raise LumaLimite() from None
+        return None
     except Exception:  # noqa: BLE001
         return None
 
 
 def enriquecer_descricao_luma(ev: dict, agenda: str = "tech", baixar=None) -> dict:
-    """ICS da Luma sem descrição real: abre a página e fica com o JSON-LD."""
+    """ICS da Luma sem descrição real: abre a página e fica com o JSON-LD.
+
+    Quem chama em lote é `enriquecer_paginas_luma`: só depois dos filtros,
+    no máximo 25 páginas, com pausa e parada no 429.
+    """
     if not isinstance(ev, dict) or not _e_luma(ev.get("url")):
         return ev
     if _tem_descricao_real(ev):
@@ -1113,12 +1139,150 @@ def enriquecer_descricao_luma(ev: dict, agenda: str = "tech", baixar=None) -> di
     baixar = baixar or (lambda destino: _baixar_evento(destino, agenda))
     try:
         pagina = baixar(ev["url"])
+    except LumaLimite:
+        raise
+    except urllib.error.HTTPError as exc:
+        if exc.code == 429:
+            raise LumaLimite() from None
+        return ev
     except Exception:  # noqa: BLE001
         return ev
     if not pagina:
         return ev
     _aplicar_descricao(ev, descricao_jsonld(pagina, ev["url"]))
     return ev
+
+
+def _na_agenda_com_descricao(ev: dict, lista: list[dict]) -> bool:
+    for item in lista:
+        if _chave_bate(ev, item) and _tem_descricao_real(item):
+            return True
+    return False
+
+
+def merece_pagina_luma(
+    ev: dict,
+    *,
+    today: dt.date,
+    agenda: str,
+    agenda_atual: list[dict],
+    outra: list[dict] | None = None,
+    bloqueadas: set[str] | None = None,
+) -> bool:
+    """True se este VEVENT já passou nos filtros e ainda precisa da página.
+
+    Futuro, cidade configurada, presencial ou híbrido, tema. URL canônica
+    que já está na agenda com descrição real não abre de novo.
+    """
+    if not isinstance(ev, dict) or not _e_luma(ev.get("url")):
+        return False
+    if ev.get("format") not in {"presencial", "hibrido"}:
+        return False
+    if not ev.get("title") or not ev.get("start"):
+        return False
+    if _tem_descricao_real(ev):
+        return False
+    if chave_url(ev.get("url") or "") in (bloqueadas or set()):
+        return False
+    end = (ev.get("end") or ev.get("start") or "")[:10]
+    try:
+        fim = dt.date.fromisoformat(end)
+    except ValueError:
+        return False
+    if fim < today:
+        return False
+    city = ev.get("city") or ""
+    if city and not cidade_rio(city):
+        return False
+    if any(_chave_bate(ev, item) for item in (outra or [])):
+        return False
+    if agenda == "roles":
+        if not ev.get("tags"):
+            return False
+    elif not parece_tech(ev):
+        return False
+    if _na_agenda_com_descricao(ev, agenda_atual):
+        return False
+    return True
+
+
+def enriquecer_paginas_luma(
+    eventos: list[dict],
+    *,
+    today: dt.date,
+    agenda: str,
+    agenda_atual: list[dict],
+    outra: list[dict] | None = None,
+    bloqueadas: set[str] | None = None,
+    baixar=None,
+    pausar=None,
+    limite: int = MAX_PAGINAS_LUMA,
+) -> dict:
+    """Abre até `limite` páginas. O restante espera a próxima rodada.
+
+    `abertas` conta páginas que voltaram. Um 429 não conta e encerra a
+    rodada. A pausa vale entre um pedido e o seguinte.
+    """
+    grupos: dict[str, list[dict]] = {}
+    ordem: list[str] = []
+    for ev in eventos:
+        if not merece_pagina_luma(
+            ev,
+            today=today,
+            agenda=agenda,
+            agenda_atual=agenda_atual,
+            outra=outra,
+            bloqueadas=bloqueadas,
+        ):
+            continue
+        chave = chave_url(ev.get("url") or "")
+        if not chave:
+            continue
+        if chave not in grupos:
+            grupos[chave] = []
+            ordem.append(chave)
+        grupos[chave].append(ev)
+
+    if pausar is None:
+        pausar = time.sleep
+    if baixar is None:
+        def baixar(destino, _agenda=agenda):
+            return _baixar_evento(destino, _agenda)
+    abertas = 0
+    parou = False
+    for chave in ordem:
+        if abertas >= limite:
+            break
+        if abertas:
+            pausar(PAUSA_PAGINAS_LUMA)
+        primeiro = grupos[chave][0]
+        try:
+            enriquecer_descricao_luma(primeiro, agenda, baixar)
+        except LumaLimite:
+            parou = True
+            break
+        abertas += 1
+        texto = primeiro.get("descricao_completa")
+        if isinstance(texto, str) and texto.strip():
+            for outro in grupos[chave][1:]:
+                _aplicar_descricao(outro, texto)
+    return {
+        "abertas": abertas,
+        "adiadas": max(0, len(ordem) - abertas),
+        "parou_429": parou,
+    }
+
+
+def linha_paginas_luma(conta: dict) -> str | None:
+    """Linha do relatório. None se nenhuma página da Luma entrou na conta."""
+    if not conta or (not conta.get("abertas") and not conta.get("adiadas") and not conta.get("parou_429")):
+        return None
+    linha = f"Páginas da Luma abertas: {conta.get('abertas', 0)}"
+    if conta.get("parou_429"):
+        linha += " · a Luma respondeu 429; o resto fica para a próxima rodada"
+    elif conta.get("adiadas"):
+        linha += f" · {conta['adiadas']} ficam para a próxima rodada"
+    return linha
 
 
 # ------------------------------------------------------------------ iCal
@@ -1693,7 +1857,11 @@ def ler_permitido(url: str) -> tuple[str | None, str | None]:
     robots_url = urllib.parse.urlunsplit((partes.scheme or "https", partes.netloc, "/robots.txt", "", ""))
     try:
         robots = fetch(robots_url)
+    except LumaLimite:
+        raise
     except urllib.error.HTTPError as exc:
+        if exc.code == 429 and _e_luma(url):
+            raise LumaLimite() from None
         if exc.code != 404:
             return None, f"robots.txt respondeu {exc.code}"
         robots = ""
@@ -1704,6 +1872,12 @@ def ler_permitido(url: str) -> tuple[str | None, str | None]:
         return None, motivo
     try:
         return fetch(url), None
+    except LumaLimite:
+        raise
+    except urllib.error.HTTPError as exc:
+        if exc.code == 429 and _e_luma(url):
+            raise LumaLimite() from None
+        return None, f"erro ao abrir: {exc.__class__.__name__}"
     except Exception as exc:  # noqa: BLE001
         return None, f"erro ao abrir: {exc.__class__.__name__}"
 
@@ -1766,6 +1940,8 @@ def main(argv=None) -> int:
     urls = unicos_por_chave(urls)
 
     candidates: list[tuple[str, dict | None, str | None]] = []
+    pendentes_luma: list[dict] = []
+    parar_luma = False
     for i, u in enumerate(urls, 1):
         print(f"… {i}/{len(urls)} {u}", file=sys.stderr)
         if chave_url(u) in bloqueadas:
@@ -1804,10 +1980,7 @@ def main(argv=None) -> int:
                         if "BEGIN:VCALENDAR" not in (corpo_fonte or ""):
                             report.append(f"⚠️ Fonte «{f.get('nome')}»: a resposta não é um iCal")
                             continue
-                        lidos = [
-                            enriquecer_descricao_luma(ev, "roles")
-                            for ev in ics_events(corpo_fonte or "", agenda="roles")
-                        ]
+                        lidos = list(ics_events(corpo_fonte or "", agenda="roles"))
                     else:
                         lidos = events_from_page(corpo_fonte or "", f["url"], "roles")
                         if not lidos:
@@ -1817,11 +1990,19 @@ def main(argv=None) -> int:
                     for ev in lidos:
                         _marcar_fonte(ev, f)
                         aplicar_padrao(ev, f, hint)
+                        if f.get("tipo") == "ics":
+                            pendentes_luma.append(ev)
                         candidates.append((ev.get("url") or f["url"], ev, None))
                 elif f["tipo"] == "ics":
-                    for ev in ics_events(fetch(f["url"])):
+                    try:
+                        corpo_ics = fetch(f["url"])
+                    except urllib.error.HTTPError as exc:
+                        if exc.code == 429 and _e_luma(f.get("url")):
+                            raise LumaLimite() from None
+                        raise
+                    for ev in ics_events(corpo_ics):
                         _marcar_fonte(ev, f)
-                        enriquecer_descricao_luma(ev, "tech")
+                        pendentes_luma.append(ev)
                         candidates.append((ev.get("url") or f["url"], ev, None))
                 elif f["tipo"] == "url":
                     if chave_url(f["url"]) in bloqueadas:
@@ -1831,8 +2012,26 @@ def main(argv=None) -> int:
                         if pagina:
                             _marcar_fonte(pagina, f)
                         candidates.append((f["url"], pagina, None))
+            except LumaLimite:
+                parar_luma = True
+                report.append(
+                    f"⚠️ Fonte «{f.get('nome')}»: a Luma respondeu 429; a rodada para de abrir páginas"
+                )
+                break
             except Exception as exc:  # noqa: BLE001
                 report.append(f"⚠️ Fonte «{f.get('nome')}» falhou: {exc.__class__.__name__}")
+
+    if pendentes_luma and not parar_luma:
+        conta_luma = enriquecer_paginas_luma(
+            pendentes_luma,
+            today=today,
+            agenda=agenda,
+            agenda_atual=events,
+            outra=outra,
+            bloqueadas=bloqueadas,
+        )
+    else:
+        conta_luma = {"abertas": 0, "adiadas": 0, "parou_429": parar_luma}
 
     counts: dict[str, int] = {}
     tabela: dict[str, dict[str, int]] = {}
@@ -1894,9 +2093,14 @@ def main(argv=None) -> int:
     data["updated"] = today.isoformat()
     summary = " · ".join(f"{k}: {v}" for k, v in sorted(counts.items())) or "nada a importar"
     report.insert(0, f"Resumo ({agenda}): {summary}")
+    offset = 1
+    linha_luma = linha_paginas_luma(conta_luma)
+    if linha_luma:
+        report.insert(offset, linha_luma)
+        offset += 1
     if por_fonte:
-        report.insert(1, "Por fonte: " + " · ".join(f"{k}: {v}" for k, v in sorted(por_fonte.items())))
-        report.insert(2, "")
+        report.insert(offset, "Por fonte: " + " · ".join(f"{k}: {v}" for k, v in sorted(por_fonte.items())))
+        report.insert(offset + 1, "")
     if tabela:
         report.append("")
         report.append("| Fonte | Encontrados | Novos | Online (descartados) |")
