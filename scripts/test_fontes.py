@@ -63,27 +63,31 @@ class TestMergeOrigem(unittest.TestCase):
         self.assertEqual(importar.merge(lista, outra, HOJE, set()), "completado")
         pares = [(v["fonte"], v["via"]) for v in lista[0]["vistos"]]
         self.assertEqual(pares, [("luma", "whatsapp"), ("luma:maravalley", "feed")])
-        self.assertEqual(lista[0]["venue"], "Sala A")
+        self.assertEqual(lista[0]["venue"], "Sala do importador")
         self.assertEqual(lista[0]["fonte"], "luma")
+        self.assertTrue(lista[0]["historico"][0]["aplicado"])
 
-    def test_historico_registra_e_nao_sobrescreve(self):
+    def test_mesma_url_oficial_aplica_e_cancelado_fica(self):
         lista = []
         self.assertEqual(importar.merge(lista, _evento(), HOJE, set()), "novo")
         novo = _evento(
             fonte="luma:maravalley", via="feed",
-            start="2030-03-11T19:00:00-03:00",
+            start="2030-03-11T20:00:00-03:00",
             end="2030-03-11T22:00:00-03:00",
             venue="Sala do importador",
             status="cancelado",
         )
         self.assertEqual(importar.merge(lista, novo, HOJE, set()), "completado")
         gravado = lista[0]
-        self.assertEqual(gravado["venue"], "Sala A")
-        self.assertEqual(gravado["start"], "2030-03-10T19:00:00-03:00")
-        self.assertEqual(gravado["end"], "2030-03-10T21:00:00-03:00")
-        self.assertEqual(gravado["status"], "confirmado")
+        self.assertEqual(len(lista), 1)
+        self.assertEqual(gravado["venue"], "Sala do importador")
+        self.assertEqual(gravado["start"], "2030-03-11T20:00:00-03:00")
+        self.assertEqual(gravado["end"], "2030-03-11T22:00:00-03:00")
+        self.assertEqual(gravado["status"], "cancelado")
+        self.assertTrue(gravado["time_known"])
         por_campo = {h["campo"]: h for h in gravado["historico"]}
         self.assertEqual(set(por_campo), {"start", "end", "venue", "status"})
+        self.assertTrue(all(h["aplicado"] is True for h in gravado["historico"]))
         self.assertEqual(por_campo["venue"]["antes"], "Sala A")
         self.assertEqual(por_campo["venue"]["depois"], "Sala do importador")
         self.assertEqual(por_campo["status"]["depois"], "cancelado")
@@ -92,6 +96,61 @@ class TestMergeOrigem(unittest.TestCase):
         self.assertEqual(importar.merge(lista, novo, HOJE, set()), "igual")
         self.assertEqual(len(gravado["historico"]), 4)
         self.assertEqual(len(gravado["vistos"]), 2)
+        self.assertIn("Nada a revisar", relatorio_fontes.a_revisar(lista))
+
+    def test_outra_fonte_so_registra(self):
+        lista = []
+        base = _evento(via="feed", fonte="luma:maravalley", source="Maravalley (Luma)")
+        self.assertEqual(importar.merge(lista, base, HOJE, set()), "novo")
+        zap = _evento(via="whatsapp", fonte="whatsapp:riotech", venue="Sala do grupo", source="WhatsApp RioTech")
+        self.assertEqual(importar.merge(lista, zap, HOJE, set()), "completado")
+        correio = _evento(via="correio", fonte="correio:luma", start="2030-03-12T19:00:00-03:00")
+        self.assertEqual(importar.merge(lista, correio, HOJE, set()), "completado")
+        meetup = _evento(
+            via="feed", fonte="meetup:rio-tech", source="Meetup",
+            url="https://www.meetup.com/rio-tech/events/1/",
+            venue="Outro lugar",
+        )
+        self.assertEqual(importar.merge(lista, meetup, HOJE, set()), "completado")
+        gravado = lista[0]
+        self.assertEqual(len(lista), 1)
+        self.assertEqual(gravado["venue"], "Sala A")
+        self.assertEqual(gravado["start"], "2030-03-10T19:00:00-03:00")
+        self.assertEqual(gravado["url"], "https://luma.com/abc123")
+        self.assertTrue(all(h["aplicado"] is False for h in gravado["historico"]))
+        self.assertEqual(
+            {(h["campo"], h["fonte"]) for h in gravado["historico"]},
+            {("venue", "whatsapp:riotech"), ("start", "correio:luma"), ("venue", "meetup:rio-tech")},
+        )
+        texto = relatorio_fontes.a_revisar(lista)
+        self.assertIn("### A revisar", texto)
+        self.assertIn("Python Rio", texto)
+        self.assertIn("Sala do grupo", texto)
+        self.assertIn("Outro lugar", texto)
+        self.assertNotIn("Nada a revisar", texto)
+
+    def test_feed_confirma_o_que_o_correio_so_registrou(self):
+        lista = []
+        importar.merge(lista, _evento(via="feed", fonte="luma:maravalley", source="Maravalley (Luma)"), HOJE, set())
+        correio = _evento(via="correio", fonte="luma:maravalley", venue="Sala do correio")
+        self.assertEqual(importar.merge(lista, correio, HOJE, set()), "completado")
+        self.assertEqual(lista[0]["venue"], "Sala A")
+        self.assertFalse(lista[0]["historico"][0]["aplicado"])
+        oficial = _evento(via="feed", fonte="luma:maravalley", venue="Sala do correio")
+        self.assertEqual(importar.merge(lista, oficial, HOJE, set()), "completado")
+        self.assertEqual(lista[0]["venue"], "Sala do correio")
+        self.assertTrue(lista[0]["historico"][0]["aplicado"])
+        self.assertEqual(len(lista[0]["historico"]), 1)
+        self.assertIn("Nada a revisar", relatorio_fontes.a_revisar(lista))
+
+    def test_pagina_marca_cancelado(self):
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn('e.status === "cancelado"', html)
+        self.assertIn('class: "badge cancel"', html)
+        self.assertIn('t("cancelled")', html)
+        self.assertIn('else if (e.status && e.status !== "confirmado")', html)
+        self.assertIn('cancelled: "cancelado"', html)
+        self.assertIn('cancelled: "cancelled"', html)
 
 
 class TestMigracao(unittest.TestCase):

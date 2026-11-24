@@ -29,7 +29,7 @@
 | `fonte` | sim | id estável: `luma:maravalley`, `meetup:mundo-lingo-rio`, `sympla`, `correio:sympla`, `whatsapp:riotech`, `manual`. O id dos calendários está em `fontes.json` e `fontes_roles.json`. Domínio solto (`luma.com`, `sympla.com.br`) vira `luma`, `sympla` |
 | `via` | sim | `feed` · `correio` · `whatsapp` · `sugestao` · `manual`. `desconhecida` só no que a migração não conseguiu classificar |
 | `vistos` | sim | lista de `{fonte, via, data}`: cada fonte que viu o evento, sem repetir o par fonte+via |
-| `historico` | não | mudança de `start`, `end`, `venue` ou `status` depois da primeira gravação: `{campo, antes, depois, fonte, data}`. O valor publicado não é trocado |
+| `historico` | não | mudança de `start`, `end`, `venue` ou `status` depois da primeira gravação: `{campo, antes, depois, fonte, data, aplicado}`. A mesma URL da plataforma aplica a mudança (`aplicado: true`). Correio, WhatsApp e outra plataforma só registram (`aplicado: false`) e entram na lista «a revisar» da issue semanal |
 
 ## Agenda Rolês
 
