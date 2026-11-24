@@ -35,9 +35,9 @@ jobs:
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         if: steps.gate.outputs.run == 'true'
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         if: steps.gate.outputs.run == 'true'
         with:
           python-version: "3.12"
