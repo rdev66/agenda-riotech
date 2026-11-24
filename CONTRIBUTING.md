@@ -22,7 +22,9 @@
 | `url` | sim | página oficial, `https://` |
 | `image` | não | URL da capa (og:image). Sem imagem, o site desenha uma capa |
 | `organizer` | não | quem organiza |
-| `description` | não | `{"pt": "…", "en": "…"}` |
+| `description` | não | `{"pt": "…", "en": "…"}`. Não use o texto genérico do ICS da Luma («Obtenha informações atualizadas em», «Get up-to-date information at», «Organizado por») |
+| `descricao_completa` | não | texto integral da página, sem o corte de 220 caracteres. O aviso genérico da Luma não entra |
+| `resumo` | não | `{"pt", "en", "es"}`: 1–2 frases, até 240 caracteres em cada idioma. Sai só do título e da descrição real; `scripts/resumir.py` preenche. Sem informação suficiente, o campo não existe |
 | `tags` | sim | 1–6, do vocabulário de `data/tags.json` |
 | `status` | não | `confirmado` (padrão) · `a-confirmar` · `cancelado` |
 | `source`, `added`, `note` | não | origem legível, data em que entrou, observação. `source` fica por compatibilidade |

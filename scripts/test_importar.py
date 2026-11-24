@@ -1,11 +1,14 @@
 """Testes do importador e do validador. Rodar com:  python -m unittest discover -s scripts"""
 import contextlib
 import datetime as dt
+import email.message
 import io
 import json
 import sys
 import tempfile
 import unittest
+import unittest.mock
+import urllib.error
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -755,6 +758,407 @@ class TestSoPresencial(unittest.TestCase):
         self.assertTrue(any("format" in e for e in errs), errs)
         hibrido = {"updated": "2030-01-01", "events": [{**base, "id": "b", "format": "hibrido", "url": "https://exemplo.org/so-hib"}]}
         self.assertEqual(validar.check(hibrido, {"ia"}, set()), [])
+
+
+class TestDescricaoLuma(unittest.TestCase):
+    def test_texto_generico_e_texto_real(self):
+        self.assertTrue(validar.descricao_luma_generica(
+            "Obtenha informações atualizadas em: https://luma.com/abc Endereço: Av. Reis, 76 Organizado por Beatriz"
+        ))
+        self.assertTrue(validar.descricao_luma_generica(
+            "Get up-to-date information at: https://luma.com/abc"
+        ))
+        self.assertTrue(validar.descricao_luma_generica("Organizado por Instituto 12"))
+        self.assertFalse(validar.descricao_luma_generica(""))
+        self.assertFalse(validar.descricao_luma_generica(
+            "Join a Claude Community Event, organized by local enthusiasts for everyone who loves building with Claude."
+        ))
+
+    def test_jsonld_guarda_o_texto_inteiro(self):
+        page = (FIX / "evento_luma_jsonld.html").read_text(encoding="utf-8")
+        ev = importar.event_from_page(page, "https://luma.com/py-lapa")
+        cheia = ev["descricao_completa"]
+        self.assertGreater(len(cheia), 220)
+        self.assertNotIn("…", cheia)
+        self.assertLessEqual(len(ev["description"]["pt"]), 220)
+        self.assertTrue(ev["description"]["pt"].endswith("…"))
+        self.assertIn("demonstração ao vivo", cheia)
+        self.assertNotIn("Obtenha informações", cheia)
+
+    def test_ics_generico_abre_a_pagina_e_nao_grava_o_aviso(self):
+        pagina = (FIX / "evento_luma_jsonld.html").read_text(encoding="utf-8")
+        vistos = []
+
+        def baixar(url):
+            vistos.append(url)
+            if url == "https://luma.com/py-lapa":
+                return pagina
+            raise AssertionError(url)
+
+        for ev in importar.ics_events((FIX / "luma_generico.ics").read_text(encoding="utf-8")):
+            self.assertNotIn("Obtenha informações", json.dumps(ev["description"]))
+            self.assertNotIn("Get up-to-date", json.dumps(ev["description"]))
+            self.assertNotIn("descricao_completa", ev)
+            importar.enriquecer_descricao_luma(ev, "tech", baixar)
+
+        self.assertEqual(vistos, [
+            "https://luma.com/py-lapa",
+            "https://luma.com/en-night",
+            "https://luma.com/so-host",
+        ])
+        primeiro = importar.ics_events((FIX / "luma_generico.ics").read_text(encoding="utf-8"))[0]
+        importar.enriquecer_descricao_luma(primeiro, "tech", baixar)
+        self.assertIn("palestras curtas", primeiro["descricao_completa"])
+        self.assertGreater(len(primeiro["descricao_completa"]), 220)
+        self.assertNotIn("Obtenha informações", primeiro["description"]["pt"])
+        self.assertLessEqual(len(primeiro["description"]["pt"]), 220)
+
+    def test_ics_real_nao_abre_a_pagina(self):
+        longo = (
+            "Encontro da comunidade Python na Lapa para quem programa no Rio e quer ver agentes de IA em funcionamento. "
+            "A noite abre com duas palestras curtas, segue com uma demonstração ao vivo e termina num intervalo "
+            "para conversar com quem constrói ferramentas no dia a dia."
+        )
+        self.assertGreater(len(longo), 220)
+        ics = (
+            "BEGIN:VCALENDAR\nBEGIN:VEVENT\n"
+            "SUMMARY:Python na Lapa\n"
+            "DTSTART:20300601T220000Z\n"
+            "LOCATION:Lapa\\, Rio de Janeiro\n"
+            "URL:https://luma.com/py-lapa\n"
+            f"DESCRIPTION:{longo}\n"
+            "END:VEVENT\nEND:VCALENDAR\n"
+        )
+        ev = importar.ics_events(ics)[0]
+        self.assertEqual(ev["descricao_completa"], longo)
+        self.assertLess(len(ev["description"]["pt"]), len(longo))
+
+        def baixar(url):
+            raise AssertionError(url)
+
+        importar.enriquecer_descricao_luma(ev, "tech", baixar)
+
+    def test_pagina_indisponivel_nao_guarda_o_aviso(self):
+        ev = importar.ics_events((FIX / "luma_generico.ics").read_text(encoding="utf-8"))[0]
+
+        def baixar(url):
+            raise OSError("sem rede")
+
+        importar.enriquecer_descricao_luma(ev, "tech", baixar)
+        self.assertEqual(ev["description"], {})
+        self.assertNotIn("descricao_completa", ev)
+
+    def test_merge_troca_aviso_por_descricao_real(self):
+        hoje = dt.date(2030, 1, 1)
+        lista = [{
+            "id": "2030-06-01-python-na-lapa",
+            "title": "Python na Lapa",
+            "start": "2030-06-01T19:00:00-03:00",
+            "url": "https://luma.com/py-lapa",
+            "format": "presencial",
+            "city": "Rio de Janeiro",
+            "description": {"pt": "Obtenha informações atualizadas em: https://luma.com/py-lapa Organizado por Python Rio"},
+        }]
+        novo = {
+            "title": "Python na Lapa",
+            "start": "2030-06-01T19:00:00-03:00",
+            "url": "https://luma.com/py-lapa",
+            "format": "presencial",
+            "city": "Rio de Janeiro",
+            "description": {"pt": "Encontro de Python para quem programa."},
+            "descricao_completa": "Encontro de Python para quem programa, com palestra e intervalo.",
+        }
+        self.assertEqual(importar.merge(lista, novo, hoje, set()), "completado")
+        self.assertEqual(lista[0]["description"]["pt"], "Encontro de Python para quem programa.")
+        self.assertIn("palestra", lista[0]["descricao_completa"])
+
+    def test_validador_aceita_resumo_e_recusa_aviso(self):
+        base = {
+            "id": "2030-06-01-encontro",
+            "title": "Encontro",
+            "start": "2030-06-01T19:00:00-03:00",
+            "format": "presencial",
+            "cost": {"type": "gratis", "text": "Grátis"},
+            "registration": "livre",
+            "url": "https://exemplo.org/encontro",
+            "tags": ["comunidade"],
+            "fonte": "manual",
+            "via": "manual",
+            "vistos": [{"fonte": "manual", "via": "manual", "data": "2030-01-01"}],
+            "description": {"pt": "Encontro de Python para quem programa."},
+            "descricao_completa": "Encontro de Python para quem programa, com palestra e intervalo para conversar.",
+            "resumo": {
+                "pt": "Encontro de Python para quem programa, com palestra e conversa.",
+                "en": "A Python meetup for people who code, with a talk and time to talk.",
+                "es": "Encuentro de Python para quien programa, con charla y conversación.",
+            },
+        }
+        self.assertEqual(validar.check({"updated": "2030-01-01", "events": [base]}, {"comunidade"}, set()), [])
+        generico = {**base, "description": {"pt": "Get up-to-date information at: https://luma.com/x"}}
+        errs = validar.check({"updated": "2030-01-01", "events": [generico]}, {"comunidade"}, set())
+        self.assertTrue(any("genérico" in e for e in errs), errs)
+        longo = {**base, "resumo": {**base["resumo"], "pt": "x" * 241}}
+        errs = validar.check({"updated": "2030-01-01", "events": [longo]}, {"comunidade"}, set())
+        self.assertTrue(any("240" in e for e in errs), errs)
+        aviso = {**base, "descricao_completa": "Organizado por Instituto 12"}
+        errs = validar.check({"updated": "2030-01-01", "events": [aviso]}, {"comunidade"}, set())
+        self.assertTrue(any("descricao_completa" in e for e in errs), errs)
+
+
+def _vevent(titulo: str, inicio: str, url: str, lugar: str = "Lapa, Rio de Janeiro") -> str:
+    return (
+        "BEGIN:VEVENT\n"
+        f"SUMMARY:{titulo}\n"
+        f"DTSTART:{inicio}\n"
+        f"LOCATION:{lugar}\n"
+        f"URL:{url}\n"
+        f"DESCRIPTION:Obtenha informações atualizadas em: {url}\n"
+        "END:VEVENT\n"
+    )
+
+
+def _calendario(blocos: list[str]) -> str:
+    return "BEGIN:VCALENDAR\n" + "".join(blocos) + "END:VCALENDAR\n"
+
+
+def _http_429(url: str) -> urllib.error.HTTPError:
+    return urllib.error.HTTPError(url, 429, "Too Many Requests", email.message.EmailMessage(), None)
+
+
+class TestPaginasLuma(unittest.TestCase):
+    """A página da Luma só abre depois dos filtros, no máximo 25 por rodada."""
+
+    def test_ics_com_cem_abre_no_maximo_os_dez(self):
+        hoje = dt.datetime.now(importar.RIO).date()
+        futuro = (hoje + dt.timedelta(days=200)).strftime("%Y%m%dT180000Z")
+        passado = (hoje - dt.timedelta(days=200)).strftime("%Y%m%dT180000Z")
+        blocos = []
+        for i in range(60):
+            blocos.append(_vevent(
+                f"Meetup de Python passado {i}", passado, f"https://luma.com/passado-{i}",
+            ))
+        for i in range(30):
+            blocos.append(_vevent(
+                f"Meetup de Python conhecido {i}", futuro, f"https://luma.com/conhecido-{i}",
+            ))
+        for i in range(10):
+            blocos.append(_vevent(
+                f"Meetup de Python novo {i}", futuro, f"https://luma.com/novo-{i}",
+            ))
+        self.assertEqual(len(blocos), 100)
+        ics = _calendario(blocos)
+        calendario = "https://exemplo.org/cem.ics"
+        abertas: list[str] = []
+
+        def fake(url, timeout=20):
+            if url == calendario:
+                return ics
+            abertas.append(url)
+            return "<html></html>"
+
+        conhecidos = [{
+            "id": f"conhecido-{i}",
+            "title": f"Meetup de Python conhecido {i}",
+            "start": "2030-06-01T19:00:00-03:00",
+            "url": f"https://luma.com/conhecido-{i}",
+            "format": "presencial",
+            "city": "Rio de Janeiro",
+            "description": {
+                "pt": "Encontro de Python com palestra e intervalo para quem programa no Rio.",
+            },
+        } for i in range(30)]
+
+        original_root = importar.ROOT
+        original_fetch = importar.fetch
+        try:
+            with tempfile.TemporaryDirectory() as tmp:
+                raiz = Path(tmp)
+                dados = raiz / "data"
+                dados.mkdir()
+                (dados / "events.json").write_text(
+                    json.dumps({"updated": "2026-11-24", "events": conhecidos}),
+                    encoding="utf-8",
+                )
+                (dados / "roles.json").write_text(
+                    json.dumps({"updated": "2026-11-24", "events": []}),
+                    encoding="utf-8",
+                )
+                fontes = raiz / "fontes.json"
+                fontes.write_text(json.dumps({"fontes": [{
+                    "nome": "Luma", "tipo": "ics", "url": calendario,
+                }]}), encoding="utf-8")
+                importar.ROOT = raiz
+                importar.fetch = fake
+                buf = io.StringIO()
+                with unittest.mock.patch("importar.time.sleep") as dormir:
+                    with contextlib.redirect_stdout(buf):
+                        code = importar.main(
+                            ["--agenda", "tech", "--dry-run", "--fontes", str(fontes)]
+                        )
+        finally:
+            importar.ROOT = original_root
+            importar.fetch = original_fetch
+
+        self.assertEqual(code, 0, buf.getvalue())
+        self.assertEqual(abertas, [f"https://luma.com/novo-{i}" for i in range(10)])
+        self.assertEqual([c.args for c in dormir.mock_calls], [(1,)] * 9)
+        self.assertIn("Páginas da Luma abertas: 10", buf.getvalue())
+        self.assertNotIn("ficam para a próxima rodada", buf.getvalue())
+
+    def test_no_maximo_25_com_pausa_de_um_segundo(self):
+        blocos = [
+            _vevent(f"Meetup de Python {i}", "20300601T220000Z", f"https://luma.com/fila-{i}")
+            for i in range(30)
+        ]
+        eventos = importar.ics_events(_calendario(blocos))
+        abertas: list[str] = []
+
+        def baixar(url):
+            abertas.append(url)
+            return "<html></html>"
+
+        with unittest.mock.patch("importar.time.sleep") as dormir:
+            conta = importar.enriquecer_paginas_luma(
+                eventos,
+                today=HOJE,
+                agenda="tech",
+                agenda_atual=[],
+                baixar=baixar,
+            )
+        self.assertEqual(len(abertas), 25)
+        self.assertEqual(abertas, [f"https://luma.com/fila-{i}" for i in range(25)])
+        self.assertEqual(conta["abertas"], 25)
+        self.assertEqual(conta["adiadas"], 5)
+        self.assertFalse(conta["parou_429"])
+        self.assertEqual([c.args for c in dormir.mock_calls], [(1,)] * 24)
+        linha = importar.linha_paginas_luma(conta)
+        self.assertEqual(
+            linha,
+            "Páginas da Luma abertas: 25 · 5 ficam para a próxima rodada",
+        )
+
+    def test_429_para_os_downloads_da_rodada(self):
+        eventos = importar.ics_events(_calendario([
+            _vevent(f"Meetup de Python {i}", "20300601T220000Z", f"https://luma.com/limite-{i}")
+            for i in range(5)
+        ]))
+        chamadas: list[str] = []
+        original = importar.fetch
+
+        def fake(url, timeout=20):
+            chamadas.append(url)
+            if len(chamadas) == 3:
+                raise _http_429(url)
+            return "<html></html>"
+
+        importar.fetch = fake
+        try:
+            with unittest.mock.patch("importar.time.sleep") as dormir:
+                conta = importar.enriquecer_paginas_luma(
+                    eventos, today=HOJE, agenda="tech", agenda_atual=[],
+                )
+        finally:
+            importar.fetch = original
+        self.assertEqual(chamadas, [f"https://luma.com/limite-{i}" for i in range(3)])
+        self.assertEqual(conta["abertas"], 2)
+        self.assertEqual(conta["adiadas"], 3)
+        self.assertTrue(conta["parou_429"])
+        self.assertEqual([c.args for c in dormir.mock_calls], [(1,), (1,)])
+        self.assertEqual(
+            importar.linha_paginas_luma(conta),
+            "Páginas da Luma abertas: 2 · a Luma respondeu 429; o resto fica para a próxima rodada",
+        )
+
+    def test_429_na_roles_nao_abre_a_pagina_seguinte(self):
+        eventos = importar.ics_events(_calendario([
+            _vevent("Roda de samba na Lapa", "20300601T220000Z", "https://luma.com/samba-1"),
+            _vevent("Roda de samba em Botafogo", "20300602T220000Z", "https://luma.com/samba-2"),
+        ]), agenda="roles")
+        vistos: list[str] = []
+        original = importar.fetch
+
+        def fake(url, timeout=20):
+            vistos.append(url)
+            if str(url).endswith("/robots.txt"):
+                return "User-agent: *\nAllow: /\n"
+            raise _http_429(url)
+
+        importar.fetch = fake
+        try:
+            conta = importar.enriquecer_paginas_luma(
+                eventos,
+                today=HOJE,
+                agenda="roles",
+                agenda_atual=[],
+                pausar=lambda *_: None,
+            )
+        finally:
+            importar.fetch = original
+        self.assertEqual(vistos, [
+            "https://luma.com/robots.txt",
+            "https://luma.com/samba-1",
+        ])
+        self.assertEqual(conta["abertas"], 0)
+        self.assertTrue(conta["parou_429"])
+
+    def test_so_quem_passou_nos_filtros_abre_pagina(self):
+        eventos = importar.ics_events(_calendario([
+            _vevent("Meetup de Python passado", "20290601T220000Z", "https://luma.com/passado"),
+            _vevent("Meetup de Python na tela", "20300601T220000Z", "https://luma.com/na-tela", "https://zoom.us/j/1"),
+            _vevent("Meetup de Python conhecido", "20300601T220000Z", "https://luma.com/conhecido"),
+            _vevent("Meetup de Python sem texto", "20300601T220000Z", "https://luma.com/sem-texto"),
+            _vevent("Festa junina no terreiro", "20300601T220000Z", "https://luma.com/junina"),
+            _vevent("Meetup de Python em Sao Paulo", "20300601T220000Z", "https://luma.com/sp"),
+            _vevent("Meetup de Python novo", "20300601T220000Z", "https://luma.com/novo"),
+            _vevent("Meetup de Python novo", "20300601T220000Z", "https://luma.com/novo"),
+            _vevent("Meetup de Python fora da Luma", "20300601T220000Z", "https://exemplo.org/py"),
+            _vevent("Meetup de Python descartado", "20300601T220000Z", "https://luma.com/descartado"),
+        ]))
+        for ev in eventos:
+            if ev["url"] == "https://luma.com/sp":
+                ev["city"] = "São Paulo"
+        eventos.append({
+            "title": "Meetup de Python híbrido",
+            "start": "2030-06-02T19:00:00-03:00",
+            "url": "https://luma.com/hibrido",
+            "format": "hibrido",
+            "city": "Rio de Janeiro",
+            "description": {},
+        })
+        agenda = [
+            {
+                "title": "Meetup de Python conhecido",
+                "url": "https://luma.com/conhecido",
+                "description": {"pt": "Encontro de Python com palestra e intervalo."},
+            },
+            {
+                "title": "Meetup de Python sem texto",
+                "url": "https://luma.com/sem-texto",
+                "description": {},
+            },
+        ]
+        abertas: list[str] = []
+
+        def baixar(url):
+            abertas.append(url)
+            return None
+
+        conta = importar.enriquecer_paginas_luma(
+            eventos,
+            today=HOJE,
+            agenda="tech",
+            agenda_atual=agenda,
+            bloqueadas={importar.chave_url("https://luma.com/descartado")},
+            baixar=baixar,
+            pausar=lambda *_: None,
+        )
+        self.assertEqual(abertas, [
+            "https://luma.com/sem-texto",
+            "https://luma.com/novo",
+            "https://luma.com/hibrido",
+        ])
+        self.assertEqual(conta["abertas"], 3)
+        self.assertEqual(conta["adiadas"], 0)
 
 
 if __name__ == "__main__":
