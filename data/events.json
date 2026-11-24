@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -5985,7 +5985,12 @@
           "via": "whatsapp",
           "data": "2026-11-09"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Segunda edição do Happy Hour de Clima e Carbono do Rio, em 25 de novembro, descrito como um fim de tarde informal para reencontrar amigos e fazer novos contatos. A primeira edição reuniu quase 40 pessoas.",
+        "en": "Second round of the Rio Climate and Carbon Happy Hour on November 25th, described as a laid-back evening to catch up with friends and make new connections. The first edition drew nearly 40 people.",
+        "es": "Segunda edición del Happy Hour de Clima y Carbono de Río, el 25 de noviembre, descrito como una velada informal para ponerse al día con amigos y conocer gente nueva. La primera edición reunió a casi 40 personas."
+      }
     },
     {
       "title": "2º Encontro da Rede Dr. Empreendedor",
@@ -6169,7 +6174,12 @@
           "via": "desconhecida",
           "data": "2026-10-31"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Hackathon de um dia para equipes de até 4 pessoas, que escolhem um problema real do Rio e criam uma solução funcional. Há R$ 25 mil em prêmios, com almoço e jantar incluídos.",
+        "en": "One-day hackathon for teams of up to four people, who pick a real problem in Rio and build a working solution. R$25k in prizes, with lunch and dinner included.",
+        "es": "Hackathon de un día para equipos de hasta cuatro personas, que eligen un problema real de Río y construyen una solución funcional. Hay R$25 mil en premios, con almuerzo y cena incluidos."
+      }
     },
     {
       "title": "Devin Meetup Rio de Janeiro",
@@ -6209,6 +6219,46 @@
           "fonte": "luma",
           "via": "desconhecida",
           "data": "2026-10-31"
+        }
+      ],
+      "resumo": {
+        "pt": "Meetup presencial na FIAP, em Botafogo (Rio de Janeiro), para desenvolvedores que querem ver o Devin na prática, trocar ideias e testar a ferramenta.",
+        "en": "In-person meetup at FIAP in Botafogo, Rio de Janeiro, for developers who want to see Devin in practice, exchange ideas and try the tool.",
+        "es": "Meetup presencial en FIAP, en Botafogo (Río de Janeiro), para desarrolladores que quieren ver Devin en la práctica, intercambiar ideas y probar la herramienta."
+      }
+    },
+    {
+      "title": "SO_Lo Lab – Masterclass de Cafés Especiais com Nude",
+      "start": "2026-11-28T09:00:00-03:00",
+      "end": "2026-11-28T11:30:00-03:00",
+      "time_known": true,
+      "venue": "Library - Instituto 12",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/36f1buxv",
+      "image": null,
+      "organizer": null,
+      "description": {},
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "fonte": "luma:instituto-12",
+      "via": "feed",
+      "id": "2026-11-28-so-lo-lab-masterclass-de-cafes-especiais-com-nud",
+      "added": "2026-11-24",
+      "vistos": [
+        {
+          "fonte": "luma:instituto-12",
+          "via": "feed",
+          "data": "2026-11-24"
         }
       ]
     },
@@ -6250,7 +6300,12 @@
           "via": "whatsapp",
           "data": "2026-11-07"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Hackathon de um dia que reúne alunos da EduMais e desenvolvedores do Rio em equipes para criar soluções de IA para a educação e para desafios reais da favela. Os times trabalham em problemas que afetam a comunidade.",
+        "en": "A one-day hackathon where EduMais students and Rio developers form teams to build AI solutions for education and real challenges in the favela. Teams work on problems that affect the community.",
+        "es": "Un hackatón de un día en el que alumnos de EduMais y desarrolladores de Río forman equipos para crear soluciones de IA para la educación y desafíos reales de la favela. Los equipos trabajan en problemas que afectan a la comunidad."
+      }
     },
     {
       "title": "Papo de Dev RJ 2º Edição",
@@ -6327,6 +6382,78 @@
       ]
     },
     {
+      "title": "SPRINT Robotics Latin America Summit 2026",
+      "start": "2026-12-01T07:30:00-03:00",
+      "end": "2026-12-01T11:30:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/46pdj4ls",
+      "image": null,
+      "organizer": null,
+      "description": {},
+      "tags": [
+        "conferencia",
+        "hardware-robotica"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "fonte": "luma:maravalley",
+      "via": "feed",
+      "id": "2026-12-01-sprint-robotics-latin-america-summit-2026",
+      "added": "2026-11-24",
+      "vistos": [
+        {
+          "fonte": "luma:maravalley",
+          "via": "feed",
+          "data": "2026-11-24"
+        }
+      ]
+    },
+    {
+      "title": "SPRINT Robotics Latin America Summit 2026",
+      "start": "2026-12-02T07:30:00-03:00",
+      "end": "2026-12-02T11:30:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/6ckxsy6l",
+      "image": null,
+      "organizer": null,
+      "description": {},
+      "tags": [
+        "conferencia",
+        "hardware-robotica"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "fonte": "luma:maravalley",
+      "via": "feed",
+      "id": "2026-12-02-sprint-robotics-latin-america-summit-2026",
+      "added": "2026-11-24",
+      "vistos": [
+        {
+          "fonte": "luma:maravalley",
+          "via": "feed",
+          "data": "2026-11-24"
+        }
+      ]
+    },
+    {
       "id": "2026-12-02-riotech-happy-hour",
       "title": "RioTech Happy Hour",
       "start": "2026-12-02T18:00:00-03:00",
@@ -6364,8 +6491,14 @@
           "fonte": "meetup",
           "via": "desconhecida",
           "data": "2026-10-31"
+        },
+        {
+          "fonte": "meetup:rio-tech",
+          "via": "feed",
+          "data": "2026-11-24"
         }
-      ]
+      ],
+      "descricao_completa": "RioTech\n[ENGLISH below]\n\n**O RioTech Happy Hour é um evento recorrente casual para juntar profissionais, empreendedores, e investidores de tecnologia.**\n\nVem conhecer a gente!\n\n* O evento é recorrente — todo mês.\n* Começa às 18h e dura algumas horas. Vem quando puder.\n* Seja gentil e aproveite!\n\n**RioTech Happy Hour is a casual reoccurring event for tech workers, entrepreneurs, and investors.**\n\nJoin us!\n\n* The happy hour is every month\n* It starts at 6pm and ends at 9pm. Come and go as you please.\n* Be nice, and have fun!\n\nLocalização: **[The Boua](https://www.instagram.com/theboua/)** (R. Nelson Mandela)\nComo chegar de metrô: Sair na estação Botafogo\n\n**Follow us on social media:**\n𝕏: [www.x.com/RioTechBR](http://www.x.com/RioTechBR)\nLinkedIn: [www.linkedin.com/company/riotechbr](http://www.linkedin.com/company/riotechbr)"
     },
     {
       "title": "Happy Hour Maravalley",
@@ -6399,6 +6532,44 @@
           "fonte": "luma:maravalley",
           "via": "feed",
           "data": "2026-11-03"
+        }
+      ]
+    },
+    {
+      "title": "IA para Servidores Públicos",
+      "start": "2026-12-03T17:00:00-03:00",
+      "end": "2026-12-03T21:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/lucj29yv",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "IA para Servidores Públicos Aprenda a otimizar a sua rotina O Maravalley convida você para uma masterclass presencial sobre como aplicar inteligência artificial ao trabalho no serviço público. O encontro é voltado a…"
+      },
+      "tags": [
+        "ia"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "fonte": "luma:maravalley",
+      "via": "feed",
+      "descricao_completa": "IA para Servidores Públicos\nAprenda a otimizar a sua rotina\nO Maravalley convida você para uma masterclass presencial sobre como aplicar inteligência artificial ao trabalho no serviço público. O encontro é voltado a servidores, gestores e equipes de órgãos públicos que querem usar IA para ganhar tempo e organizar melhor o trabalho.\nO professor Gilson Leal e o professor doutor Gabriel Laender vão mostrar, com exemplos práticos, como usar IA para organizar informações, preparar minutas e dar ritmo a tarefas que se repetem no dia a dia. A aula também aborda os cuidados na hora de conferir as respostas e lidar com informações do órgão.\n👉 Saiba mais sobre a masterclass no nosso site:\nhttps://idyllic-pothos-92c5c9.netlify.app/\n📅 Data: Quinta-feira, 03/12\n🕔 Horário: A partir das 17h\n📍 Local: Porto Maravalley – Av. Professor Pereira Reis, 76 – Santo Cristo",
+      "id": "2026-12-03-ia-para-servidores-publicos",
+      "added": "2026-11-24",
+      "vistos": [
+        {
+          "fonte": "luma:maravalley",
+          "via": "feed",
+          "data": "2026-11-24"
         }
       ]
     },
@@ -6476,7 +6647,12 @@
           "via": "feed",
           "data": "2026-10-31"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Happy hour de encerramento do AI Salon #18, no Leblon, para quem participou da comunidade em 2026 e quer entrar no próximo ano. Ingresso de R$ 30.",
+        "en": "AI Salon #18 closing happy hour in Leblon, for people who built the community in 2026 and want to join next year. Ticket costs R$ 30.",
+        "es": "Happy hour de cierre del AI Salon #18 en Leblon, para quienes construyeron la comunidad en 2026 y quieren entrar el próximo año. Entrada de R$ 30."
+      }
     },
     {
       "title": "Encontro de Mulheres com Patricia Muricy",
@@ -6552,7 +6728,12 @@
           "via": "manual",
           "data": "2026-10-31"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "INOVA IA 2026 é o 3º encontro nacional de inteligência artificial, com governo, empresas, academia e sociedade civil. Os debates tratam de soberania tecnológica, governança, financiamento e do Plano Brasileiro de IA.",
+        "en": "INOVA IA 2026 is the third national artificial intelligence meeting, bringing together government, industry, academia and civil society. Discussions cover tech sovereignty, governance, funding and Brazil's national AI plan.",
+        "es": "INOVA IA 2026 es el tercer encuentro nacional de inteligencia artificial, con gobierno, empresas, academia y sociedad civil. Los debates abordan la soberanía tecnológica, la gobernanza, el financiamiento y el Plan Brasileño de IA."
+      }
     },
     {
       "title": "Lovable Build Day - RJ",
@@ -6588,6 +6769,80 @@
           "fonte": "luma",
           "via": "whatsapp",
           "data": "2026-11-10"
+        }
+      ]
+    },
+    {
+      "title": "#63 AWS re:cap",
+      "start": "2026-12-09T18:30:00-03:00",
+      "end": "2026-12-09T22:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/aws-user-group-rio/events/317557153",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "AWS User Group Rio Fim de ano está chegando e com ele o AWS re:Invent. Lá em Las Vegas a AWS traz os highlights do ano e faz o anúncio de novos produtos e serviços. Filipe Barreto, AWS Hero vem direto de Las Vegas pro…"
+      },
+      "tags": [
+        "cloud",
+        "networking"
+      ],
+      "status": "confirmado",
+      "descricao_completa": "AWS User Group Rio\nFim de ano está chegando e com ele o AWS re:Invent. Lá em Las Vegas a AWS traz os highlights do ano e faz o anúncio de novos produtos e serviços.\n\nFilipe Barreto, AWS Hero vem direto de Las Vegas pro Rio de Janeiro compartilhar conosco o que ele viu lá, quais são as próximas trends de mercado e como você pode usar esse novo conhecimento na sua jornada AWS.\n\nNos encontramos no dia 9 de dezembro na FIAP em Botafogo.\n\n**Programação**\n\n18:30 - Abertura\n19:00 - FIAP\n19:30 - re:Cap\n20:30 - Pizza & Networking\n22:00 - The End\n\n**Acesso à FIAP**\nFique de olho no seu e-mail para cadastrar no QRCode de acesso ao prédio da FIAP e evitar transtornos na sua chegada.",
+      "source": "AWS User Group Rio (Meetup)",
+      "fonte": "meetup:rio-cloud-computing-meetup",
+      "via": "feed",
+      "id": "2026-12-09-63-aws-re-cap",
+      "added": "2026-11-24",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-cloud-computing-meetup",
+          "via": "feed",
+          "data": "2026-11-24"
+        }
+      ]
+    },
+    {
+      "title": "Maravalley convida | Masterclass para servidores públicos",
+      "start": "2026-12-10T09:00:00-03:00",
+      "end": "2026-12-10T13:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/h06qua99",
+      "image": null,
+      "organizer": null,
+      "description": {},
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "fonte": "luma:maravalley",
+      "via": "feed",
+      "id": "2026-12-10-maravalley-convida-masterclass-para-servidores-p",
+      "added": "2026-11-24",
+      "vistos": [
+        {
+          "fonte": "luma:maravalley",
+          "via": "feed",
+          "data": "2026-11-24"
         }
       ]
     },
@@ -6665,7 +6920,12 @@
           "via": "desconhecida",
           "data": "2026-10-31"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Imersão prática de um dia para construir, testar e proteger agentes de IA, abordando segurança, governança, observabilidade e avaliação, com desafio premiado apoiado pela Solana. Recomenda-se levar notebook.",
+        "en": "A one-day hands-on immersion on building, testing and securing AI agents, covering safety, governance, observability and evals, with a prize challenge backed by Solana. Bring a laptop.",
+        "es": "Inmersión práctica de un día para construir, probar y proteger agentes de IA, con temas de seguridad, gobernanza, observabilidad y evaluación, y un desafío con premios respaldado por Solana. Se recomienda llevar laptop."
+      }
     },
     {
       "title": "Rio de Janeiro 2027 Venture Capital World Summit",
@@ -6742,8 +7002,47 @@
           "fonte": "websummit",
           "via": "desconhecida",
           "data": "2026-11-23"
+        },
+        {
+          "fonte": "websummit",
+          "via": "feed",
+          "data": "2026-11-24"
         }
-      ]
+      ],
+      "image": "https://rio.websummit.com/wp-media/2023/08/WSRIO-speaker-social-card-aspect-ratio-16-9.png",
+      "organizer": "Web Summit",
+      "descricao_completa": "In 2026, Web Summit Rio brought together 40,000-plus people and the companies redefining the tech industry. Next June, we’ll return to Rio de Janeiro for another incredible event. Meet you there? Pre-register for next year and get 50% off your ticket for Web Summit Rio 2027.",
+      "historico": [
+        {
+          "campo": "start",
+          "antes": "2027-06-14T00:00:00-03:00",
+          "depois": "2027-06-14",
+          "fonte": "websummit",
+          "data": "2026-11-24",
+          "aplicado": false
+        },
+        {
+          "campo": "end",
+          "antes": "2027-06-17T23:59:00-03:00",
+          "depois": "2027-06-17",
+          "fonte": "websummit",
+          "data": "2026-11-24",
+          "aplicado": false
+        },
+        {
+          "campo": "venue",
+          "antes": "Riocentro",
+          "depois": "Riocentro: Exhibition & Convention Center",
+          "fonte": "websummit",
+          "data": "2026-11-24",
+          "aplicado": false
+        }
+      ],
+      "resumo": {
+        "pt": "Web Summit Rio é uma conferência de tecnologia no Rio de Janeiro; a edição de 2026 reuniu mais de 40 mil pessoas. A próxima edição está prevista para junho, e quem fizer a pré-inscrição tem 50% de desconto no ingresso de 2027.",
+        "en": "Web Summit Rio is a technology conference in Rio de Janeiro; the 2026 edition brought together over 40,000 people. The next edition is planned for June, and pre-registrants get 50% off the 2027 ticket.",
+        "es": "Web Summit Rio es una conferencia de tecnología en Río de Janeiro; la edición de 2026 reunió a más de 40 000 personas. La próxima edición está prevista para junio, y quienes se preinscriban obtienen 50 % de descuento en la entrada de 2027."
+      }
     }
   ]
 }
