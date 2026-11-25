@@ -299,6 +299,28 @@ details[open] summary::after { content: " –"; }
 .empty { padding-block: 40px; text-align: center; color: var(--muted); }
 .empty button { margin-top: 10px; }
 
+/* Eventos que passam de uma semana, separados da lista do dia. */
+.ongoing {
+  margin-top: 28px;
+  padding: 14px 16px 4px;
+  border-radius: var(--radius);
+  background: var(--chip);
+  border: 1px solid var(--line);
+  box-shadow: inset 4px 0 0 var(--sun);
+}
+.ongoing h2 {
+  font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: -.02em;
+  margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 10px; text-wrap: balance;
+}
+.ongoing h2 span { flex: 1 1 14em; min-width: 0; }
+.ongoing h2 small {
+  font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--muted);
+  letter-spacing: .04em; white-space: nowrap;
+}
+.ongoing .ongoing-note { margin: 6px 0 0; color: var(--muted); font-size: 14.5px; max-width: 62ch; }
+.ongoing .list { margin-top: 4px; }
+.ongoing .ev:first-child { border-top-color: transparent; }
+
 /* ---------- Sugerir evento ---------- */
 .cta-bar {
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
@@ -421,6 +443,8 @@ footer p { margin: 4px 0; }
   .week { margin-top: 8px; }
   .week-days { margin-top: 6px; }
   .month { margin-top: 12px; }
+  .ongoing { margin-top: 16px; padding: 12px 12px 2px; }
+  .ongoing h2 { font-size: 18px; }
   .cta { margin-block: 8px 4px; padding: 12px; gap: 6px; }
   .cta h2 { font-size: 20px; }
   .cta p { font-size: 14px; line-height: 1.35; }
@@ -640,6 +664,8 @@ footer p { margin: 4px 0; }
       details: "Detalhes", more: "ver mais", open: "Página do evento", gcal: "Pôr no Google Agenda", org: "Organiza", note: "Obs.",
       tbc: "a confirmar", cancelled: "cancelado", timeTbd: "horário a confirmar",
       prevWeek: "Semana anterior", nextWeek: "Próxima semana", noneWeek: "Nenhum evento nesta semana.", weeks: "Semanas",
+      ongoingTitle: "Ainda acontecendo ao longo destas datas",
+      ongoingNote: "Duram mais de uma semana e continuam da data de início até o fim.",
       themeToDark: "Usar tema escuro", themeToLight: "Usar tema claro",
       prNote: "Contribuições são bem-vindas via pull request.",
       fmt: { presencial: "Presencial", hibrido: "Híbrido" },
@@ -671,6 +697,8 @@ footer p { margin: 4px 0; }
       details: "Details", more: "see more", open: "Event page", gcal: "Add to Google Calendar", org: "Hosted by", note: "Note",
       tbc: "to be confirmed", cancelled: "cancelled", timeTbd: "time TBC",
       prevWeek: "Previous week", nextWeek: "Next week", noneWeek: "Nothing this week.", weeks: "Weeks",
+      ongoingTitle: "Still running across these dates",
+      ongoingNote: "They last more than a week and stay on from the start date through the end.",
       themeToDark: "Use dark theme", themeToLight: "Use light theme",
       prNote: "Contributions are welcome via a pull request.",
       fmt: { presencial: "In person", hibrido: "Hybrid" },
@@ -702,6 +730,8 @@ footer p { margin: 4px 0; }
       details: "Detallitos", more: "ver más", open: "Ver el evento", gcal: "Botá no Google Agenda", org: "Organiza", note: "Ojo",
       tbc: "por confirmar", cancelled: "cancelado", timeTbd: "horário a confirmar",
       prevWeek: "Semana anterior", nextWeek: "Próxima semana", noneWeek: "Nada nesta semana.", weeks: "Semanas",
+      ongoingTitle: "Sigue acontecendo ao longo destas datas",
+      ongoingNote: "Duram más de uma semana e seguem da data de início até o fim.",
       themeToDark: "Usar o tema escuro", themeToLight: "Usar o tema claro",
       prNote: "Contribuições são bem-vindas via pull request.",
       fmt: { presencial: "Presencial", hibrido: "Híbrido" },
@@ -854,6 +884,13 @@ footer p { margin: 4px 0; }
   }
   function overlaps(e, a, b) { var s = displaySpan(e); return s[0] <= b && s[1] >= a; }
   function overlapsReal(e, a, b) { var s = spanYmd(e); return s[0] <= b && s[1] >= a; }
+  // Mais de 7 dias de calendário, início e fim inclusos. Exposição e o que
+  // dura semanas não se misturam com o evento do dia, da semana ou do fim de semana.
+  function duraMaisDeUmaSemana(e) {
+    var s = spanYmd(e);
+    var ms = Date.parse(s[1] + "T00:00:00Z") - Date.parse(s[0] + "T00:00:00Z");
+    return Math.round(ms / 86400000) + 1 > 7;
+  }
   function weekendYmds() {
     var today = rioTodayYmd();
     var wd = weekdayMon0(today);
@@ -1151,30 +1188,52 @@ footer p { margin: 4px 0; }
     if (state.tag) slot.appendChild(el("button", { type: "button", class: "active-tag", "aria-label": t("clear"),
       onclick: function () { state.tag = null; render(); } }, ["#" + tagLabel(state.tag), " ×"]));
 
+    var primary = shown;
+    var longos = [];
+    if (state.weekOn || state.hoje || state.fds) {
+      primary = [];
+      shown.forEach(function (e) {
+        if (duraMaisDeUmaSemana(e)) longos.push(e);
+        else primary.push(e);
+      });
+    }
+
     list.replaceChildren();
-    if (!shown.length) {
+    if (!primary.length && !longos.length) {
       var kids = [el("p", { text: state.weekOn && !filtersActive() ? t("noneWeek") : t("none") })];
       if (filtersActive()) kids.push(el("button", { type: "button", class: "chip", text: t("clear"), onclick: resetFilters }));
       else if (state.weekOn) kids.push(el("button", { type: "button", class: "chip", text: t("seeAll"), onclick: function () { state.weekOn = false; render(); } }));
       list.appendChild(el("div", { class: "empty" }, kids));
       return;
     }
-    var byMonth = {};
-    var order = [];
-    shown.forEach(function (e) {
-      var k = ymd(parseStart(e.start)).slice(0, 7);
-      if (!byMonth[k]) { byMonth[k] = []; order.push(k); }
-      byMonth[k].push(e);
-    });
-    order.forEach(function (k) {
-      var d = new Date(k + "-15T12:00:00" + tzOffset());
-      var p = parts(d, { month: "long", year: "numeric" });
-      var sec = el("section", { class: "month" }, [
-        el("h2", null, [cap(p.month), el("small", { text: p.year + " · " + t("count")(byMonth[k].length) })]),
-        el("ol", { class: "list" }, byMonth[k].map(card))
-      ]);
-      list.appendChild(sec);
-    });
+    if (primary.length) {
+      var byMonth = {};
+      var order = [];
+      primary.forEach(function (e) {
+        var k = ymd(parseStart(e.start)).slice(0, 7);
+        if (!byMonth[k]) { byMonth[k] = []; order.push(k); }
+        byMonth[k].push(e);
+      });
+      order.forEach(function (k) {
+        var d = new Date(k + "-15T12:00:00" + tzOffset());
+        var p = parts(d, { month: "long", year: "numeric" });
+        var sec = el("section", { class: "month" }, [
+          el("h2", null, [cap(p.month), el("small", { text: p.year + " · " + t("count")(byMonth[k].length) })]),
+          el("ol", { class: "list" }, byMonth[k].map(card))
+        ]);
+        list.appendChild(sec);
+      });
+    }
+    if (longos.length) {
+      list.appendChild(el("section", { class: "ongoing", "aria-labelledby": "ongoing-title" }, [
+        el("h2", { id: "ongoing-title" }, [
+          el("span", { text: t("ongoingTitle") }),
+          el("small", { text: t("count")(longos.length) })
+        ]),
+        el("p", { class: "ongoing-note", text: t("ongoingNote") }),
+        el("ol", { class: "list" }, longos.map(card))
+      ]));
+    }
   }
 
   function resetFilters() {
