@@ -1247,6 +1247,76 @@ class TestCorreio(unittest.TestCase):
                 self.assertNotIn("@", bruto)
                 self.assertNotIn("lista@example.com", bruto + relatorio)
 
+    def test_eventim_mistura_sp_e_rio(self):
+        raw = (FIX / "correio_eventim_sp_rio.eml").read_bytes()
+
+        def proibe(url, agenda=None):
+            raise AssertionError(url)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = destinos(Path(tmp))
+            with patch("urllib.request.urlopen", side_effect=AssertionError("rede")):
+                relatorio, codigo = correio.rodar(
+                    [correio.CaixaTrabalho(
+                        "Rolês", "agenda.rio.roles@gmail.com", "roles", [("1", raw)],
+                    )],
+                    hoje=HOJE, destinos=paths, abrir_redirect=proibe,
+                    eventos_da_url=proibe,
+                    modelo=lambda texto: (_ for _ in ()).throw(AssertionError("modelo")),
+                )
+            roles = json.loads(paths["roles"].read_text(encoding="utf-8"))
+        self.assertEqual(codigo, 0, relatorio)
+        self.assertEqual([e["title"] for e in roles["events"]], ["Jorge Ben Jor"], relatorio)
+        ev = roles["events"][0]
+        self.assertEqual(ev["venue"], "Qualistage")
+        self.assertEqual(ev["city"], "Rio de Janeiro")
+        self.assertEqual(ev["start"], "2026-12-19T20:00:00-03:00")
+        self.assertEqual(ev["url"], "https://www.eventim.com.br/event/jorge-ben-jor-222")
+        bruto = json.dumps(roles) + relatorio
+        self.assertNotIn("Ana Carolina", bruto)
+        self.assertNotIn("ana-carolina-sp", bruto)
+        self.assertNotIn("Allianz", bruto)
+        self.assertNotIn("@", json.dumps(roles))
+
+    def test_cidade_sai_do_bloco(self):
+        eventim = "https://www.eventim.com.br/event/show-111"
+        songkick = "https://www.songkick.com/concerts/444-elis"
+        mail_rio = "Proximos shows no Rio\n\n"
+        lista_rio = "Concerts this week in Rio\n\n"
+
+        def bloco(artista, local, extra, url):
+            return f"{artista}\n18/12/2026 21:00\n{local}\n{extra}\n{url}".strip()
+
+        self.assertIsNone(correio._evento_do_bloco(
+            bloco("Maria Bethania", "Mineirao", "BH", eventim), eventim, mail_rio + "BH",
+        ))
+        self.assertIsNone(correio._evento_do_bloco(
+            bloco("Ana Carolina", "Allianz Parque", "São Paulo", eventim),
+            eventim, mail_rio + "São Paulo",
+        ))
+        no_rio = correio._evento_do_bloco(
+            bloco("Jorge Ben Jor", "Qualistage", "", eventim), eventim, mail_rio,
+        )
+        self.assertEqual(no_rio["city"], "Rio de Janeiro")
+        self.assertEqual(no_rio["venue"], "Qualistage")
+        so_rj = correio._evento_do_bloco(
+            bloco("Alguem", "Teatro Qualquer", "RJ", eventim), eventim, "Shows\n\n",
+        )
+        self.assertEqual(so_rj["city"], "Rio de Janeiro")
+        sem_cidade = correio._evento_do_bloco(
+            bloco("Alguem", "Teatro Qualquer", "", eventim), eventim, mail_rio,
+        )
+        self.assertIsNone(sem_cidade["city"])
+        desconhecido = "Elis Regina\nTeatro Qualquer\nDecember 21, 2026, 19:00\n" + songkick
+        na_lista = correio._evento_do_bloco(desconhecido, songkick, lista_rio + desconhecido)
+        self.assertEqual(na_lista["city"], "Rio de Janeiro")
+        fora_da_lista = correio._evento_do_bloco(desconhecido, songkick, "Concerts this week\n\n" + desconhecido)
+        self.assertIsNone(fora_da_lista["city"])
+        self.assertIsNone(correio._evento_do_bloco(
+            bloco("Ana Carolina", "Allianz Parque", "SP", songkick),
+            songkick, lista_rio + "SP",
+        ))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -20,6 +20,9 @@ Se a página do evento falha (HTTP, robots.txt indisponível ou 503, sem
 JSON-LD), o texto do e-mail vai para o modelo, em vez de descartar.
 Songkick («concerts this week in Rio»), Eventim e Resident Advisor listam
 vários eventos no mesmo e-mail: entram todos, com data, local, artista e link.
+A cidade sai do bloco, não do e-mail inteiro: Rio se o bloco cita Rio, RJ ou
+uma casa conhecida do Rio; São Paulo, SP, BH e o mesmo tipo ficam de fora.
+No Songkick «concerts this week in Rio», a lista inteira é do Rio.
 Também ignora imagem, CDN, loja de aplicativo e página da Luma que não é
 evento (/, /settings, /ios, /android, /home, /discover). Isso não entra
 na lista de descartados. O relatório lista cada URL descartada uma vez,
@@ -148,6 +151,19 @@ OUTRA_CIDADE = re.compile(
     r"\bsalvador\b|\brecife\b|\bbras[ií]lia\b|\bflorian[oó]polis\b|\bcampinas\b",
     re.I,
 )
+# Sigla do mesmo tipo, no bloco do evento. Não vale para o e-mail inteiro.
+_SIGLA_OUTRA_CIDADE = re.compile(r"\b(?:sp|bh|poa|bsb|ssa|rec|cwb|fln)\b")
+_RIO_NO_BLOCO = re.compile(r"\b(?:rio de janeiro|rio|rj)\b")
+_SONGKICK_LISTA_RIO = re.compile(r"concerts this week in rio\b")
+# Casas do Rio que a newsletter cita sem repetir a cidade.
+_CASAS_RIO = (
+    "circo voador",
+    "qualistage",
+    "marina da gloria",
+    "teatro riachuelo",
+    "club laroc",
+)
+_CASAS_RIO_GENERICAS = {"shows", "gratis", "fim de semana"}
 EMAIL_RE = re.compile(r"(?i)[\w.+-]+@[\w.-]+\.[a-z]{2,}")
 LINK_RE = re.compile(r"https?://[^\s<>()\[\]\"']+", re.I)
 _ANCORA_RE = re.compile(
@@ -1222,7 +1238,65 @@ def _linha_preco(linha: str) -> bool:
 
 
 def _linha_so_cidade(linha: str) -> bool:
-    return importar._sem_acento(linha).strip() in {"rio de janeiro", "rio", "rj"}
+    low = importar._sem_acento(linha).strip()
+    if low in {"rio de janeiro", "rio", "rj"}:
+        return True
+    return bool(OUTRA_CIDADE.fullmatch(low) or _SIGLA_OUTRA_CIDADE.fullmatch(low))
+
+
+def _casas_rio() -> list[str]:
+    """Nome de casa do Rio: a lista fixa e as casas da Agenda Cultural RJ."""
+    nomes = {importar._sem_acento(nome) for nome in _CASAS_RIO}
+    caminho = importar.ROOT / "fontes_roles.json"
+    if caminho.exists():
+        try:
+            dados = json.loads(caminho.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            dados = {}
+        prefixo = "agenda cultural rj — "
+        for fonte in dados.get("fontes") or []:
+            nome = importar._sem_acento(str(fonte.get("nome") or ""))
+            if not nome.startswith(prefixo):
+                continue
+            casa = nome[len(prefixo):].strip()
+            if casa and casa not in _CASAS_RIO_GENERICAS:
+                nomes.add(casa)
+    return sorted(nomes, key=len, reverse=True)
+
+
+def _casa_do_rio(texto: str) -> bool:
+    low = importar._sem_acento(texto or "")
+    for nome in _casas_rio():
+        if re.search(r"(?<!\w)" + re.escape(nome) + r"(?!\w)", low):
+            return True
+    return importar.inferir_bairro(texto or "") is not None
+
+
+def _outra_cidade_no_bloco(low: str) -> bool:
+    return bool(OUTRA_CIDADE.search(low) or _SIGLA_OUTRA_CIDADE.search(low))
+
+
+def _songkick_lista_rio(url: str, texto_mail: str) -> bool:
+    """«Concerts this week in Rio»: a lista inteira é do Rio, não cada bloco."""
+    if _tipo_lista(url) != "songkick":
+        return False
+    return bool(_SONGKICK_LISTA_RIO.search(importar._sem_acento(texto_mail or "")))
+
+
+def _cidade_do_bloco(bloco: str, url: str, texto_mail: str) -> tuple[str | None, bool]:
+    """Cidade pelo bloco. Devolve (cidade, descartar).
+
+    Rio se o bloco cita Rio, RJ ou uma casa conhecida. Outra cidade (São Paulo,
+    SP, BH e o mesmo tipo) descarta o evento. O restante do e-mail não decide,
+    salvo o Songkick «concerts this week in Rio».
+    """
+    low = importar._sem_acento(bloco or "")
+    menciona_rio = bool(_RIO_NO_BLOCO.search(low))
+    if _outra_cidade_no_bloco(low) and not menciona_rio:
+        return None, True
+    if menciona_rio or _casa_do_rio(bloco) or _songkick_lista_rio(url, texto_mail):
+        return CIDADE, False
+    return None, False
 
 
 def _evento_do_bloco(bloco: str, url: str, texto_mail: str) -> dict | None:
@@ -1265,7 +1339,9 @@ def _evento_do_bloco(bloco: str, url: str, texto_mail: str) -> dict | None:
         link = sem_rastreio(url)
     except Exception:
         link = url
-    cidade = CIDADE if re.search(r"\brio\b", importar._sem_acento(texto_mail or "")) else None
+    cidade, descartar = _cidade_do_bloco(bloco, url, texto_mail)
+    if descartar:
+        return None
     return {
         "title": artista,
         "start": inicio,
