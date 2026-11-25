@@ -6036,7 +6036,7 @@
       "end": "2026-11-26T12:30:00-03:00",
       "time_known": true,
       "venue": "Porto Maravalley, Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
-      "address": null,
+      "address": "Porto Maravalley",
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
@@ -6045,9 +6045,11 @@
       },
       "registration": "inscricao",
       "url": "https://luma.com/8kyh1bq1",
-      "image": null,
-      "organizer": null,
-      "description": {},
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/8b/f7ee074e-7850-41c5-8650-76d2cbaa3b48.jpg",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "Português AUTISMO, GESTÃO PÚBLICA E CUIDADO INTEGRADO - Lançamento da Plataforma Lucca O cuidado de pessoas autistas não falha por falta de bons profissionais. Falha porque família, saúde, educação e gestão pública…"
+      },
       "tags": [
         "comunidade"
       ],
@@ -6062,6 +6064,22 @@
           "fonte": "luma:maravalley",
           "via": "feed",
           "data": "2026-11-10"
+        },
+        {
+          "fonte": "correio:luma",
+          "via": "correio",
+          "data": "2026-11-24"
+        }
+      ],
+      "descricao_completa": "Português\nAUTISMO, GESTÃO PÚBLICA E CUIDADO INTEGRADO - Lançamento da Plataforma Lucca\nO cuidado de pessoas autistas não falha por falta de bons profissionais. Falha porque família, saúde, educação e gestão pública trabalham isoladas. A família recebe pouca informação e fica fora das decisões. O diagnóstico é complexo, tardio e recai sobre profissionais sobrecarregados. A escola percebe os sinais, mas seu plano não conversa com o da saúde. E o gestor público decide sem dados.\nNeste encontro, reunimos famílias, especialistas, gestores públicos, pesquisadores e o ecossistema de inovação para discutir como integrar esse cuidado. Ao final, apresentamos a Lucca, uma plataforma de inteligência artificial que coordena a linha de cuidado do autismo na rede pública, conectando família, saúde, educação e assistência social em uma única jornada.\nProgramação\n9h - Credenciamento e café da manhã\n9h30 - Boas-vindas e abertura institucional\n9h40 - Painel Famílias: da falta de informação ao protagonismo no cuidado\n10h05 - Painel Saúde: o desafio do diagnóstico do TEA e a continuidade do cuidado\n10h30 - Coffee break e networking\n10h50 - Painel Educação: escola, clínica e saúde com o mesmo plano\n11h15 - Painel Gestão, dados e IA: decisões públicas baseadas em dados\n11h40 - Demonstração da Plataforma Lucca\n11h55 - Cases reais\n12h15 - Encerramento e foto oficial\n12h30 - Previsão de término do evento\nPara quem é\nSecretários e gestores de saúde, educação e assistência social, profissionais da rede, pesquisadores, famílias, organizações da sociedade civil, investidores e o ecossistema de inovação em saúde.\nSobre a Lucca\nA Lucca é uma plataforma de inteligência artificial para a coordenação da linha de cuidado, com foco inicial no Transtorno do Espectro Autista. Ela organiza a jornada do paciente, apoia profissionais com IA e gera indicadores para a gestão da rede pública.\nInformações\nEvento gratuito, com vagas limitadas (50 lugares)\nInscrições sujeitas à aprovação\nConfirme sua presença até 19 de novembro\nInscreva-se no link: https://luma.com/wednw65w",
+      "historico": [
+        {
+          "campo": "venue",
+          "antes": "Porto Maravalley, Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+          "depois": "Porto Maravalley",
+          "fonte": "correio:luma",
+          "data": "2026-11-24",
+          "aplicado": false
         }
       ]
     },
@@ -6071,7 +6089,7 @@
       "end": "2026-11-26T21:00:00-03:00",
       "time_known": true,
       "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
-      "address": null,
+      "address": "Av. Prof. Pereira Reis, 76",
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
@@ -6080,9 +6098,11 @@
       },
       "registration": "inscricao",
       "url": "https://luma.com/x6gpd3u9",
-      "image": null,
-      "organizer": null,
-      "description": {},
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/xp/4836b4f3-7f42-46a3-ab24-6b95bb09b92a.png",
+      "organizer": "Maravalley",
+      "description": {
+        "pt": "HAPPY HOUR APRESENTAÇÃO MARICÁ 📅 Data: 26/11 🕔 Horário: A partir das 17h 📍 Local: Porto Maravalley – Av. Professor Pereira Reis, 76 – Santo Cristo Esperamos você para mais uma noite de boas conversas, novas conexões e…"
+      },
       "tags": [
         "networking"
       ],
@@ -6097,6 +6117,22 @@
           "fonte": "luma:maravalley",
           "via": "feed",
           "data": "2026-11-03"
+        },
+        {
+          "fonte": "correio:luma",
+          "via": "correio",
+          "data": "2026-11-24"
+        }
+      ],
+      "descricao_completa": "HAPPY HOUR APRESENTAÇÃO MARICÁ\n📅 Data: 26/11\n🕔 Horário: A partir das 17h\n📍 Local: Porto Maravalley – Av. Professor Pereira Reis, 76 – Santo Cristo\nEsperamos você para mais uma noite de boas conversas, novas conexões e muito conteúdo no Maravalley!",
+      "historico": [
+        {
+          "campo": "venue",
+          "antes": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+          "depois": "Av. Prof. Pereira Reis, 76",
+          "fonte": "correio:luma",
+          "data": "2026-11-24",
+          "aplicado": false
         }
       ]
     },
@@ -6814,7 +6850,12 @@
           "via": "feed",
           "data": "2026-11-24"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Encontro do AWS User Group Rio em 9 de dezembro, na FIAP (Botafogo, Rio de Janeiro), para um recap do AWS re:Invent. Filipe Barreto, AWS Hero, traz o que viu em Las Vegas, as próximas tendências e como aplicar o conteúdo na jornada AWS.",
+        "en": "AWS User Group Rio meetup on December 9 at FIAP in Botafogo, Rio de Janeiro, recapping AWS re:Invent. AWS Hero Filipe Barreto shares what he saw in Las Vegas, upcoming market trends, and how to apply them on AWS.",
+        "es": "Encuentro del AWS User Group Rio el 9 de diciembre en FIAP, Botafogo (Río de Janeiro), con un resumen del AWS re:Invent. El AWS Hero Filipe Barreto comparte lo que vio en Las Vegas, las próximas tendencias y cómo aplicarlas en AWS."
+      }
     },
     {
       "title": "Maravalley convida | Masterclass para servidores públicos",
