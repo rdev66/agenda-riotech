@@ -584,9 +584,9 @@
       ],
       "descricao_completa": "English & Portuguese In COPACABANA\nAprenda inglês no ambiente descontraido da Praia do Leme. Faça amigos nativos e depois curta com eles o famoso POR DO SOL de COPACABANA num ambiente relaxado de HAPPY HOUR.\n#MAKE FRIENDS AND LEARN PORTUGUESE in a friendly beachfront bar. Enjoy the FAMOUS COPACABANA BEACH SUNSET in a relaxed HAPPY HOUR atmosphere.\n.#CONECTANDO MUNDOS: Membros do nosso grupo podem conectar por Zoom ou Whatsapp com alunos na California procurando amigos no Brasil para trocar dicas de inglês e português. Quem sabe? Você pode visitar os EUA e ter amigos para te mostrar o caminho. Ou eles podem vir ao Rio curtir a cidade com a sua ajuda. Só para membros dos grupos do Leme e da California. ONLY for group members.\n#BONS VIZINHOS PODEM ATÉ PULAR MUROS!\n#GOOD NEIGHBORS CAN JUMP WALLS!\n#EM DIAS DE CHUVA OU MUITO VENTO A REUNIÃO SERÁ CANCELADA\n#MEETINGS ARE CANCELLED ON DAYS OF HIGH WIND OR RAIN.",
       "resumo": {
-        "pt": "Encontro de troca de idiomas (inglês e português) em um bar na Praia do Leme, Copacabana, com happy hour e pôr do sol. Para quem quer praticar idiomas e fazer amigos; em dias de chuva ou muito vento a reunião é cancelada.",
-        "en": "Language exchange meetup for English and Portuguese at a beachfront bar on Leme Beach, Copacabana, with happy hour and sunset. For people who want to practice languages and make friends; meetings are cancelled on rainy or very windy days.",
-        "es": "Encuentro de intercambio de idiomas (inglés y portugués) en un bar frente a la playa de Leme, Copacabana, con happy hour y atardecer. Para quienes quieren practicar idiomas y hacer amigos; se cancela los días de lluvia o viento fuerte."
+        "pt": "Encontro de troca de idiomas (inglês e português) num bar na Praia do Leme, em Copacabana, com happy hour e pôr do sol na praia. Os encontros são cancelados em dias de chuva ou muito vento.",
+        "en": "Language exchange meetup for English and Portuguese at a beachfront bar on Leme Beach, Copacabana, with happy hour and sunset viewing. Meetings are cancelled on rainy or very windy days.",
+        "es": "Encuentro de intercambio de idiomas (inglés y portugués) en un bar frente a la playa del Leme, en Copacabana, con happy hour y puesta de sol. Las reuniones se cancelan los días de lluvia o viento fuerte."
       }
     },
     {
@@ -1797,9 +1797,9 @@
       ],
       "descricao_completa": "Mundo Lingo Rio de Janeiro\n100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free.\n\n🟢 The Flags\nPlace flags on your chest from top to bottom according to fluency. We offer flags from 200+ places.\n\n🟢 Stand to mingle, sit to dwindle!\n\n🗣 Talk about anything you like. You don't have to be an advanced speaker - it's open to everyone!\n\n🛎 Reception 7 - 10pm\nNot obligatory, but arrive at this time if you’re new or want those drinks specials.\n\nConnect with us 👉 mundolingo.org",
       "resumo": {
-        "pt": "Encontro semanal no Rio de Janeiro (Botafogo/Humaitá) para conversar e socializar entre pessoas de diversas nacionalidades e idades, em inglês ou outros idiomas. É gratuito, aberto a todos os níveis, com recepção das 19h às 22h.",
-        "en": "Weekly meetup in Rio de Janeiro (Botafogo/Humaitá) for socialising and chatting with people of all ages and nationalities, in English or other languages. It's free, open to all levels, with reception from 7 to 10pm.",
-        "es": "Encuentro semanal en Río de Janeiro (Botafogo/Humaitá) para socializar y charlar con personas de todas las edades y nacionalidades, en inglés u otros idiomas. Es gratuito, abierto a todos los niveles, con recepción de 19 a 22 h."
+        "pt": "Encontro semanal no Rio de Janeiro (Botafogo/Humaitá) em que pessoas de vários países se reúnem para socializar, tomar uma bebida e conversar em idiomas diferentes. Aberto a todos, de qualquer nível, sem custo; a recepção é das 19h às 22h.",
+        "en": "Weekly meetup in Rio de Janeiro (Botafogo/Humaitá) where people from around the world socialise, have a drink and talk in different languages. Open to all levels and free; reception runs 7–10pm.",
+        "es": "Encuentro semanal en Río de Janeiro (Botafogo/Humaitá) donde personas de todo el mundo socializan, toman algo y conversan en distintos idiomas. Abierto a todos los niveles y gratuito; la recepción es de 19 a 22 h."
       }
     },
     {
@@ -2009,7 +2009,12 @@
           "data": "2026-11-23"
         }
       ],
-      "descricao_completa": "Arte Viva Atelier\nO Suco da Luz do Sol é o carro chefe do Arte Viva Atelier.\n\nÉ o Suco da Luz do Sol que possibilita um processo mais rápido de regeneração celular, desintoxicação e biogênese.\n\nNa Oficina do Suco da Luz do Sol aprendemos uma forma prática e rápida de preparar este suco que está revolucionando a alimentação mais saudável."
+      "descricao_completa": "Arte Viva Atelier\nO Suco da Luz do Sol é o carro chefe do Arte Viva Atelier.\n\nÉ o Suco da Luz do Sol que possibilita um processo mais rápido de regeneração celular, desintoxicação e biogênese.\n\nNa Oficina do Suco da Luz do Sol aprendemos uma forma prática e rápida de preparar este suco que está revolucionando a alimentação mais saudável.",
+      "resumo": {
+        "pt": "Oficina prática do Arte Viva Atelier para aprender a preparar o Suco da Luz do Sol, descrito como uma forma rápida de fazer esse suco para uma alimentação mais saudável. O texto não informa data, local, preço nem público específico.",
+        "en": "Hands-on workshop by Arte Viva Atelier where participants learn a quick, practical way to prepare the Suco da Luz do Sol, a juice presented as part of a healthier diet. The text gives no date, venue, price or specific audience.",
+        "es": "Taller práctico del Arte Viva Atelier para aprender a preparar el Suco da Luz do Sol, presentado como una forma rápida de hacer este jugo para una alimentación más saludable. El texto no indica fecha, lugar, precio ni público específico."
+      }
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -2050,7 +2055,12 @@
           "data": "2026-11-22"
         }
       ],
-      "descricao_completa": "Mundo Lingo Rio de Janeiro\n100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free.\n\n🟢 The Flags\nPlace flags on your chest from top to bottom according to fluency. We offer flags from 200+ places.\n\n🟢 Stand to mingle, sit to dwindle!\n\n🗣 Talk about anything you like. You don't have to be an advanced speaker - it's open to everyone!\n\n🛎 Reception 7 - 10pm\nNot obligatory, but arrive at this time if you’re new or want those drinks specials.\n\nConnect with us 👉 mundolingo.org"
+      "descricao_completa": "Mundo Lingo Rio de Janeiro\n100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free.\n\n🟢 The Flags\nPlace flags on your chest from top to bottom according to fluency. We offer flags from 200+ places.\n\n🟢 Stand to mingle, sit to dwindle!\n\n🗣 Talk about anything you like. You don't have to be an advanced speaker - it's open to everyone!\n\n🛎 Reception 7 - 10pm\nNot obligatory, but arrive at this time if you’re new or want those drinks specials.\n\nConnect with us 👉 mundolingo.org",
+      "resumo": {
+        "pt": "Encontro semanal no Rio de Janeiro (Botafogo/Humaitá) em que pessoas de vários países se reúnem para conversar e socializar, em inglês ou outros idiomas. É aberto a todos, inclusive iniciantes, e gratuito, com recepção das 19h às 22h.",
+        "en": "Weekly meetup in Rio de Janeiro (Botafogo/Humaitá) where people from many countries socialise and chat, in English or other languages. Open to all levels, free, with reception from 7 to 10pm.",
+        "es": "Encuentro semanal en Río de Janeiro (Botafogo/Humaitá) donde personas de muchos países se reúnen a conversar y socializar, en inglés u otros idiomas. Abierto a todos los niveles, gratuito, con recepción de 19h a 22h."
+      }
     },
     {
       "title": "Primeiro encontro de apresentação ",
@@ -2130,7 +2140,12 @@
           "data": "2026-11-22"
         }
       ],
-      "descricao_completa": "Mundo Lingo Rio de Janeiro\n100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free.\n\n🟢 The Flags\nPlace flags on your chest from top to bottom according to fluency. We offer flags from 200+ places.\n\n🟢 Stand to mingle, sit to dwindle!\n🗣 Talk about anything you like. You don't have to be an advanced speaker - it's open to everyone!\n\n🛎 Reception 7 - 10pm\nNot obligatory, but arrive at this time if you’re new or want those drinks specials.\n\nConnect with us 👉 mundolingo.org"
+      "descricao_completa": "Mundo Lingo Rio de Janeiro\n100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free.\n\n🟢 The Flags\nPlace flags on your chest from top to bottom according to fluency. We offer flags from 200+ places.\n\n🟢 Stand to mingle, sit to dwindle!\n🗣 Talk about anything you like. You don't have to be an advanced speaker - it's open to everyone!\n\n🛎 Reception 7 - 10pm\nNot obligatory, but arrive at this time if you’re new or want those drinks specials.\n\nConnect with us 👉 mundolingo.org",
+      "resumo": {
+        "pt": "Encontro semanal do Mundo Lingo no Rio de Janeiro, em Botafogo, para socializar e praticar idiomas com pessoas de vários países e de todas as idades. É gratuito, aberto a todos os níveis de fluência, e a recepção acontece das 19h às 22h.",
+        "en": "Weekly Mundo Lingo meetup in Botafogo, Rio de Janeiro, where people from many countries and all ages socialise and practise languages. It is free and open to all fluency levels; reception runs 7–10pm.",
+        "es": "Encuentro semanal de Mundo Lingo en Botafogo, Río de Janeiro, para socializar y practicar idiomas con personas de muchos países y de todas las edades. Es gratuito y abierto a todos los niveles; la recepción es de 19:00 a 22:00."
+      }
     },
     {
       "title": "Founders Running Club :: Rio de Janeiro",
@@ -2296,9 +2311,9 @@
       ],
       "descricao_completa": "Rio de Janeiro Yoga Meetup\n*Beginners welcome to New Year's Eve- Online Meditation with Sahaja Yoga Meditation. Learn, practice and unwind with Sahaja Yoga Meditation*\n\n### About this Event\n\nLife can be joyous when you are with people like you- spiritual and seekers of peace and higher purpose in life.\nSo join the New Year's Eve meditation session to learn and practice meditation, and also unwind with some socialization towards the end of the session with fellow meditation practitioners and learners.\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n**How to join?**\n[https://us02web.zoom.us/j/2121217171](https://us02web.zoom.us/j/2121217171)\nor\nZoom app code: 2121217171\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n**What happens in this session?**\n\n* Guided meditation to awaken the healing energy within us to make us thoughtless\n* Experience sharing\n* Live meditation music performance\n* Social chit chat to reflect on the year 2026\n\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n**What's Next?**\nWe will have a free 21-day meditation course starting Saturday, 23rd January 2027. You are welcome to join that. More details to be provided during the New Year's Eve meditation session\n\nSahaja Yoga is a social meditation, and we love to talk about life, its ups and downs, the purpose of life, health & alternatives, or anything you would like to talk about that could enrich your life.\n\nWhatsApp either of the below when you like to talk or chat, and they will respond with suggested day/time.\nBhargava.potukuchi@gmail.com (Dallas)\n+15132038961\nApurva.puranik@gmail.com (Miami)\n+15618666331\nStay safe, and keep meditating!\n++++++++++++++++++++++++++++++++++++++++++++++++++++\nWhat if I want to have an early introduction?\nWe also have one-to-one and small group sessions every Saturday at 9:45 AM ET New York/8:45 AM Central/6:45 AM Pacific. If you'd like to get introduced early and not wait for 31st December. Zoom link to join: https://zoom.us/j/9181716151. Or join using Zoom id: 9181716151",
       "resumo": {
-        "pt": "Sessão online de meditação de Ano Novo com a Sahaja Yoga Meditation, aberta a iniciantes, pelo Zoom. Inclui meditação guiada, partilha de experiências, música ao vivo e um momento de convívio para refletir sobre 2026.",
-        "en": "Online New Year's Eve meditation session with Sahaja Yoga Meditation, open to beginners, held on Zoom. It includes guided meditation, experience sharing, live meditation music and a social time to reflect on 2026.",
-        "es": "Sesión de meditación online de Nochevieja con Sahaja Yoga Meditation, abierta a principiantes, por Zoom. Incluye meditación guiada, intercambio de experiencias, música en vivo y un rato social para reflexionar sobre 2026."
+        "pt": "Sessão online de meditação de Réveillon com Sahaja Yoga, para iniciantes e praticantes, com meditação guiada, partilha de experiências, música ao vivo e conversa social no fim. Acontece pelo Zoom.",
+        "en": "Online New Year's Eve meditation session with Sahaja Yoga, open to beginners and practitioners, with guided meditation, experience sharing, live music and social chat at the end. Held on Zoom.",
+        "es": "Sesión de meditación en línea en Nochevieja con Sahaja Yoga, abierta a principiantes y practicantes, con meditación guiada, intercambio de experiencias, música en vivo y charla social al final. Se realiza por Zoom."
       }
     },
     {
