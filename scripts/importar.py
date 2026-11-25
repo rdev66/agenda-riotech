@@ -713,6 +713,17 @@ def first(x):
     return x
 
 
+# Hosts que publicam offers.price = 0 em evento pago. Preço 0 ali não quer dizer grátis;
+# o texto da descrição ainda pode marcar «grátis» ou «a partir de R$».
+PRECO_ZERO_SEM_VALOR = {"agendaculturalriodejaneiro.com"}
+
+
+def _texto_limpo(valor) -> str:
+    """Tira entidade HTML, inclusive a que chega com «&» codificado como %26."""
+    texto = str(valor or "").replace("%26", "&")
+    return html.unescape(html.unescape(texto)).strip()
+
+
 def from_jsonld(ld: dict, url: str, meta: dict, agenda: str = "tech") -> dict:
     loc = first(ld.get("location")) or {}
     venue = address = city = None
@@ -743,6 +754,8 @@ def from_jsonld(ld: dict, url: str, meta: dict, agenda: str = "tech") -> dict:
         price_f = float(price) if price not in (None, "") else None
     except (TypeError, ValueError):
         price_f = None
+    if price_f == 0 and _host(url) in PRECO_ZERO_SEM_VALOR:
+        price_f = None
     if price_f == 0:
         cost = {"type": "gratis", "text": "Grátis"}
         reg = "inscricao"
@@ -765,7 +778,7 @@ def from_jsonld(ld: dict, url: str, meta: dict, agenda: str = "tech") -> dict:
         proprio_ld = proprio_ld[0] if proprio_ld else ""
     # A meta da listagem não descreve cada evento. Só vale na página do próprio rolê.
     mesmo_pagina = not proprio_ld or clean_url(str(proprio_ld)) == clean_url(url)
-    title = html.unescape(ld.get("name") or (meta.get("og:title") if mesmo_pagina else "") or "").strip()
+    title = _texto_limpo(ld.get("name") or (meta.get("og:title") if mesmo_pagina else "") or "")
     desc_bruta = ld.get("description") or (meta.get("og:description") if mesmo_pagina else None)
     cheia, curta, desc = preparar_descricao(desc_bruta)
     start = to_iso(ld.get("startDate"))
@@ -1613,6 +1626,8 @@ def _completar_campos(base: dict, extra: dict) -> bool:
         if k in _NAO_COPIA or v in (None, "", [], {}):
             continue
         if base.get(k) in (None, "", [], {}):
+            if k == "end" and base.get("start") and str(v) <= str(base["start"]):
+                continue
             base[k] = v
             mudou = True
     return mudou

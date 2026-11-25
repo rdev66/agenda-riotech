@@ -196,3 +196,25 @@ class TestShows(__import__("unittest").TestCase):
         self.assertIn("festival-musica", importar.classificar_roles("Rio Blues Festival")[0])
         self.assertEqual(importar.classificar_roles("Festival de cinema do Rio")[1], "cinema")
         self.assertNotIn("shows", importar.classificar_roles("city tour pelo centro")[0])
+
+
+class TestAgendaCultural(__import__("unittest").TestCase):
+    def test_preco_zero_e_titulo(self):
+        import importar
+        ld = {"@type": "Event", "name": "Tom Ribeira lança o EP %26#8220;Vovóvovô’’", "startDate": "2026-12-11T18:00:00-03:00",
+              "url": "https://agendaculturalriodejaneiro.com/events/tom-ribeira/", "offers": {"price": "0"},
+              "location": {"name": "Galpão Ladeira das Artes"}}
+        ev = importar.from_jsonld(ld, "https://agendaculturalriodejaneiro.com/shows-rio-de-janeiro-musica-concertos/", {}, agenda="roles")
+        self.assertEqual(ev["title"], "Tom Ribeira lança o EP “Vovóvovô’’")
+        self.assertNotEqual(ev["cost"]["type"], "gratis")
+        ld["description"] = "Entrada gratuita, sem reserva."
+        ev = importar.from_jsonld(ld, "https://agendaculturalriodejaneiro.com/x/", {}, agenda="roles")
+        self.assertEqual(ev["cost"]["type"], "gratis")
+
+    def test_completar_nao_poe_fim_antes_do_inicio(self):
+        import importar
+        base = {"start": "2026-11-29T17:00:00-03:00"}
+        importar._completar_campos(base, {"end": "2026-11-29T17:00:00-03:00"})
+        self.assertNotIn("end", base)
+        importar._completar_campos(base, {"end": "2026-11-29T23:00:00-03:00"})
+        self.assertEqual(base["end"], "2026-11-29T23:00:00-03:00")
