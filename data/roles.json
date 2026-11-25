@@ -872,6 +872,7 @@
         "en": "Outdoor blues festival on the Aterro, Sat and Sun (28–29). Times and price TBC."
       },
       "tags": [
+        "festival-musica",
         "shows"
       ],
       "status": "confirmado",
@@ -1166,6 +1167,7 @@
         "en": "Festival opening: 7pm Vanessa da Mata, 9pm Maria Bethânia, 11pm Alceu Valença."
       },
       "tags": [
+        "festival-musica",
         "shows"
       ],
       "status": "confirmado",
@@ -1382,6 +1384,7 @@
         "en": "Samba and pagode night: 5pm Ferrugem, 7pm Péricles, 9pm Alexandre Pires."
       },
       "tags": [
+        "festival-musica",
         "pagode",
         "shows"
       ],
@@ -1955,6 +1958,7 @@
         "en": "Romantic night: 7pm Paulo Ricardo, 9pm Fábio Jr., 11pm Roupa Nova."
       },
       "tags": [
+        "festival-musica",
         "rock",
         "shows"
       ],
@@ -1999,6 +2003,7 @@
         "en": "Festival closing with Pepeu Gomes, Os Paralamas do Sucesso and Caetano Veloso."
       },
       "tags": [
+        "festival-musica",
         "shows"
       ],
       "status": "confirmado",
@@ -2928,6 +2933,51 @@
         "en": "\"Vivo Social Clube\" at Arte Viva Atelier, with music, dance and poetry, paired with flavors and knowledge from Arte Viva Gourmet. It aims to encourage play, self-discovery and fun, with multimedia content that sparks creativity.",
         "es": "\"Vivo Social Clube\" en Arte Viva Atelier, con música, danza y poesía, junto a sabores y saberes de Arte Viva Gourmet. Busca fomentar el juego, el autoconocimiento y la diversión, con contenido multimedia que estimula la creatividad."
       }
+    },
+    {
+      "title": "Réveillon de Copacabana — Djavan, Simone Mendes, Xande de Pilares + Revelação, Pedro Sampaio",
+      "start": "2026-12-31T20:00:00-03:00",
+      "time_known": false,
+      "venue": "Praia de Copacabana — Palco Rio",
+      "address": "Av. Atlântica",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://sbtnews.sbt.com.br/noticia/brasil/reveillon-no-rio-tera-djavan-simone-mendes-e-pedro-sampaio",
+      "image": null,
+      "organizer": "Prefeitura do Rio",
+      "description": {
+        "pt": "Virada para 2027 na praia: Djavan, Simone Mendes, Xande de Pilares com Grupo Revelação, Pedro Sampaio, DJ JP e Viradouro no Palco Rio. 13 palcos na cidade e 12 minutos de fogos. Horários a confirmar.",
+        "en": "New Year's Eve on the beach: Djavan, Simone Mendes, Xande de Pilares with Revelação, Pedro Sampaio, DJ JP and Viradouro on the main stage. 13 stages citywide, 12 minutes of fireworks. Times TBC."
+      },
+      "tags": [
+        "festival-musica",
+        "festa-popular",
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Copacabana",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-12-31-reveillon-de-copacabana",
+      "added": "2026-11-25",
+      "urls": [
+        "https://sbtnews.sbt.com.br/noticia/brasil/reveillon-no-rio-tera-djavan-simone-mendes-e-pedro-sampaio"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
     },
     {
       "title": "☮️Let's Meditate New Year Eve. Celebrate within ❤️",

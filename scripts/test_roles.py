@@ -186,3 +186,13 @@ class TestRoles(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestShows(__import__("unittest").TestCase):
+    def test_shows_e_festivais(self):
+        import importar
+        self.assertEqual(importar.classificar_roles("Show do Seal no Qualistage"), (["shows"], "shows"))
+        self.assertEqual(importar.classificar_roles("Rio Blues Festival")[1], "shows")
+        self.assertIn("festival-musica", importar.classificar_roles("Rio Blues Festival")[0])
+        self.assertEqual(importar.classificar_roles("Festival de cinema do Rio")[1], "cinema")
+        self.assertNotIn("shows", importar.classificar_roles("city tour pelo centro")[0])
