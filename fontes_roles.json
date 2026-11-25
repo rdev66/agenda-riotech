@@ -90,7 +90,9 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "comunidades",
-      "tags": ["idiomas"],
+      "tags": [
+        "idiomas"
+      ],
       "idioma": "multi",
       "nota": "iCal público. O robots.txt não bloqueia /events/ical/ (o Disallow: / é só do GPTBot). O ToS proíbe screen scraping de HTML, então o importador não abre a página do grupo: só o feed de calendário. O site mundolingo.org fica de fora porque o ToS proíbe data harvesting."
     },
@@ -102,7 +104,9 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "ao-ar-livre",
-      "tags": ["corrida"],
+      "tags": [
+        "corrida"
+      ],
       "nota": "iCal público. Corridas presenciais no Rio."
     },
     {
@@ -113,7 +117,9 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "comunidades",
-      "tags": ["idiomas"],
+      "tags": [
+        "idiomas"
+      ],
       "idioma": "en",
       "nota": "iCal público. Prática de inglês presencial."
     },
@@ -125,7 +131,9 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "comunidades",
-      "tags": ["idiomas"],
+      "tags": [
+        "idiomas"
+      ],
       "idioma": "multi",
       "nota": "iCal público. Intercâmbio de idiomas em Leme."
     },
@@ -137,7 +145,9 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "ao-ar-livre",
-      "tags": ["corrida"],
+      "tags": [
+        "corrida"
+      ],
       "nota": "iCal público. Corrida de founders no Rio."
     },
     {
@@ -148,7 +158,10 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "cultura",
-      "tags": ["passeios", "gastronomia"],
+      "tags": [
+        "passeios",
+        "gastronomia"
+      ],
       "nota": "iCal público. Passeios gastronômicos e históricos."
     },
     {
@@ -159,7 +172,9 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "ao-ar-livre",
-      "tags": ["bem-estar"],
+      "tags": [
+        "bem-estar"
+      ],
       "nota": "iCal público. Muitos encontros online/meditação virtual: o importador descarta formato online."
     },
     {
@@ -170,7 +185,10 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "cultura",
-      "tags": ["arte", "oficinas"],
+      "tags": [
+        "arte",
+        "oficinas"
+      ],
       "nota": "iCal público. Oficinas e encontros de arte."
     },
     {
@@ -181,7 +199,9 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "comunidades",
-      "tags": ["leitura"],
+      "tags": [
+        "leitura"
+      ],
       "nota": "iCal público. Encontros «virtuais» caem no filtro online."
     },
     {
@@ -192,7 +212,9 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "comunidades",
-      "tags": ["idiomas"],
+      "tags": [
+        "idiomas"
+      ],
       "idioma": "multi",
       "nota": "iCal público. Conversas no Telegram/online são descartadas pelo filtro presencial."
     },
@@ -222,7 +244,9 @@
       "ativo": true,
       "metodo": "ical",
       "categoria": "comunidades",
-      "tags": ["jogos-tabuleiro"],
+      "tags": [
+        "jogos-tabuleiro"
+      ],
       "nota": "iCal público, sem eventos futuros no momento da verificação. Niterói entra na região metropolitana."
     },
     {
@@ -314,6 +338,60 @@
       "ativo": false,
       "metodo": "manual",
       "nota": "Comunidade só para membros. Não importar. Quem for membro cola o link da página do encontro na issue «Sugerir um evento», com a agenda Rolês."
+    },
+    {
+      "id": "agendacultural:shows",
+      "nome": "Agenda Cultural RJ — Shows",
+      "tipo": "jsonld",
+      "url": "https://agendaculturalriodejaneiro.com/shows-rio-de-janeiro-musica-concertos/",
+      "ativo": true,
+      "metodo": "jsonld",
+      "nota": "Agregador WordPress (agendaculturalriodejaneiro.com). Meta robots «index, follow»; o rodapé diz «Todos os direitos reservados» e aponta «Direitos autorais e remoção» para o contato, sem proibir leitura automática. As listagens trazem schema.org/Event em JSON-LD (startDate, offers, link da bilheteria oficial na descrição). Sugerida por Jaime em 25/11/2026. Se o robots.txt bloquear, o importador pula sozinho."
+    },
+    {
+      "id": "agendacultural:gratuitos",
+      "nome": "Agenda Cultural RJ — Grátis",
+      "tipo": "jsonld",
+      "url": "https://agendaculturalriodejaneiro.com/eventos-gratuitos-rio-de-janeiro/",
+      "ativo": true,
+      "metodo": "jsonld",
+      "nota": "Agregador WordPress (agendaculturalriodejaneiro.com). Meta robots «index, follow»; o rodapé diz «Todos os direitos reservados» e aponta «Direitos autorais e remoção» para o contato, sem proibir leitura automática. As listagens trazem schema.org/Event em JSON-LD (startDate, offers, link da bilheteria oficial na descrição). Sugerida por Jaime em 25/11/2026. Se o robots.txt bloquear, o importador pula sozinho."
+    },
+    {
+      "id": "agendacultural:fim-de-semana",
+      "nome": "Agenda Cultural RJ — Fim de semana",
+      "tipo": "jsonld",
+      "url": "https://agendaculturalriodejaneiro.com/final-de-semana-no-rio-de-janeiro/",
+      "ativo": true,
+      "metodo": "jsonld",
+      "nota": "Agregador WordPress (agendaculturalriodejaneiro.com). Meta robots «index, follow»; o rodapé diz «Todos os direitos reservados» e aponta «Direitos autorais e remoção» para o contato, sem proibir leitura automática. As listagens trazem schema.org/Event em JSON-LD (startDate, offers, link da bilheteria oficial na descrição). Sugerida por Jaime em 25/11/2026. Se o robots.txt bloquear, o importador pula sozinho."
+    },
+    {
+      "id": "agendacultural:marina-da-gloria",
+      "nome": "Agenda Cultural RJ — Marina da Glória",
+      "tipo": "jsonld",
+      "url": "https://agendaculturalriodejaneiro.com/agenda-marina-da-gloria-rj/",
+      "ativo": true,
+      "metodo": "jsonld",
+      "nota": "Agregador WordPress (agendaculturalriodejaneiro.com). Meta robots «index, follow»; o rodapé diz «Todos os direitos reservados» e aponta «Direitos autorais e remoção» para o contato, sem proibir leitura automática. As listagens trazem schema.org/Event em JSON-LD (startDate, offers, link da bilheteria oficial na descrição). Sugerida por Jaime em 25/11/2026. Se o robots.txt bloquear, o importador pula sozinho."
+    },
+    {
+      "id": "agendacultural:circo-voador",
+      "nome": "Agenda Cultural RJ — Circo Voador",
+      "tipo": "jsonld",
+      "url": "https://agendaculturalriodejaneiro.com/agenda-circo-voador-rj/",
+      "ativo": true,
+      "metodo": "jsonld",
+      "nota": "Agregador WordPress (agendaculturalriodejaneiro.com). Meta robots «index, follow»; o rodapé diz «Todos os direitos reservados» e aponta «Direitos autorais e remoção» para o contato, sem proibir leitura automática. As listagens trazem schema.org/Event em JSON-LD (startDate, offers, link da bilheteria oficial na descrição). Sugerida por Jaime em 25/11/2026. Se o robots.txt bloquear, o importador pula sozinho."
+    },
+    {
+      "id": "agendacultural:qualistage",
+      "nome": "Agenda Cultural RJ — Qualistage",
+      "tipo": "jsonld",
+      "url": "https://agendaculturalriodejaneiro.com/agenda-qualistage-2/",
+      "ativo": true,
+      "metodo": "jsonld",
+      "nota": "Agregador WordPress (agendaculturalriodejaneiro.com). Meta robots «index, follow»; o rodapé diz «Todos os direitos reservados» e aponta «Direitos autorais e remoção» para o contato, sem proibir leitura automática. As listagens trazem schema.org/Event em JSON-LD (startDate, offers, link da bilheteria oficial na descrição). Sugerida por Jaime em 25/11/2026. Se o robots.txt bloquear, o importador pula sozinho."
     }
   ]
 }
