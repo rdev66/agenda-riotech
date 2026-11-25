@@ -6379,7 +6379,12 @@
           "via": "whatsapp",
           "data": "2026-11-11"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Encontro FaithTech Rio de Janeiro, um almoço de encerramento do ano em novembro, em Niterói, para celebrar as conquistas de 2026 e agradecer pela caminhada até aqui.",
+        "en": "FaithTech Rio de Janeiro Meeting, a year-end lunch in November in Niterói, to celebrate what happened in 2026 and give thanks for the journey so far.",
+        "es": "Encuentro FaithTech Río de Janeiro, un almuerzo de cierre de año en noviembre, en Niterói, para celebrar lo ocurrido en 2026 y agradecer el camino recorrido."
+      }
     },
     {
       "title": "SPRINT Robotics Latin America Summit 2026",
