@@ -218,3 +218,178 @@ class TestAgendaCultural(__import__("unittest").TestCase):
         self.assertNotIn("end", base)
         importar._completar_campos(base, {"end": "2026-11-29T23:00:00-03:00"})
         self.assertEqual(base["end"], "2026-11-29T23:00:00-03:00")
+
+
+class TestAgendaCulturalRegras(unittest.TestCase):
+    """Preço, duplicata e exposição só na fonte agendacultural:*."""
+
+    @classmethod
+    def setUpClass(cls):
+        page = (FIX / "agendacultural_lista.html").read_text(encoding="utf-8")
+        cls.por_nome = {
+            ev["title"]: ev
+            for ev in importar.events_from_page(
+                page, "https://agendaculturalriodejaneiro.com/shows-rio-de-janeiro-musica-concertos/", "roles"
+            )
+        }
+
+    def test_preco_no_fixture(self):
+        pago = self.por_nome["Seal no Qualistage"]
+        self.assertEqual(pago["cost"], {"type": "pago", "text": "A partir de R$ 297,50"})
+        self.assertEqual(pago["registration"], "ingresso")
+        porta = self.por_nome["Noite na porta"]
+        self.assertEqual(porta["cost"], {"type": "pago", "text": "R$ 80"})
+        self.assertEqual(porta["registration"], "ingresso")
+        faixa = self.por_nome["Turnê com meia-entrada"]
+        self.assertEqual(faixa["cost"]["type"], "pago")
+        self.assertEqual(
+            faixa["cost"]["text"],
+            "Meia-entrada entre R$ 100 e R$ 180; inteira entre R$ 200 e R$ 360",
+        )
+        self.assertEqual(self.por_nome["Roda na praça"]["cost"], {"type": "gratis", "text": "Grátis"})
+        self.assertEqual(self.por_nome["Roda na praça"]["registration"], "livre")
+        franca = self.por_nome["Abolicionistas no museu"]
+        self.assertEqual(franca["cost"]["type"], "gratis")
+        queen = self.por_nome["Queen e Beatles"]
+        self.assertEqual(queen["cost"], {"type": "pago", "text": "A partir de R$ 51,50"})
+        self.assertNotEqual(queen["cost"]["type"], "gratis")
+        sem = self.por_nome["Break Free sem preço"]
+        self.assertEqual(sem["cost"], {"type": "desconhecido", "text": None})
+
+    def test_exposicao_sai_de_cinema_mostra_de_cinema_fica(self):
+        franca = self.por_nome["Abolicionistas no museu"]
+        self.assertEqual(franca["categoria"], "cultura")
+        self.assertIn("exposicoes", franca["tags"])
+        self.assertNotIn("mostras", franca["tags"])
+        galeria = self.por_nome["Mostra na galeria"]
+        self.assertEqual(galeria["categoria"], "cultura")
+        self.assertEqual(galeria["tags"], ["exposicoes"])
+        cinema = self.por_nome["Mostra de cinema no museu"]
+        self.assertEqual(cinema["categoria"], "cinema")
+        self.assertIn("festivais", cinema["tags"])
+
+    def test_outra_fonte_nao_pega_preco_nem_categoria(self):
+        page = """<script type="application/ld+json">{"@type":"Event","name":"Mostra no museu",
+            "startDate":"2030-06-01T18:00:00-03:00","url":"https://exemplo.org/mostra",
+            "description":"Mostra no museu. Ingressos: A partir de R$ 40. Entrada franca não, é pago."}
+            </script>"""
+        ev = importar.events_from_page(page, "https://exemplo.org/mostra", "roles")[0]
+        self.assertEqual(ev["categoria"], "cinema")
+        self.assertNotEqual(ev["cost"]["type"], "pago")
+        ev["fonte"] = "meetup:rio"
+        self.assertFalse(importar.aplicar_agendacultural(ev))
+        self.assertEqual(ev["categoria"], "cinema")
+        self.assertNotEqual(ev["cost"]["type"], "pago")
+        ev["fonte"] = "agendacultural:gratuitos"
+        self.assertTrue(importar.aplicar_agendacultural(ev))
+        self.assertEqual(ev["categoria"], "cultura")
+        self.assertEqual(ev["cost"], {"type": "pago", "text": "A partir de R$ 40"})
+        self.assertIn("exposicoes", ev["tags"])
+        self.assertNotIn("mostras", ev["tags"])
+
+    def test_jazz_room_e_baile_viram_um(self):
+        jazz_a = {
+            "title": "The Jazz Room celebra Frank Sinatra e Louis Armstrong em noite intimista no Teatro Rival",
+            "start": "2026-12-04",
+            "venue": "Teatro Rival Petrobras",
+            "url": "https://agendaculturalriodejaneiro.com/events/jazz-a",
+            "format": "presencial", "fonte": "agendacultural:shows",
+            "cost": {"type": "desconhecido", "text": None}, "registration": "inscricao",
+            "tags": ["shows"], "categoria": "shows",
+        }
+        jazz_b = {
+            "title": "The Jazz Room: Um Tributo a Frank Sinatra e Louis Armstrong no TEATRO RIVAL PETROBRAS",
+            "start": "2026-12-04T19:30:00-03:00", "time_known": True,
+            "venue": "Teatro Rival Petrobras",
+            "url": "https://agendaculturalriodejaneiro.com/events/jazz-b",
+            "format": "presencial", "fonte": "agendacultural:shows",
+            "resumo": {"pt": "Tributo."},
+            "cost": {"type": "desconhecido", "text": None}, "registration": "inscricao",
+            "tags": ["shows"], "categoria": "shows",
+        }
+        baile_a = {
+            "title": "Baile do 2A aposta em funk e pagode em locação secreta no Rio",
+            "start": "2026-12-05T22:00:00-03:00", "time_known": True,
+            "venue": "Locação secreta em Rio de Janeiro",
+            "url": "https://agendaculturalriodejaneiro.com/events/baile-a",
+            "format": "presencial", "fonte": "agendacultural:shows",
+            "cost": {"type": "desconhecido", "text": None}, "registration": "inscricao",
+            "tags": ["funk"], "categoria": "festas",
+        }
+        baile_b = {
+            "title": "Baile do 2A mistura funk e pagode em festa secreta no Rio",
+            "start": "2026-12-05T22:00:00-03:00", "time_known": True,
+            "venue": "Locação secreta em Rio de Janeiro - RJ, Brasil",
+            "url": "https://agendaculturalriodejaneiro.com/events/baile-b",
+            "format": "presencial", "fonte": "agendacultural:fim-de-semana",
+            "resumo": {"pt": "Festa secreta."},
+            "cost": {"type": "desconhecido", "text": None}, "registration": "inscricao",
+            "tags": ["funk"], "categoria": "festas",
+        }
+        self.assertTrue(importar.mesmo_agendacultural(jazz_a, jazz_b))
+        self.assertTrue(importar.mesmo_agendacultural(baile_a, baile_b))
+        juntos = importar.colapsar_agendacultural([jazz_a, jazz_b, baile_a, baile_b])
+        self.assertEqual(len(juntos), 2)
+        self.assertEqual(juntos[0]["url"], jazz_b["url"])
+        self.assertIn(jazz_a["url"], juntos[0]["urls"])
+        self.assertEqual(juntos[1]["url"], baile_b["url"])
+        self.assertIn(baile_a["url"], juntos[1]["urls"])
+        hoje = dt.date(2026, 11, 1)
+        lista = []
+        self.assertEqual(importar.merge(lista, dict(jazz_a), hoje, set(), agenda="roles"), "novo")
+        self.assertEqual(importar.merge(lista, dict(jazz_b), hoje, set(), agenda="roles"), "completado")
+        self.assertEqual(len(lista), 1)
+        self.assertIn(jazz_b["url"], lista[0].get("urls") or [])
+
+    def test_duplicata_exige_dia_lugar_e_tres_palavras(self):
+        base = {
+            "title": "Jazz Room Sinatra no Rival",
+            "start": "2030-12-04T19:00:00-03:00",
+            "venue": "Teatro Rival",
+            "url": "https://agendaculturalriodejaneiro.com/events/um",
+            "fonte": "agendacultural:shows", "format": "presencial",
+        }
+        pouco = dict(base, title="Jazz Room especial", url="https://agendaculturalriodejaneiro.com/events/dois")
+        self.assertFalse(importar.mesmo_agendacultural(base, pouco))
+        outro_dia = dict(base, start="2030-12-05T19:00:00-03:00", url="https://agendaculturalriodejaneiro.com/events/tres")
+        self.assertFalse(importar.mesmo_agendacultural(base, outro_dia))
+        outro_lugar = dict(base, venue="Circo Voador", url="https://agendaculturalriodejaneiro.com/events/quatro")
+        self.assertFalse(importar.mesmo_agendacultural(base, outro_lugar))
+        sem_lugar = dict(base, venue="", url="https://agendaculturalriodejaneiro.com/events/cinco")
+        self.assertTrue(importar.mesmo_agendacultural(base, sem_lugar))
+        meetup = dict(base, fonte="meetup:rio", url="https://www.meetup.com/events/1")
+        copia = dict(base, url="https://www.meetup.com/events/2")
+        self.assertFalse(importar.mesmo_agendacultural(meetup, copia))
+        self.assertEqual(len(importar.colapsar_agendacultural([meetup, copia])), 2)
+
+    def test_nao_descarta_presencial_nem_passado(self):
+        passado = {
+            "title": "Exposição antiga no museu da cidade",
+            "start": "2024-12-19T10:00:00-03:00",
+            "venue": "Cidade das Artes",
+            "url": "https://agendaculturalriodejaneiro.com/events/antiga",
+            "format": "presencial", "fonte": "agendacultural:gratuitos",
+            "cost": {"type": "desconhecido", "text": None}, "registration": "inscricao",
+            "tags": ["exposicoes"], "categoria": "cultura", "city": "Rio de Janeiro",
+        }
+        futuro = {
+            "title": "Outro rolê bem diferente na lapa",
+            "start": "2030-12-01T20:00:00-03:00",
+            "venue": "Lapa 40 Graus",
+            "url": "https://agendaculturalriodejaneiro.com/events/outro",
+            "format": "presencial", "fonte": "agendacultural:shows",
+            "cost": {"type": "desconhecido", "text": None}, "registration": "inscricao",
+            "tags": ["shows"], "categoria": "shows", "city": "Rio de Janeiro",
+        }
+        self.assertEqual(len(importar.colapsar_agendacultural([dict(passado), dict(futuro)])), 2)
+        hoje = dt.date(2026, 11, 25)
+        self.assertEqual(importar.merge([], dict(passado), hoje, set(), agenda="roles"), "passado")
+        guardados = []
+        self.assertEqual(
+            importar.merge(guardados, dict(passado), hoje, set(), historico=True, agenda="roles"),
+            "novo",
+        )
+        self.assertEqual(len(guardados), 1)
+        self.assertEqual(guardados[0]["format"], "presencial")
+        online = dict(futuro, format="online", url="https://agendaculturalriodejaneiro.com/events/online")
+        self.assertEqual(importar.merge([], online, hoje, set(), agenda="roles"), "online")

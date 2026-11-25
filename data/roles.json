@@ -52,10 +52,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "gratis",
+        "text": "Grátis"
       },
-      "registration": "inscricao",
+      "registration": "livre",
       "url": "https://agendaculturalriodejaneiro.com/events/abolicionistas-brasileiras-no-mnba",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/09/Stefany-Lima-Homenagem-a-Adelina_Credito-Hannah-Carvalho.jpg",
       "organizer": "",
@@ -63,12 +63,11 @@
         "pt": "O Museu Nacional de Belas Artes (MNBA) inaugura em 16 de setembro a exposição “Abolicionistas Brasileiras”, promovida pelo Instituto Artistas Latinas. Com curadoria de Ana Carla Soler e co-curadoria de Francela Carrera…"
       },
       "tags": [
-        "mostras",
         "exposicoes"
       ],
       "status": "confirmado",
       "descricao_completa": "O Museu Nacional de Belas Artes (MNBA) inaugura em 16 de setembro a exposição “Abolicionistas Brasileiras”, promovida pelo Instituto Artistas Latinas. Com curadoria de Ana Carla Soler e co-curadoria de Francela Carrera e Carolina Rodrigues, a mostra reúne trabalhos de 47 artistas visuais que revisitam as trajetórias de mulheres negras que marcaram a história e tiveram seus nomes silenciados ou apagados pelas narrativas oficiais. Em diálogo com pinturas do acervo da instituição, obras contemporâneas lançam novos olhares sobre personagens como Aqualtune, Anastácia, Maria Firmina dos Reis, Maria Felipa, entre outros símbolos femininos de resistência, protagonismo negro e luta por liberdade. Com entrada franca, a exposição ocupa a icônica Sala Bernardelli, agora totalmente reformada. A abertura acontece junto com a reinauguração de três espaços expositivos do museu em setembro, que passa por reformas desde 2020. O evento integra a agenda da Semana de Arte do Rio, promovida pela Secretaria Municipal de Cultura, de 16 a 27 de setembro, durante a ArtRio 2026, que, este ano, celebra sua 16ª Edição, na Marina da Glória, de 16 a 20 de setembro. Promovida pelo Instituto Artistas Latinas, “Abolicionistas Brasileiras” reúne trabalhos de artistas como Luna Bastos, Renata Felinto, Guilhermina Augusti, Lidia Lisbôa, Mônica Ventura, Aline Motta, Manuela Navas, entre outras. Ao todo, a mostra já alcançou mais de 100 mil visitantes ao longo de suas passagens pelo Museu de Arte do Rio (MAR); pelo Museu de Arte Moderna Aloísio Magalhães (MAMAM), no Recife; pela Casa da Cultura da América Latina, em Brasília; e pelo Centro Cultural São Paulo (CCSP). De volta ao Rio de Janeiro, o projeto ganha nova dimensão, incorporando obras do acervo do MNBA, como pinturas de Marcia Falcão e Maria Auxiliadora. “Abolicionistas Brasileiras” apresenta-se como a maior exposição já realizada no Brasil dedicada à produção de mulheres artistas negras, reunindo diferentes gerações, linguagens e perspectivas em torno de experiências, memórias e lutas protagonizadas por mulheres negras no país. Ao ampliar a visibilidade dessas artistas e promover o reconhecimento de suas contribuições para a produção contemporânea das artes visuais brasileiras, o projeto reafirma o compromisso do Instituto Artistas Latinas com a pesquisa, a preservação e a difusão da produção de mulheres artistas latino-americanas, consolidando a instituição como uma referência na construção de novas narrativas para a história da arte. Segundo Paulo Farias, diretor do Instituto Artistas Latinas, “Abolicionistas Brasileiras” articula passado e presente para questionar os mecanismos de apagamento produzidos pelo projeto colonial e evidenciar como essas estruturas ainda moldam as disputas de memória e representação no Brasil. “Em diferentes linguagens, as obras nos fazem refletir sobre a permanência das estruturas de raça e gênero na sociedade brasileira, propondo novas formas de compreender o passado e pensar o futuro”, explica ele. “A mostra traz uma reflexão sobre as formas de representação da mulher negra e sobre questões como o direito à memória, à moradia, ao território, à educação, elaborando visões de futuro pautadas pela liberdade, pelo cuidado, pela ancestralidade e pela construção de novos imaginários”, diz Ana Carla Soler. Para Daniela Matera do Monte Lins, diretora do MNBA, a inclusão da mostra no calendário expositivo do museu, que completa 90 anos em 2027, amplia as possibilidades de articulação entre patrimônio, história e produção artística contemporânea. “A mostra Pretagonismos abriu, a partir do acervo do MNBA, importantes caminhos para a revisão das narrativas sobre quem produz, ocupa e constrói a história da arte brasileira. Abolicionistas Brasileiras se insere nesse mesmo compromisso institucional, trazendo para o centro trajetórias e protagonismos que, por muito tempo, permaneceram à margem das narrativas oficiais”, afirma. A assinatura do projeto expográfico é de Gisele de Paula. A realização é do Instituto Artistas Latinas, que, em 2026, celebra sete anos de atuação na promoção, pesquisa e difusão da produção artística de mulheres latino-americanas. (Imagem: obra de Stefany Lima, crédito Hannah Carvalho)",
-      "categoria": "cinema",
+      "categoria": "cultura",
       "bairro": "Glória",
       "source": "Agenda Cultural RJ — Grátis",
       "fonte": "agendacultural:gratuitos",
@@ -104,13 +103,12 @@
         "pt": "Exposição “Afromayores” abre no dia 18 de setembro Primeira atividade do Instituto Cervantes em parceria com Instituto Pretos Novos, projeto audiovisual, fotográfico e de memória retorna ao Brasil no dia 18 de setembro…"
       },
       "tags": [
-        "mostras",
         "leitura",
         "exposicoes"
       ],
       "status": "confirmado",
       "descricao_completa": "Exposição “Afromayores” abre no dia 18 de setembro Primeira atividade do Instituto Cervantes em parceria com Instituto Pretos Novos, projeto audiovisual, fotográfico e de memória retorna ao Brasil no dia 18 de setembro   Dedicada às histórias de pessoas negras e afrodescendentes com mais de 65 anos vinculadas à Espanha, a exposição itinerante “Afromayores” retorna ao Brasil e será inaugurada no dia 18 de setembro, às 18h, na nova Galeria do Centro Cultural Pretos Novos, na Gamboa. O projeto audiovisual, fotográfico e de memória foi criado pela jornalista e escritora Lucía Mbomío e pelo fotógrafo e documentarista Laurent Leger Adame e reúne retratos, entrevistas e arquivos pessoais para construir uma memória plural da presença negra na sociedade espanhola. Para essa itinerância, o Instituto Cervantes do Rio está trazendo ao Brasil o músico brasileiro Batata, especialmente para a inauguração. Residente há décadas na Espanha, ele é o único carioca/brasileiro retratado na exposição. Na ocasião, haverá um sarau de música e um coquetel de gastronomia afro-brasileira. O CEDINE-PIR e a Embaixada da Espanha no Brasil também apoiam a mostra.   Sobre o projeto “Afromayores” Afromayores parte de uma constatação: durante décadas, muitas trajetórias negras permaneceram fora das narrativas dominantes sobre a memória contemporânea espanhola. Frequentemente associada a uma presença recente ou transitória, a população afrodescendente na Espanha possui, no entanto, histórias familiares, profissionais, afetivas e comunitárias construídas ao longo de décadas. Em vez de falar sobre essas pessoas, Afromayores cria um espaço para que sejam elas próprias a contar as suas próprias histórias. As entrevistas abordam infância, migração, trabalho, relações familiares, racismo, pertencimento, envelhecimento, identidade e transmissão entre gerações. Os relatos são acompanhados por retratos contemporâneos realizados por Laurent Leger Adame e, quando disponíveis, por imagens provenientes dos arquivos pessoais dos participantes. A proposta fotográfica busca representar a velhice negra a partir da dignidade, da presença e da afrocelebração, afastando-se de imagens estereotipadas de vulnerabilidade. Ao mesmo tempo, os arquivos familiares permitem conectar as experiências individuais a processos históricos mais amplos e transformar lembranças privadas em patrimônio de memória coletiva. O lema do projeto, “Somos porque foram”, resume a importância dessa transmissão intergeracional: compreender o presente exige reconhecer as pessoas e experiências que o tornaram possível. Afromayores foi concebido como um projeto em permanente construção. Não existe uma seleção de “vidas extraordinárias”: cada testemunho é entendido como parte de uma história coletiva que merece ser preservada. O trabalho continua incorporando novas pessoas, territórios e memórias. Ao chegar ao Brasil, a exposição estabelece um diálogo particularmente significativo com um território profundamente marcado pela história da diáspora africana. A circulação do projeto permite colocar em relação experiências negras construídas em contextos distintos e refletir sobre memória, pertencimento, deslocamento, envelhecimento e legado.   Sobre os criadores Lucía Mbomío é jornalista atuante na televisão, escritora, diretora e roteirista de documentários. A sua trajetória profissional e literária tem abordado questões relacionadas à identidade, à memória, às diásporas africanas e às experiências afrodescendentes na Espanha. Laurent Leger-Adame é fotógrafo e documentarista especializado em retrato e narrativa visual. Seu trabalho explora identidade, memória, dignidade e representação, combinando prática artística, documental e audiovisual.   Serviço “Afromayores” - fotografias de Laurent Leger-Adame Curadoria: Lucía Mbomío Projeto: Lucía Mbomío e Laurent Leger Adame. Abertura: dia 18 de setembro de 2026, às 18h Visitação: até 28 de novembro de 2026 Horário: de terça a quinta, das 11h às 16h; aos sábados, das 11h às 13h Local: Galeria do Centro Cultural Pretos Novos Endereço: Rua do Livramento, 119 – Gamboa - RJ Entrada gratuita, classificação livre Informações à imprensa: BriefCom Assessoria de Comunicação/Bia Sampaio: (21) 98181-8351/biasampaio@briefcom.com.br/@briefcomcomunicacao",
-      "categoria": "cinema",
+      "categoria": "cultura",
       "bairro": "Centro",
       "source": "Agenda Cultural RJ — Grátis",
       "fonte": "agendacultural:gratuitos",
@@ -146,12 +144,11 @@
         "pt": "Como fazer uma imagem persistir em meio ao turbilhão visual do mundo contemporâneo? Como devolver duração a uma imagem em uma cultura com excesso de estímulos visuais? É a partir dessas questões que Ana Calzavara…"
       },
       "tags": [
-        "mostras",
         "exposicoes"
       ],
       "status": "confirmado",
       "descricao_completa": "Como fazer uma imagem persistir em meio ao turbilhão visual do mundo contemporâneo? Como devolver duração a uma imagem em uma cultura com excesso de estímulos visuais? É a partir dessas questões que Ana Calzavara constrói “Desenredo”, sua segunda exposição individual na Maneco Müller : Multiplo Galeria, que vai de 8 de outubro a 21 de dezembro, no Leblon. Fruto de uma intensa temporada de trabalho em Lisboa, a série inédita de pinturas a óleo aprofunda a investigação poética da artista sobre a experiência do olhar e a forma como apreendemos as imagens em um cotidiano atravessado por telas e fluxos incessantes de informação. Partindo dessa fragmentação, as pinturas de Calzavara buscam justamente o contrário: captar do espectador um olhar mais duradouro e concentrado, no qual a atenção seja, de alguma forma, recuperada. “Desenredo” reúne conjuntos de paisagens, cenas que captaram o olhar da artista ao longo de uma temporada de dois meses na capital portuguesa. As pinturas aparecem em grupos, em conjuntos, como padrões, mas fragmentados, em pedaços que se misturam, se mesclam e se contaminam. Nada é linear, nem óbvio. A imagem existe numa espécie de jogo de aparecimento-desaparecimento, presença-ausência, permanência-mudança, clareza-ilegibilidade, continuidade-descontinuidade, que é como vemos o mundo hoje (“estamos cegos de tanto ver”). Outra característica da obra dela, presente nesses trabalhos, é o desejo de reter a imagem efêmera e incontrolável, aquilo que some no instante seguinte, o que é quase impossível de capturar, seja do mundo físico ou virtual. O texto crítico da mostra é de Pedro Duarte. Em “Substâncias de sombra\", primeiras pinturas da série, raios de sol atravessam os ramos de uma árvore, mas o que vemos são apenas silhuetas. Em “Brilhos”, o que vai para a tela é a bioluminescência das microalgas e plânctons da foz do Tejo, a luz mágica e fugidia na ondulação. Em “Riscos”, é o pisca-pisca dos vagalumes numa floresta em Sintra. “Dados” traz padrões de azulejos do século XVI em combinação com QR Codes, como códigos digitais impregnados de significados, mas sujos, desbotados, desgastados pelo tempo, incompatíveis com a tecnologia de leitura de dados. Em “Estilhaços”, ela reproduz aquelas imagens indecifráveis que surgem nas telas no momento de um curto-circuito de dados, os “glitches”, remetendo ao estado de “burnout” da nossa atenção. Em “Véu e cinzas”, vemos uma floresta calcinada, encoberta de fumaça, numa grande tela de 1,50 X 2,00 m, montada a partir de pequenas telas coladas, como um painel de azulejos. Segundo a artista, o nome da exposição, “Desenredo”, remete a esse embaralhamento do olhar, a uma narrativa que explodiu, se despedaçou e não é mais linear. “A exposição traz essa experiência da fragmentação, mas numa tentativa de subvertê-la. Quero provocar o espectador para olhar o mundo de uma forma diferente da que estamos acostumados. A exposição nasce do desejo de renovar a experiência do espectador com a imagem, de fazer com que essa imagem se relacione com ele de uma forma mais persistente, que não seja descartada, que traga uma reflexão”, explica a artista. Segundo Maneco Müller, sócio da galeria, Ana Calzavara é uma artista de raro talento, que não separa a vida da arte e nem se alinha a nenhum modismo ou estilo. “Ela faz uma pintura de alto valor crítico, resultado de uma pesquisa extensa e profunda, aliada a um grande domínio da técnica”, diz ele, lembrando que a artista é bacharel em Artes Visuais pelo Unicamp, pós-graduada em pintura pela Byam Shaw School of Art, Londres; mestre (2006), doutora (2012) e pós-doutora (2018) em Poéticas Visuais pela ECA/USP. “Em termos poéticos, ‘Desenredo’ é, no fundo, uma grande exposição sobre o desconhecido, sobre o momento que estamos vivendo, onde tudo está enevoado e não sabemos como caminhar nesse mundo sem chão”, complementa. “Ana Calzavara é uma artista cuja produção acompanhamos com muito entusiasmo. A força e a qualidade de seu trabalho nos levaram a realizar essa segunda exposição na galeria em apenas dois anos, o que diz muito sobre a força que vemos em sua obra e sobre o lugar que ela vem conquistando no cenário contemporâneo”, diz Stella Freitas, sócia de Maneco na galeria. A exposição pode ser visitada até 21 de novembro, com entrada gratuita.",
-      "categoria": "cinema",
+      "categoria": "cultura",
       "bairro": "Leblon",
       "source": "Agenda Cultural RJ — Grátis",
       "fonte": "agendacultural:gratuitos",
@@ -187,12 +184,11 @@
         "pt": "Nesta quinta-feira, dia 5 de novembro, será inaugurada a exposição “Quando aparecer um rio atravesse-o”, da artista carioca Fernanda Leme, no Centro Cultural Candido Mendes (Galeria Maria de Lourdes Mendes de Almeida),…"
       },
       "tags": [
-        "mostras",
         "exposicoes"
       ],
       "status": "confirmado",
       "descricao_completa": "Nesta quinta-feira, dia 5 de novembro, será inaugurada a exposição “Quando aparecer um rio atravesse-o”, da artista carioca Fernanda Leme, no Centro Cultural Candido Mendes (Galeria Maria de Lourdes Mendes de Almeida), em Ipanema, no Rio de Janeiro. Com curadoria de Denise Araripe, serão apresentadas cerca de 70 obras, que abordam temas como a finitude e a efemeridade das imagens no mundo contemporâneo. A exposição incluirá trabalhos inéditos e obras que serão completadas com a participação do público. “A exposição propõe uma reflexão sobre a finitude e sobre como a consciência de nossa impermanência pode nos levar a repensar a própria vida. É através das imagens, da pintura e das operações que realiza sobre elas que Fernanda pensa. Cortar, fragmentar, deslocar e reconstruir não são apenas procedimentos formais, mas maneiras de elaborar uma experiência e produzir novos sentidos para aquilo que vive”, afirma a curadora Denise Araripe. A artista apresentará nesta mostra uma pesquisa inédita, que começou a desenvolver este ano especialmente para a exposição, na qual recorta suas próprias pinturas em tiras horizontais de tamanhos variados e as remonta, desconstruindo as imagens originais e transformando-as em composições abstratas, que ganham novos sentidos. “Recorto a imagem em tiras de diferentes espessuras e as colo de maneira desencontrada em cima de um poster de madeira. Uso a própria obra pictórica e a transformo em outra obra. Uso então o que já existe para construir um outro, que reconstruo com outras técnicas e materiais”, conta a artista que iniciou esse processo após ler textos de Nicolas Bourriaud sobre o conceito de pós-produção, que envolve a apropriação e a reconfiguração de materiais e imagens preexistentes, e estudos de Rosalind Krauss e Yve-Alain Bois sobre a teoria do informe, que questiona as noções tradicionais de forma. Nesses novos trabalhos, apesar de a imagem se tornar abstrata, alguns elementos figurativos permanecem. “Nesse conjunto aparecem também os barcos, trazendo para a exposição uma ideia de deslocamento e travessia”, conta a curadora. Em seus trabalhos, Fernanda Leme discute temas da contemporaneidade, como a sociedade líquida e a fugacidade das imagens. Muitas vezes, recorre ao autorretrato e aborda o protagonismo feminino, articulando sua experiência pessoal a questões coletivas. “Essa nova série tem tudo a ver com esse ser contemporâneo, com a rapidez do mundo atual. O trabalho está todo recortado, tem um movimento, uma rapidez e a imagem não se forma”, afirma a artista. Fernanda Leme começou a desconfigurar as imagens de forma sutil nos trabalhos da série “Estilhaços”, iniciada no ano passado, que também farão parte desta exposição. Nessas obras, a artista introduz camadas gráficas, como se fossem um espelho estilhaçado, sobre os retratos. O figurativo ainda aparece com clareza, mas a imagem começa a ser desconstruída através das tramas. “Rostos e figuras são atravessados por uma malha geométrica, como se a imagem estivesse estilhaçada. A figura permanece, mas sua unidade é colocada em questão”, observa a curadora. A exposição também terá 60 obras da série “Cabeças”, produzidas desde 2014. Em formato 30X40cm, elas fazem uma analogia com as fotos 3X4, em que a artista retrata seu próprio rosto em diversas fases da vida. ‘É um working in progress, que não termina nunca, vou sempre acrescentando mais rostos”, conta. Para esta exposição, ao invés de novos rostos, a artista incluirá quatro espelhos, do tamanho das pinturas, para que o público veja o próprio rosto refletivo, como uma selfie, discutindo também a efemeridade da imagem. “Discuto a sociedade líquida, a rapidez com que tudo acontece. As milhares de selfies que são feitas, na maioria das vezes, são jogadas fora, nem chegam a serem impressas. A questão do espelho tem a ver com isso. A pessoa se olha e imediatamente sua imagem já sumiu”, diz a artista. Em tratamento contra um câncer de mama, após ter perdido o pai, a mãe e o irmão para a doença, a artista olha para vida de forma positiva e suas pinturas, alegres e coloridas, refletem isso. O título da exposição, “Quando aparecer um rio, atravesse-o”, tem a ver com esse pensamento. “O rio surge como aquilo que interrompe o caminho, mas também como aquilo que precisa ser atravessado para que o percurso continue. A finitude não aparece apenas como limite, mas como consciência capaz de transformar nossa relação com o tempo e com a vida. Atravessar, aqui, não significa permanecer intacto, mas aceitar a transformação como parte do caminho”, afirma Denise Araripe. Durante a fase mais intensa do tratamento, quando perdeu os cabelos, a artista criou a série ‘Morfemas’, na qual utiliza os próprios fios para compor desenhos geométricos, como pequenos signos. Essas peças completam a exposição e dialogam com as demais séries por meio das tramas. Para Fernanda Leme, elas deram início à pesquisa que posteriormente se desdobraria nas tramas gráficas e, consequentemente, nos recortes SOBRE A ARTISTA Fernanda Leme vive e trabalha no Rio de Janeiro, onde nasceu. Arquiteta e artista visual, no ano de 2009 ingressa na Escola de Artes Visuais do Parque Lage e faz parte também da Escola Sem Sítio e do grupo de estudos Arte e Filosofia com Paulo Sérgio Duarte. É pos-graduanda em “Arte e Filosofia” pela PUC-Rio. Em 2013, participa da exposição itinerante Mais Pintura!, do Salão Abre-Alas, em 2017, na galeria A Gentil Carioca. Desde então participa de várias mostras em espaços culturais no Rio de Janeiro, Brasília, Fortaleza e Minas Gerais, como Casa França-Brasil, Centro de Arte Hélio Oiticica, E.C.C.O. Espaço cultural, Parque Lage-EAV e Galeria Sem Título. Faz sua 1ª individual, “Em que espelho ficou perdida a minha face”, em 2019, no Instituto Europeu de Design (IED), no Rio de Janeiro. Em 2022 participa do Salão Verão, na galeria Oásis, e da exposição Tu que me deste o teu cuidado, no Sesc Copacabana, além da exposição AHRUYNADA, no espaço Triplex. Em 2023, participa das exposições Bodas de Linho e Corações a Desmedida, no espaço Solar dos Abacaxis, Rio de Janeiro. Em 2024, realiza a individual “Monstros”, com curadoria de Alexandre Sá, na Z42 Arte. SOBRE A CURADORA Denise Araripe (Rio de Janeiro, 1960) é artista visual, curadora e mentora de artistas. Sua produção transita entre pintura, desenho, escultura e instalação, investigando questões relacionadas à memória, à originalidade, aos direitos autorais, à identidade e à construção de narrativas. Com trajetória iniciada na década de 1990, realizou exposições no Brasil e no exterior, com obras presentes em coleções públicas e privadas, entre elas a Coleção Gilberto Chateaubriand, vinculada ao Museu de Arte Moderna do Rio de Janeiro. Atualmente, é curadora das galerias Maria de Lourdes Mendes de Almeida e Pequena Galeria, da Universidade Candido Mendes, no Rio de Janeiro. Desde 2012, desenvolve também um trabalho de mentoria e acompanhamento de projetos artísticos, articulando prática, pensamento crítico e reflexão sobre a arte contemporânea. Serviço: Fernanda Leme – Quando aparecer um rio, atravesse-o Abertura: 5 de novembro de 2026, às 17h Exposição: até 28 de novembro de 2026 Curadoria: Denise Araripe Centro Cultural Candido Mendes - Galeria Maria de Lourdes Mendes de Almeida Endereço: Rua Joana Angélica, 63 – Ipanema – RJ (21) 2267.7295 De segunda a sexta-feira, das 13h às 19h. Sábados, das 13h às 17h. Entrada gratuita",
-      "categoria": "cinema",
+      "categoria": "cultura",
       "bairro": "Copacabana",
       "source": "Agenda Cultural RJ — Grátis",
       "fonte": "agendacultural:gratuitos",
@@ -719,10 +715,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 699,00"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/corrida-guiada-ate-ao-pao-de-acucar-com-por-do-sol-no-final-3",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/08/de786d_e11997d718ea447ab5775c5363db8a35mv2.jpg",
       "organizer": "",
@@ -1587,10 +1583,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 74,00"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/candlelight-coldplay-imagine-dragons",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/4d0ae4c2-1158-11f0-90ef-86af2e2df509.jpg",
       "organizer": "",
@@ -1743,10 +1739,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 61,00"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/candlelight-tributo-a-metallica",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/3913a3f4-69a1-11f0-acfc-7203fda2f6d8.jpg",
       "organizer": "",
@@ -2177,10 +2173,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 37,00"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/candlelight-tributo-a-bruno-mars",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/c7095e14-6343-11f1-ab10-06d04f0fb764.jpg",
       "organizer": "",
@@ -2548,46 +2544,6 @@
       }
     },
     {
-      "title": "The Jazz Room celebra Frank Sinatra e Louis Armstrong em noite intimista no Teatro Rival",
-      "start": "2026-12-04",
-      "end": "2026-12-04",
-      "time_known": false,
-      "venue": "Teatro Rival Petrobras",
-      "address": "Rua Álvaro Alvim ,33 - Subsolo, Rio de Janeiro - Rio de Janeiro",
-      "city": "Rio de Janeiro",
-      "format": "presencial",
-      "cost": {
-        "type": "desconhecido",
-        "text": null
-      },
-      "registration": "inscricao",
-      "url": "https://agendaculturalriodejaneiro.com/events/the-jazz-room-celebra-frank-sinatra-e-louis-armstrong-em-noite-intimista-no-teatro-rival",
-      "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/b065e57e-31ca-11f1-940d-2a9e9698c145.jpg",
-      "organizer": "",
-      "description": {
-        "pt": "The Jazz Room celebra Frank Sinatra e Louis Armstrong em noite intimista no Teatro Rival O The Jazz Room leva ao Teatro Rival Petrobras uma viagem musical dedicada a Frank Sinatra e Louis Armstrong, dois nomes…"
-      },
-      "tags": [
-        "shows"
-      ],
-      "status": "confirmado",
-      "descricao_completa": "The Jazz Room celebra Frank Sinatra e Louis Armstrong em noite intimista no Teatro Rival O The Jazz Room leva ao Teatro Rival Petrobras uma viagem musical dedicada a Frank Sinatra e Louis Armstrong, dois nomes fundamentais da história do jazz e da música popular. Em formato intimista, o espetáculo revisita canções como Fly Me to the Moon, My Way e What a Wonderful World, recriadas ao vivo em uma atmosfera pensada para aproximar público e músicos. Instalado no coração da Cinelândia, o Teatro Rival reforça o caráter boêmio e histórico da experiência, ideal para quem procura música ao vivo no Centro do Rio de Janeiro. A sessão tem duração aproximada de uma hora e classificação para maiores de 18 anos. 📅 Data: De 28 de agosto a 4 de dezembro de 2026 ⏰ Horário: Seleção de datas e horários disponível na bilheteria oficial 📍 Local: Teatro Rival Petrobras, Rio de Janeiro 💸 Ingressos: Informação não disponível",
-      "categoria": "shows",
-      "bairro": "Cinelândia",
-      "source": "Agenda Cultural RJ — Shows",
-      "fonte": "agendacultural:shows",
-      "via": "feed",
-      "id": "2026-12-04-the-jazz-room-celebra-frank-sinatra-e-louis-arms",
-      "added": "2026-11-25",
-      "vistos": [
-        {
-          "fonte": "agendacultural:shows",
-          "via": "feed",
-          "data": "2026-11-25"
-        }
-      ]
-    },
-    {
       "title": "The Jazz Room: Um Tributo a Frank Sinatra e Louis Armstrong no TEATRO RIVAL PETROBRAS",
       "start": "2026-12-04T19:30:00-03:00",
       "end": "2026-12-04",
@@ -2630,7 +2586,10 @@
         "pt": "Tributo ao vivo a Frank Sinatra e Louis Armstrong, com uma banda, no Teatro Rival Petrobras, na Cinelândia (Rio de Janeiro). Duração de cerca de 1 hora; livre para todas as idades, com acesso para cadeirantes.",
         "en": "Live tribute to Frank Sinatra and Louis Armstrong, performed by a live band at Teatro Rival Petrobras in Cinelândia, Rio de Janeiro. About 1 hour long; open to all ages, with wheelchair access.",
         "es": "Homenaje en vivo a Frank Sinatra y Louis Armstrong, interpretado por una banda en el Teatro Rival Petrobras, en Cinelândia, Río de Janeiro. Dura unas 1 hora; apta para todas las edades y con acceso para sillas de ruedas."
-      }
+      },
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/events/the-jazz-room-celebra-frank-sinatra-e-louis-armstrong-em-noite-intimista-no-teatro-rival"
+      ]
     },
     {
       "title": "Zé Ibarra no Circo Voador apresenta nova fase da carreira solo",
@@ -3016,51 +2975,6 @@
       ]
     },
     {
-      "title": "Baile do 2A aposta em funk e pagode em locação secreta no Rio",
-      "start": "2026-12-05T22:00:00-03:00",
-      "end": "2026-12-06T05:00:00-03:00",
-      "time_known": true,
-      "venue": "Locação secreta em Rio de Janeiro",
-      "address": "",
-      "city": "Rio de Janeiro",
-      "format": "presencial",
-      "cost": {
-        "type": "desconhecido",
-        "text": null
-      },
-      "registration": "inscricao",
-      "url": "https://agendaculturalriodejaneiro.com/events/baile-do-2a-aposta-em-funk-e-pagode-em-locacao-secreta-no-rio",
-      "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/BC1C697D-A738-4528-AC0C-8AE94847ADFA_jmuoc9.png",
-      "organizer": "",
-      "description": {
-        "pt": "Baile do 2A aposta em funk e pagode em locação secreta no Rio O Baile do 2A prepara uma noite de pista em locação secreta no Rio de Janeiro, com foco em funk, pagode e clima de baile. A festa, organizada por Acásio…"
-      },
-      "tags": [
-        "pagode",
-        "funk"
-      ],
-      "status": "confirmado",
-      "descricao_completa": "Baile do 2A aposta em funk e pagode em locação secreta no Rio O Baile do 2A prepara uma noite de pista em locação secreta no Rio de Janeiro, com foco em funk, pagode e clima de baile. A festa, organizada por Acásio Souza, aposta na energia popular da noite carioca para reunir público até a madrugada. A proposta é direta: transformar o encontro em celebração dançante, com sonoridades que fazem parte da identidade musical da cidade. 📅 Data: Sábado, 5 de dezembro de 2026 ⏰ Horário: 22h00 📍 Local: Locação secreta em Rio de Janeiro 💸 Ingressos: Informação não disponível",
-      "categoria": "festas",
-      "source": "Agenda Cultural RJ — Shows",
-      "fonte": "agendacultural:shows",
-      "via": "feed",
-      "id": "2026-12-05-baile-do-2a-aposta-em-funk-e-pagode-em-locacao-s",
-      "added": "2026-11-25",
-      "vistos": [
-        {
-          "fonte": "agendacultural:shows",
-          "via": "feed",
-          "data": "2026-11-25"
-        },
-        {
-          "fonte": "agendacultural:fim-de-semana",
-          "via": "feed",
-          "data": "2026-11-25"
-        }
-      ]
-    },
-    {
       "title": "Baile do 2A mistura funk e pagode em festa secreta no Rio",
       "start": "2026-12-05T22:00:00-03:00",
       "end": "2026-12-06T05:00:00-03:00",
@@ -3108,7 +3022,10 @@
         "pt": "Baile do 2A é uma festa de baile funk, funk e pagode no Rio de Janeiro, em local secreto, de 5 de dezembro de 2026, das 22h às 05h do dia seguinte. Os ingressos são informados na bilheteria.",
         "en": "Baile do 2A is a party mixing baile funk, funk and pagode in Rio de Janeiro, at a secret venue, on December 5, 2026, from 10 PM to 5 AM the next day. Tickets are available through the box office.",
         "es": "Baile do 2A es una fiesta de baile funk, funk y pagode en Río de Janeiro, en un lugar secreto, el 5 de diciembre de 2026, de 22:00 a 05:00 del día siguiente. Las entradas se informan en la taquilla."
-      }
+      },
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/events/baile-do-2a-aposta-em-funk-e-pagode-em-locacao-secreta-no-rio"
+      ]
     },
     {
       "title": "Clássicos do Brasil: Pepeu Gomes, Paralamas do Sucesso e Caetano Veloso",
@@ -3520,10 +3437,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 38,00"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/candlelight-transforma-hinos-do-rock-dos-anos-80-em-concerto-no-museu-do-amanha",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/be8df194-1aa8-11f0-996c-caa78636736f.jpg",
       "organizer": "",
@@ -3735,10 +3652,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 56,50"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/candlelight-coldplay-vs-ed-sheeran-2",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/dc7d1b48-148c-11f0-b520-be12cc90078e.jpg",
       "organizer": "",
@@ -3780,10 +3697,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "gratis",
-        "text": "Grátis"
+        "type": "pago",
+        "text": "A partir de R$ 51,50"
       },
-      "registration": "livre",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/candlelight-queen-the-beatles",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/bddda248-1a9f-11f0-9a59-a666f29e90ee.jpg",
       "organizer": "",
@@ -3876,10 +3793,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 75,00"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/mauricio-manieri-classics-tour-inesquecivel",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/07/b42f6c1e-4844-4055-a663-99ef994e4409-1920x720-12-1.png",
       "organizer": "",
@@ -4250,10 +4167,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 56,00"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/classicos-de-natal-iluminam-o-solar-de-botafogo-em-concerto-candlelight",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/be8df194-1aa8-11f0-996c-caa78636736f.jpg",
       "organizer": "",
@@ -4380,10 +4297,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 75,00"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/rodrigo-teaser-tributo-ao-rei-do-pop-data-extra-2",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/07/Rodrigo-Teaser-Tributo-ao-Rei-do-Pop-Data-Extra-2.jpg",
       "organizer": "",
@@ -4776,10 +4693,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 690,00"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/white-rooftop-reveillon-2027-anuncia-virada-intimista-em-santa-teresa",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/WR27---SantaTeresa---Shotgun_pre-location_vve8to.png",
       "organizer": "",
@@ -5240,10 +5157,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "Meia-entrada entre R$ 100 e R$ 180; inteira entre R$ 200 e R$ 360"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/irma-world-tour-2027",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/07/Irma.webp",
       "organizer": "",
@@ -5654,10 +5571,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 180,30"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/jack-johnson-surfilmusic-tour",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/07/Jack-Johnson-SURFILMUSIC-Tour.png",
       "organizer": "",
@@ -5744,10 +5661,10 @@
       "city": "Rio de Janeiro",
       "format": "presencial",
       "cost": {
-        "type": "desconhecido",
-        "text": null
+        "type": "pago",
+        "text": "A partir de R$ 120,00"
       },
-      "registration": "inscricao",
+      "registration": "ingresso",
       "url": "https://agendaculturalriodejaneiro.com/events/barko-after-de-carnaval-faz-a-ressaca-carnavalesca-na-marina-da-gloria",
       "image": "https://agendaculturalriodejaneiro.com/wp-content/uploads/2026/06/IMG_2064_tdxjfh.jpg",
       "organizer": "",

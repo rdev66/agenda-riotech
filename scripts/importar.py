@@ -22,6 +22,10 @@ Regras:
   - URLs em data/descartados.json não entram de novo.
   - URL que só muda o idioma (/en, /pt-br, /es, /pt ou ?lang=) é o mesmo evento.
     No mesmo dia e no mesmo lugar, um título normalizado que contém o outro também junta.
+  - Na fonte agendacultural:* o preço sai do texto («Ingressos: A partir de R$ …»,
+    «R$ …», «Gratuito», «Entrada franca»). O mesmo dia, o mesmo lugar (ou lugar
+    vazio) e 3 palavras significativas no título viram um evento só. Texto com
+    exposição, galeria ou museu não fica em cinema por causa de «mostra».
   - Se a URL normalizada já está na outra agenda, o evento não entra.
   - Do WhatsApp só se guardam links: nada de nomes, telefones ou mensagens.
   - O texto genérico do ICS da Luma («Obtenha informações atualizadas em»,
@@ -363,6 +367,150 @@ def custo_pelo_texto(texto: str, cost: dict) -> dict:
     return cost or {"type": "desconhecido", "text": None}
 
 
+# «A partir de R$ 297,50» ou «R$ 80» / «R$ 1.234,56». R$ 0 não é preço.
+_RE_A_PARTIR = re.compile(
+    r"A partir de\s+R\$\s*\d{1,3}(?:\.\d{3})*(?:,\d{2})?",
+    re.IGNORECASE,
+)
+_RE_RS = re.compile(r"R\$\s*\d{1,3}(?:\.\d{3})*(?:,\d{2})?")
+_RE_GRATIS_AGENDA = re.compile(r"\b(?:gratis|gratuit[oa]|entrada franca)\b")
+_RE_EXPOSICAO = re.compile(r"\b(?:exposicao|galeria|museu)\b")
+_RE_CINEMA_DE_VERDADE = re.compile(
+    r"\b(?:cineclube|cineclub|pre-estreia|pre estreia|avant-premiere|"
+    r"mostra de cinema|festival de cinema|film festival)\b"
+)
+# Palavras que não distinguem dois rolês. «2a» fica: tem dígito.
+_PALAVRAS_FRACAS = frozenset({
+    "a", "o", "os", "as", "um", "uma", "uns", "umas",
+    "de", "do", "da", "dos", "das", "e", "em", "no", "na", "nos", "nas",
+    "ao", "aos", "ou", "que", "se", "por", "para", "pra", "com", "sem",
+    "the", "of", "and", "in", "on", "at", "to", "for",
+    "rio", "janeiro", "rj", "brasil", "dia", "noite",
+})
+
+
+def _fonte_agendacultural(ev: dict | None) -> bool:
+    return str((ev or {}).get("fonte") or "").startswith("agendacultural:")
+
+
+def _valor_reais(trecho: str) -> float | None:
+    achou = _RE_RS.search(trecho or "")
+    if not achou:
+        return None
+    num = achou.group(0).split("$", 1)[1].strip().replace(".", "").replace(",", ".")
+    try:
+        return float(num)
+    except ValueError:
+        return None
+
+
+def _normalizar_reais(trecho: str) -> str:
+    achou = _RE_RS.search(trecho or "")
+    if not achou:
+        return re.sub(r"\s+", " ", trecho or "").strip()
+    return re.sub(r"\s+", " ", achou.group(0)).strip()
+
+
+def preco_no_texto(texto: str | None) -> str | None:
+    """«A partir de R$ X» ou, na falta, a linha de ingressos / o primeiro «R$ X»."""
+    if not texto:
+        return None
+    a_partir = _RE_A_PARTIR.search(texto)
+    if a_partir and (_valor_reais(a_partir.group(0)) or 0) > 0:
+        return "A partir de " + _normalizar_reais(a_partir.group(0))
+    faixa = re.search(
+        r"Ingressos:\s*(.+?)(?=\s*(?:--|https?://|Compra\b|Comprar\b|Bilheteria\b)|$)",
+        texto,
+        re.IGNORECASE | re.DOTALL,
+    )
+    if faixa:
+        trecho = re.sub(r"\s+", " ", faixa.group(1)).strip(" .;–-—")
+        if (_valor_reais(trecho) or 0) > 0 and len(trecho) <= 140:
+            return trecho
+    for achou in _RE_RS.finditer(texto):
+        if (_valor_reais(achou.group(0)) or 0) > 0:
+            return _normalizar_reais(achou.group(0))
+    return None
+
+
+def custo_agendacultural(texto: str, cost: dict | None = None) -> dict:
+    """Preço só da Agenda Cultural. «free» em inglês não deixa o rolê grátis."""
+    preco = preco_no_texto(texto)
+    if preco:
+        return {"type": "pago", "text": preco}
+    if _RE_GRATIS_AGENDA.search(_sem_acento(texto or "")):
+        return {"type": "gratis", "text": "Grátis"}
+    atual = dict(cost or {"type": "desconhecido", "text": None})
+    if atual.get("type") == "gratis":
+        return {"type": "desconhecido", "text": None}
+    if atual.get("type") in (None, "", "desconhecido"):
+        return {"type": "desconhecido", "text": None}
+    return atual
+
+
+def ajustar_categoria_exposicao(texto: str, tags: list, categoria: str | None) -> tuple[list, str | None]:
+    """Mostra/exposição em galeria ou museu é cultura, não cinema.
+
+    Mostra de cinema, festival, cineclube e pré-estreia continuam cinema.
+    """
+    if categoria != "cinema":
+        return list(tags or []), categoria
+    low = _sem_acento(texto or "")
+    if not _RE_EXPOSICAO.search(low) or _RE_CINEMA_DE_VERDADE.search(low):
+        return list(tags or []), categoria
+    novas = [t for t in (tags or []) if t != "mostras"]
+    if "exposicoes" not in novas:
+        novas.append("exposicoes")
+    return novas[:6], "cultura"
+
+
+def _texto_do_evento(ev: dict) -> str:
+    partes = [str(ev.get("title") or "")]
+    desc = ev.get("description")
+    if isinstance(desc, dict):
+        partes.extend(str(v) for v in desc.values() if isinstance(v, str))
+    elif isinstance(desc, str):
+        partes.append(desc)
+    completa = ev.get("descricao_completa")
+    if isinstance(completa, str):
+        partes.append(completa)
+    venue = ev.get("venue")
+    if isinstance(venue, str):
+        partes.append(venue)
+    return "\n".join(partes)
+
+
+def _alinhar_inscricao(ev: dict) -> None:
+    tipo = (ev.get("cost") or {}).get("type")
+    if tipo == "pago" and ev.get("registration") in ("inscricao", "livre"):
+        ev["registration"] = "ingresso"
+    elif tipo == "gratis" and ev.get("registration") == "inscricao":
+        ev["registration"] = "livre"
+
+
+def aplicar_agendacultural(ev: dict) -> bool:
+    """Preço e categoria. Não mexe em evento de outra fonte."""
+    if not _fonte_agendacultural(ev):
+        return False
+    mudou = False
+    texto = _texto_do_evento(ev)
+    custo = custo_agendacultural(texto, ev.get("cost"))
+    if custo != ev.get("cost"):
+        ev["cost"] = custo
+        mudou = True
+    antes = ev.get("registration")
+    _alinhar_inscricao(ev)
+    if ev.get("registration") != antes:
+        mudou = True
+    tags, categoria = ajustar_categoria_exposicao(texto, list(ev.get("tags") or []), ev.get("categoria"))
+    if tags != ev.get("tags") or (categoria and categoria != ev.get("categoria")):
+        ev["tags"] = tags
+        if categoria:
+            ev["categoria"] = categoria
+        mudou = True
+    return mudou
+
+
 def idioma_de(texto: str, tags: list[str]) -> str | None:
     if "idiomas" in tags or "expats" in tags:
         return "multi"
@@ -508,6 +656,43 @@ def mesmo_role(a: dict, b: dict) -> bool:
     if la and lb:
         return la == lb or la in lb or lb in la
     return True
+
+
+def palavras_significativas(titulo: str | None) -> set[str]:
+    """Palavras do título que distinguem o rolê. «2a» entra; «de» e «rio» não."""
+    achadas = set()
+    for token in re.findall(r"[a-z0-9]+", _sem_acento(titulo or "")):
+        if token in _PALAVRAS_FRACAS:
+            continue
+        if len(token) < 3 and not any(c.isdigit() for c in token):
+            continue
+        achadas.add(token)
+    return achadas
+
+
+def _lugar_compativel(a: dict, b: dict) -> bool:
+    """Mesmo lugar, ou lugar vazio de um dos lados."""
+    la, lb = norm_titulo(a.get("venue")), norm_titulo(b.get("venue"))
+    if not la or not lb:
+        return True
+    return _frase_contem(la, lb)
+
+
+def mesmo_agendacultural(a: dict, b: dict) -> bool:
+    """Duplicata da Agenda Cultural: mesmo dia, mesmo lugar e 3 palavras no título.
+
+    As duas fichas precisam ter fonte agendacultural:*. Outra fonte não entra.
+    """
+    if not _fonte_agendacultural(a) or not _fonte_agendacultural(b):
+        return False
+    dia_a = str(a.get("start") or "")[:10]
+    dia_b = str(b.get("start") or "")[:10]
+    if len(dia_a) != 10 or dia_a != dia_b:
+        return False
+    if not _lugar_compativel(a, b):
+        return False
+    comuns = palavras_significativas(a.get("title")) & palavras_significativas(b.get("title"))
+    return len(comuns) >= 3
 
 
 def _juntar_urls(base: dict, novo: dict) -> None:
@@ -813,9 +998,22 @@ def from_jsonld(ld: dict, url: str, meta: dict, agenda: str = "tech") -> dict:
         evento["tags"] = tags
         if categoria:
             evento["categoria"] = categoria
-        evento["cost"] = custo_pelo_texto(blob, evento["cost"])
+        if _host(url) in PRECO_ZERO_SEM_VALOR:
+            evento["cost"] = custo_agendacultural(blob, evento["cost"])
+            tags, categoria = ajustar_categoria_exposicao(blob, tags, evento.get("categoria"))
+            evento["tags"] = tags
+            if categoria:
+                evento["categoria"] = categoria
+        else:
+            evento["cost"] = custo_pelo_texto(blob, evento["cost"])
         if evento["cost"]["type"] == "gratis":
             evento["registration"] = "livre" if reg == "inscricao" else reg
+        elif (
+            evento["cost"]["type"] == "pago"
+            and evento.get("registration") == "inscricao"
+            and _host(url) in PRECO_ZERO_SEM_VALOR
+        ):
+            evento["registration"] = "ingresso"
         idioma = idioma_de(blob, tags)
         if idioma:
             evento["idioma"] = idioma
@@ -1633,6 +1831,95 @@ def _completar_campos(base: dict, extra: dict) -> bool:
     return mudou
 
 
+def _riqueza(ev: dict) -> tuple:
+    texto = ev.get("descricao_completa")
+    resumo = ev.get("resumo")
+    return (
+        1 if ev.get("time_known") else 0,
+        1 if isinstance(resumo, dict) and any(resumo.values()) else 0,
+        len(texto) if isinstance(texto, str) else 0,
+    )
+
+
+def _unir_vistos(base: dict, extra: dict) -> None:
+    for item in extra.get("vistos") or []:
+        if isinstance(item, dict):
+            validar.anexar_visto(
+                base,
+                str(item.get("fonte") or ""),
+                str(item.get("via") or ""),
+                str(item.get("data") or ""),
+            )
+
+
+def _unir_historico(base: dict, extra: dict) -> None:
+    novos = [h for h in (extra.get("historico") or []) if isinstance(h, dict)]
+    if not novos:
+        return
+    hist = [h for h in (base.get("historico") or []) if isinstance(h, dict)]
+    marcas = {
+        (h.get("campo"), h.get("antes"), h.get("depois"), h.get("fonte"), h.get("data"))
+        for h in hist
+    }
+    for item in novos:
+        marca = (item.get("campo"), item.get("antes"), item.get("depois"), item.get("fonte"), item.get("data"))
+        if marca in marcas:
+            continue
+        marcas.add(marca)
+        hist.append(dict(item))
+    base["historico"] = hist
+
+
+def colapsar_agendacultural(eventos: list) -> list:
+    """Junta duplicatas já gravadas da Agenda Cultural.
+
+    Presencial, passado e evento de outra fonte ficam na lista.
+    """
+    saida: list = []
+    for ev in eventos:
+        if not isinstance(ev, dict):
+            saida.append(ev)
+            continue
+        par = None
+        for i, base in enumerate(saida):
+            if isinstance(base, dict) and mesmo_agendacultural(base, ev):
+                par = i
+                break
+        if par is None:
+            saida.append(ev)
+            continue
+        base = saida[par]
+        if _riqueza(ev) > _riqueza(base):
+            principal, outro = ev, base
+        else:
+            principal, outro = base, ev
+        _juntar_urls(principal, outro)
+        _completar_campos(principal, outro)
+        _unir_vistos(principal, outro)
+        _unir_historico(principal, outro)
+        saida[par] = principal
+    return saida
+
+
+def _herdar_custo_agendacultural(base: dict, novo: dict) -> bool:
+    """Completa preço desconhecido quando a ficha nova da mesma fonte já leu o texto."""
+    if not _fonte_agendacultural(base):
+        return False
+    atual = (base.get("cost") or {}).get("type")
+    vindo = novo.get("cost") or {}
+    if vindo.get("type") == "pago" and atual in (None, "", "desconhecido", "gratis"):
+        if base.get("cost") != vindo:
+            base["cost"] = {"type": "pago", "text": vindo.get("text")}
+            _alinhar_inscricao(base)
+            return True
+    if vindo.get("type") == "gratis" and atual in (None, "", "desconhecido"):
+        if base.get("cost") != vindo:
+            base["cost"] = {"type": "gratis", "text": vindo.get("text") or "Grátis"}
+            _alinhar_inscricao(base)
+            return True
+    return False
+
+
 def _plataforma_oficial(url: str) -> bool:
     """Luma, Meetup, Sympla e os outros hosts que o importador já lê como a página do evento."""
     host = _host(url)
@@ -1796,13 +2083,17 @@ def merge(existing: list[dict], new: dict, today: dt.date, descartadas: set[str]
     if not historico and fim < today:
         return "passado"
     for e in existing:
-        if agenda == "roles" and mesmo_role(new, e):
+        if agenda == "roles" and (mesmo_role(new, e) or mesmo_agendacultural(new, e)):
             _juntar_urls(e, new)
             mudou = _completar_campos(e, new)
+            mudou = aplicar_agendacultural(e) or mudou
+            mudou = _herdar_custo_agendacultural(e, new) or mudou
             mudou = _aplicar_origem(e, new, today.isoformat()) or mudou
             return "completado" if mudou else "igual"
         if _mesmo_evento(new, e, historico):
             mudou = _completar_campos(e, new)
+            mudou = aplicar_agendacultural(e) or mudou
+            mudou = _herdar_custo_agendacultural(e, new) or mudou
             mudou = _aplicar_origem(e, new, today.isoformat()) or mudou
             return "completado" if mudou else "igual"
 
@@ -1931,6 +2222,16 @@ def main(argv=None) -> int:
     else:
         data = {"updated": today.isoformat(), "events": []}
     events = data["events"]
+    mudou_agenda = False
+    if agenda == "roles":
+        n_antes = len(events)
+        events = colapsar_agendacultural(events)
+        data["events"] = events
+        if len(events) != n_antes:
+            mudou_agenda = True
+        for ev in events:
+            if isinstance(ev, dict) and aplicar_agendacultural(ev):
+                mudou_agenda = True
     report: list[str] = []
     descartadas = validar.chaves_descartadas()
     bloqueadas = chaves_bloqueadas(descartadas)
@@ -2006,6 +2307,7 @@ def main(argv=None) -> int:
                         lidos = [refinar_pagina(ev, f["url"]) for ev in lidos]
                     for ev in lidos:
                         _marcar_fonte(ev, f)
+                        aplicar_agendacultural(ev)
                         aplicar_padrao(ev, f, hint)
                         if f.get("tipo") == "ics":
                             pendentes_luma.append(ev)
@@ -2129,7 +2431,7 @@ def main(argv=None) -> int:
                 f"| {celula} | {linha['encontrados']} | {linha['novos']} | {linha['online']} |"
             )
 
-    if not args.dry_run and (counts.get("novo") or counts.get("completado")):
+    if not args.dry_run and (counts.get("novo") or counts.get("completado") or mudou_agenda):
         destino.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if args.relatorio:
         args.relatorio.write_text(
