@@ -40,6 +40,9 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/lego-model-of-rio-de-janeiro-i-permanent-exhibition-in-the-city-of-arts"
       ]
     },
     {
@@ -743,6 +746,24 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "historico": [
+        {
+          "campo": "start",
+          "antes": "2026-11-25T16:00:00-03:00",
+          "depois": "2026-11-26T16:00:00-03:00",
+          "fonte": "agendacultural:fim-de-semana",
+          "data": "2026-11-25",
+          "aplicado": false
+        },
+        {
+          "campo": "end",
+          "antes": "2026-11-25",
+          "depois": "2026-11-26",
+          "fonte": "agendacultural:fim-de-semana",
+          "data": "2026-11-25",
+          "aplicado": false
+        }
       ]
     },
     {
@@ -949,6 +970,47 @@
         "en": "Language exchange meetup for English and Portuguese at a beachfront bar on Leme Beach, Copacabana, with happy hour and sunset viewing. Meetings are cancelled on rainy or very windy days.",
         "es": "Encuentro de intercambio de idiomas (inglés y portugués) en un bar frente a la playa del Leme, en Copacabana, con happy hour y puesta de sol. Las reuniones se cancelan los días de lluvia o viento fuerte."
       }
+    },
+    {
+      "title": "Barra da Tijuca Food and Drinks Tour!",
+      "start": "2026-11-26T18:00:00-03:00",
+      "end": "2026-11-26T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-food-and-history/events/317581340",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio de Janeiro Food and History Welcome to the beautiful neighborhood of Barra da Tijuca, one of Rio de Janeiro's best zones for beaches, bars, and restaurants. In this tour we will explore some of the most iconic…"
+      },
+      "tags": [
+        "passeios",
+        "gastronomia"
+      ],
+      "status": "confirmado",
+      "bairro": "Barra da Tijuca",
+      "descricao_completa": "Rio de Janeiro Food and History\nWelcome to the beautiful neighborhood of Barra da Tijuca, one of Rio de Janeiro's best zones for beaches, bars, and restaurants. In this tour we will explore some of the most iconic parts of Barra, such as Jardim Oceânico (or Oceanic Garden, and you will soon realize why it is called like this) and the Gigóia Islands, a hidden treasure, considered as Rio de Janeiro's very own Pantanal, where you might get the chance to spot capybaras and crocodiles. All this while exploring the bars for food and drinks around the area!\nAs we walk around the beach front, we will cross into Olegário Maciel Avenue, a bohemian, gastronomic hub in Barra. There, customers will be able to indulge from a plethora of dishes according to different regions of Brazil and historical periods, such as feijoada, picanha (rump steak), medalhão com arroz à piamontese, galinha à caipira, carne de sol com aipim na manteiga (sun-dried meat with yucca soaked in butter); or, for the more adventurous, chicken hearts skewers, alongside popular snacks such as queijo coalho and coxinha de galinha, besides much more depending on one´s hunger.\nFrom Olegário Maciel, we continue our march to the ferries and visit the Gigóia Islands, a picturesque part of Rio de Janeiro, often known as the Pantanal (swamps) of the south. The islands also feature many bars and restaurants, where the customers can finish the tour with a refreshing caipirinha or two.\nImportant notice: there is a small fee for crossing the island (4 reais each way, to be paid exclusively in cash). Food and drinks costs are also extra!\nThe tour is NOT suitable for vegetarians or vegans (if you want to do the tour but your friend is a vegetarian - vegan, he or she is welcome to tag along and order whatever pleases, but none of those dishes are related to a historical background). The standard tour contains beef, pork and alcohol!\nThe average lenght of the tour is 3 hours, but be aware that during the peak summer months the restaurants can be quite busy. I do have an agreement with them to serve my group as quickly as possible, but it is beyond my powers when they are very busy during the weekends or holidays. Expect some tours to last 3:30 hours in high season months.\nNO HAY TOUR EN ESPAÑOL! Sorry, the tour is already over 3 hours long. There is no remote possibility for me to translate everything I say. Cheers.",
+      "source": "Meetup · Rio Food and History",
+      "fonte": "meetup:rio-de-janeiro-food-and-history",
+      "via": "feed",
+      "categoria": "cultura",
+      "id": "2026-11-26-barra-da-tijuca-food-and-drinks-tour",
+      "added": "2026-11-25",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-food-and-history",
+          "via": "feed",
+          "data": "2026-11-25"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -1813,6 +1875,9 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/renato-albani-presents-new-comedy-show-at-farmasi-arena-in-rio"
       ]
     },
     {
@@ -2589,6 +2654,16 @@
       },
       "urls": [
         "https://agendaculturalriodejaneiro.com/events/the-jazz-room-celebra-frank-sinatra-e-louis-armstrong-em-noite-intimista-no-teatro-rival"
+      ],
+      "historico": [
+        {
+          "campo": "start",
+          "antes": "2026-12-04T19:30:00-03:00",
+          "depois": "2026-12-04",
+          "fonte": "agendacultural:shows",
+          "data": "2026-11-25",
+          "aplicado": false
+        }
       ]
     },
     {
@@ -2681,7 +2756,12 @@
           "via": "feed",
           "data": "2026-11-25"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Show do cantor Armandinho e banda na Fundição Progresso, no Rio de Janeiro, em 5 de dezembro de 2026 (sábado). Mistura pop, reggae, rock, surf rock e romantismo, com sucessos como Desenho de Deus, Outra Vida, Casinha e Ana Lua.",
+        "en": "Concert by singer Armandinho and his band at Fundição Progresso in Rio de Janeiro on December 5, 2026 (Saturday). The show mixes pop, reggae, rock, surf rock and romance, with hits such as Desenho de Deus, Outra Vida, Casinha and Ana Lua.",
+        "es": "Concierto del cantante Armandinho y su banda en Fundição Progresso, en Río de Janeiro, el 5 de diciembre de 2026 (sábado). Mezcla pop, reggae, rock, surf rock y romanticismo, con éxitos como Desenho de Deus, Outra Vida, Casinha y Ana Lua."
+      }
     },
     {
       "title": "Corrida na Quinta da Boa Vista",
@@ -3025,6 +3105,24 @@
       },
       "urls": [
         "https://agendaculturalriodejaneiro.com/events/baile-do-2a-aposta-em-funk-e-pagode-em-locacao-secreta-no-rio"
+      ],
+      "historico": [
+        {
+          "campo": "venue",
+          "antes": "Locação secreta em Rio de Janeiro - RJ, Brasil",
+          "depois": "Locação secreta em Rio de Janeiro",
+          "fonte": "agendacultural:shows",
+          "data": "2026-11-25",
+          "aplicado": false
+        },
+        {
+          "campo": "venue",
+          "antes": "Locação secreta em Rio de Janeiro - RJ, Brasil",
+          "depois": "Locação secreta em Rio de Janeiro",
+          "fonte": "agendacultural:fim-de-semana",
+          "data": "2026-11-25",
+          "aplicado": false
+        }
       ]
     },
     {
@@ -4110,7 +4208,12 @@
           "data": "2026-11-15"
         }
       ],
-      "descricao_completa": "Mundo Lingo Rio de Janeiro\n100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free.\n\n🟢 The Flags\nPlace flags on your chest from top to bottom according to fluency. We offer flags from 200+ places.\n\n🟢 Stand to mingle, sit to dwindle!\n🗣 Talk about anything you like. You don't have to be an advanced speaker - it's open to everyone!\n\n🛎 Reception 7 - 10pm\nNot obligatory, but arrive at this time if you’re new or want those drinks specials.\n\nConnect with us 👉 mundolingo.org"
+      "descricao_completa": "Mundo Lingo Rio de Janeiro\n100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free.\n\n🟢 The Flags\nPlace flags on your chest from top to bottom according to fluency. We offer flags from 200+ places.\n\n🟢 Stand to mingle, sit to dwindle!\n🗣 Talk about anything you like. You don't have to be an advanced speaker - it's open to everyone!\n\n🛎 Reception 7 - 10pm\nNot obligatory, but arrive at this time if you’re new or want those drinks specials.\n\nConnect with us 👉 mundolingo.org",
+      "resumo": {
+        "pt": "Encontro semanal do Mundo Lingo no Rio de Janeiro (Botafogo) para socializar e praticar idiomas com pessoas de diversas nacionalidades e idades. Gratuito; a recepção é das 19h às 22h, com promoções em bebidas, e não é obrigatória.",
+        "en": "Weekly Mundo Lingo meetup in Rio de Janeiro (Botafogo) where people of all ages and nationalities socialise and practise languages. It is free; reception runs 7–10pm, with drink specials, and attendance is optional.",
+        "es": "Encuentro semanal de Mundo Lingo en Río de Janeiro (Botafogo) para socializar y practicar idiomas con personas de distintas edades y nacionalidades. Es gratuito; la recepción es de 19 a 22 h, con ofertas en bebidas, y no es obligatoria."
+      }
     },
     {
       "title": " corrida no Maracanã ",
@@ -4639,6 +4742,47 @@
       }
     },
     {
+      "title": "Mundo Lingo Botafogo/Humaitá",
+      "start": "2026-12-29T19:00:00-03:00",
+      "end": "2026-12-30T13:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/317462014",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Mundo Lingo Rio de Janeiro 100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free. 🟢 The Flags Place flags on your chest from top…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "descricao_completa": "Mundo Lingo Rio de Janeiro\n100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free.\n\n🟢 The Flags\nPlace flags on your chest from top to bottom according to fluency. We offer flags from 200+ places.\n\n🟢 Stand to mingle, sit to dwindle!\n\n🗣 Talk about anything you like. You don't have to be an advanced speaker - it's open to everyone!\n\n🛎 Reception 7 - 10pm\nNot obligatory, but arrive at this time if you’re new or want those drinks specials.\n\nConnect with us 👉 mundolingo.org",
+      "source": "Meetup · Mundo Lingo Rio",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "id": "2026-12-29-mundo-lingo-botafogo-humaita",
+      "added": "2026-11-25",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
       "title": "Réveillon de Copacabana — Djavan, Simone Mendes, Xande de Pilares + Revelação, Pedro Sampaio",
       "start": "2026-12-31T20:00:00-03:00",
       "time_known": false,
@@ -4885,7 +5029,12 @@
           "data": "2026-11-23"
         }
       ],
-      "descricao_completa": "Literatura Rio de Janeiro\nEncontro literário aberto\nApresentação dos novos inscritos no grupo\nQuinzenalmente às terças.\n\nNeste encontro vamos definir dias e horários para cada estilo literário e oficinas de escrita criativa.\n\nFaremos um grupo (Zap e Telegram) para melhorar nosso contato.\n\nAguardamos vocês!"
+      "descricao_completa": "Literatura Rio de Janeiro\nEncontro literário aberto\nApresentação dos novos inscritos no grupo\nQuinzenalmente às terças.\n\nNeste encontro vamos definir dias e horários para cada estilo literário e oficinas de escrita criativa.\n\nFaremos um grupo (Zap e Telegram) para melhorar nosso contato.\n\nAguardamos vocês!",
+      "resumo": {
+        "pt": "Encontro literário aberto no Rio de Janeiro, com apresentação dos novos inscritos no grupo. Acontece quinzenalmente às terças, e no encontro serão definidos dias e horários para cada estilo literário e oficinas de escrita criativa.",
+        "en": "Open literary meeting in Rio de Janeiro where new group members introduce themselves. It takes place every two weeks on Tuesdays, and attendees will set days and times for each literary style and creative writing workshops.",
+        "es": "Encuentro literario abierto en Río de Janeiro para que los nuevos integrantes del grupo se presenten. Se realiza cada quince días los martes; allí se definirán días y horarios para cada estilo literario y talleres de escritura creativa."
+      }
     },
     {
       "title": "Rio Speaks English",
@@ -5787,6 +5936,9 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/god-save-the-queen-homenageia-freddie-mercury-e-queen-no-vivo-rio"
       ]
     },
     {
@@ -5828,7 +5980,12 @@
           "via": "feed",
           "data": "2026-11-25"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Dynalectric Orchestra apresenta a Begin Transmission Tour no Vivo Rio, no Rio de Janeiro, em 4 de maio de 2027, às 20h30. O show combina synth-wave, post-punk e rock progressivo, com proposta de alta fidelidade e energia de banda ao vivo.",
+        "en": "Dynalectric Orchestra presents the Begin Transmission Tour at Vivo Rio in Rio de Janeiro on May 4, 2027, at 8:30 PM. The show blends synth-wave, post-punk and progressive rock, aiming for high-fidelity sound and live band energy.",
+        "es": "Dynalectric Orchestra presenta su Begin Transmission Tour en Vivo Rio, en Río de Janeiro, el 4 de mayo de 2027 a las 20:30. El show combina synth-wave, post-punk y rock progresivo, con sonido de alta fidelidad y energía de banda en vivo."
+      }
     },
     {
       "title": "Next meeting May 13, 2027",
