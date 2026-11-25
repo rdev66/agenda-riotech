@@ -544,6 +544,49 @@
       }
     },
     {
+      "title": "Seal — 30 anos dos álbuns I e II, abertura de Seu Jorge",
+      "start": "2026-11-26T00:00:00-03:00",
+      "time_known": false,
+      "venue": "Qualistage",
+      "address": "Av. Ayrton Senna, 3000",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "A partir de R$ 197,50 (meia)"
+      },
+      "registration": "ingresso",
+      "url": "https://diariodorio.com/seal-anuncia-show-no-rio-para-celebrar-mais-de-30-anos-de-carreira/",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Seal celebra os 30 anos dos álbuns Seal I e II. Abertura de Seu Jorge. Horário a confirmar.",
+        "en": "Seal celebrates 30 years of his first two albums. Seu Jorge opens. Time TBC."
+      },
+      "tags": [
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Barra da Tijuca",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-11-26-seal-30-anos-dos-albuns-i-e-ii-abertura-de-seu-jorge",
+      "added": "2026-11-25",
+      "urls": [
+        "https://diariodorio.com/seal-anuncia-show-no-rio-para-celebrar-mais-de-30-anos-de-carreira/"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
       "title": "Fale INGLÊS e PORTUGUÊS.  NOVO DIA e HORA. MESMO BAR na PRAIA do LEME",
       "start": "2026-11-26T15:15:00-03:00",
       "end": "2026-11-26T17:05:00-03:00",
@@ -722,6 +765,136 @@
       "descricao_completa": "Clube Poliglota Rio de Janeiro\nPrática de conversação em diferentes idiomas. Todos os idiomas são bem vindos! Venha praticar inglês, espanhol, italiano, francês... Se duas pessoas falarem, você pode praticar!\n\nNos encontramos no segundo andar e geralmente ficamos no espaço externo, onde ficam as mesas e cadeiras.\n\nNão tem nível específico também, temos membros do inciante ao avançado!\n\nEste é um evento do Clube Poliglota Rio de Janeiro.\n\nAll languages are welcome.\n\nWe meet on the second floor and normally stay in the outdoor space, where the tables and chairs are.\n\nThere is no specific level either, we have members from beginner to advanced!\n\nThis event is organized by the Rio de Janeiro's Polyglot Club."
     },
     {
+      "title": "Groundation + Veteranos do Riddim",
+      "start": "2026-11-27T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Circo Voador",
+      "address": "Rua dos Arcos, s/n",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "R$ 120 (meia)"
+      },
+      "registration": "ingresso",
+      "url": "https://www.riotimesonline.com/groundation-reggae-concert-rio-de-janeiro-circo-voador-guide-2026/",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Reggae roots e jazz da Groundation no Circo Voador. 18 anos; levar 1 kg de alimento não perecível.",
+        "en": "Groundation roots reggae at Circo Voador."
+      },
+      "tags": [
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Lapa",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-11-27-groundation-veteranos-do-riddim",
+      "added": "2026-11-25",
+      "urls": [
+        "https://www.riotimesonline.com/groundation-reggae-concert-rio-de-janeiro-circo-voador-guide-2026/"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Inauguração da Árvore de Natal da Lagoa (30 anos)",
+      "start": "2026-11-28T00:00:00-03:00",
+      "time_known": false,
+      "venue": "Lagoa Rodrigo de Freitas",
+      "address": "Orla da Lagoa; Lagoon: Av. Borges de Medeiros, 1424",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis (Lagoon com ingresso pelo app GoDream)"
+      },
+      "registration": "livre",
+      "url": "https://diariodorio.com/rio-de-janeiro/2026/11/18/arvore-de-natal-da-lagoa-2026-veja-as-novidades-desta-edicao-atracoes-e-quando-comeca.html",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Acendimento da árvore com Orquestra Petrobras Sinfônica, fogos e show de drones. Telões na orla. Horário a confirmar.",
+        "en": "Tree lighting with the Petrobras Symphony Orchestra, fireworks and drones. Screens along the lake. Time TBC."
+      },
+      "tags": [
+        "festa-popular",
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Lagoa",
+      "source": "Curadoria manual",
+      "categoria": "festas",
+      "idioma": "pt",
+      "id": "2026-11-28-inauguracao-da-arvore-de-natal-da-lagoa-30-anos",
+      "added": "2026-11-25",
+      "urls": [
+        "https://diariodorio.com/rio-de-janeiro/2026/11/18/arvore-de-natal-da-lagoa-2026-veja-as-novidades-desta-edicao-atracoes-e-quando-comeca.html"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Rio Blues Festival no Aterro",
+      "start": "2026-11-28T00:00:00-03:00",
+      "time_known": false,
+      "venue": "Praia do Flamengo — Posto 3",
+      "address": "Praia do Flamengo, 300",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento__3647984",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Festival de blues ao ar livre no Aterro, sábado e domingo (28 e 29). Horários e preço a confirmar.",
+        "en": "Outdoor blues festival on the Aterro, Sat and Sun (28–29). Times and price TBC."
+      },
+      "tags": [
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Flamengo",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-11-28-rio-blues-festival-no-aterro",
+      "added": "2026-11-25",
+      "urls": [
+        "https://www.sympla.com.br/evento__3647984"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
       "title": "Corrida na Quinta da Boa Vista",
       "start": "2026-11-28T08:30:00-03:00",
       "end": "2026-11-28T09:30:00-03:00",
@@ -842,6 +1015,52 @@
       "descricao_completa": "Rio Speaks English\n*Em português:*\nUm encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o foco é conversar, se soltar e conhecer gente nova.\n\nTodos os níveis são bem-vindos, do avançado ao iniciante. Não tem prova, não tem pressão — é só uma mesa amigável onde todo mundo se ajuda. Se você está aprendendo inglês, aqui é o lugar para finalmente falar sem medo de errar.\n\nAnfitrião: Murillo, com Jader como co-anfitrião.\n\n📍 Onde: Café no 2º andar da Livraria Travessa, Botafogo\n🕥 Quando: Todo sábado, 10h30 – 12h00\n👥 Vagas: Até 16 pessoas\n☕ Valor: R25 (Pix ou dinheiro) / R30 (cartão), pago no local\n\nEntre no nosso grupo do WhatsApp!\n\n👉 **Link do grupo:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4\n\n*In English:*\nJoin us for a relaxed, in-person English conversation meetup in the heart of Botafogo. Each week we pick a theme — culture, travel, ideas, life in Rio, whatever gets us talking — and dive into a real conversation. The goal isn't a lesson; it's practice, connection, and a good excuse to meet interesting people.\n\nAll levels are welcome, from confident speakers to nervous beginners. There's no test and no pressure — just a friendly table where everyone helps each other out. We wander off-topic, we laugh, and the weekly themes are simply there to break the ice.\n\nLocals and foreigners mix equally here. If you're learning English, it's a safe space to actually speak it. If you're new to Rio, it's a great way to meet Cariocas and make friends.\n\nYour host is Murillo, with Jader co-hosting and stepping in when needed.\n\n📍 Where: Café on the 2nd floor of Livraria Travessa, Botafogo\n🕥 When: Every Saturday, 10:30 AM – 12:00 PM\n👥 Group size: Up to 16 people\n☕ Cost: R25 (Pix or cash) / R30 (credit card), paid at the meetup\n\nJoin our WhatsApp group!\n\n👉 **Group link:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4"
     },
     {
+      "title": "Feira das Yabás",
+      "start": "2026-11-28T13:00:00-03:00",
+      "end": "2026-11-28T20:00:00-03:00",
+      "time_known": true,
+      "venue": "CCBB Rio de Janeiro — Praça da Pira",
+      "address": "Rua Primeiro de Março, 66",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://ccbb.com.br/rio-de-janeiro/programacao/feira-das-yabas/",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Feira com samba e comida na praça do CCBB.",
+        "en": "Samba and food fair at CCBB's square."
+      },
+      "tags": [
+        "samba-roda",
+        "gastronomia",
+        "festa-popular"
+      ],
+      "status": "confirmado",
+      "bairro": "Centro",
+      "source": "Curadoria manual",
+      "categoria": "festas",
+      "idioma": "pt",
+      "id": "2026-11-28-feira-das-yabas",
+      "added": "2026-11-25",
+      "urls": [
+        "https://ccbb.com.br/rio-de-janeiro/programacao/feira-das-yabas/"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
       "title": "FRC Rio x Common Ground x More Hostels",
       "start": "2026-11-28T16:30:00-03:00",
       "end": "2026-11-28T22:00:00-03:00",
@@ -927,6 +1146,93 @@
       }
     },
     {
+      "title": "Clássicos do Brasil: Vanessa da Mata, Maria Bethânia e Alceu Valença",
+      "start": "2026-11-28T19:00:00-03:00",
+      "time_known": true,
+      "venue": "Marina da Glória",
+      "address": "Av. Infante Dom Henrique, s/n",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "Pista a partir de R$ 200"
+      },
+      "registration": "ingresso",
+      "url": "https://diariodorio.com/agenda/2026/11/04/fabio-jr-roupa-nova-e-paulo-ricardo-fazem-noite-romantica-na-marina-da-gloria-em-dezembro.html",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Abertura do festival: 19h Vanessa da Mata, 21h Maria Bethânia, 23h Alceu Valença.",
+        "en": "Festival opening: 7pm Vanessa da Mata, 9pm Maria Bethânia, 11pm Alceu Valença."
+      },
+      "tags": [
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Glória",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-11-28-classicos-do-brasil-vanessa-da-mata-maria-bethania-e-alceu-v",
+      "added": "2026-11-25",
+      "urls": [
+        "https://diariodorio.com/agenda/2026/11/04/fabio-jr-roupa-nova-e-paulo-ricardo-fazem-noite-romantica-na-marina-da-gloria-em-dezembro.html"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Brisa no Theatro Municipal",
+      "start": "2026-11-28T22:00:00-03:00",
+      "end": "2026-11-29T05:15:00-03:00",
+      "time_known": true,
+      "venue": "Theatro Municipal do Rio de Janeiro",
+      "address": "Praça Floriano, s/n",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://roaminrio.com/pt/mapa/?event=rio-brisa-theatro-municipal-theatro-municipal-do-rio-de-janeiro-2026-11",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Festa noturna dentro do Theatro Municipal, das 22h às 5h.",
+        "en": "All-night party inside the Theatro Municipal, 10pm–5am."
+      },
+      "tags": [
+        "eletronica"
+      ],
+      "status": "confirmado",
+      "bairro": "Centro",
+      "source": "Curadoria manual",
+      "categoria": "festas",
+      "idioma": "pt",
+      "id": "2026-11-28-brisa-no-theatro-municipal",
+      "added": "2026-11-25",
+      "urls": [
+        "https://roaminrio.com/pt/mapa/?event=rio-brisa-theatro-municipal-theatro-municipal-do-rio-de-janeiro-2026-11"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
       "title": "RUNCLUB TIMEHÍBRIDO | RIO DE JANEIRO",
       "start": "2026-11-29T07:45:00-03:00",
       "end": "2026-11-29T09:45:00-03:00",
@@ -965,6 +1271,226 @@
       ],
       "descricao_completa": "🐊 ÚLTIMO DOMINGO DO MÊS É DIA OFICIAL DE RUN CLUB TIME HÍBRIDO!\nO Run Club Time Híbrido nasceu para aproximar quem vive esse estilo de vida e fortalecer ainda mais a nossa comunidade de forma presencial.\nEsse encontro vai acontecer em todas as capitais simultaneamente, onde os alunos vão se reunir para ter uma manhã de movimento, amizade e boas conexões.\nO percurso poderá ser definido por cada estado: sugerimos correr 5km em pace fofoca mas poderá ser flexibilizado para uma distância maior ou simplesmente aproveitar a experiência mais leve ao lado da nossa comunidade.\nPLANEJAMENTO\n• 07h30: Concentração\n• 07h45: Aquecimento (https://youtu.be/pSAlrVbx4TA)\n• 08h00: Início\nNosso encontro é GRATUITO e aberto para amigos e familiares (lembre-se de enviar este link de confirmação para o seu convidado).\nConfirme sua presença e em caso de imprevistos, não se esqueça de retirar sua confirmação.\nSe possível vista-se de preto e venha correr entre alunos da maior comunidade de Treino Híbrido do Brasil.\nLEMBRETES IMPORTANTES\n\n• O Run Club é composto por alunos do Time Híbrido e convidados\n• Ao chegar no ponto de encontro, você poderá se comunicar pelo grupo da comunidade para localizar os demais\n• Essa lista é para confirmados. Caso tenha qualquer imprevisto, retire sua confirmação\n• Não esqueçam de tirar fotos e aproveitar muitoooo\n🐊 VEM VIVER ISSO COM A GENTE 🐊\n\nPONTO DE ENCONTRO\nMonumento dos Pracinhas - Aterro do Flamengo",
       "bairro": "Flamengo"
+    },
+    {
+      "title": "Rio Parada Funk 2026",
+      "start": "2026-11-29T12:00:00-03:00",
+      "end": "2026-11-29T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Praça da Apoteose",
+      "address": "Rua Marquês de Sapucaí, s/n",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.sympla.com.br/evento__3611330",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Encontro de equipes de som e MCs do funk carioca na Apoteose, das 12h às 20h.",
+        "en": "Rio funk sound systems and MCs at the Apoteose, noon to 8pm."
+      },
+      "tags": [
+        "funk",
+        "festa-popular"
+      ],
+      "status": "confirmado",
+      "bairro": "Santo Cristo",
+      "source": "Curadoria manual",
+      "categoria": "festas",
+      "idioma": "pt",
+      "id": "2026-11-29-rio-parada-funk-2026",
+      "added": "2026-11-25",
+      "urls": [
+        "https://www.sympla.com.br/evento__3611330"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Forró da Praça no Jo&Joe",
+      "start": "2026-11-29T14:00:00-03:00",
+      "end": "2026-11-29T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Largo do Boticário — Hostel Jo&Joe",
+      "address": "Largo do Boticário",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://roaminrio.com/pt/eventos/novembro/",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Forró de tarde no Largo do Boticário.",
+        "en": "Afternoon forró at Largo do Boticário."
+      },
+      "tags": [
+        "forro"
+      ],
+      "status": "confirmado",
+      "bairro": "Cosme Velho",
+      "source": "Curadoria manual",
+      "categoria": "festas",
+      "idioma": "pt",
+      "id": "2026-11-29-forro-da-praca-no-jo-joe",
+      "added": "2026-11-25",
+      "urls": [
+        "https://roaminrio.com/pt/eventos/novembro/"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Clássicos do Brasil: Ferrugem, Péricles e Alexandre Pires",
+      "start": "2026-11-29T17:00:00-03:00",
+      "time_known": true,
+      "venue": "Marina da Glória",
+      "address": "Av. Infante Dom Henrique, s/n",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "Arena a partir de R$ 160"
+      },
+      "registration": "ingresso",
+      "url": "https://agendaculturalriodejaneiro.com/events/alexandre-pires-pericles-e-ferrugem-levam-samba-e-pagode-ao-classicos-do-brasil-no-rio/",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Noite de samba e pagode: 17h Ferrugem, 19h Péricles, 21h Alexandre Pires.",
+        "en": "Samba and pagode night: 5pm Ferrugem, 7pm Péricles, 9pm Alexandre Pires."
+      },
+      "tags": [
+        "pagode",
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Glória",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-11-29-classicos-do-brasil-ferrugem-pericles-e-alexandre-pires",
+      "added": "2026-11-25",
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/events/alexandre-pires-pericles-e-ferrugem-levam-samba-e-pagode-ao-classicos-do-brasil-no-rio/"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Bruno Sutter toca Iron Maiden",
+      "start": "2026-11-29T19:00:00-03:00",
+      "time_known": true,
+      "venue": "Circo Voador",
+      "address": "Rua dos Arcos, s/n",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "R$ 60 (meia)"
+      },
+      "registration": "ingresso",
+      "url": "https://www.eventim.com.br/city/rio-de-janeiro-1672/shows-musica-175/",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "50 anos de Iron Maiden no Circo Voador.",
+        "en": "50 years of Iron Maiden at Circo Voador."
+      },
+      "tags": [
+        "rock",
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Lapa",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-11-29-bruno-sutter-toca-iron-maiden",
+      "added": "2026-11-25",
+      "urls": [
+        "https://www.eventim.com.br/city/rio-de-janeiro-1672/shows-musica-175/"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Gipsy Kings by Diego Baliardo + Sidney Magal",
+      "start": "2026-11-29T21:30:00-03:00",
+      "time_known": true,
+      "venue": "Qualistage",
+      "address": "Av. Ayrton Senna, 3000",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": null
+      },
+      "registration": "ingresso",
+      "url": "https://www.ticketmaster.com.br/event/gipsy-kings-part-sidney-magal-qualistage",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Gipsy Kings de Diego Baliardo com participação de Sidney Magal.",
+        "en": "Gipsy Kings by Diego Baliardo with Sidney Magal."
+      },
+      "tags": [
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Barra da Tijuca",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-11-29-gipsy-kings-by-diego-baliardo-sidney-magal",
+      "added": "2026-11-25",
+      "urls": [
+        "https://www.ticketmaster.com.br/event/gipsy-kings-part-sidney-magal-qualistage"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -1363,6 +1889,137 @@
         "en": "Relaxed in-person English conversation meetup every Saturday, 10:30 AM–12:00 PM, at the café on the 2nd floor of Livraria Travessa in Botafogo. Open to all levels, up to 16 people, no test; a weekly theme gets the conversation going.",
         "es": "Encuentro presencial y relajado para practicar inglés cada sábado de 10:30 a 12:00, en el café de la Livraria Travessa, en Botafogo. Abierto a todos los niveles, hasta 16 personas, sin examen; cada semana hay un tema para conversar."
       }
+    },
+    {
+      "title": "Jazz Proibidão — edição 10 (grátis, local secreto)",
+      "start": "2026-12-05T18:00:00-03:00",
+      "end": "2026-12-05T20:00:00-03:00",
+      "time_known": true,
+      "venue": "Local secreto",
+      "address": "Divulgado na reserva",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis, com reserva"
+      },
+      "registration": "inscricao",
+      "url": "https://shotgun.live/pt-br/events/jazz-proibidao-edicao-10",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Jazz gratuito em local revelado só para quem reserva no Shotgun.",
+        "en": "Free jazz at a secret venue revealed on booking via Shotgun."
+      },
+      "tags": [
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Centro",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-12-05-jazz-proibidao-edicao-10-gratis-local-secreto",
+      "added": "2026-11-25",
+      "urls": [
+        "https://shotgun.live/pt-br/events/jazz-proibidao-edicao-10"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Clássicos do Brasil: Paulo Ricardo, Fábio Jr. e Roupa Nova",
+      "start": "2026-12-05T19:00:00-03:00",
+      "time_known": true,
+      "venue": "Marina da Glória",
+      "address": "Av. Infante Dom Henrique, s/n",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "Arena a partir de R$ 160"
+      },
+      "registration": "ingresso",
+      "url": "https://www.bilheteriadigital.com/classicos-do-brasil-fabio-jr-roupa-nova-paulo-ricardo-05-de-dezembro",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Noite romântica: 19h Paulo Ricardo, 21h Fábio Jr., 23h Roupa Nova.",
+        "en": "Romantic night: 7pm Paulo Ricardo, 9pm Fábio Jr., 11pm Roupa Nova."
+      },
+      "tags": [
+        "rock",
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Glória",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-12-05-classicos-do-brasil-paulo-ricardo-fabio-jr-e-roupa-nova",
+      "added": "2026-11-25",
+      "urls": [
+        "https://www.bilheteriadigital.com/classicos-do-brasil-fabio-jr-roupa-nova-paulo-ricardo-05-de-dezembro"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Clássicos do Brasil: Pepeu Gomes, Paralamas do Sucesso e Caetano Veloso",
+      "start": "2026-12-06T15:00:00-03:00",
+      "time_known": true,
+      "venue": "Marina da Glória",
+      "address": "Av. Infante Dom Henrique, s/n",
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "pago",
+        "text": "Arena a partir de R$ 160"
+      },
+      "registration": "ingresso",
+      "url": "https://www.bilheteriadigital.com/classicos-do-brasil-pepeu-gomes-paralamas-caetano-veloso-06-de-dezembro",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Encerramento do festival com Pepeu Gomes, Os Paralamas do Sucesso e Caetano Veloso.",
+        "en": "Festival closing with Pepeu Gomes, Os Paralamas do Sucesso and Caetano Veloso."
+      },
+      "tags": [
+        "shows"
+      ],
+      "status": "confirmado",
+      "bairro": "Glória",
+      "source": "Curadoria manual",
+      "categoria": "shows",
+      "idioma": "pt",
+      "id": "2026-12-06-classicos-do-brasil-pepeu-gomes-paralamas-do-sucesso-e-caeta",
+      "added": "2026-11-25",
+      "urls": [
+        "https://www.bilheteriadigital.com/classicos-do-brasil-pepeu-gomes-paralamas-caetano-veloso-06-de-dezembro"
+      ],
+      "fonte": "manual",
+      "via": "manual",
+      "vistos": [
+        {
+          "fonte": "manual",
+          "via": "manual",
+          "data": "2026-11-25"
+        }
+      ]
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
