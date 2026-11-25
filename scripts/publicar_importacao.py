@@ -11,6 +11,10 @@ mexe na main.
 O workflow abre o PR de revisão (peter-evans/create-pull-request) quando
 este script devolve revisar=true. O relatório vai para o resumo do job e
 para a issue semanal «Saúde da agenda».
+
+No fluxo correio, a etiqueta agenda/processado só entra depois de um push
+bem-sucedido na main, nos UIDs que importar_correio.py guardou. Revisão ou
+falha não etiqueta: a próxima rodada lê de novo.
 """
 from __future__ import annotations
 
@@ -331,12 +335,27 @@ def _juntar_validacao(erros: list[str], validar) -> list[str]:
     return list(erros)
 
 
+def etiquetar_correio() -> None:
+    """Aplica agenda/processado nos UIDs salvos por importar_correio.py."""
+    import importar_correio
+
+    importar_correio.aplicar_rotulos()
+
+
+def etiquetar_do_fluxo(fluxo: str) -> Callable[[], None] | None:
+    """Só o correio etiqueta, e só quem chama isto depois do push na main."""
+    if fluxo == "correio":
+        return etiquetar_correio
+    return None
+
+
 def conduzir(
     git: Git,
     etapas: list[Etapa],
     validar,
     dia: str,
     tentativas: int = TENTATIVAS,
+    etiquetar: Callable[[], None] | None = None,
 ) -> Resultado:
     """Importa, valida e tenta gravar na main. Não abre PR."""
     tentativas = max(1, tentativas)
@@ -387,6 +406,14 @@ def conduzir(
             print("publicado na main")
             base.publicado = True
             base.relatorio = montar_relatorio(blocos, None)
+            if etiquetar is not None:
+                try:
+                    etiquetar()
+                except Exception as exc:
+                    print(
+                        f"aviso: não etiquetei o correio ({type(exc).__name__})",
+                        file=sys.stderr,
+                    )
             return base
         if motivo != "main-moved":
             return falha([], blocos, motivo)
@@ -512,7 +539,10 @@ def main(argv: list[str] | None = None) -> int:
     try:
         git.preparar()
         etapas = [_etapa_de_plano(p) for p in planos(args.fluxo)]
-        resultado = conduzir(git, etapas, validar_repositorio, dia, args.tentativas)
+        resultado = conduzir(
+            git, etapas, validar_repositorio, dia, args.tentativas,
+            etiquetar=etiquetar_do_fluxo(args.fluxo),
+        )
     except Exception as exc:
         print(f"erro: {_limpar_segredo(str(exc))}", file=sys.stderr)
         definir_saida(revisar="false", publicado="false", agenda="", rotulo="", dia=dia)

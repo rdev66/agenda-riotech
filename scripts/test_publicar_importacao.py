@@ -1,12 +1,15 @@
 """A importação entra na main, ou fica para revisão. Sem rede e sem API."""
 import datetime as dt
+import os
 import subprocess
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).parent))
+import importar_correio as correio  # noqa: E402
 import publicar_importacao as pub  # noqa: E402
 import validar  # noqa: E402
 
@@ -129,6 +132,29 @@ class TestRelatorio(unittest.TestCase):
                 git.mudancas(["WhatsApp/chat.zip"])
 
 
+class _ImapRotulo:
+    """Conexão falsa: registra o STORE e não abre a rede."""
+
+    def __init__(self):
+        self.user = None
+        self.senha = None
+        self.stores = []
+
+    def login(self, user, senha):
+        self.user = user
+        self.senha = senha
+        return "OK", [b"ok"]
+
+    def uid(self, cmd, *args):
+        if cmd == "STORE":
+            self.stores.append(args)
+            return "OK", [None]
+        raise AssertionError(cmd)
+
+    def logout(self):
+        return "OK", [b"bye"]
+
+
 class TestPublicar(unittest.TestCase):
     def _etapa(self, agenda, arquivo, gravar):
         def rodar():
@@ -136,6 +162,33 @@ class TestPublicar(unittest.TestCase):
             return 0, "", f"relatório {agenda}"
 
         return pub.Etapa(agenda, [arquivo], rodar)
+
+    def _conduzir_com_rotulo(self, work, etapa, validar, arquivo, caixas, git=None):
+        def abrir(user, senha):
+            fake = _ImapRotulo()
+            fake.login(user, senha)
+            caixas.append(fake)
+            return correio.Conexao(fake)
+
+        def etiquetar():
+            with patch.object(correio.imaplib, "IMAP4_SSL", side_effect=AssertionError("rede")):
+                correio.aplicar_rotulos(arquivo, abrir=abrir)
+
+        return pub.conduzir(
+            git or pub.Git(work), [etapa], validar, "2026-11-24", etiquetar=etiquetar,
+        )
+
+    def _uids(self, path: Path) -> None:
+        correio.escrever_uids(path, [
+            {"senha_env": "GMAIL_EVENTOS_APP_PASSWORD", "uids": ["11", "12"]},
+            {"senha_env": "GMAIL_ROLES_APP_PASSWORD", "uids": ["21"]},
+        ])
+
+    def _senhas(self):
+        return patch.dict(os.environ, {
+            "GMAIL_EVENTOS_APP_PASSWORD": "segredo-eventos",
+            "GMAIL_ROLES_APP_PASSWORD": "segredo-roles",
+        })
 
     def test_grava_na_main(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -390,6 +443,120 @@ class TestPublicar(unittest.TestCase):
             self.assertIn("sem permissão", resultado.falha)
             # O commit local existe, mas a main do remoto não andou.
             self.assertEqual(_log(work)[1:], antes)
+
+    def test_push_etiqueta_os_uids_salvos(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            work, _other = _repos(Path(tmp))
+            arquivo = Path(tmp) / "uids.json"
+            self._uids(arquivo)
+            caixas = []
+
+            def gravar():
+                (work / "data" / "events.json").write_text(
+                    '{"events":[{"id":"a"}]}\n', encoding="utf-8",
+                )
+
+            with self._senhas():
+                resultado = self._conduzir_com_rotulo(
+                    work, self._etapa("correio", "data/events.json", gravar),
+                    lambda: (True, ""), arquivo, caixas,
+                )
+            texto = arquivo.read_text(encoding="utf-8")
+        self.assertTrue(resultado.publicado, resultado.falha)
+        self.assertFalse(resultado.revisar)
+        self.assertNotIn("segredo", texto)
+        self.assertNotIn("@", texto)
+        por_user = {caixa.user: caixa for caixa in caixas}
+        self.assertEqual(set(por_user), {
+            "agenda.rio.eventos@gmail.com",
+            "agenda.rio.roles@gmail.com",
+        })
+        eventos = por_user["agenda.rio.eventos@gmail.com"]
+        roles = por_user["agenda.rio.roles@gmail.com"]
+        self.assertEqual(eventos.senha, "segredo-eventos")
+        self.assertEqual(roles.senha, "segredo-roles")
+        self.assertEqual([args[0] for args in eventos.stores], ["11", "12"])
+        self.assertEqual([args[0] for args in roles.stores], ["21"])
+        for args in [*eventos.stores, *roles.stores]:
+            self.assertEqual(args[1:], ("+X-GM-LABELS", '("agenda/processado")'))
+
+    def test_revisar_nao_etiqueta(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            work, _other = _repos(Path(tmp))
+            arquivo = Path(tmp) / "uids.json"
+            self._uids(arquivo)
+            caixas = []
+
+            def gravar():
+                (work / "data" / "events.json").write_text("ruim\n", encoding="utf-8")
+
+            with self._senhas():
+                resultado = self._conduzir_com_rotulo(
+                    work, self._etapa("correio", "data/events.json", gravar),
+                    lambda: (False, "validar.py falhou"), arquivo, caixas,
+                )
+        self.assertTrue(resultado.revisar)
+        self.assertFalse(resultado.publicado)
+        self.assertEqual(caixas, [])
+
+    def test_falha_nao_etiqueta(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            work, _other = _repos(Path(tmp))
+            arquivo = Path(tmp) / "uids.json"
+            self._uids(arquivo)
+            caixas = []
+
+            def rodar():
+                return 1, "caixa indisponível", "aviso"
+
+            with self._senhas():
+                sem_diff = self._conduzir_com_rotulo(
+                    work, pub.Etapa("correio", ["data/events.json"], rodar),
+                    lambda: (True, ""), arquivo, caixas,
+                )
+
+            def gravar():
+                (work / "data" / "events.json").write_text("x\n", encoding="utf-8")
+
+            class Recusa(pub.Git):
+                def push(self):
+                    return False, "sem permissão"
+
+            with self._senhas():
+                recusado = self._conduzir_com_rotulo(
+                    work, self._etapa("correio", "data/events.json", gravar),
+                    lambda: (True, ""), arquivo, caixas, git=Recusa(work),
+                )
+        self.assertFalse(sem_diff.publicado)
+        self.assertFalse(sem_diff.revisar)
+        self.assertIn("caixa indisponível", sem_diff.falha)
+        self.assertFalse(recusado.publicado)
+        self.assertFalse(recusado.revisar)
+        self.assertIn("sem permissão", recusado.falha)
+        self.assertEqual(caixas, [])
+
+    def test_sem_mudanca_nao_etiqueta(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            work, _other = _repos(Path(tmp))
+            arquivo = Path(tmp) / "uids.json"
+            self._uids(arquivo)
+            caixas = []
+            with self._senhas():
+                resultado = self._conduzir_com_rotulo(
+                    work, self._etapa("correio", "data/events.json", lambda: None),
+                    lambda: (True, ""), arquivo, caixas,
+                )
+        self.assertFalse(resultado.publicado)
+        self.assertFalse(resultado.revisar)
+        self.assertEqual(caixas, [])
+
+    def test_so_o_fluxo_correio_tem_rotulo(self):
+        self.assertIsNone(pub.etiquetar_do_fluxo("diario"))
+        self.assertIs(pub.etiquetar_do_fluxo("correio"), pub.etiquetar_correio)
+        with patch.object(correio, "aplicar_rotulos", return_value=[]) as aplicar:
+            with patch.object(correio.imaplib, "IMAP4_SSL", side_effect=AssertionError("rede")):
+                pub.etiquetar_correio()
+        aplicar.assert_called_once_with()
 
 
 class TestIssue(unittest.TestCase):
