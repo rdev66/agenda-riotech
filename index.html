@@ -796,7 +796,9 @@ footer p { margin: 4px 0; }
     empreendedorismo: "↗", inovacao: "✦", networking: "Oi", conferencia: "Mic", meetup: "Oi", workshop: "Lab",
     hackathon: "#", palestra: "Mic", carreira: "CV", educacao: "Edu", comunidade: "Oi", "impacto-social": "♥", diversidade: "♥", "open-source": "OS" };
 
-  var state = { lang: "pt", agenda: "tech", q: "", intents: {}, free: false, past: false, tag: null, weekStart: null, weekOn: false, hoje: false, fds: false, ingles: false, zonas: {}, countedPath: "" };
+  // weekOn começa ligado: a primeira pintura já é o clique no dia de hoje.
+  // Eventos com mais de 7 dias saem da lista do dia antes de qualquer clique.
+  var state = { lang: "pt", agenda: "tech", q: "", intents: {}, free: false, past: false, tag: null, weekStart: null, weekOn: true, hoje: false, fds: false, ingles: false, zonas: {}, countedPath: "" };
   var filtros = { tech: null, roles: null };
   var bundles = {};
   var DATA = { events: [], updated: null };
@@ -1728,7 +1730,8 @@ footer p { margin: 4px 0; }
     state.past = s ? s.past : false;
     state.tag = s ? s.tag : null;
     state.weekStart = s ? s.weekStart : null;
-    state.weekOn = s ? s.weekOn : false;
+    // Sem escolha salva, a semana de hoje já entra selecionada, como o clique no dia.
+    state.weekOn = s ? s.weekOn : true;
     state.hoje = s ? s.hoje : false;
     state.fds = s ? s.fds : false;
     state.ingles = s ? s.ingles : false;
