@@ -156,6 +156,8 @@ ROLES_KEYWORDS = [
     (r"\bcineclube\b|\bcineclub\b", "cineclubes", "cinema"),
     (r"\bpre-estreia\b|\bpre estreia\b|\bavant-premiere\b", "pre-estreias", "cinema"),
     (r"\bmostra de cinema\b|\bfestival de cinema\b|\bfilm festival\b", "festivais", "cinema"),
+    (r"\bfestival\b|\bfest\b", "festival-musica", "shows"),
+    (r"\bshow\b(?! up)|\bshows\b|\bconcerto\b|\bconcert\b|\bao vivo\b|\blive music\b|\bturne\b|\btributo\b|\bsinfonica\b|\borquestra\b", "shows", "shows"),
     (r"\bvideo ?games?\b|\bvideogames?\b|\bcultura digital\b|\bmostra de jogos\b|(?<!board )\bgames\b", "nerd-geek", "comunidades"),
     (r"\bmostra\b(?! de jogos)", "mostras", "cinema"),
     (r"\blanguage exchange\b|\bintercambio de idiomas\b|\bmundo lingo\b", "idiomas", "comunidades"),
