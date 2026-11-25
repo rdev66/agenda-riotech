@@ -9,7 +9,7 @@
     "forro": {"pt": "Forró", "en": "Forró", "pn": "Forró"},
     "lgbtqia": {"pt": "LGBTQIA+", "en": "LGBTQIA+", "pn": "LGBTQIA+"},
     "festa-popular": {"pt": "Festa popular", "en": "Street party", "pn": "Festa popular"},
-    "shows": {"pt": "Show", "en": "Live show", "pn": "Show"},
+    "shows": {"pt": "Música ao vivo", "en": "Live music", "pn": "Música en vivo"},
     "mostras": {"pt": "Mostra", "en": "Film series", "pn": "Mostra"},
     "cineclubes": {"pt": "Cineclube", "en": "Film club", "pn": "Cineclub"},
     "pre-estreias": {"pt": "Pré-estreia", "en": "Preview", "pn": "Preestreno"},
@@ -29,7 +29,8 @@
     "corrida": {"pt": "Corrida", "en": "Running", "pn": "Corrida"},
     "trilha": {"pt": "Trilha", "en": "Hiking", "pn": "Trilha"},
     "volei": {"pt": "Vôlei", "en": "Volleyball", "pn": "Vóley"},
-    "bem-estar": {"pt": "Bem-estar", "en": "Wellness", "pn": "Bienestar"}
+    "bem-estar": {"pt": "Bem-estar", "en": "Wellness", "pn": "Bienestar"},
+    "de-graca": {"pt": "De graça", "en": "Free", "pn": "De graça"}
   },
   "categories": [
     {"id": "festas", "label": {"pt": "Festas", "en": "Parties", "pn": "Festas"}, "tags": ["eletronica", "funk", "samba-roda", "pagode", "rock", "hiphop", "forro", "lgbtqia", "festa-popular"]},
