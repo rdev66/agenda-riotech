@@ -14,11 +14,13 @@ Eventos de tecnologia no Rio: software, IA, ciência, biotech, energia, hardware
   - lê os links de uma exportação do grupo do WhatsApp, só na agenda Tech.
   Só completa campos vazios. Data, fim, local e status mudam quando a própria página do evento (Luma, Meetup, Sympla e os outros hosts oficiais) traz um valor novo; correio, WhatsApp e outra plataforma ficam no histórico, para a lista «a revisar». Evento cancelado continua no site, marcado como cancelado. Na agenda Rolês, uma fonte só entra se o `robots.txt` e os termos deixam ler, e se a página tem iCal ou `schema.org/Event` em JSON-LD.
 - **Automação no GitHub Actions:**
-  - `importar.yml`: todo dia às 08:17 (Rio), lê `fontes.json` e abre um PR em `importador/diario`; no mesmo horário lê `fontes_roles.json` e abre outro PR em `importador/roles-diario`. Em seguida `scripts/resumir.py` preenche o resumo dos eventos futuros. Sem `ANTHROPIC_API_KEY`, essa etapa avisa e o job segue;
-  - `importar-correio.yml`: todo dia às 08:47 (Rio), lê as duas caixas do Gmail e abre um PR em `importador/correio-AAAA-MM-DD`; o ramo não é apagado;
-  - `issue-para-pr.yml`: quem abre uma issue «Sugerir um evento» com o link recebe um PR pronto, na agenda escolhida;
+  - `importar.yml`: todo dia às 08:17 (Rio), lê `fontes.json` (Tech) e, em seguida, no mesmo job, `fontes_roles.json` (Rolês). `scripts/resumir.py` preenche o resumo dos eventos futuros. Sem `ANTHROPIC_API_KEY`, essa etapa avisa e o job segue;
+  - `importar-correio.yml`: todo dia às 08:47 (Rio), lê as duas caixas do Gmail. Se a senha de app falta, avisa e termina sem erro;
+  - os dois usam o grupo `dados-agenda` (`cancel-in-progress: false`) e nunca rodam ao mesmo tempo. Cada um faz `git pull --rebase` na `main`, importa, resume e roda `scripts/validar.py` e os testes. Se está tudo verde e há mudança, o commit entra na `main`: `Importação automática (tech, AAAA-MM-DD)`, `Importação automática (roles, AAAA-MM-DD)` ou `Importação automática (correio, AAAA-MM-DD)`, com a data de São Paulo. Se o push falha porque a `main` andou, faz rebase e tenta de novo, até 3 vezes; se o rebase conflita, importa de novo. Se a validação falha, a `main` não muda e abre um PR em `importador/revisar-<agenda>-AAAA-MM-DD` (Tech e Rolês juntos: `tech-e-roles`), com o relatório e o erro. O mesmo relatório vai para o resumo do job e para a issue semanal «Saúde da agenda»;
+  - um push feito com o `GITHUB_TOKEN` não dispara outros workflows. Depois de gravar na `main`, o job dispara o Pages com `gh workflow run pages.yml --ref main`. Push de gente continua publicando pelo `pages.yml`;
+  - `issue-para-pr.yml`: quem abre uma issue «Sugerir um evento» com o link recebe um PR pronto, na agenda escolhida. Sugestão e PR feito à mão não mudaram;
   - `validar.yml`: valida dados e roda os testes em todo PR;
-  - `pages.yml`: publica o site no GitHub Pages a cada push na `main`.
+  - `pages.yml`: publica o site no GitHub Pages a cada push de gente na `main`, e quando o importador dispara o workflow.
 
 ## Agenda Rolês
 
@@ -81,11 +83,11 @@ Duas caixas no Gmail alimentam a agenda. `scripts/importar_correio.py` lê o con
 
 - `agenda.rio.eventos@gmail.com` sugere a agenda Tech (`data/events.json`).
 - `agenda.rio.roles@gmail.com` sugere a agenda Rolês (`data/roles.json`). Mensagem para `agenda.rio.roles+cultura@gmail.com` fica na Rolês, na categoria cultura.
-- A caixa é uma dica. Se o evento é claramente da outra agenda, o script muda de arquivo e o PR diz isso.
+- A caixa é uma dica. Se o evento é claramente da outra agenda, o script muda de arquivo e o relatório diz isso.
 - Link de Luma, Meetup, Sympla, Eventbrite, Even3, Shotgun e dos outros hosts que o importador já lê segue o caminho `--url`, sem parâmetro de rastreio. Newsletter sem esse link (IMS, Sesc, Fever, Bandsintown e semelhantes) vai para o modelo `claude-haiku-5-5`, que não inventa data nem hora.
 - Só entra evento futuro, presencial ou híbrido, na cidade configurada (Rio). Online fica de fora.
 - Cada mensagem lida ganha a etiqueta `agenda/processado`. Nada é apagado nem movido. O repositório não guarda endereço, remetente nem o texto do e-mail: só o evento e o link público.
-- O job abre um PR por dia, no ramo `importador/correio-AAAA-MM-DD` (data em São Paulo). O ramo fica no repositório, para uma rodada nova não reescrever eventos que ainda não entraram.
+- Se a validação passa, o job grava na `main`. A data do commit é a de São Paulo: `Importação automática (correio, AAAA-MM-DD)`. A rodada seguinte começa dessa `main` (`git pull --rebase`), então não há PR de dados parado no meio do caminho. Se a validação falha, a `main` fica como está e abre um PR em `importador/revisar-correio-AAAA-MM-DD`, com o relatório e o erro.
 - Link de descadastro, preferências ou «ver no navegador» não é aberto. O cabeçalho `List-Unsubscribe` também fica de fora.
 
 Segredos no GitHub Actions, nunca no repositório:
@@ -113,6 +115,8 @@ Quem preferir escreve pelo GitHub, no modelo **Feedback** (etiqueta `feedback`).
    - marque «Allow GitHub Actions to create and approve pull requests».
 4. Crie as etiquetas `novo-evento`, `importacao-automatica` e `feedback`.
 5. Em `index.html`, preencha `<meta name="riotech:repo" content="https://github.com/ORG/REPO">`. Assim os botões «Sugerir pelo GitHub» passam a apontar para o repositório.
+
+O importador automático também publica o site: depois do push na `main`, dispara `pages.yml` (`gh workflow run pages.yml --ref main`). O token das Actions não aciona outro workflow no push. Um push de gente continua caindo no `pages.yml` direto.
 
 ## Licença
 

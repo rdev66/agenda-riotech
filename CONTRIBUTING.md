@@ -63,6 +63,16 @@ O importador da Rolês é `python3 scripts/importar.py --agenda roles --fontes f
 - `data/tags.json` define as tags (em PT, EN e Portunhol) e os filtros por intenção: «Sou dev», «Quero investir», «Tenho startup», etc.
 - Para criar uma tag nova, adicione-a lá no mesmo PR.
 
+## Importação automática
+
+Tech, Rolês e o correio entram sozinhos na `main` quando `scripts/validar.py` e os testes passam. Não há PR de dados nesse caminho. Tech e Rolês rodam em série no mesmo job; o correio espera a vez, no grupo `dados-agenda`.
+
+A mensagem do commit é `Importação automática (tech, AAAA-MM-DD)`, `Importação automática (roles, AAAA-MM-DD)` ou `Importação automática (correio, AAAA-MM-DD)`. A data é a de São Paulo. Se o push não entra porque a `main` andou, o job faz rebase e tenta de novo (até 3 vezes). Se o rebase conflita, importa outra vez em cima da `main` nova.
+
+Se a validação falha, ninguém empurra a `main`. O robô abre um PR em `importador/revisar-<agenda>-AAAA-MM-DD` com o relatório e o erro. O relatório de toda rodada, verde ou não, fica no resumo do job e na issue «Saúde da agenda».
+
+Sugestão pela issue e PR feito à mão continuam iguais. O checklist abaixo é para esses PRs.
+
 ## Antes do PR
 
 ```bash

@@ -6,38 +6,61 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
+  # O relatório entra na issue «Saúde da agenda».
+  issues: write
+concurrency:
+  group: dados-agenda
+  cancel-in-progress: false
 jobs:
+  # Mesmo caminho do importar.yml: pull --rebase → importar → resumir →
+  # validar.py e unittest. Verde vai para a main. Vermelho abre PR.
   importar-correio:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - name: Ler as caixas do Gmail
+      - name: Atualizar a main
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
+          git pull --rebase origin main
+      - name: Data no Rio
+        id: data
+        run: echo "dia=$(TZ=America/Sao_Paulo date +%F)" >> "$GITHUB_OUTPUT"
+      - name: Ler as caixas, validar e publicar na main
+        id: publicar
         env:
           GMAIL_EVENTOS_APP_PASSWORD: ${{ secrets.GMAIL_EVENTOS_APP_PASSWORD }}
           GMAIL_ROLES_APP_PASSWORD: ${{ secrets.GMAIL_ROLES_APP_PASSWORD }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/importar_correio.py --relatorio relatorio.md
-      - name: Resumir eventos futuros
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/resumir.py
-      - name: Validar
-        run: python scripts/validar.py
-      - name: Data no Rio
-        id: data
-        run: echo "dia=$(TZ=America/Sao_Paulo date +%F)" >> "$GITHUB_OUTPUT"
-      - name: Abrir PR com o que mudou
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          DIA: ${{ steps.data.outputs.dia }}
+        run: python scripts/publicar_importacao.py correio
+      - name: Abrir PR para revisão
+        if: success() && steps.publicar.outputs.revisar == 'true'
         uses: peter-evans/create-pull-request@v8
         with:
-          branch: "importador/correio-${{ steps.data.outputs.dia }}"
+          branch: "importador/revisar-${{ steps.publicar.outputs.agenda }}-${{ steps.publicar.outputs.dia }}"
           delete-branch: false
-          commit-message: "Importação automática do correio"
-          title: "Novos eventos (correio, ${{ steps.data.outputs.dia }})"
+          commit-message: "Importação automática (${{ steps.publicar.outputs.rotulo }}, ${{ steps.publicar.outputs.dia }})"
+          title: "Revisar importação automática (${{ steps.publicar.outputs.rotulo }}, ${{ steps.publicar.outputs.dia }})"
           body-path: relatorio.md
           add-paths: |
             data/events.json
             data/roles.json
           labels: importacao-automatica
+      - name: A main não mudou
+        if: success() && steps.publicar.outputs.revisar == 'true'
+        run: exit 1
+      - name: Disparar o Pages
+        if: success() && steps.publicar.outputs.publicado == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main
