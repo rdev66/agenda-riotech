@@ -22,8 +22,11 @@ com quantos e-mails ela apareceu.
 A caixa Tech manda para a Rolês o evento cuja tag é só esporte ou lazer
 (corrida, samba, idiomas e o mesmo tipo) e não tem tema tech.
 
-IMAP só lê. Para não reprocessar, aplica a etiqueta agenda/processado.
-Não apaga nem move. O repositório não guarda endereço, remetente nem o texto.
+IMAP só lê. Os UIDs lidos vão para um arquivo temporário, sem senha,
+remetente ou texto. A etiqueta agenda/processado só entra em
+publicar_importacao.py, depois de um push bem-sucedido na main. Revisão
+ou falha não etiqueta: a próxima rodada lê de novo. Não apaga nem move.
+O repositório não guarda endereço, remetente nem o texto.
 
 Segredos (nunca no repositório): GMAIL_EVENTOS_APP_PASSWORD,
 GMAIL_ROLES_APP_PASSWORD e ANTHROPIC_API_KEY. Se faltar senha, sai com aviso
@@ -42,6 +45,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -82,8 +86,9 @@ CAIXAS = (
 )
 ALIAS_CULTURA = "agenda.rio.roles+cultura"
 # Na busca Gmail, etiqueta aninhada «agenda/processado» vira «agenda-processado».
-# O STORE +X-GM-LABELS continua com ROTULO («agenda/processado»).
+# O STORE +X-GM-LABELS usa ROTULO («agenda/processado»), e só depois do push.
 BUSCA = f"newer_than:{DIAS}d -label:agenda-processado"
+_UID_MAX = 64
 
 # Hosts que importar.py já lê, mais Shotgun (está nos agregadores, não no regex).
 _HOSTS_CONHECIDOS = re.compile(
@@ -265,12 +270,11 @@ class ResumoCaixa:
 
 class CaixaTrabalho:
     def __init__(self, nome: str, user: str, agenda: str, mensagens: list[tuple[str, bytes]],
-                 etiquetar: Callable[[str], None] | None = None, truncou: bool = False):
+                 truncou: bool = False):
         self.nome = nome
         self.user = user
         self.agenda = agenda
         self.mensagens = mensagens
-        self.etiquetar = etiquetar
         self.truncou = truncou
 
 
@@ -1177,7 +1181,8 @@ def montar_relatorio(resumos: list[ResumoCaixa], conta: ContaTokens, avisos: lis
 
 
 def rodar(caixas: list[CaixaTrabalho], *, hoje, destinos: dict[str, Path], abrir_redirect, eventos_da_url,
-          modelo, dry_run: bool = False, avisos: list[str] | None = None) -> tuple[str, int]:
+          modelo, dry_run: bool = False, avisos: list[str] | None = None,
+          arquivo_uids: Path | None = None) -> tuple[str, int]:
     avisos = list(avisos or [])
     conta = ContaTokens()
     listas = {}
@@ -1189,13 +1194,14 @@ def rodar(caixas: list[CaixaTrabalho], *, hoje, destinos: dict[str, Path], abrir
         listas[agenda + ":doc"] = dados
     descartadas = validar.chaves_descartadas()
     resumos: list[ResumoCaixa] = []
-    etiquetas: list[tuple[Callable[[str], None], str]] = []
+    salvos: list[dict] = []
     for caixa in caixas:
         resumo = ResumoCaixa(caixa.nome, caixa.user)
         if caixa.truncou:
             resumo.avisos.append(
                 f"havia mais de {MAX_MENSAGENS} mensagens; as outras ficam para a próxima rodada"
             )
+        uids: list[str] = []
         for uid, raw in caixa.mensagens:
             pode = processar_mensagem(
                 raw, caixa.agenda, hoje=hoje, listas=listas, descartadas=descartadas,
@@ -1204,8 +1210,11 @@ def rodar(caixas: list[CaixaTrabalho], *, hoje, destinos: dict[str, Path], abrir
             )
             if pode:
                 resumo.lidos += 1
-                if caixa.etiquetar and not dry_run:
-                    etiquetas.append((caixa.etiquetar, uid))
+                guardado = _uid_guardavel(uid)
+                if guardado and not dry_run:
+                    uids.append(guardado)
+        if uids:
+            salvos.append({"senha_env": senha_env_do_user(caixa.user), "uids": uids})
         resumos.append(resumo)
     for agenda in ("tech", "roles"):
         doc = listas[agenda + ":doc"]
@@ -1234,11 +1243,8 @@ def rodar(caixas: list[CaixaTrabalho], *, hoje, destinos: dict[str, Path], abrir
                 json.dumps(listas[agenda + ":doc"], ensure_ascii=False, indent=2) + "\n",
                 encoding="utf-8",
             )
-        for fn, uid in etiquetas:
-            try:
-                fn(uid)
-            except Exception as exc:  # noqa: BLE001
-                avisos.append(f"não etiquetei uma mensagem ({type(exc).__name__})")
+        if arquivo_uids is not None:
+            escrever_uids(arquivo_uids, salvos)
     return montar_relatorio(resumos, conta, avisos), codigo
 
 
@@ -1340,6 +1346,109 @@ def marcar(conn, uid: str) -> None:
         raise OSError("não foi possível etiquetar")
 
 
+def caminho_uids() -> Path:
+    """Arquivo temporário com os UIDs lidos. Fora do repositório."""
+    return Path(tempfile.gettempdir()) / "agenda-riotech-correio-uids.json"
+
+
+def senha_env_do_user(user: str) -> str:
+    for spec in CAIXAS:
+        if spec["user"] == user:
+            return spec["senha_env"]
+    raise RuntimeError("caixa sem senha configurada")
+
+
+def _uid_guardavel(uid: object) -> str | None:
+    texto = str(uid).strip()
+    if not texto or len(texto) > _UID_MAX:
+        return None
+    if "@" in texto or any(ch.isspace() for ch in texto):
+        return None
+    return texto
+
+
+def apagar_uids(path: Path | None = None) -> None:
+    (caminho_uids() if path is None else path).unlink(missing_ok=True)
+
+
+def escrever_uids(path: Path, caixas: list[dict]) -> None:
+    """Grava só o nome da variável e os UIDs. Sem senha, remetente ou texto."""
+    conhecidas = {spec["senha_env"] for spec in CAIXAS}
+    limpo: list[dict] = []
+    for caixa in caixas:
+        senha_env = str(caixa.get("senha_env") or "")
+        if senha_env not in conhecidas:
+            continue
+        uids = []
+        for uid in caixa.get("uids") or []:
+            guardado = _uid_guardavel(uid)
+            if guardado:
+                uids.append(guardado)
+        if uids:
+            limpo.append({"senha_env": senha_env, "uids": uids})
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps({"caixas": limpo}, ensure_ascii=False, indent=2) + "\n"
+    temporario = path.with_name(path.name + ".tmp")
+    temporario.write_text(payload, encoding="utf-8")
+    temporario.replace(path)
+
+
+def ler_uids(path: Path | None = None) -> list[dict]:
+    path = caminho_uids() if path is None else path
+    if not path.is_file():
+        return []
+    dados = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(dados, dict):
+        return []
+    caixas = dados.get("caixas")
+    if not isinstance(caixas, list):
+        return []
+    conhecidas = {spec["senha_env"] for spec in CAIXAS}
+    saida: list[dict] = []
+    for item in caixas:
+        if not isinstance(item, dict):
+            continue
+        senha_env = str(item.get("senha_env") or "")
+        if senha_env not in conhecidas:
+            continue
+        uids = []
+        for uid in item.get("uids") or []:
+            guardado = _uid_guardavel(uid)
+            if guardado:
+                uids.append(guardado)
+        if uids:
+            saida.append({"senha_env": senha_env, "uids": uids})
+    return saida
+
+
+def aplicar_rotulos(path: Path | None = None, abrir: Callable | None = None) -> list[str]:
+    """Aplica agenda/processado nos UIDs salvos. Sem arquivo, não faz nada."""
+    path = caminho_uids() if path is None else path
+    feitos: list[str] = []
+    abrir = abrir or abrir_conexao
+    for item in ler_uids(path):
+        spec = next(c for c in CAIXAS if c["senha_env"] == item["senha_env"])
+        senha = os.environ.get(spec["senha_env"]) or ""
+        if not senha:
+            continue
+        try:
+            conexao = abrir(spec["user"], senha)
+        except Exception as exc:
+            print(f"aviso: não entrei para etiquetar ({type(exc).__name__})", file=sys.stderr)
+            continue
+        try:
+            for uid in item["uids"]:
+                try:
+                    conexao.etiquetar(uid)
+                except Exception as exc:
+                    print(f"aviso: não etiquetei uma mensagem ({type(exc).__name__})", file=sys.stderr)
+                    continue
+                feitos.append(uid)
+        finally:
+            conexao.fechar()
+    return feitos
+
+
 class Conexao:
     def __init__(self, conn):
         self.conn = conn
@@ -1377,12 +1486,15 @@ def abrir_conexao(user: str, senha: str) -> Conexao:
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--dry-run", action="store_true", help="não grava o JSON nem etiqueta as mensagens")
+    ap.add_argument("--dry-run", action="store_true", help="não grava o JSON nem o arquivo de UIDs")
     ap.add_argument("--relatorio", type=Path, help="grava o resumo em Markdown (corpo do PR)")
     args = ap.parse_args(argv)
 
     hoje = dt.datetime.now(importar.RIO).date()
     avisos: list[str] = []
+    arquivo_uids = None if args.dry_run else caminho_uids()
+    if arquivo_uids is not None:
+        apagar_uids(arquivo_uids)
     presentes = [c for c in CAIXAS if os.environ.get(c["senha_env"]) or ""]
     if not presentes:
         texto = "aviso: " + " e ".join(c["senha_env"] for c in CAIXAS) + " ausentes; nada foi lido"
@@ -1428,7 +1540,6 @@ def main(argv=None) -> int:
                 user=spec["user"],
                 agenda=spec["agenda"],
                 mensagens=mensagens,
-                etiquetar=None if args.dry_run else conexao.etiquetar,
                 truncou=truncou,
             ))
         relatorio, codigo = rodar(
@@ -1440,6 +1551,7 @@ def main(argv=None) -> int:
             modelo=modelo,
             dry_run=args.dry_run,
             avisos=avisos,
+            arquivo_uids=arquivo_uids,
         )
     finally:
         for conexao in conexoes:

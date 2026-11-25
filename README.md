@@ -86,7 +86,7 @@ Duas caixas no Gmail alimentam a agenda. `scripts/importar_correio.py` lê o con
 - A caixa é uma dica. Se o evento é claramente da outra agenda, o script muda de arquivo e o relatório diz isso.
 - Link de Luma, Meetup, Sympla, Eventbrite, Even3, Shotgun e dos outros hosts que o importador já lê segue o caminho `--url`, sem parâmetro de rastreio. Newsletter sem esse link (IMS, Sesc, Fever, Bandsintown e semelhantes) vai para o modelo `claude-haiku-5-5`, que não inventa data nem hora.
 - Só entra evento futuro, presencial ou híbrido, na cidade configurada (Rio). Online fica de fora.
-- Cada mensagem lida ganha a etiqueta `agenda/processado`. Nada é apagado nem movido. O repositório não guarda endereço, remetente nem o texto do e-mail: só o evento e o link público.
+- A leitura não etiqueta. Os UIDs lidos ficam num arquivo temporário, fora do repositório: sem senha, sem endereço, sem remetente e sem o texto. A etiqueta `agenda/processado` só entra depois que o push na `main` dá certo. Se o resultado é revisão ou a rodada falha, nada é etiquetado e essas mensagens voltam no dia seguinte. Nada é apagado nem movido. O repositório não guarda endereço, remetente nem o texto do e-mail: só o evento e o link público.
 - Se a validação passa, o job grava na `main`. A data do commit é a de São Paulo: `Importação automática (correio, AAAA-MM-DD)`. A rodada seguinte começa dessa `main` (`git pull --rebase`), então não há PR de dados parado no meio do caminho. Se a validação falha, a `main` fica como está e abre um PR em `importador/revisar-correio-AAAA-MM-DD`, com o relatório e o erro.
 - Link de descadastro, preferências ou «ver no navegador» não é aberto. O cabeçalho `List-Unsubscribe` também fica de fora.
 

@@ -94,6 +94,11 @@ class Resposta:
         return False
 
 
+def uids_do_arquivo(path: Path) -> list[str]:
+    dados = json.loads(path.read_text(encoding="utf-8"))
+    return [uid for caixa in dados["caixas"] for uid in caixa["uids"]]
+
+
 def destinos(tmp: Path) -> dict:
     vazio = json.dumps({"updated": "2026-11-01", "events": []}) + "\n"
     saida = {}
@@ -343,21 +348,19 @@ class TestCorreio(unittest.TestCase):
                 return [], 100, 20
             raise AssertionError(texto[:180])
 
-        marcados = []
         with tempfile.TemporaryDirectory() as tmp:
             paths = destinos(Path(tmp))
+            uids_path = Path(tmp) / "uids.json"
             with patch("urllib.request.urlopen", side_effect=AssertionError("rede")):
                 relatorio, codigo = correio.rodar(
                     [
                         correio.CaixaTrabalho(
                             "Tech", "agenda.rio.eventos@gmail.com", "tech",
                             [("luma", luma), ("spam", spam)],
-                            etiquetar=marcados.append,
                         ),
                         correio.CaixaTrabalho(
                             "Rolês", "agenda.rio.roles@gmail.com", "roles",
                             [("ims", sem)],
-                            etiquetar=marcados.append,
                         ),
                     ],
                     hoje=HOJE,
@@ -365,11 +368,15 @@ class TestCorreio(unittest.TestCase):
                     abrir_redirect=abrir,
                     eventos_da_url=urls,
                     modelo=modelo,
+                    arquivo_uids=uids_path,
                 )
+            self.assertEqual(uids_do_arquivo(uids_path), ["luma", "spam", "ims"])
+            cru_uids = uids_path.read_text(encoding="utf-8")
+            self.assertNotIn("@", cru_uids)
+            self.assertNotIn("nao pode vazar", cru_uids)
             tech = json.loads(paths["tech"].read_text(encoding="utf-8"))
             roles = json.loads(paths["roles"].read_text(encoding="utf-8"))
         self.assertEqual(codigo, 0, relatorio)
-        self.assertEqual(marcados, ["luma", "spam", "ims"])
         self.assertIn("https://luma.com/pyrio42", vistos)
         self.assertNotIn("utm_", " ".join(vistos))
         self.assertEqual([e["title"] for e in tech["events"]], ["Python no Rio"])
@@ -518,44 +525,44 @@ class TestCorreio(unittest.TestCase):
                 "Content-Type: text/plain; charset=utf-8\r\n\r\n" + corpo
             ).encode()
 
-        marcados = []
         with tempfile.TemporaryDirectory() as tmp:
             paths = destinos(Path(tmp))
+            uids_path = Path(tmp) / "uids.json"
             relatorio, codigo = correio.rodar(
                 [correio.CaixaTrabalho(
                     "Rolês", "agenda.rio.roles@gmail.com", "roles",
                     [("1", cru("primeira newsletter")), ("2", cru("segunda newsletter"))],
-                    etiquetar=marcados.append,
                 )],
                 hoje=HOJE, destinos=paths, abrir_redirect=lambda url: None,
                 eventos_da_url=lambda url, agenda: ([], None),
                 modelo=modelo,
+                arquivo_uids=uids_path,
             )
+            self.assertEqual(uids_do_arquivo(uids_path), ["1"])
         self.assertEqual(codigo, 0, relatorio)
         self.assertEqual(len(chamadas), 1)
-        self.assertEqual(marcados, ["1"])
         self.assertIn("300000", relatorio)
         self.assertIn("não foi etiquetado", relatorio)
 
     def test_sem_chave_do_modelo_adia_newsletter_e_segue_link(self):
-        marcados = []
         raw_link = (FIX / "correio_luma.eml").read_bytes()
         raw_sem = (FIX / "correio_sem_link.eml").read_bytes()
         with tempfile.TemporaryDirectory() as tmp:
             paths = destinos(Path(tmp))
+            uids_path = Path(tmp) / "uids.json"
             relatorio, codigo = correio.rodar(
                 [correio.CaixaTrabalho(
                     "Tech", "agenda.rio.eventos@gmail.com", "tech",
                     [("luma", raw_link), ("ims", raw_sem)],
-                    etiquetar=marcados.append,
                 )],
                 hoje=HOJE, destinos=paths,
                 abrir_redirect=lambda url: "https://luma.com/pyrio42" if "bit.ly" in url else None,
                 eventos_da_url=lambda url, agenda: ([evento_base(url)], None) if "pyrio42" in url else ([], "sem dados"),
                 modelo=None,
+                arquivo_uids=uids_path,
             )
+            self.assertEqual(uids_do_arquivo(uids_path), ["luma"])
         self.assertEqual(codigo, 0, relatorio)
-        self.assertEqual(marcados, ["luma"])
         self.assertIn("ANTHROPIC_API_KEY ausente", relatorio)
 
     def test_pedido_anthropic_sem_rede(self):
@@ -598,7 +605,7 @@ class TestCorreio(unittest.TestCase):
         )
         self.assertEqual(set(item["required"]), set(item["properties"]))
 
-    def test_limite_de_40_e_imap_so_le_e_etiqueta(self):
+    def test_limite_de_40_e_imap_so_le(self):
         muitos = FakeIMAP({str(i): b"x" for i in range(41)})
         uids, truncou = correio.uids_pendentes(muitos)
         self.assertEqual(len(uids), 40)
@@ -609,6 +616,7 @@ class TestCorreio(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             paths = destinos(Path(tmp))
             relatorio_path = Path(tmp) / "relatorio.md"
+            uids_path = Path(tmp) / "uids.json"
             saida, erro = io.StringIO(), io.StringIO()
             with patch.dict(os.environ, {
                 "GMAIL_EVENTOS_APP_PASSWORD": "segredo-eventos",
@@ -619,11 +627,14 @@ class TestCorreio(unittest.TestCase):
                      patch.object(correio, "chamar_modelo", return_value=([], 7, 1)), \
                      patch.object(correio, "seguir", side_effect=AssertionError("rede")), \
                      patch.object(correio, "caminhos", return_value=paths), \
+                     patch.object(correio, "caminho_uids", return_value=uids_path), \
                      patch("urllib.request.urlopen", side_effect=AssertionError("rede")):
                     with redirect_stdout(saida), redirect_stderr(erro):
                         codigo = correio.main(["--relatorio", str(relatorio_path)])
             relatorio = relatorio_path.read_text(encoding="utf-8")
             tech = json.loads(paths["tech"].read_text(encoding="utf-8"))
+            cru_uids = uids_path.read_text(encoding="utf-8")
+            self.assertEqual(uids_do_arquivo(uids_path), ["7"])
         self.assertEqual(codigo, 0, relatorio + erro.getvalue())
         self.assertEqual(fake.user, "agenda.rio.eventos@gmail.com")
         self.assertEqual(fake.password, "segredo-eventos")
@@ -632,32 +643,61 @@ class TestCorreio(unittest.TestCase):
         busca = [c for c in fake.comandos if len(c) > 2 and c[1] == "SEARCH"]
         self.assertIn("newer_than:14d", busca[0][3])
         self.assertIn("-label:agenda-processado", busca[0][3])
+        fetches = [c for c in fake.comandos if len(c) > 1 and c[1] == "FETCH"]
+        self.assertEqual(len(fetches), 1)
         stores = [c for c in fake.comandos if len(c) > 1 and c[1] == "STORE"]
-        self.assertEqual(len(stores), 1)
-        self.assertIn("+X-GM-LABELS", stores[0])
-        self.assertIn("agenda/processado", " ".join(str(p) for p in stores[0]))
+        self.assertEqual(stores, [])
         tudo = " ".join(str(p) for c in fake.comandos for p in c).upper()
         self.assertNotIn("\\DELETED", tudo)
         self.assertNotIn("EXPUNGE", tudo)
         self.assertNotIn("MOVE", tudo)
+        self.assertNotIn("+X-GM-LABELS", tudo)
         self.assertEqual(tech["events"], [])
         self.assertIn("entrada 7", relatorio)
         self.assertIn("GMAIL_ROLES_APP_PASSWORD ausente", erro.getvalue())
-        self.assertNotIn("segredo-eventos", relatorio + saida.getvalue() + erro.getvalue())
-        self.assertNotIn("promo@example.com", relatorio)
+        self.assertNotIn("segredo-eventos", relatorio + saida.getvalue() + erro.getvalue() + cru_uids)
+        self.assertNotIn("promo@example.com", relatorio + cru_uids)
+        self.assertNotIn("tenis", cru_uids)
+        self.assertNotIn("@", cru_uids)
+
+    def test_arquivo_de_uids_nao_guarda_remetente_nem_segredo(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "uids.json"
+            correio.escrever_uids(path, [{
+                "senha_env": "GMAIL_EVENTOS_APP_PASSWORD",
+                "uids": ["7", "promo@example.com", "texto da mensagem inteira"],
+                "senha": "segredo-eventos",
+                "texto": "So hoje, 50% em tenis.",
+            }])
+            texto = path.read_text(encoding="utf-8")
+        self.assertEqual(json.loads(texto)["caixas"], [{
+            "senha_env": "GMAIL_EVENTOS_APP_PASSWORD",
+            "uids": ["7"],
+        }])
+        self.assertNotIn("@", texto)
+        self.assertNotIn("segredo", texto)
+        self.assertNotIn("tenis", texto)
+        self.assertNotIn("mensagem", texto)
 
     def test_senhas_ausentes_saem_zero(self):
         erro = io.StringIO()
         with tempfile.TemporaryDirectory() as tmp:
             destino = Path(tmp) / "relatorio.md"
-            with patch.dict(os.environ, {
-                "GMAIL_EVENTOS_APP_PASSWORD": "",
-                "GMAIL_ROLES_APP_PASSWORD": "",
-            }):
-                with patch.object(correio.imaplib, "IMAP4_SSL") as imap:
-                    with redirect_stderr(erro):
-                        codigo = correio.main(["--relatorio", str(destino)])
+            uids = Path(tmp) / "uids.json"
+            uids.write_text(
+                '{"caixas":[{"senha_env":"GMAIL_EVENTOS_APP_PASSWORD","uids":["9"]}]}\n',
+                encoding="utf-8",
+            )
+            with patch.object(correio, "caminho_uids", return_value=uids):
+                with patch.dict(os.environ, {
+                    "GMAIL_EVENTOS_APP_PASSWORD": "",
+                    "GMAIL_ROLES_APP_PASSWORD": "",
+                }):
+                    with patch.object(correio.imaplib, "IMAP4_SSL") as imap:
+                        with redirect_stderr(erro):
+                            codigo = correio.main(["--relatorio", str(destino)])
             texto = destino.read_text(encoding="utf-8")
+            self.assertFalse(uids.exists())
         self.assertEqual(codigo, 0)
         imap.assert_not_called()
         self.assertIn("ausentes", erro.getvalue())
