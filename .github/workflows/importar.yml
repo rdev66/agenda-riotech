@@ -6,54 +6,60 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
+  # O relatório entra na issue «Saúde da agenda».
+  issues: write
+concurrency:
+  group: dados-agenda
+  cancel-in-progress: false
 jobs:
+  # Tech e Rolês no mesmo job, um passo depois do outro.
+  # O script: pull --rebase → importar → resumir → validar.py e unittest.
+  # Verde: commit na main. Vermelho: não mexe na main; o PR fica para revisão.
   importar:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - name: Ler calendários de fontes.json
-        run: python scripts/importar.py --agenda tech --fontes fontes.json --relatorio relatorio.md
-      - name: Resumir eventos futuros
+      - name: Atualizar a main
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
+          git pull --rebase origin main
+      - name: Data no Rio
+        id: data
+        run: echo "dia=$(TZ=America/Sao_Paulo date +%F)" >> "$GITHUB_OUTPUT"
+      - name: Importar Tech e Rolês, validar e publicar na main
+        id: publicar
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/resumir.py --agenda tech
-      - name: Validar
-        run: python scripts/validar.py
-      - name: Abrir PR com o que mudou
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          DIA: ${{ steps.data.outputs.dia }}
+        run: python scripts/publicar_importacao.py diario
+      - name: Abrir PR para revisão
+        if: success() && steps.publicar.outputs.revisar == 'true'
         uses: peter-evans/create-pull-request@v8
         with:
-          branch: importador/diario
-          delete-branch: true
-          commit-message: "Importação automática de eventos"
-          title: "Novos eventos (importação automática)"
+          branch: "importador/revisar-${{ steps.publicar.outputs.agenda }}-${{ steps.publicar.outputs.dia }}"
+          delete-branch: false
+          commit-message: "Importação automática (${{ steps.publicar.outputs.rotulo }}, ${{ steps.publicar.outputs.dia }})"
+          title: "Revisar importação automática (${{ steps.publicar.outputs.rotulo }}, ${{ steps.publicar.outputs.dia }})"
           body-path: relatorio.md
-          add-paths: data/events.json
+          add-paths: |
+            data/events.json
+            data/roles.json
           labels: importacao-automatica
-  importar-roles:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.12"
-      - name: Ler calendários de fontes_roles.json
-        run: python scripts/importar.py --agenda roles --fontes fontes_roles.json --relatorio relatorio.md
-      - name: Resumir rolês futuros
+      - name: A main não mudou
+        if: success() && steps.publicar.outputs.revisar == 'true'
+        run: exit 1
+      - name: Disparar o Pages
+        if: success() && steps.publicar.outputs.publicado == 'true'
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/resumir.py --agenda roles
-      - name: Validar
-        run: python scripts/validar.py
-      - name: Abrir PR com o que mudou
-        uses: peter-evans/create-pull-request@v8
-        with:
-          branch: importador/roles-diario
-          delete-branch: true
-          commit-message: "Importação automática de rolês"
-          title: "Novos rolês (importação automática)"
-          body-path: relatorio.md
-          add-paths: data/roles.json
-          labels: importacao-automatica
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main

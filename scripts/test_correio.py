@@ -936,12 +936,27 @@ class TestCorreio(unittest.TestCase):
         doc = validar.load_yaml(texto)
         self.assertIn('cron: "47 11 * * *"', texto)
         self.assertIn("workflow_dispatch:", texto)
-        passo = doc["jobs"]["importar-correio"]["steps"][-1]["with"]
-        self.assertEqual(passo["branch"], "importador/correio-${{ steps.data.outputs.dia }}")
-        self.assertEqual(passo["title"], "Novos eventos (correio, ${{ steps.data.outputs.dia }})")
+        self.assertEqual(doc["concurrency"]["group"], "dados-agenda")
+        self.assertIs(doc["concurrency"]["cancel-in-progress"], False)
+        passo = next(
+            p["with"] for p in doc["jobs"]["importar-correio"]["steps"]
+            if str(p.get("uses", "")).startswith("peter-evans/create-pull-request@")
+        )
+        self.assertEqual(
+            passo["branch"],
+            "importador/revisar-${{ steps.publicar.outputs.agenda }}-${{ steps.publicar.outputs.dia }}",
+        )
+        self.assertEqual(
+            passo["title"],
+            "Revisar importação automática (${{ steps.publicar.outputs.rotulo }}, ${{ steps.publicar.outputs.dia }})",
+        )
         self.assertIs(passo["delete-branch"], False)
         self.assertIn("TZ=America/Sao_Paulo date +%F", texto)
+        self.assertIn("git pull --rebase origin main", texto)
+        self.assertIn("python scripts/publicar_importacao.py correio", texto)
+        self.assertIn("gh workflow run pages.yml --ref main", texto)
         self.assertNotIn("delete-branch: true", texto)
+        self.assertNotIn("importador/correio-${{ steps.data.outputs.dia }}", texto)
         self.assertIn("data/events.json", texto)
         self.assertIn("data/roles.json", texto)
         for nome in ("GMAIL_EVENTOS_APP_PASSWORD", "GMAIL_ROLES_APP_PASSWORD", "ANTHROPIC_API_KEY"):
