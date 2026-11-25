@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -6696,6 +6696,41 @@
       }
     },
     {
+      "title": "MCP RUN 2026",
+      "start": "2026-12-06T06:30:00-03:00",
+      "end": "2026-12-06T14:00:00-03:00",
+      "time_known": true,
+      "venue": "Instituto 12, Av. Ataulfo de Paiva, 1120 - Leblon, Rio de Janeiro - RJ, 22440-035, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/24n70hz3",
+      "image": null,
+      "organizer": null,
+      "description": {},
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Instituto 12 (Luma)",
+      "fonte": "luma:instituto-12",
+      "via": "feed",
+      "id": "2026-12-06-mcp-run-2026",
+      "added": "2026-11-25",
+      "vistos": [
+        {
+          "fonte": "luma:instituto-12",
+          "via": "feed",
+          "data": "2026-11-25"
+        }
+      ]
+    },
+    {
       "title": "Encontro de Mulheres com Patricia Muricy",
       "start": "2026-12-08T18:00:00-03:00",
       "end": "2026-12-08T22:00:00-03:00",
@@ -6727,6 +6762,48 @@
           "fonte": "luma:instituto-12",
           "via": "feed",
           "data": "2026-11-22"
+        }
+      ]
+    },
+    {
+      "title": "Rio AI Hub #02: Happy Hour e Inteligência Artificial",
+      "start": "2026-12-08T19:00:00-03:00",
+      "end": "2026-12-08T22:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rioai-hub/events/317583266",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio AI Hub **Rio AI Hub #02: Happy Hour e Inteligência Artificial** Nosso segundo encontro oficial do Rio AI Hub já tem data e local! Junte-se a nós para uma noite dedicada a conexões reais, networking e conversas…"
+      },
+      "tags": [
+        "ia",
+        "dados",
+        "startups",
+        "founders",
+        "networking"
+      ],
+      "status": "confirmado",
+      "descricao_completa": "Rio AI Hub\n**Rio AI Hub #02: Happy Hour e Inteligência Artificial**\nNosso segundo encontro oficial do Rio AI Hub já tem data e local!\n\nJunte-se a nós para uma noite dedicada a conexões reais, networking e conversas sobre o uso prático da Inteligência Artificial no nosso dia a dia, nos projetos e nos negócios.\n\n**Detalhes do Encontro:**\n\n* **Data:** Terça-feira, 8 de dezembro\n* **Horário:** 19h\n* **Local:** Braseiro Colarinho (Botafogo)\n\n**O que esperar:** Este é um encontro sem palestras formais ou apresentações de slides. O formato é 100% focado em um happy hour descontraído para troca de ideias. Traga suas dúvidas, os casos de uso que você tem testado, ferramentas favoritas ou apenas a curiosidade de entender como a IA está transformando o mercado.\nVamos debater desde a criação de agentes autônomos e automações até os impactos da IA na geração de conteúdo e estruturação de negócios, tudo acompanhado de uma bebida e bons petiscos.\n\n**Para quem é:** Profissionais de tecnologia, criativos, entusiastas em qualquer nível de conhecimento, desenvolvedores e fundadores de startups, . Se você tem interesse no futuro da IA e quer conhecer pessoas com as mesmas afinidades no Rio de Janeiro, o seu lugar é aqui.\nConfirme a sua presença (RSVP) para sabermos quantas mesas precisaremos reservar no bar. Nos vemos lá!\n\n**Confirmação:** A plataforma limita a 10 pessoas confirmadas + 5 convidados, mas o limite real é do bar ! Mesmo que esteja aparecendo como esgotado, apareça e venha tomar um chopp conosco ! Através do whatsapp a comunicação é sempre mais direta:\nhttps://chat.whatsapp.com/JiXsmDOVtwQEc0zv0vHhHQ",
+      "source": "Rio AI Hub (Meetup)",
+      "fonte": "meetup:rioai-hub",
+      "via": "feed",
+      "id": "2026-12-08-rio-ai-hub-02-happy-hour-e-inteligencia-artifici",
+      "added": "2026-11-25",
+      "vistos": [
+        {
+          "fonte": "meetup:rioai-hub",
+          "via": "feed",
+          "data": "2026-11-25"
         }
       ]
     },
