@@ -50,6 +50,8 @@ DOMINIOS = {
     "ra.co": "ra",
     "bandsintown.com": "bandsintown",
     "songkick.com": "songkick",
+    "eventim.com.br": "eventim",
+    "eventim.com": "eventim",
     "nomads.com": "nomads",
     "ims.com.br": "ims",
     "ccbb.com.br": "ccbb",

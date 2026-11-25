@@ -14,6 +14,15 @@ vai para o modelo. Não inventa data nem hora.
 Filtros deste caminho: futuro, presencial ou híbrido (online fica de fora),
 cidade configurada (Rio) e validar.py. Não abre link de descadastro,
 preferências, perfil ou «ver no navegador», nem o List-Unsubscribe.
+Não abre link de conta: confirm, confirmar, verify, verificar, activate,
+ativar, reset, password, login, signin ou token= na URL.
+Se a página do evento falha (HTTP, robots.txt indisponível ou 503, sem
+JSON-LD), o texto do e-mail vai para o modelo, em vez de descartar.
+Songkick («concerts this week in Rio»), Eventim e Resident Advisor listam
+vários eventos no mesmo e-mail: entram todos, com data, local, artista e link.
+A cidade sai do bloco, não do e-mail inteiro: Rio se o bloco cita Rio, RJ ou
+uma casa conhecida do Rio; São Paulo, SP, BH e o mesmo tipo ficam de fora.
+No Songkick «concerts this week in Rio», a lista inteira é do Rio.
 Também ignora imagem, CDN, loja de aplicativo e página da Luma que não é
 evento (/, /settings, /ios, /android, /home, /discover). Isso não entra
 na lista de descartados. O relatório lista cada URL descartada uma vez,
@@ -106,6 +115,11 @@ _PALAVRAS_URL = (
     "cancelar-inscricao", "preferences", "preferencias", "manage", "profile",
     "update-profile",
 )
+# Conta, senha e confirmação. Não são página de evento.
+_PALAVRAS_CONTA = (
+    "confirm", "confirmar", "verify", "verificar", "activate", "ativar",
+    "reset", "password", "login", "signin", "sign-in", "sign_in",
+)
 # No texto do <a>, também antes de seguir.
 _FRASES_ANCORA = (
     "descadastr", "cancelar inscricao", "unsubscribe", "preferencias",
@@ -128,6 +142,7 @@ TAGS_LAZER = {
     "lgbtqia", "festa-popular", "shows",
     "idiomas", "jogos-tabuleiro", "leitura", "nomades", "expats",
     "exposicoes", "mostras", "cineclubes", "pre-estreias", "festivais",
+    "de-graca",
 }
 # Nome de clube ou comunidade. Não segura o evento na Tech se a atividade é lazer.
 TAGS_SOCIAIS = {
@@ -141,6 +156,19 @@ OUTRA_CIDADE = re.compile(
     r"\bsalvador\b|\brecife\b|\bbras[ií]lia\b|\bflorian[oó]polis\b|\bcampinas\b",
     re.I,
 )
+# Sigla do mesmo tipo, no bloco do evento. Não vale para o e-mail inteiro.
+_SIGLA_OUTRA_CIDADE = re.compile(r"\b(?:sp|bh|poa|bsb|ssa|rec|cwb|fln)\b")
+_RIO_NO_BLOCO = re.compile(r"\b(?:rio de janeiro|rio|rj)\b")
+_SONGKICK_LISTA_RIO = re.compile(r"concerts this week in rio\b")
+# Casas do Rio que a newsletter cita sem repetir a cidade.
+_CASAS_RIO = (
+    "circo voador",
+    "qualistage",
+    "marina da gloria",
+    "teatro riachuelo",
+    "club laroc",
+)
+_CASAS_RIO_GENERICAS = {"shows", "gratis", "fim de semana"}
 EMAIL_RE = re.compile(r"(?i)[\w.+-]+@[\w.-]+\.[a-z]{2,}")
 LINK_RE = re.compile(r"https?://[^\s<>()\[\]\"']+", re.I)
 _ANCORA_RE = re.compile(
@@ -402,20 +430,33 @@ def url_irrelevante(url: str) -> bool:
     return False
 
 
-def url_recusada(url: str) -> bool:
-    """Caminho ou query de descadastro, preferência, perfil, gestão ou link que não é evento."""
-    if url_irrelevante(url):
-        return True
+def _alvo_url(url: str) -> str:
     try:
         partes = urllib.parse.urlsplit(_chave_url(url))
     except Exception:
-        return False
-    alvo = (
+        return ""
+    return (
         urllib.parse.unquote(partes.path or "")
         + "?"
         + urllib.parse.unquote_plus(partes.query or "")
     ).lower()
-    return any(palavra in alvo for palavra in _PALAVRAS_URL)
+
+
+def url_de_conta(url: str) -> bool:
+    """Confirmação, senha, login ou token. Não abre."""
+    alvo = _alvo_url(url)
+    if not alvo:
+        return False
+    if "token=" in alvo:
+        return True
+    return any(palavra in alvo for palavra in _PALAVRAS_CONTA)
+
+
+def url_recusada(url: str) -> bool:
+    """Caminho ou query de descadastro, preferência, perfil, conta ou link que não é evento."""
+    if url_irrelevante(url) or url_de_conta(url):
+        return True
+    return any(palavra in _alvo_url(url) for palavra in _PALAVRAS_URL)
 
 
 def ancora_recusada(texto: str) -> bool:
@@ -809,6 +850,9 @@ def completar_roles(ev: dict, categoria_dica: str | None, substituir: bool) -> s
         escolhidas = tags
     else:
         escolhidas = [t for t in ev.get("tags") or [] if t in vocab] or tags
+    if importar.marca_de_graca(blob, gratis=(ev.get("cost") or {}).get("type") == "gratis"):
+        if "de-graca" not in escolhidas:
+            escolhidas.append("de-graca")
     ev["tags"] = escolhidas[:6]
     if categoria_dica == "cultura":
         ev["categoria"] = "cultura"
@@ -1045,46 +1089,328 @@ def incorporar(ev: dict, dica: str, categoria_dica: str | None, exigir_hora: boo
         resumo.descartar(f"{resultado}: {linha(ev)}", ev.get("url"))
 
 
+def falha_pede_texto(erro: str | None) -> bool:
+    """A página não deu o evento: HTTP, robots indisponível ou 503, ou sem JSON-LD.
+
+    Robots que proíbe a leitura não entra: o texto do e-mail não contorna isso.
+    """
+    if not erro:
+        return False
+    texto = str(erro).lower()
+    if "httperror" in texto or texto.startswith("erro ao abrir"):
+        return True
+    if "robots.txt falhou" in texto or "robots.txt respondeu" in texto:
+        return True
+    return "json-ld" in texto
+
+
+_MESES_LISTA = {
+    "january": 1, "jan": 1, "janeiro": 1,
+    "february": 2, "feb": 2, "fevereiro": 2,
+    "march": 3, "mar": 3, "marco": 3,
+    "april": 4, "apr": 4, "abril": 4,
+    "may": 5, "maio": 5,
+    "june": 6, "jun": 6, "junho": 6,
+    "july": 7, "jul": 7, "julho": 7,
+    "august": 8, "aug": 8, "agosto": 8,
+    "september": 9, "sep": 9, "sept": 9, "setembro": 9,
+    "october": 10, "oct": 10, "outubro": 10,
+    "november": 11, "nov": 11, "novembro": 11,
+    "december": 12, "dec": 12, "dezembro": 12,
+}
+_MES_ALT = "|".join(sorted(_MESES_LISTA, key=len, reverse=True))
+_RE_DATA_NUM = re.compile(
+    r"\b(\d{1,2})/(\d{1,2})/(\d{4})(?:[^\d]{0,16}(\d{1,2})[:h](\d{2})(?:\s*(am|pm))?)?"
+)
+_RE_DATA_MDY = re.compile(
+    rf"\b({_MES_ALT})\s+(\d{{1,2}}),?\s+(\d{{4}})"
+    rf"(?:[^\d]{{0,16}}(\d{{1,2}})[:h](\d{{2}})(?:\s*(am|pm))?)?",
+    re.I,
+)
+_RE_DATA_DMY = re.compile(
+    rf"\b(\d{{1,2}})\s+(?:de\s+)?({_MES_ALT})(?:\s+de)?\s+(\d{{4}})"
+    rf"(?:[^\d]{{0,16}}(\d{{1,2}})[:h](\d{{2}})(?:\s*(am|pm))?)?",
+    re.I,
+)
+_RE_URL_LISTA = re.compile(r"https?://[^\s<>()\[\]\"']+", re.I)
+_CABECALHO_LISTA = re.compile(
+    r"^(concerts this week|this week in|proximos shows|proximos eventos|"
+    r"resident advisor|songkick|eventim)\b",
+    re.I,
+)
+
+
+def _hora_lista(hora: str | None, minuto: str | None, ampm: str | None) -> tuple[int, int] | None:
+    if not hora:
+        return None
+    h = int(hora)
+    m = int(minuto or 0)
+    if ampm:
+        turno = ampm.lower()
+        if turno == "pm" and h < 12:
+            h += 12
+        elif turno == "am" and h == 12:
+            h = 0
+    if h > 23 or m > 59:
+        return None
+    return h, m
+
+
+def _iso_lista(ano: int, mes: int, dia: int, hora: tuple[int, int] | None) -> str | None:
+    try:
+        if hora is None:
+            return dt.date(ano, mes, dia).isoformat()
+        quando = dt.datetime(ano, mes, dia, hora[0], hora[1], tzinfo=importar.RIO)
+        return quando.replace(microsecond=0).isoformat()
+    except ValueError:
+        return None
+
+
+def parse_data_lista(texto: str) -> str | None:
+    """Data de um item de lista (Songkick, Eventim, Resident Advisor)."""
+    low = importar._sem_acento(re.sub(r"https?://\S+", " ", texto or ""))
+    num = _RE_DATA_NUM.search(low)
+    if num:
+        return _iso_lista(
+            int(num.group(3)), int(num.group(2)), int(num.group(1)),
+            _hora_lista(num.group(4), num.group(5), num.group(6)),
+        )
+    mdy = _RE_DATA_MDY.search(low)
+    if mdy:
+        return _iso_lista(
+            int(mdy.group(3)), _MESES_LISTA[mdy.group(1).lower()], int(mdy.group(2)),
+            _hora_lista(mdy.group(4), mdy.group(5), mdy.group(6)),
+        )
+    dmy = _RE_DATA_DMY.search(low)
+    if dmy:
+        return _iso_lista(
+            int(dmy.group(3)), _MESES_LISTA[dmy.group(2).lower()], int(dmy.group(1)),
+            _hora_lista(dmy.group(4), dmy.group(5), dmy.group(6)),
+        )
+    return None
+
+
+def _tipo_lista(url: str) -> str | None:
+    if url_recusada(url):
+        return None
+    host = _host_link(url)
+    try:
+        path = urllib.parse.urlsplit(_chave_url(url)).path.lower()
+    except Exception:
+        return None
+    if host == "songkick.com" or host.endswith(".songkick.com"):
+        if "/concerts/" in path or "/festivals/" in path:
+            return "songkick"
+    if host == "ra.co" or host.endswith(".ra.co"):
+        if "/events/" in path:
+            return "ra"
+    if host == "eventim.com.br" or host.endswith(".eventim.com.br") or host == "eventim.com":
+        if "/event" in path:
+            return "eventim"
+    return None
+
+
+def _spans_lista(texto: str) -> list[tuple[int, int, str]]:
+    spans = []
+    for achou in _RE_URL_LISTA.finditer(texto or ""):
+        url = achou.group(0).rstrip(".,;:!?)*]>\"'")
+        if not _tipo_lista(url):
+            continue
+        spans.append((achou.start(), achou.end(), url))
+    return spans
+
+
+def _linhas_evento(bloco: str) -> list[str]:
+    linhas = []
+    for bruto in (bloco or "").splitlines():
+        linha = re.sub(r"https?://\S+", " ", bruto)
+        linha = re.sub(r"\s+", " ", linha).strip(" -*|•\t")
+        if not linha or EMAIL_RE.search(linha):
+            continue
+        if _CABECALHO_LISTA.search(importar._sem_acento(linha)):
+            continue
+        linhas.append(linha)
+    return linhas
+
+
+def _linha_preco(linha: str) -> bool:
+    low = importar._sem_acento(linha).strip()
+    return bool(re.fullmatch(
+        r"(gratis|gratuito|gratuita|free|entrada franca|entrada livre|de graca|pago|paid)",
+        low,
+    ))
+
+
+def _linha_so_cidade(linha: str) -> bool:
+    low = importar._sem_acento(linha).strip()
+    if low in {"rio de janeiro", "rio", "rj"}:
+        return True
+    return bool(OUTRA_CIDADE.fullmatch(low) or _SIGLA_OUTRA_CIDADE.fullmatch(low))
+
+
+def _casas_rio() -> list[str]:
+    """Nome de casa do Rio: a lista fixa e as casas da Agenda Cultural RJ."""
+    nomes = {importar._sem_acento(nome) for nome in _CASAS_RIO}
+    caminho = importar.ROOT / "fontes_roles.json"
+    if caminho.exists():
+        try:
+            dados = json.loads(caminho.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            dados = {}
+        prefixo = "agenda cultural rj — "
+        for fonte in dados.get("fontes") or []:
+            nome = importar._sem_acento(str(fonte.get("nome") or ""))
+            if not nome.startswith(prefixo):
+                continue
+            casa = nome[len(prefixo):].strip()
+            if casa and casa not in _CASAS_RIO_GENERICAS:
+                nomes.add(casa)
+    return sorted(nomes, key=len, reverse=True)
+
+
+def _casa_do_rio(texto: str) -> bool:
+    low = importar._sem_acento(texto or "")
+    for nome in _casas_rio():
+        if re.search(r"(?<!\w)" + re.escape(nome) + r"(?!\w)", low):
+            return True
+    return importar.inferir_bairro(texto or "") is not None
+
+
+def _outra_cidade_no_bloco(low: str) -> bool:
+    return bool(OUTRA_CIDADE.search(low) or _SIGLA_OUTRA_CIDADE.search(low))
+
+
+def _songkick_lista_rio(url: str, texto_mail: str) -> bool:
+    """«Concerts this week in Rio»: a lista inteira é do Rio, não cada bloco."""
+    if _tipo_lista(url) != "songkick":
+        return False
+    return bool(_SONGKICK_LISTA_RIO.search(importar._sem_acento(texto_mail or "")))
+
+
+def _cidade_do_bloco(bloco: str, url: str, texto_mail: str) -> tuple[str | None, bool]:
+    """Cidade pelo bloco. Devolve (cidade, descartar).
+
+    Rio se o bloco cita Rio, RJ ou uma casa conhecida. Outra cidade (São Paulo,
+    SP, BH e o mesmo tipo) descarta o evento. O restante do e-mail não decide,
+    salvo o Songkick «concerts this week in Rio».
+    """
+    low = importar._sem_acento(bloco or "")
+    menciona_rio = bool(_RIO_NO_BLOCO.search(low))
+    if _outra_cidade_no_bloco(low) and not menciona_rio:
+        return None, True
+    if menciona_rio or _casa_do_rio(bloco) or _songkick_lista_rio(url, texto_mail):
+        return CIDADE, False
+    return None, False
+
+
+def _evento_do_bloco(bloco: str, url: str, texto_mail: str) -> dict | None:
+    linhas = _linhas_evento(bloco)
+    inicio = None
+    indice = None
+    for i, linha in enumerate(linhas):
+        achou = parse_data_lista(linha)
+        if achou:
+            inicio = achou
+            indice = i
+            break
+    if not inicio:
+        inicio = parse_data_lista(" ".join(linhas))
+    if not inicio:
+        return None
+    outras = []
+    for i, linha in enumerate(linhas):
+        if i == indice or _linha_preco(linha) or _linha_so_cidade(linha):
+            continue
+        if parse_data_lista(linha):
+            continue
+        outras.append(linha)
+    if len(outras) < 2:
+        return None
+    artista = outras[0].strip()
+    local = outras[1].strip()
+    if not artista:
+        return None
+    blob = " ".join(linhas)
+    gratis = bool(re.search(
+        r"\b(gratis|gratuit[oa]|free|entrada franca|de graca)\b",
+        importar._sem_acento(blob),
+    ))
+    descricao = f"Show de {artista} em {local}"
+    if gratis:
+        descricao += ", com entrada gratuita"
+    descricao += "."
+    try:
+        link = sem_rastreio(url)
+    except Exception:
+        link = url
+    cidade, descartar = _cidade_do_bloco(bloco, url, texto_mail)
+    if descartar:
+        return None
+    return {
+        "title": artista,
+        "start": inicio,
+        "end": None,
+        "venue": local,
+        "address": None,
+        "city": cidade,
+        "format": "presencial",
+        "cost": {"type": "gratis", "text": "Grátis"} if gratis else {"type": "desconhecido", "text": None},
+        "registration": None,
+        "url": link,
+        "description": {"pt": descricao},
+        "tags": ["shows"],
+        "categoria": "shows",
+        "status": "confirmado",
+    }
+
+
+def _fatias_lista(texto: str) -> list[str]:
+    """Um parágrafo por evento. Vários links no mesmo parágrafo: um por link."""
+    fatias = []
+    for cartao in re.split(r"\n\s*\n", texto or ""):
+        cartao = cartao.strip()
+        if not cartao:
+            continue
+        spans = _spans_lista(cartao)
+        if not spans:
+            continue
+        if len(spans) == 1:
+            fatias.append(cartao)
+            continue
+        for i, (ini, fim, _url) in enumerate(spans):
+            anterior = spans[i - 1][1] if i else 0
+            fatias.append(cartao[anterior:fim])
+    return fatias
+
+
+def eventos_da_lista(texto: str) -> list[dict]:
+    """Songkick, Eventim e Resident Advisor: cada item da lista, não só o primeiro."""
+    saida = []
+    vistos: set[str] = set()
+    for fatia in _fatias_lista(texto or ""):
+        spans = _spans_lista(fatia)
+        if not spans:
+            continue
+        url = spans[-1][2]
+        chave = importar.chave_url(url)
+        if not chave or chave in vistos:
+            continue
+        ev = _evento_do_bloco(fatia, url, texto or "")
+        if not ev:
+            continue
+        vistos.add(chave)
+        saida.append(ev)
+    return saida
+
+
 def _somar_tokens(resumo: ResumoCaixa, conta: ContaTokens, entrada: int, saida: int) -> None:
     conta.somar(entrada, saida)
     resumo.entrada += max(0, int(entrada))
     resumo.saida += max(0, int(saida))
 
 
-def processar_mensagem(raw: bytes, dica: str, *, hoje, listas, descartadas, abrir, eventos_url, modelo,
-                       conta: ContaTokens, resumo: ResumoCaixa) -> bool:
-    """Processa uma mensagem. Devolve True se ela pode ganhar a etiqueta."""
-    resumo.novo_mail()
-    try:
-        msg, texto, texto_links = ler_mensagem(raw)
-    except Exception:
-        resumo.descartar("mensagem ilegível")
-        return True
-    filtro = filtro_da_mensagem(msg)
-    categoria = "cultura" if e_cultura(msg) else None
-    links = links_uteis(texto_links, abrir, filtro)
-    if links:
-        falhas_rede = 0
-        algum = False
-        for url in links:
-            if url_irrelevante(url):
-                continue
-            eventos, erro = eventos_url(url, dica)
-            if erro:
-                resumo.descartar(f"{erro}: {url}", url)
-                if str(erro).startswith("erro ao abrir"):
-                    falhas_rede += 1
-                continue
-            algum = True
-            for ev in eventos:
-                if isinstance(ev, dict):
-                    ev = copiar_evento(ev)
-                    ev["url"] = limpar_url_evento(str(ev.get("url") or url), abrir, filtro) or url
-                    incorporar(ev, dica, categoria, False, False, hoje, listas, descartadas, resumo)
-        if falhas_rede and not algum:
-            return False
-        return True
-
+def _pelo_modelo(texto: str, dica: str, categoria: str | None, filtro: FiltroLinks, abrir, eventos_url,
+                 modelo, conta: ContaTokens, resumo: ResumoCaixa, hoje, listas, descartadas) -> bool:
     if modelo is None:
         resumo.adiados.append("ANTHROPIC_API_KEY ausente")
         return False
@@ -1116,11 +1442,67 @@ def processar_mensagem(raw: bytes, dica: str, *, hoje, listas, descartadas, abri
                     ev["url"] = limpar_url_evento(str(ev.get("url") or url), abrir, filtro) or url
                     incorporar(ev, dica, categoria, False, False, hoje, listas, descartadas, resumo)
                 continue
-            if erro and not str(erro).startswith("erro ao abrir"):
+            if erro and not falha_pede_texto(erro):
                 resumo.descartar(f"{erro}: {url}", url)
                 continue
         incorporar(evento_do_modelo(item, abrir, filtro), dica, categoria, True, True, hoje, listas, descartadas, resumo)
     return True
+
+
+def processar_mensagem(raw: bytes, dica: str, *, hoje, listas, descartadas, abrir, eventos_url, modelo,
+                       conta: ContaTokens, resumo: ResumoCaixa) -> bool:
+    """Processa uma mensagem. Devolve True se ela pode ganhar a etiqueta."""
+    resumo.novo_mail()
+    try:
+        msg, texto, texto_links = ler_mensagem(raw)
+    except Exception:
+        resumo.descartar("mensagem ilegível")
+        return True
+    filtro = filtro_da_mensagem(msg)
+    categoria = "cultura" if e_cultura(msg) else None
+    links = links_uteis(texto_links, abrir, filtro)
+    if links:
+        falhas_rede = 0
+        algum = False
+        pedir_texto = False
+        for url in links:
+            if url_irrelevante(url):
+                continue
+            eventos, erro = eventos_url(url, dica)
+            if erro:
+                if falha_pede_texto(erro):
+                    pedir_texto = True
+                    if str(erro).startswith("erro ao abrir") or "robots.txt" in str(erro).lower():
+                        falhas_rede += 1
+                    continue
+                resumo.descartar(f"{erro}: {url}", url)
+                if str(erro).startswith("erro ao abrir"):
+                    falhas_rede += 1
+                continue
+            algum = True
+            for ev in eventos:
+                if isinstance(ev, dict):
+                    ev = copiar_evento(ev)
+                    ev["url"] = limpar_url_evento(str(ev.get("url") or url), abrir, filtro) or url
+                    incorporar(ev, dica, categoria, False, False, hoje, listas, descartadas, resumo)
+        if pedir_texto and not algum:
+            return _pelo_modelo(
+                texto, dica, categoria, filtro, abrir, eventos_url, modelo, conta, resumo,
+                hoje, listas, descartadas,
+            )
+        if falhas_rede and not algum:
+            return False
+        return True
+
+    lista = eventos_da_lista(texto)
+    if lista:
+        for ev in lista:
+            incorporar(ev, dica, categoria, False, True, hoje, listas, descartadas, resumo)
+        return True
+    return _pelo_modelo(
+        texto, dica, categoria, filtro, abrir, eventos_url, modelo, conta, resumo,
+        hoje, listas, descartadas,
+    )
 
 
 def carregar(path: Path, hoje) -> dict:

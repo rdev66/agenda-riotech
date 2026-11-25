@@ -1,0 +1,20 @@
+From: Shotgun <conta@example.com>
+To: agenda.rio.roles@gmail.com
+Subject: Confirm your account
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<p>Confirm your account to use Shotgun.</p>
+<p><a href="https://shotgun.live/confirm?token=teste">Confirm</a></p>
+<p><a href="https://shotgun.live/users/confirmar">Confirmar</a></p>
+<p><a href="https://shotgun.live/verify-email">Verify</a></p>
+<p><a href="https://shotgun.live/verificar">Verificar</a></p>
+<p><a href="https://shotgun.live/activate">Activate</a></p>
+<p><a href="https://shotgun.live/ativar">Ativar</a></p>
+<p><a href="https://shotgun.live/password/reset">Reset password</a></p>
+<p><a href="https://shotgun.live/login">Login</a></p>
+<p><a href="https://shotgun.live/signin">Sign in</a></p>
+<p><a href="https://shotgun.live/users/sign-in">Sign-in</a></p>
+<p><a href="https://shotgun.live/events/festa-rio">Festa no Rio</a></p>
+</body></html>

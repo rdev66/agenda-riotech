@@ -1,5 +1,6 @@
 """Testes do importador de correio. Sem rede: IMAP e o modelo são falsos."""
 import datetime as dt
+import email.message
 import imaplib
 import io
 import json
@@ -7,6 +8,7 @@ import os
 import sys
 import tempfile
 import unittest
+import urllib.error
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
@@ -1001,6 +1003,359 @@ class TestCorreio(unittest.TestCase):
         self.assertIn("data/roles.json", texto)
         for nome in ("GMAIL_EVENTOS_APP_PASSWORD", "GMAIL_ROLES_APP_PASSWORD", "ANTHROPIC_API_KEY"):
             self.assertIn(nome, texto)
+
+    def test_ims_sympla_503_cai_no_texto(self):
+        raw = (FIX / "correio_ims_sympla.eml").read_bytes()
+        pedidos = []
+
+        class RespostaHttp:
+            def __init__(self, corpo: bytes):
+                self._corpo = corpo
+                self.headers = email.message.EmailMessage()
+
+            def read(self):
+                return self._corpo
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+        def urlopen(req, timeout=None):
+            url = getattr(req, "full_url", str(req))
+            pedidos.append(url)
+            if url.endswith("/robots.txt"):
+                return RespostaHttp(b"User-agent: *\nAllow: /\n")
+            if "sympla.com.br/evento/" in url:
+                raise urllib.error.HTTPError(
+                    url, 503, "Service Unavailable", email.message.EmailMessage(), None,
+                )
+            raise AssertionError(url)
+
+        def modelo(texto):
+            self.assertIn("Exposicao de fotografia", texto)
+            self.assertIn("sympla.com.br", texto)
+            self.assertNotIn("@", texto)
+            return ([{
+                "title": "Exposicao de fotografia no IMS",
+                "start": "2026-12-18T19:00:00-03:00",
+                "end": "2026-12-18T21:00:00-03:00",
+                "venue": "IMS Botafogo",
+                "address": "Rua Marques de Abrantes, 123",
+                "city": "Rio de Janeiro",
+                "url": "https://www.sympla.com.br/evento/mostra-ims/321",
+                "cost": "gratis",
+                "format": "presencial",
+                "language": "pt",
+                "description_pt": "Exposicao de fotografia no IMS, em Botafogo, com entrada gratuita.",
+            }], 40, 12)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = destinos(Path(tmp))
+            with patch("urllib.request.urlopen", urlopen):
+                relatorio, codigo = correio.rodar(
+                    [correio.CaixaTrabalho(
+                        "Rolês", "agenda.rio.roles@gmail.com", "roles", [("ims", raw)],
+                    )],
+                    hoje=HOJE, destinos=paths, abrir_redirect=lambda url: None,
+                    eventos_da_url=correio.eventos_da_url, modelo=modelo,
+                )
+            roles = json.loads(paths["roles"].read_text(encoding="utf-8"))
+        self.assertEqual(codigo, 0, relatorio)
+        self.assertTrue(any("sympla.com.br/evento/" in url for url in pedidos), pedidos)
+        self.assertTrue(any(url.endswith("/robots.txt") for url in pedidos), pedidos)
+        self.assertEqual([e["title"] for e in roles["events"]], ["Exposicao de fotografia no IMS"])
+        self.assertEqual(
+            roles["events"][0]["url"],
+            "https://www.sympla.com.br/evento/mostra-ims/321",
+        )
+        self.assertEqual(roles["events"][0]["categoria"], "cultura")
+        self.assertNotIn("erro ao abrir", relatorio)
+        self.assertNotIn("JSON-LD", relatorio)
+        self.assertNotIn("@", json.dumps(roles))
+
+    def test_robots_e_jsonld_caem_no_texto(self):
+        self.assertTrue(correio.falha_pede_texto("erro ao abrir: HTTPError"))
+        self.assertTrue(correio.falha_pede_texto("robots.txt respondeu 503"))
+        self.assertTrue(correio.falha_pede_texto("robots.txt falhou: URLError"))
+        self.assertTrue(correio.falha_pede_texto("sem iCal nem schema.org/Event em JSON-LD"))
+        self.assertFalse(correio.falha_pede_texto("robots.txt não permite a leitura"))
+        self.assertFalse(correio.falha_pede_texto("sem dados de evento"))
+
+        def cru(url, corpo):
+            return (
+                "From: a@example.com\r\nTo: agenda.rio.roles@gmail.com\r\n"
+                "Content-Type: text/plain; charset=utf-8\r\n\r\n"
+                f"{corpo}\n{url}\n"
+            ).encode()
+
+        class RespostaHttp:
+            def __init__(self, corpo: bytes):
+                self._corpo = corpo
+                self.headers = email.message.EmailMessage()
+
+            def read(self):
+                return self._corpo
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+        def urlopen(req, timeout=None):
+            url = getattr(req, "full_url", str(req))
+            if "luma.com" in url and url.endswith("/robots.txt"):
+                raise urllib.error.HTTPError(
+                    url, 503, "Service Unavailable", email.message.EmailMessage(), None,
+                )
+            if "doity.com.br" in url and url.endswith("/robots.txt"):
+                return RespostaHttp(b"User-agent: *\nAllow: /\n")
+            if "doity.com.br" in url:
+                return RespostaHttp(b"<html><body>sem evento</body></html>")
+            raise AssertionError(url)
+
+        def modelo(texto):
+            if "gravura" in texto:
+                return ([{
+                    "title": "Exposicao de gravura",
+                    "start": "2026-12-19T18:00:00-03:00",
+                    "end": "",
+                    "venue": "IMS Paulista",
+                    "address": "",
+                    "city": "Rio de Janeiro",
+                    "url": "https://luma.com/gravura-ims",
+                    "cost": "gratis",
+                    "format": "presencial",
+                    "language": "pt",
+                    "description_pt": "Exposicao de gravura no IMS.",
+                }], 10, 4)
+            if "serigrafia" in texto:
+                return ([{
+                    "title": "Exposicao de serigrafia",
+                    "start": "2026-12-20T15:00:00-03:00",
+                    "end": "",
+                    "venue": "Centro",
+                    "address": "",
+                    "city": "Rio de Janeiro",
+                    "url": "https://doity.com.br/serigrafia-rio",
+                    "cost": "gratis",
+                    "format": "presencial",
+                    "language": "pt",
+                    "description_pt": "Exposicao de serigrafia no centro.",
+                }], 10, 4)
+            raise AssertionError(texto[:160])
+
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = destinos(Path(tmp))
+            with patch("urllib.request.urlopen", urlopen):
+                relatorio, codigo = correio.rodar(
+                    [correio.CaixaTrabalho(
+                        "Rolês", "agenda.rio.roles@gmail.com", "roles", [
+                            ("robots", cru(
+                                "https://luma.com/gravura-ims",
+                                "Exposicao de gravura no IMS, dia 19 de dezembro de 2026, as 18h.",
+                            )),
+                            ("jsonld", cru(
+                                "https://doity.com.br/serigrafia-rio",
+                                "Exposicao de serigrafia no centro, dia 20 de dezembro de 2026, as 15h.",
+                            )),
+                        ],
+                    )],
+                    hoje=HOJE, destinos=paths, abrir_redirect=lambda url: None,
+                    eventos_da_url=correio.eventos_da_url, modelo=modelo,
+                )
+            roles = json.loads(paths["roles"].read_text(encoding="utf-8"))
+        self.assertEqual(codigo, 0, relatorio)
+        self.assertEqual(
+            [e["title"] for e in roles["events"]],
+            ["Exposicao de gravura", "Exposicao de serigrafia"],
+        )
+        self.assertNotIn("robots.txt", relatorio)
+        self.assertNotIn("JSON-LD", relatorio)
+
+    def test_shotgun_confirmacao_nao_abre_conta(self):
+        raw = (FIX / "correio_shotgun_confirmacao.eml").read_bytes()
+        contas = [
+            "https://shotgun.live/confirm?token=teste",
+            "https://shotgun.live/users/confirmar",
+            "https://shotgun.live/verify-email",
+            "https://shotgun.live/verificar",
+            "https://shotgun.live/activate",
+            "https://shotgun.live/ativar",
+            "https://shotgun.live/password/reset",
+            "https://shotgun.live/login",
+            "https://shotgun.live/signin",
+            "https://shotgun.live/users/sign-in",
+            "https://shotgun.live/events/festa-rio?token=teste",
+        ]
+        for url in contas:
+            self.assertTrue(correio.url_de_conta(url), url)
+            self.assertTrue(correio.url_recusada(url), url)
+        evento = "https://shotgun.live/events/festa-rio"
+        self.assertFalse(correio.url_de_conta(evento))
+        abertos = []
+
+        def abrir(url):
+            abertos.append(url)
+            raise AssertionError(url)
+
+        def eventos_url(url, agenda):
+            abertos.append(url)
+            return [], "sem dados de evento"
+
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = destinos(Path(tmp))
+            with patch("urllib.request.urlopen", side_effect=AssertionError("rede")):
+                relatorio, codigo = correio.rodar(
+                    [correio.CaixaTrabalho(
+                        "Rolês", "agenda.rio.roles@gmail.com", "roles", [("sg", raw)],
+                    )],
+                    hoje=HOJE, destinos=paths, abrir_redirect=abrir,
+                    eventos_da_url=eventos_url,
+                    modelo=lambda texto: (_ for _ in ()).throw(AssertionError("modelo")),
+                )
+            gravado = paths["roles"].read_text(encoding="utf-8")
+        self.assertEqual(codigo, 0, relatorio)
+        self.assertEqual(abertos, [evento])
+        junto = relatorio + gravado + " ".join(abertos)
+        for url in contas:
+            self.assertNotIn(url, junto)
+        self.assertNotIn("token=", junto)
+        self.assertNotIn("@", gravado)
+
+    def test_listas_songkick_eventim_e_ra(self):
+        def proibe(url, agenda=None):
+            raise AssertionError(url)
+
+        casos = [
+            ("correio_songkick.eml", [
+                ("Gilberto Gil", "Circo Voador", "2026-12-18T21:00:00-03:00",
+                 "https://www.songkick.com/concerts/111-gilberto-gil", False),
+                ("Djavan", "Qualistage", "2026-12-19T20:00:00-03:00",
+                 "https://www.songkick.com/concerts/222-djavan", False),
+                ("Martinho da Vila", "Praia de Copacabana", "2026-12-20T16:00:00-03:00",
+                 "https://www.songkick.com/concerts/333-martinho", True),
+            ]),
+            ("correio_eventim.eml", [
+                ("Ana Carolina", "Teatro Riachuelo", "2026-12-18T21:00:00-03:00",
+                 "https://www.eventim.com.br/event/ana-carolina-rio-111", False),
+                ("Jorge Ben Jor", "Qualistage", "2026-12-19T20:00:00-03:00",
+                 "https://www.eventim.com.br/event/jorge-ben-jor-222", False),
+            ]),
+            ("correio_ra.eml", [
+                ("Vera", "D-Edge Rio", "2026-12-18T23:00:00-03:00",
+                 "https://ra.co/events/190001", False),
+                ("Carlita", "Club Laroc", "2026-12-19T22:00:00-03:00",
+                 "https://ra.co/events/190002", False),
+            ]),
+        ]
+        for nome, esperados in casos:
+            with self.subTest(nome=nome):
+                raw = (FIX / nome).read_bytes()
+                self.assertGreater(len(esperados), 1)
+                with tempfile.TemporaryDirectory() as tmp:
+                    paths = destinos(Path(tmp))
+                    with patch("urllib.request.urlopen", side_effect=AssertionError("rede")):
+                        relatorio, codigo = correio.rodar(
+                            [correio.CaixaTrabalho(
+                                "Rolês", "agenda.rio.roles@gmail.com", "roles", [("1", raw)],
+                            )],
+                            hoje=HOJE, destinos=paths, abrir_redirect=proibe,
+                            eventos_da_url=proibe,
+                            modelo=lambda texto: (_ for _ in ()).throw(AssertionError("modelo")),
+                        )
+                    roles = json.loads(paths["roles"].read_text(encoding="utf-8"))
+                self.assertEqual(codigo, 0, relatorio)
+                self.assertEqual(len(roles["events"]), len(esperados), relatorio)
+                por_titulo = {e["title"]: e for e in roles["events"]}
+                self.assertEqual(set(por_titulo), {item[0] for item in esperados})
+                for titulo, local, inicio, url, de_graca in esperados:
+                    ev = por_titulo[titulo]
+                    self.assertEqual(ev["venue"], local, titulo)
+                    self.assertEqual(ev["start"], inicio, titulo)
+                    self.assertEqual(ev["url"], url, titulo)
+                    self.assertEqual(ev["categoria"], "shows", titulo)
+                    self.assertIn("shows", ev["tags"], titulo)
+                    if de_graca:
+                        self.assertIn("de-graca", ev["tags"], titulo)
+                        self.assertEqual(ev["cost"]["type"], "gratis", titulo)
+                    else:
+                        self.assertNotIn("de-graca", ev["tags"], titulo)
+                bruto = json.dumps(roles)
+                self.assertNotIn("@", bruto)
+                self.assertNotIn("lista@example.com", bruto + relatorio)
+
+    def test_eventim_mistura_sp_e_rio(self):
+        raw = (FIX / "correio_eventim_sp_rio.eml").read_bytes()
+
+        def proibe(url, agenda=None):
+            raise AssertionError(url)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = destinos(Path(tmp))
+            with patch("urllib.request.urlopen", side_effect=AssertionError("rede")):
+                relatorio, codigo = correio.rodar(
+                    [correio.CaixaTrabalho(
+                        "Rolês", "agenda.rio.roles@gmail.com", "roles", [("1", raw)],
+                    )],
+                    hoje=HOJE, destinos=paths, abrir_redirect=proibe,
+                    eventos_da_url=proibe,
+                    modelo=lambda texto: (_ for _ in ()).throw(AssertionError("modelo")),
+                )
+            roles = json.loads(paths["roles"].read_text(encoding="utf-8"))
+        self.assertEqual(codigo, 0, relatorio)
+        self.assertEqual([e["title"] for e in roles["events"]], ["Jorge Ben Jor"], relatorio)
+        ev = roles["events"][0]
+        self.assertEqual(ev["venue"], "Qualistage")
+        self.assertEqual(ev["city"], "Rio de Janeiro")
+        self.assertEqual(ev["start"], "2026-12-19T20:00:00-03:00")
+        self.assertEqual(ev["url"], "https://www.eventim.com.br/event/jorge-ben-jor-222")
+        bruto = json.dumps(roles) + relatorio
+        self.assertNotIn("Ana Carolina", bruto)
+        self.assertNotIn("ana-carolina-sp", bruto)
+        self.assertNotIn("Allianz", bruto)
+        self.assertNotIn("@", json.dumps(roles))
+
+    def test_cidade_sai_do_bloco(self):
+        eventim = "https://www.eventim.com.br/event/show-111"
+        songkick = "https://www.songkick.com/concerts/444-elis"
+        mail_rio = "Proximos shows no Rio\n\n"
+        lista_rio = "Concerts this week in Rio\n\n"
+
+        def bloco(artista, local, extra, url):
+            return f"{artista}\n18/12/2026 21:00\n{local}\n{extra}\n{url}".strip()
+
+        self.assertIsNone(correio._evento_do_bloco(
+            bloco("Maria Bethania", "Mineirao", "BH", eventim), eventim, mail_rio + "BH",
+        ))
+        self.assertIsNone(correio._evento_do_bloco(
+            bloco("Ana Carolina", "Allianz Parque", "São Paulo", eventim),
+            eventim, mail_rio + "São Paulo",
+        ))
+        no_rio = correio._evento_do_bloco(
+            bloco("Jorge Ben Jor", "Qualistage", "", eventim), eventim, mail_rio,
+        )
+        self.assertEqual(no_rio["city"], "Rio de Janeiro")
+        self.assertEqual(no_rio["venue"], "Qualistage")
+        so_rj = correio._evento_do_bloco(
+            bloco("Alguem", "Teatro Qualquer", "RJ", eventim), eventim, "Shows\n\n",
+        )
+        self.assertEqual(so_rj["city"], "Rio de Janeiro")
+        sem_cidade = correio._evento_do_bloco(
+            bloco("Alguem", "Teatro Qualquer", "", eventim), eventim, mail_rio,
+        )
+        self.assertIsNone(sem_cidade["city"])
+        desconhecido = "Elis Regina\nTeatro Qualquer\nDecember 21, 2026, 19:00\n" + songkick
+        na_lista = correio._evento_do_bloco(desconhecido, songkick, lista_rio + desconhecido)
+        self.assertEqual(na_lista["city"], "Rio de Janeiro")
+        fora_da_lista = correio._evento_do_bloco(desconhecido, songkick, "Concerts this week\n\n" + desconhecido)
+        self.assertIsNone(fora_da_lista["city"])
+        self.assertIsNone(correio._evento_do_bloco(
+            bloco("Ana Carolina", "Allianz Parque", "SP", songkick),
+            songkick, lista_rio + "SP",
+        ))
 
 
 if __name__ == "__main__":

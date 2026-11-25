@@ -46,9 +46,9 @@
       "pn": "Festa popular"
     },
     "shows": {
-      "pt": "Show",
-      "en": "Live show",
-      "pn": "Show"
+      "pt": "Música ao vivo",
+      "en": "Live music",
+      "pn": "Música en vivo"
     },
     "mostras": {
       "pt": "Mostra",
@@ -154,6 +154,11 @@
       "pt": "Festival",
       "en": "Festival",
       "pn": "Festival"
+    },
+    "de-graca": {
+      "pt": "De graça",
+      "en": "Free",
+      "pn": "De graça"
     }
   },
   "categories": [
