@@ -1,5 +1,6 @@
 """Testes da agenda Rolês, sem rede. Rodar com: python -m unittest discover -s scripts"""
 import datetime as dt
+import json
 import unittest
 from pathlib import Path
 
@@ -182,6 +183,32 @@ class TestRoles(unittest.TestCase):
         self.assertEqual(tags, ["nerd-geek"])
         self.assertEqual(categoria, "comunidades")
         self.assertEqual(importar.classificar_roles("people show up to the happy hour")[0], [])
+
+    def test_concerto_e_de_graca(self):
+        tags, categoria = importar.classificar_roles("Rock concert at the beach, free entry")
+        self.assertEqual(categoria, "shows")
+        self.assertEqual(tags[0], "shows")
+        self.assertIn("rock", tags)
+        self.assertIn("de-graca", tags)
+        tags, categoria = importar.classificar_roles("Roda de samba gratuita na praia")
+        self.assertEqual(categoria, "festas")
+        self.assertIn("samba-roda", tags)
+        self.assertIn("de-graca", tags)
+        tags, categoria = importar.classificar_roles("Show gratuito na rua")
+        self.assertEqual(categoria, "shows")
+        self.assertIn("de-graca", tags)
+        tags, _categoria = importar.classificar_roles(
+            "Exposicao gratuita na Rua Marques de Abrantes"
+        )
+        self.assertNotIn("de-graca", tags)
+        self.assertFalse(importar.marca_de_graca("Rua do Riachuelo, entrada gratuita"))
+        self.assertTrue(importar.marca_de_graca("na praia", gratis=True))
+        raiz = Path(__file__).resolve().parents[1]
+        dados = json.loads((raiz / "data" / "tags_roles.json").read_text(encoding="utf-8"))
+        self.assertEqual(dados["tags"]["shows"]["pt"], "Música ao vivo")
+        self.assertEqual(dados["tags"]["de-graca"]["pt"], "De graça")
+        shows = next(c for c in dados["categories"] if c["id"] == "shows")
+        self.assertEqual(shows["label"]["pt"], "Música ao vivo")
 
 
 if __name__ == "__main__":

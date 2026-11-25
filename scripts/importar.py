@@ -174,6 +174,19 @@ ROLES_KEYWORDS = [
     (r"\bvolei\b|\bvolleyball\b", "volei", "ao-ar-livre"),
     (r"\bshows?\b(?! up)|\bconcert\b|\bao vivo\b|\bsinfon|\borchestra\b|\borquestra\b", "shows", "shows"),
 ]
+# Concerto e show vão para a categoria Música ao vivo, mesmo se outra palavra casou antes.
+_MUSICA_AO_VIVO = re.compile(
+    r"\b(?:concertos?|concerts?|gigs?|live music|musica ao vivo|shows?)(?!\s+up)\b"
+)
+_GRATIS_TEXTO = re.compile(
+    r"\b(?:gratis|gratuit[oa]|free|entrada franca|de graca|entrada livre)\b"
+)
+# Praia, ou «na rua» no fim da frase. «na Rua Marques» é endereço, não rolê na rua.
+_RUA_OU_PRAIA = re.compile(
+    r"\b(?:praias?|beaches?|beach|orla|beira-mar|beira mar|calcadao|"
+    r"on the street|street party|festa de rua|bloco de rua|"
+    r"na rua(?!\s+[a-z0-9]))\b"
+)
 
 # Páginas que agregam. Na deduplicação, a URL que não está aqui ganha.
 AGREGADORES = {
@@ -268,8 +281,20 @@ def auto_tags(text: str, limit: int = 5, agenda: str = "tech") -> list[str]:
     return found[:limit] or ["comunidade"]
 
 
+def marca_de_graca(texto: str, gratis: bool = False) -> bool:
+    """Evento gratuito na rua ou na praia."""
+    low = _sem_acento(texto or "")
+    if not _RUA_OU_PRAIA.search(low):
+        return False
+    return bool(gratis or _GRATIS_TEXTO.search(low))
+
+
 def classificar_roles(text: str, limit: int = 6) -> tuple[list[str], str | None]:
-    """Devolve tags e a categoria da primeira palavra que casar."""
+    """Devolve tags e a categoria da primeira palavra que casar.
+
+    Concerto e show ficam em Música ao vivo. Grátis na rua ou na praia
+    também leva a tag De graça.
+    """
     low = _sem_acento(text or "")
     tags: list[str] = []
     categoria = None
@@ -288,6 +313,12 @@ def classificar_roles(text: str, limit: int = 6) -> tuple[list[str], str | None]
                 categoria = cat
         if len(tags) >= limit:
             break
+    if _MUSICA_AO_VIVO.search(low):
+        tags = ["shows"] + [t for t in tags if t != "shows"]
+        categoria = "shows"
+    if marca_de_graca(low):
+        if "de-graca" not in tags:
+            tags.append("de-graca")
     return tags[:limit], categoria
 
 

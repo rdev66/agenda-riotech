@@ -52,7 +52,7 @@ A aba Rolês segue o mesmo cartão e a mesma faixa da semana. Os arquivos são o
 | `categoria` | `festas` · `shows` · `cinema` · `comunidades` · `cultura` · `ao-ar-livre` |
 | `urls` | outras páginas do mesmo rolê, além de `url` |
 
-As tags vêm de `data/tags_roles.json`.
+As tags vêm de `data/tags_roles.json`. Concerto e show entram em Música ao vivo. Evento gratuito na rua ou na praia também leva a tag De graça.
 
 `data/roles_fixos.json` guarda o que se repete. Cada item precisa de `rrule` (`FREQ=WEEKLY` ou `FREQ=MONTHLY`, com `BYDAY`), `time`, `fonte` (URL que confirma, não o id da origem) e `verificado_em` (`AAAA-MM-DD`). `end_time` no dia seguinte, como `00:00`, vale. A página gera as próximas 4 semanas. O cartão mostra «Fixo · confira antes».
 

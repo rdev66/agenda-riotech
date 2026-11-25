@@ -88,7 +88,9 @@ Duas caixas no Gmail alimentam a agenda. `scripts/importar_correio.py` lê o con
 - Só entra evento futuro, presencial ou híbrido, na cidade configurada (Rio). Online fica de fora.
 - Cada mensagem lida ganha a etiqueta `agenda/processado`. Nada é apagado nem movido. O repositório não guarda endereço, remetente nem o texto do e-mail: só o evento e o link público.
 - Se a validação passa, o job grava na `main`. A data do commit é a de São Paulo: `Importação automática (correio, AAAA-MM-DD)`. A rodada seguinte começa dessa `main` (`git pull --rebase`), então não há PR de dados parado no meio do caminho. Se a validação falha, a `main` fica como está e abre um PR em `importador/revisar-correio-AAAA-MM-DD`, com o relatório e o erro.
-- Link de descadastro, preferências ou «ver no navegador» não é aberto. O cabeçalho `List-Unsubscribe` também fica de fora.
+- Link de descadastro, preferências ou «ver no navegador» não é aberto. O cabeçalho `List-Unsubscribe` também fica de fora. Link de conta também não: `confirm`, `confirmar`, `verify`, `verificar`, `activate`, `ativar`, `reset`, `password`, `login`, `signin` ou `token=` na URL.
+- Se a página do evento falha (erro HTTP, `robots.txt` indisponível ou 503, sem JSON-LD), o texto do e-mail vai para o mesmo modelo, em vez de descartar o evento.
+- E-mail do Songkick («concerts this week in Rio»), da Eventim e do Resident Advisor traz vários eventos. Entram todos, com data, local, artista e link.
 
 Segredos no GitHub Actions, nunca no repositório:
 
