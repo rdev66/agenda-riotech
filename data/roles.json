@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "events": [
     {
       "title": "Maquete de LEGO® do Rio de Janeiro I Exposição Permanente na Cidade das Artes",
@@ -43,7 +43,12 @@
       ],
       "urls": [
         "https://agendaculturalriodejaneiro.com/en/events/lego-model-of-rio-de-janeiro-i-permanent-exhibition-in-the-city-of-arts"
-      ]
+      ],
+      "resumo": {
+        "pt": "Maquete de LEGO de 947 mil peças do Rio de Janeiro, com 25 ícones da cidade, em exposição permanente na Cidade das Artes. Para quem curte LEGO, cultura e a cidade; visitantes podem conhecer a obra.",
+        "en": "A LEGO model of Rio de Janeiro made of 947,000 pieces, showing 25 city landmarks, on permanent display at the City of Arts. Suited to LEGO fans, culture lovers and visitors to Rio.",
+        "es": "Una maqueta de LEGO de Río de Janeiro con 947 mil piezas y 25 íconos de la ciudad, en exhibición permanente en la Cidade das Artes. Para fans de LEGO, amantes de la cultura y visitantes de Río."
+      }
     },
     {
       "title": "“Abolicionistas Brasileiras’’ no MNBA",
@@ -164,6 +169,9 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/mmm-galeria-apresenta-a-segunda-individual-de-ana-calzavara-no-rio-de-janeiro"
       ]
     },
     {
@@ -204,6 +212,9 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/centro-cultural-candido-mendes-inaugura-exposicao-da-artista-fernanda-leme"
       ]
     },
     {
@@ -763,6 +774,22 @@
           "fonte": "agendacultural:fim-de-semana",
           "data": "2026-11-25",
           "aplicado": false
+        },
+        {
+          "campo": "start",
+          "antes": "2026-11-25T16:00:00-03:00",
+          "depois": "2026-11-27T16:00:00-03:00",
+          "fonte": "agendacultural:fim-de-semana",
+          "data": "2026-11-26",
+          "aplicado": false
+        },
+        {
+          "campo": "end",
+          "antes": "2026-11-25",
+          "depois": "2026-11-27",
+          "fonte": "agendacultural:fim-de-semana",
+          "data": "2026-11-26",
+          "aplicado": false
         }
       ],
       "resumo": {
@@ -931,6 +958,45 @@
       ]
     },
     {
+      "title": "1º Mega Bazar Authen RJ | 26/11 • Quinta-feira",
+      "start": "2026-11-26T09:00:00-03:00",
+      "end": "2026-11-26T19:00:00-03:00",
+      "time_known": true,
+      "venue": "Novotel RJ Porto Atlantico",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://luma.com/j9x23exx",
+      "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,anim=false,background=white,quality=75,width=1920,height=1920/uploads/jx/555208f7-f4d6-42c0-817f-95d4fd045670.png",
+      "organizer": "Authen Running",
+      "description": {
+        "pt": "Seja bem-vindo(a) ao 1º Mega Bazar Authen RJ! Retire o ingresso para realizar seu cadastro e facilitar sua entrada no 1º Mega Bazar Authen no Rio de Janeiro! Durante três semanas, em datas selecionadas, você encontrará…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "descricao_completa": "Seja bem-vindo(a) ao 1º Mega Bazar Authen RJ!\nRetire o ingresso para realizar seu cadastro e facilitar sua entrada no 1º Mega Bazar Authen no Rio de Janeiro!\nDurante três semanas, em datas selecionadas, você encontrará peças de coleções anteriores e itens de mostruário com descontos especiais.\nUma oportunidade para renovar seus equipamentos de corrida com a qualidade, tecnologia e performance Authen!",
+      "categoria": "ao-ar-livre",
+      "source": "Luma (Rio)",
+      "fonte": "luma:rio",
+      "via": "feed",
+      "id": "2026-11-26-1o-mega-bazar-authen-rj-26-11-quinta-feira",
+      "added": "2026-11-26",
+      "vistos": [
+        {
+          "fonte": "luma:rio",
+          "via": "feed",
+          "data": "2026-11-26"
+        }
+      ]
+    },
+    {
       "title": "Fale INGLÊS e PORTUGUÊS.  NOVO DIA e HORA. MESMO BAR na PRAIA do LEME",
       "start": "2026-11-26T15:15:00-03:00",
       "end": "2026-11-26T17:05:00-03:00",
@@ -1062,7 +1128,10 @@
         "pt": "Encontro semanal do Mundo Lingo no Rio de Janeiro (Botafogo), para socializar e conversar com pessoas de vários países, de todas as idades e níveis. Gratuito; a recepção é das 19h às 22h e há promoções de bebidas.",
         "en": "Weekly Mundo Lingo meetup in Rio de Janeiro (Botafogo) to socialise and chat with people from many countries, of all ages and levels. Free; reception runs 7–10pm with drink specials.",
         "es": "Encuentro semanal de Mundo Lingo en Río de Janeiro (Botafogo) para socializar y conversar con personas de muchos países, de todas las edades y niveles. Gratis; la recepción es de 19 a 22 h con ofertas de bebidas."
-      }
+      },
+      "urls": [
+        "https://www.meetup.com/mundo-lingo-rio/events/317588662"
+      ]
     },
     {
       "title": " corrida no Maracanã ",
@@ -1145,6 +1214,47 @@
           "fonte": "agendacultural:fim-de-semana",
           "via": "feed",
           "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Barra da Tijuca Food and Drinks Tour!",
+      "start": "2026-11-27T13:30:00-03:00",
+      "end": "2026-11-27T16:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/rio-de-janeiro-food-and-history/events/317597267",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Rio de Janeiro Food and History Welcome to the beautiful neighborhood of Barra da Tijuca, one of Rio de Janeiro's best zones for beaches, bars, and restaurants. In this tour we will explore some of the most iconic…"
+      },
+      "tags": [
+        "passeios",
+        "gastronomia"
+      ],
+      "status": "confirmado",
+      "bairro": "Barra da Tijuca",
+      "descricao_completa": "Rio de Janeiro Food and History\nWelcome to the beautiful neighborhood of Barra da Tijuca, one of Rio de Janeiro's best zones for beaches, bars, and restaurants. In this tour we will explore some of the most iconic parts of Barra, such as Jardim Oceânico (or Oceanic Garden, and you will soon realize why it is called like this) and the Gigóia Islands, a hidden treasure, considered as Rio de Janeiro's very own Pantanal, where you might get the chance to spot capybaras and crocodiles. All this while exploring the bars for food and drinks around the area!\nAs we walk around the beach front, we will cross into Olegário Maciel Avenue, a bohemian, gastronomic hub in Barra. There, customers will be able to indulge from a plethora of dishes according to different regions of Brazil and historical periods, such as feijoada, picanha (rump steak), medalhão com arroz à piamontese, galinha à caipira, carne de sol com aipim na manteiga (sun-dried meat with yucca soaked in butter); or, for the more adventurous, chicken hearts skewers, alongside popular snacks such as queijo coalho and coxinha de galinha, besides much more depending on one´s hunger.\nFrom Olegário Maciel, we continue our march to the ferries and visit the Gigóia Islands, a picturesque part of Rio de Janeiro, often known as the Pantanal (swamps) of the south. The islands also feature many bars and restaurants, where the customers can finish the tour with a refreshing caipirinha or two.\nImportant notice: there is a small fee for crossing the island (4 reais each way, to be paid exclusively in cash). Food and drinks costs are also extra!\nThe tour is NOT suitable for vegetarians or vegans (if you want to do the tour but your friend is a vegetarian - vegan, he or she is welcome to tag along and order whatever pleases, but none of those dishes are related to a historical background). The standard tour contains beef, pork and alcohol!\nThe average lenght of the tour is 3 hours, but be aware that during the peak summer months the restaurants can be quite busy. I do have an agreement with them to serve my group as quickly as possible, but it is beyond my powers when they are very busy during the weekends or holidays. Expect some tours to last 3:30 hours in high season months.\nNO HAY TOUR EN ESPAÑOL! Sorry, the tour is already over 3 hours long. There is no remote possibility for me to translate everything I say. Cheers.",
+      "source": "Meetup · Rio Food and History",
+      "fonte": "meetup:rio-de-janeiro-food-and-history",
+      "via": "feed",
+      "categoria": "cultura",
+      "id": "2026-11-27-barra-da-tijuca-food-and-drinks-tour",
+      "added": "2026-11-26",
+      "vistos": [
+        {
+          "fonte": "meetup:rio-de-janeiro-food-and-history",
+          "via": "feed",
+          "data": "2026-11-26"
         }
       ]
     },
@@ -1845,7 +1955,12 @@
           "via": "feed",
           "data": "2026-11-25"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Concerto \"Candlelight: Tributo a Metallica\" no Solar de Botafogo, Rio de Janeiro, sábado, 28 de novembro de 2026, às 19h. Releituras para cordas e velas de clássicos da banda, com duração aproximada de 60 minutos; indicado para fãs de rock.",
+        "en": "\"Candlelight: Tributo a Metallica\" at Solar de Botafogo, Rio de Janeiro, on Saturday, November 28, 2026, at 7pm. A roughly 60-minute show of Metallica classics arranged for strings and candlelight, aimed at rock fans.",
+        "es": "\"Candlelight: Tributo a Metallica\" en el Solar de Botafogo, Río de Janeiro, el sábado 28 de noviembre de 2026 a las 19:00. Un espectáculo de unos 60 minutos con clásicos de Metallica en arreglos de cuerdas y velas, dirigido a fans del rock."
+      }
     },
     {
       "title": "Renato Albani apresenta novo show de comédia na Farmasi Arena, no Rio",
@@ -2576,7 +2691,10 @@
         "pt": "Encontro semanal do Mundo Lingo no Rio de Janeiro, em Botafogo, para socializar e conhecer pessoas estrangeiras e locais de todas as idades. Segundo o texto, é gratuito, aberto a todos os níveis de fluência e tem recepção das 19h às 22h.",
         "en": "Weekly Mundo Lingo meetup in Botafogo, Rio de Janeiro, where people of all ages, locals and foreigners, socialise and practise languages. Free and open to all levels; reception runs 7–10pm.",
         "es": "Encuentro semanal de Mundo Lingo en Botafogo, Río de Janeiro, para socializar y conocer a personas extranjeras y locales de todas las edades. Es gratuito, abierto a todos los niveles; la recepción es de 19:00 a 22:00."
-      }
+      },
+      "urls": [
+        "https://www.meetup.com/mundo-lingo-rio/events/317588663"
+      ]
     },
     {
       "title": " corrida no Maracanã ",
@@ -2622,6 +2740,46 @@
         "en": "Running meetup at the Maracanã in Rio de Janeiro, every Tuesday and Thursday at 19:30, at an easy pace of 5:30 to 6:30 min/km depending on who shows up. The goal is to build a running habit and motivate each other.",
         "es": "Encuentro de running en el Maracanã, en Río de Janeiro, los martes y jueves a las 19:30, a un ritmo tranquilo de 5:30 a 6:30 min/km según quién llegue. El objetivo es crear el hábito de correr y motivarse entre todos."
       }
+    },
+    {
+      "title": "Prática de conversação ",
+      "start": "2026-12-04T19:00:00-03:00",
+      "end": "2026-12-04T21:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/clubepoliglotarj/events/vxklttyjcqbgb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Clube Poliglota Rio de Janeiro Prática de conversação em diferentes idiomas. Todos os idiomas são bem vindos! Venha praticar inglês, espanhol, italiano, francês... Se duas pessoas falarem, você pode praticar! Nos…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "descricao_completa": "Clube Poliglota Rio de Janeiro\nPrática de conversação em diferentes idiomas. Todos os idiomas são bem vindos! Venha praticar inglês, espanhol, italiano, francês... Se duas pessoas falarem, você pode praticar!\n\nNos encontramos no segundo andar e geralmente ficamos no espaço externo, onde ficam as mesas e cadeiras.\n\nNão tem nível específico também, temos membros do inciante ao avançado!\n\nEste é um evento do Clube Poliglota Rio de Janeiro.\n\nAll languages are welcome.\n\nWe meet on the second floor and normally stay in the outdoor space, where the tables and chairs are.\n\nThere is no specific level either, we have members from beginner to advanced!\n\nThis event is organized by the Rio de Janeiro's Polyglot Club.",
+      "source": "Meetup · Clube Poliglota RJ",
+      "fonte": "meetup:clubepoliglotarj",
+      "via": "feed",
+      "id": "2026-12-04-pratica-de-conversacao",
+      "added": "2026-11-26",
+      "vistos": [
+        {
+          "fonte": "meetup:clubepoliglotarj",
+          "via": "feed",
+          "data": "2026-11-26"
+        }
+      ]
     },
     {
       "title": "The Jazz Room: Um Tributo a Frank Sinatra e Louis Armstrong no TEATRO RIVAL PETROBRAS",
@@ -2860,7 +3018,12 @@
           "data": "2026-11-23"
         }
       ],
-      "descricao_completa": "Founders Running Club :: Rio de Janeiro\n**Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable when we run and finish with coffee and conversations. Choose your pace or follow a pacer—pets, friends, family, are welcome.\n\n**Join our WhatsApp to Stay Up To Date with meeting spots and new hours: [Entrar no grupo do WhatsApp](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF?utm_source=luma)**\n\n🗓️ Launched in San Francisco, July 16, 2022\n🌍 Now in 50+ cities\n📅 Running + Networking events + Community\n\n**Join the community** [http://foundersrc.com/chats](http://foundersrc.com/chats)\n**Join the WhatsApp Group:** [https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF)\n\n**Stay updated**:\nInstagram [http://instagram.com/foundersrc/](http://instagram.com/foundersrc/)\nLinkedIn [http://linkedin.com/company/foundersrc/](http://linkedin.com/company/foundersrc/)\nStrava [http://strava.com/clubs/foundersRC](http://strava.com/clubs/foundersRC)\nWebsite [http://foundersrc.com/](http://foundersrc.com/)"
+      "descricao_completa": "Founders Running Club :: Rio de Janeiro\n**Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable when we run and finish with coffee and conversations. Choose your pace or follow a pacer—pets, friends, family, are welcome.\n\n**Join our WhatsApp to Stay Up To Date with meeting spots and new hours: [Entrar no grupo do WhatsApp](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF?utm_source=luma)**\n\n🗓️ Launched in San Francisco, July 16, 2022\n🌍 Now in 50+ cities\n📅 Running + Networking events + Community\n\n**Join the community** [http://foundersrc.com/chats](http://foundersrc.com/chats)\n**Join the WhatsApp Group:** [https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF)\n\n**Stay updated**:\nInstagram [http://instagram.com/foundersrc/](http://instagram.com/foundersrc/)\nLinkedIn [http://linkedin.com/company/foundersrc/](http://linkedin.com/company/foundersrc/)\nStrava [http://strava.com/clubs/foundersRC](http://strava.com/clubs/foundersRC)\nWebsite [http://foundersrc.com/](http://foundersrc.com/)",
+      "resumo": {
+        "pt": "Founders Running Club no Rio de Janeiro reúne fundadores, investidores, pessoas de tecnologia, criativos e entusiastas de startups para corridas leves semanais seguidas de networking e café. Pets, amigos e família são bem-vindos.",
+        "en": "Founders Running Club in Rio de Janeiro brings founders, investors, tech and creative people, and startup enthusiasts together for weekly easy runs followed by networking and coffee. Pets, friends and family are welcome.",
+        "es": "Founders Running Club en Río de Janeiro reúne a fundadores, inversores, personas de tecnología, creativos y entusiastas de startups en carreras suaves semanales, seguidas de networking y café. Se admiten mascotas, amigos y familia."
+      }
     },
     {
       "title": "Rio Speaks English",
@@ -3273,7 +3436,10 @@
         "pt": "Encontro semanal de conversação em idiomas no Rio de Janeiro, com pessoas de vários países e de todas as idades, para socializar e praticar idiomas. É gratuito, descontraído e aberto a todos os níveis; a recepção é das 19h às 22h.",
         "en": "Weekly language-exchange meetup in Rio de Janeiro where people from many countries and all ages socialise and practise languages. It is free, relaxed and open to all levels; reception runs 7–10pm.",
         "es": "Encuentro semanal de intercambio de idiomas en Río de Janeiro, con personas de muchos países y de todas las edades para socializar y practicar idiomas. Es gratuito, relajado y abierto a todos los niveles; la recepción es de 19:00 a 22:00."
-      }
+      },
+      "urls": [
+        "https://www.meetup.com/mundo-lingo-rio/events/317588665"
+      ]
     },
     {
       "title": " corrida no Maracanã ",
@@ -3708,7 +3874,12 @@
           "data": "2026-11-23"
         }
       ],
-      "descricao_completa": "Rio Speaks English\n*Em português:*\nUm encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o foco é conversar, se soltar e conhecer gente nova.\n\nTodos os níveis são bem-vindos, do avançado ao iniciante. Não tem prova, não tem pressão — é só uma mesa amigável onde todo mundo se ajuda. Se você está aprendendo inglês, aqui é o lugar para finalmente falar sem medo de errar.\n\nAnfitrião: Murillo, com Jader como co-anfitrião.\n\n📍 Onde: Café no 2º andar da Livraria Travessa, Botafogo\n🕥 Quando: Todo sábado, 10h30 – 12h00\n👥 Vagas: Até 16 pessoas\n☕ Valor: R25 (Pix ou dinheiro) / R30 (cartão), pago no local\n\nEntre no nosso grupo do WhatsApp!\n\n👉 **Link do grupo:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4\n\n*In English:*\nJoin us for a relaxed, in-person English conversation meetup in the heart of Botafogo. Each week we pick a theme — culture, travel, ideas, life in Rio, whatever gets us talking — and dive into a real conversation. The goal isn't a lesson; it's practice, connection, and a good excuse to meet interesting people.\n\nAll levels are welcome, from confident speakers to nervous beginners. There's no test and no pressure — just a friendly table where everyone helps each other out. We wander off-topic, we laugh, and the weekly themes are simply there to break the ice.\n\nLocals and foreigners mix equally here. If you're learning English, it's a safe space to actually speak it. If you're new to Rio, it's a great way to meet Cariocas and make friends.\n\nYour host is Murillo, with Jader co-hosting and stepping in when needed.\n\n📍 Where: Café on the 2nd floor of Livraria Travessa, Botafogo\n🕥 When: Every Saturday, 10:30 AM – 12:00 PM\n👥 Group size: Up to 16 people\n☕ Cost: R25 (Pix or cash) / R30 (credit card), paid at the meetup\n\nJoin our WhatsApp group!\n\n👉 **Group link:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4"
+      "descricao_completa": "Rio Speaks English\n*Em português:*\nUm encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o foco é conversar, se soltar e conhecer gente nova.\n\nTodos os níveis são bem-vindos, do avançado ao iniciante. Não tem prova, não tem pressão — é só uma mesa amigável onde todo mundo se ajuda. Se você está aprendendo inglês, aqui é o lugar para finalmente falar sem medo de errar.\n\nAnfitrião: Murillo, com Jader como co-anfitrião.\n\n📍 Onde: Café no 2º andar da Livraria Travessa, Botafogo\n🕥 Quando: Todo sábado, 10h30 – 12h00\n👥 Vagas: Até 16 pessoas\n☕ Valor: R25 (Pix ou dinheiro) / R30 (cartão), pago no local\n\nEntre no nosso grupo do WhatsApp!\n\n👉 **Link do grupo:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4\n\n*In English:*\nJoin us for a relaxed, in-person English conversation meetup in the heart of Botafogo. Each week we pick a theme — culture, travel, ideas, life in Rio, whatever gets us talking — and dive into a real conversation. The goal isn't a lesson; it's practice, connection, and a good excuse to meet interesting people.\n\nAll levels are welcome, from confident speakers to nervous beginners. There's no test and no pressure — just a friendly table where everyone helps each other out. We wander off-topic, we laugh, and the weekly themes are simply there to break the ice.\n\nLocals and foreigners mix equally here. If you're learning English, it's a safe space to actually speak it. If you're new to Rio, it's a great way to meet Cariocas and make friends.\n\nYour host is Murillo, with Jader co-hosting and stepping in when needed.\n\n📍 Where: Café on the 2nd floor of Livraria Travessa, Botafogo\n🕥 When: Every Saturday, 10:30 AM – 12:00 PM\n👥 Group size: Up to 16 people\n☕ Cost: R25 (Pix or cash) / R30 (credit card), paid at the meetup\n\nJoin our WhatsApp group!\n\n👉 **Group link:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4",
+      "resumo": {
+        "pt": "Encontro presencial e descontraído para praticar inglês de verdade, todo sábado, das 10h30 às 12h, no café da Livraria Travessa em Botafogo, Rio. Aberto a todos os níveis, com até 16 vagas e pagamento no local (R$25 ou R$30).",
+        "en": "A relaxed in-person English conversation meetup every Saturday, 10:30 AM–12:00 PM, at the café in Livraria Travessa, Botafogo, Rio. Open to all levels, up to 16 people, paid at the door (R$25 or R$30).",
+        "es": "Encuentro presencial y relajado para practicar inglés cada sábado, de 10:30 a 12:00, en el café de la Livraria Travessa, en Botafogo, Río. Abierto a todos los niveles, hasta 16 personas, pago en el lugar (R$25 o R$30)."
+      }
     },
     {
       "title": "Vivo Social Clube",
@@ -4134,7 +4305,10 @@
         "pt": "Encontro semanal no Rio de Janeiro (Botafogo/Humaitá) em que pessoas de vários países se reúnem para socializar, tomar uma bebida e conversar em idiomas diferentes. Aberto a todos, de qualquer nível, sem custo; a recepção é das 19h às 22h.",
         "en": "Weekly meetup in Rio de Janeiro (Botafogo/Humaitá) where people from around the world socialise, have a drink and talk in different languages. Open to all levels and free; reception runs 7–10pm.",
         "es": "Encuentro semanal en Río de Janeiro (Botafogo/Humaitá) donde personas de todo el mundo socializan, toman algo y conversan en distintos idiomas. Abierto a todos los niveles y gratuito; la recepción es de 19 a 22 h."
-      }
+      },
+      "urls": [
+        "https://www.meetup.com/mundo-lingo-rio/events/317588666"
+      ]
     },
     {
       "title": " corrida no Maracanã ",
@@ -4179,7 +4353,10 @@
         "pt": "Encontro de corrida no Rio de Janeiro, com o nome \"corrida no Maracanã\", às terças e quintas às 19:30. A proposta é uma corrida tranquila, com ritmo entre 5:30 e 6:30 por km, para criar o hábito de correr em grupo.",
         "en": "Running meetup in Rio de Janeiro, titled \"corrida no Maracanã\", on Tuesdays and Thursdays at 19:30. It is a relaxed run at a pace of about 5:30 to 6:30 per km, meant to build a regular running habit as a group.",
         "es": "Encuentro de running en Río de Janeiro, titulado \"corrida no Maracanã\", los martes y jueves a las 19:30. Es una carrera tranquila, con un ritmo de unos 5:30 a 6:30 por km, para crear el hábito de correr en grupo."
-      }
+      },
+      "urls": [
+        "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/317584733"
+      ]
     },
     {
       "title": "Mundo Lingo Rio - Botafogo",
@@ -4357,7 +4534,12 @@
           "data": "2026-11-23"
         }
       ],
-      "descricao_completa": "Founders Running Club :: Rio de Janeiro\n**Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable when we run and finish with coffee and conversations. Choose your pace or follow a pacer—pets, friends, family, are welcome.\n\n**Join our WhatsApp to Stay Up To Date with meeting spots and new hours: [Entrar no grupo do WhatsApp](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF?utm_source=luma)**\n\n🗓️ Launched in San Francisco, July 16, 2022\n🌍 Now in 50+ cities\n📅 Running + Networking events + Community\n\n**Join the community** [http://foundersrc.com/chats](http://foundersrc.com/chats)\n**Join the WhatsApp Group:** [https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF)\n\n**Stay updated**:\nInstagram [http://instagram.com/foundersrc/](http://instagram.com/foundersrc/)\nLinkedIn [http://linkedin.com/company/foundersrc/](http://linkedin.com/company/foundersrc/)\nStrava [http://strava.com/clubs/foundersRC](http://strava.com/clubs/foundersRC)\nWebsite [http://foundersrc.com/](http://foundersrc.com/)"
+      "descricao_completa": "Founders Running Club :: Rio de Janeiro\n**Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable when we run and finish with coffee and conversations. Choose your pace or follow a pacer—pets, friends, family, are welcome.\n\n**Join our WhatsApp to Stay Up To Date with meeting spots and new hours: [Entrar no grupo do WhatsApp](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF?utm_source=luma)**\n\n🗓️ Launched in San Francisco, July 16, 2022\n🌍 Now in 50+ cities\n📅 Running + Networking events + Community\n\n**Join the community** [http://foundersrc.com/chats](http://foundersrc.com/chats)\n**Join the WhatsApp Group:** [https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF)\n\n**Stay updated**:\nInstagram [http://instagram.com/foundersrc/](http://instagram.com/foundersrc/)\nLinkedIn [http://linkedin.com/company/foundersrc/](http://linkedin.com/company/foundersrc/)\nStrava [http://strava.com/clubs/foundersRC](http://strava.com/clubs/foundersRC)\nWebsite [http://foundersrc.com/](http://foundersrc.com/)",
+      "resumo": {
+        "pt": "Founders Running Club no Rio de Janeiro: corridas leves semanais seguidas de café e networking para fundadores, investidores, profissionais de tecnologia, criativos e entusiastas de startups. Pets, amigos e família são bem-vindos.",
+        "en": "Founders Running Club in Rio de Janeiro: weekly easy runs followed by coffee and networking for founders, investors, tech and creative people, and startup enthusiasts. Pets, friends and family are welcome.",
+        "es": "Founders Running Club en Río de Janeiro: carreras suaves semanales seguidas de café y networking para fundadores, inversores, profesionales de tecnología, creativos y entusiastas de startups. Se admiten mascotas, amigos y familia."
+      }
     },
     {
       "title": "Rio Speaks English",
@@ -4673,7 +4855,12 @@
           "data": "2026-11-23"
         }
       ],
-      "descricao_completa": "Founders Running Club :: Rio de Janeiro\n**Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable when we run and finish with coffee and conversations. Choose your pace or follow a pacer—pets, friends, family, are welcome.\n\n**Join our WhatsApp to Stay Up To Date with meeting spots and new hours: [Entrar no grupo do WhatsApp](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF?utm_source=luma)**\n\n🗓️ Launched in San Francisco, July 16, 2022\n🌍 Now in 50+ cities\n📅 Running + Networking events + Community\n\n**Join the community** [http://foundersrc.com/chats](http://foundersrc.com/chats)\n**Join the WhatsApp Group:** [https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF)\n\n**Stay updated**:\nInstagram [http://instagram.com/foundersrc/](http://instagram.com/foundersrc/)\nLinkedIn [http://linkedin.com/company/foundersrc/](http://linkedin.com/company/foundersrc/)\nStrava [http://strava.com/clubs/foundersRC](http://strava.com/clubs/foundersRC)\nWebsite [http://foundersrc.com/](http://foundersrc.com/)"
+      "descricao_completa": "Founders Running Club :: Rio de Janeiro\n**Founders Running Club** (FRC) brings founders, investors, tech, creative people and startup enthusiasts together for weekly easy runs and networking. We like to be comfortable when we run and finish with coffee and conversations. Choose your pace or follow a pacer—pets, friends, family, are welcome.\n\n**Join our WhatsApp to Stay Up To Date with meeting spots and new hours: [Entrar no grupo do WhatsApp](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF?utm_source=luma)**\n\n🗓️ Launched in San Francisco, July 16, 2022\n🌍 Now in 50+ cities\n📅 Running + Networking events + Community\n\n**Join the community** [http://foundersrc.com/chats](http://foundersrc.com/chats)\n**Join the WhatsApp Group:** [https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF](https://chat.whatsapp.com/DYUrfjvPVjQELaRRdLNHnF)\n\n**Stay updated**:\nInstagram [http://instagram.com/foundersrc/](http://instagram.com/foundersrc/)\nLinkedIn [http://linkedin.com/company/foundersrc/](http://linkedin.com/company/foundersrc/)\nStrava [http://strava.com/clubs/foundersRC](http://strava.com/clubs/foundersRC)\nWebsite [http://foundersrc.com/](http://foundersrc.com/)",
+      "resumo": {
+        "pt": "Founders Running Club no Rio de Janeiro: corridas leves semanais seguidas de café e networking, voltadas a fundadores, investidores, pessoas de tecnologia, criativos e entusiastas de startups. Pets, amigos e família são bem-vindos.",
+        "en": "Founders Running Club in Rio de Janeiro: weekly easy runs followed by coffee and networking, for founders, investors, tech and creative people, and startup enthusiasts. Pets, friends and family are welcome.",
+        "es": "Founders Running Club en Río de Janeiro: carreras suaves semanales seguidas de café y networking, para fundadores, inversores, personas de tecnología y creativos, y entusiastas de startups. Se aceptan mascotas, amigos y familia."
+      }
     },
     {
       "title": "Rio Speaks English",
@@ -4714,7 +4901,12 @@
           "data": "2026-11-23"
         }
       ],
-      "descricao_completa": "Rio Speaks English\n*Em português:*\nUm encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o foco é conversar, se soltar e conhecer gente nova.\n\nTodos os níveis são bem-vindos, do avançado ao iniciante. Não tem prova, não tem pressão — é só uma mesa amigável onde todo mundo se ajuda. Se você está aprendendo inglês, aqui é o lugar para finalmente falar sem medo de errar.\n\nAnfitrião: Murillo, com Jader como co-anfitrião.\n\n📍 Onde: Café no 2º andar da Livraria Travessa, Botafogo\n🕥 Quando: Todo sábado, 10h30 – 12h00\n👥 Vagas: Até 16 pessoas\n☕ Valor: R25 (Pix ou dinheiro) / R30 (cartão), pago no local\n\nEntre no nosso grupo do WhatsApp!\n\n👉 **Link do grupo:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4\n\n*In English:*\nJoin us for a relaxed, in-person English conversation meetup in the heart of Botafogo. Each week we pick a theme — culture, travel, ideas, life in Rio, whatever gets us talking — and dive into a real conversation. The goal isn't a lesson; it's practice, connection, and a good excuse to meet interesting people.\n\nAll levels are welcome, from confident speakers to nervous beginners. There's no test and no pressure — just a friendly table where everyone helps each other out. We wander off-topic, we laugh, and the weekly themes are simply there to break the ice.\n\nLocals and foreigners mix equally here. If you're learning English, it's a safe space to actually speak it. If you're new to Rio, it's a great way to meet Cariocas and make friends.\n\nYour host is Murillo, with Jader co-hosting and stepping in when needed.\n\n📍 Where: Café on the 2nd floor of Livraria Travessa, Botafogo\n🕥 When: Every Saturday, 10:30 AM – 12:00 PM\n👥 Group size: Up to 16 people\n☕ Cost: R25 (Pix or cash) / R30 (credit card), paid at the meetup\n\nJoin our WhatsApp group!\n\n👉 **Group link:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4"
+      "descricao_completa": "Rio Speaks English\n*Em português:*\nUm encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o foco é conversar, se soltar e conhecer gente nova.\n\nTodos os níveis são bem-vindos, do avançado ao iniciante. Não tem prova, não tem pressão — é só uma mesa amigável onde todo mundo se ajuda. Se você está aprendendo inglês, aqui é o lugar para finalmente falar sem medo de errar.\n\nAnfitrião: Murillo, com Jader como co-anfitrião.\n\n📍 Onde: Café no 2º andar da Livraria Travessa, Botafogo\n🕥 Quando: Todo sábado, 10h30 – 12h00\n👥 Vagas: Até 16 pessoas\n☕ Valor: R25 (Pix ou dinheiro) / R30 (cartão), pago no local\n\nEntre no nosso grupo do WhatsApp!\n\n👉 **Link do grupo:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4\n\n*In English:*\nJoin us for a relaxed, in-person English conversation meetup in the heart of Botafogo. Each week we pick a theme — culture, travel, ideas, life in Rio, whatever gets us talking — and dive into a real conversation. The goal isn't a lesson; it's practice, connection, and a good excuse to meet interesting people.\n\nAll levels are welcome, from confident speakers to nervous beginners. There's no test and no pressure — just a friendly table where everyone helps each other out. We wander off-topic, we laugh, and the weekly themes are simply there to break the ice.\n\nLocals and foreigners mix equally here. If you're learning English, it's a safe space to actually speak it. If you're new to Rio, it's a great way to meet Cariocas and make friends.\n\nYour host is Murillo, with Jader co-hosting and stepping in when needed.\n\n📍 Where: Café on the 2nd floor of Livraria Travessa, Botafogo\n🕥 When: Every Saturday, 10:30 AM – 12:00 PM\n👥 Group size: Up to 16 people\n☕ Cost: R25 (Pix or cash) / R30 (credit card), paid at the meetup\n\nJoin our WhatsApp group!\n\n👉 **Group link:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4",
+      "resumo": {
+        "pt": "Encontro presencial e descontraído para praticar inglês de verdade, todo sábado, das 10h30 às 12h, no café da Livraria Travessa em Botafogo, com até 16 pessoas. Aberto a todos os níveis, com um tema semanal para puxar a conversa.",
+        "en": "A relaxed in-person English conversation meetup every Saturday, 10:30 AM–12:00 PM, at the café of Livraria Travessa in Botafogo, for up to 16 people. All levels welcome, with a weekly theme to start the conversation.",
+        "es": "Encuentro presencial y relajado para practicar inglés todos los sábados, de 10:30 a 12:00, en el café de la Livraria Travessa en Botafogo, para hasta 16 personas. Abierto a todos los niveles, con un tema semanal para conversar."
+      }
     },
     {
       "title": "Vivo Social Clube",
@@ -4925,7 +5117,12 @@
           "via": "feed",
           "data": "2026-11-25"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Réveillon do Altar de Copa no rooftop Alma Copacabana, no Rio de Janeiro, em 31/12/2026 às 20h, com música, open bar premium, serviço gastronômico e atmosfera ritualística para atravessar a meia-noite. Ingressos pelo site Shotgun.",
+        "en": "New Year's Eve party by Altar de Copa on the Alma Copacabana rooftop in Rio de Janeiro, on 31 Dec 2026 from 8 pm, with music, premium open bar, food service and a ritual atmosphere to see in midnight. Tickets via Shotgun.",
+        "es": "Fiesta de Nochevieja de Altar de Copa en la azotea del Alma Copacabana, en Río de Janeiro, el 31/12/2026 desde las 20h, con música, barra libre premium, gastronomía y ambiente ritual para recibir la medianoche. Entradas en Shotgun."
+      }
     },
     {
       "title": "☮️Let's Meditate New Year Eve. Celebrate within ❤️",
@@ -5969,7 +6166,12 @@
       ],
       "urls": [
         "https://agendaculturalriodejaneiro.com/en/events/god-save-the-queen-homenageia-freddie-mercury-e-queen-no-vivo-rio"
-      ]
+      ],
+      "resumo": {
+        "pt": "Tributo à obra de Freddie Mercury e Queen, com clássicos do rock, no Vivo Rio (Rio de Janeiro). Acontece na quarta-feira, 21 de abril de 2027, às 19h00.",
+        "en": "A tribute to Freddie Mercury and Queen's music, featuring rock classics, at Vivo Rio in Rio de Janeiro. It takes place on Wednesday, April 21, 2027, at 7:00 PM.",
+        "es": "Un tributo a la obra de Freddie Mercury y Queen, con clásicos del rock, en el Vivo Rio de Río de Janeiro. Será el miércoles 21 de abril de 2027, a las 19:00."
+      }
     },
     {
       "title": "Dynalectric Orchestra apresenta Begin Transmission Tour no Vivo Rio",
@@ -6104,6 +6306,9 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/front-love-songs-brings-valentines-day-atmosphere-to-baiuca-djbar"
       ]
     }
   ]
