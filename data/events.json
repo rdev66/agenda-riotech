@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "events": [
     {
       "title": "III Ciclo do programa SandBox.Rio",
@@ -6731,6 +6731,41 @@
       ]
     },
     {
+      "title": "Encerramento InovaSeed Deeptech 2026",
+      "start": "2026-12-07T14:00:00-03:00",
+      "end": "2026-12-07T18:00:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/0e5nylqf",
+      "image": null,
+      "organizer": null,
+      "description": {},
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "fonte": "luma:maravalley",
+      "via": "feed",
+      "id": "2026-12-07-encerramento-inovaseed-deeptech-2026",
+      "added": "2026-11-26",
+      "vistos": [
+        {
+          "fonte": "luma:maravalley",
+          "via": "feed",
+          "data": "2026-11-26"
+        }
+      ]
+    },
+    {
       "title": "Encontro de Mulheres com Patricia Muricy",
       "start": "2026-12-08T18:00:00-03:00",
       "end": "2026-12-08T22:00:00-03:00",
@@ -6804,6 +6839,41 @@
           "fonte": "meetup:rioai-hub",
           "via": "feed",
           "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Encontro Estratégico 2027 | ICONIC",
+      "start": "2026-12-09T08:30:00-03:00",
+      "end": "2026-12-09T12:30:00-03:00",
+      "time_known": true,
+      "venue": "Av. Prof. Pereira Reis, 76 - Santo Cristo, Rio de Janeiro - RJ, 20220-800, Brasil",
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://luma.com/ka502waf",
+      "image": null,
+      "organizer": null,
+      "description": {},
+      "tags": [
+        "comunidade"
+      ],
+      "status": "confirmado",
+      "source": "Maravalley (Luma)",
+      "fonte": "luma:maravalley",
+      "via": "feed",
+      "id": "2026-12-09-encontro-estrategico-2027-iconic",
+      "added": "2026-11-26",
+      "vistos": [
+        {
+          "fonte": "luma:maravalley",
+          "via": "feed",
+          "data": "2026-11-26"
         }
       ]
     },
@@ -6951,7 +7021,9 @@
       "url": "https://luma.com/h06qua99",
       "image": null,
       "organizer": null,
-      "description": {},
+      "description": {
+        "pt": "Cidades em Rede é um encontro de lideranças municipais comprometidas com a melhoria da gestão pública por meio do uso ético e responsável da inteligência artificial. Promovido pela RIL Brasil, reúne pessoas de…"
+      },
       "tags": [
         "comunidade"
       ],
@@ -6967,7 +7039,8 @@
           "via": "feed",
           "data": "2026-11-24"
         }
-      ]
+      ],
+      "descricao_completa": "Cidades em Rede é um encontro de lideranças municipais comprometidas com a melhoria da gestão pública por meio do uso ético e responsável da inteligência artificial. Promovido pela RIL Brasil, reúne pessoas de diferentes cidades para compartilhar experiências, discutir desafios e aprender com quem está construindo caminhos para transformar os governos e os serviços à população.\nNa edição de 2026, o Rio de Janeiro será o ponto de encontro dessa rede e o cenário de uma imersão em experiências de inovação na gestão municipal. A programação combina visitas, conversas e trocas entre equipes, criando espaço para conhecer iniciativas de perto, refletir sobre sua aplicação em outros contextos e construir novas possibilidades de colaboração.\nO encontro também acolhe as cidades da CIIAR Brasil e celebra o encerramento da primeira edição do programa Governos na Era da IA, reconhecendo a dedicação das lideranças e as conquistas construídas ao longo dessa trajetória.\n\n📅 Data: 10/12\nLocal: Porto Maravalley – Av. Professor Pereira Reis, 76 – Santo Cristo\nEvento fechado!"
     },
     {
       "title": "Happy Hour Maravalley",
@@ -6986,7 +7059,9 @@
       "url": "https://luma.com/0512skh3",
       "image": null,
       "organizer": null,
-      "description": {},
+      "description": {
+        "pt": "HAPPY HOUR + TALK: A ENGENHARIA DA MARCA DESEJADA Uma visão do marketing sobre por que alguns negócios são desejados e escolhidos Por que, entre dez opções parecidas, o cliente lembra de uma só? E por que alguns…"
+      },
       "tags": [
         "networking"
       ],
@@ -7002,7 +7077,8 @@
           "via": "feed",
           "data": "2026-11-03"
         }
-      ]
+      ],
+      "descricao_completa": "HAPPY HOUR + TALK: A ENGENHARIA DA MARCA DESEJADA\nUma visão do marketing sobre por que alguns negócios são desejados e escolhidos\nPor que, entre dez opções parecidas, o cliente lembra de uma só? E por que alguns negócios nunca precisam brigar por preço, enquanto outros trabalham muito e continuam invisíveis?\nA resposta quase nunca é sorte, nem orçamento, nem ter o post mais bonito. Existe uma estrutura por trás das marcas que as pessoas lembram, desejam e indicam.\nNo próximo Happy Hour do Maravalley, Beatriz Ziterith, fundadora da agência de marketing Anti, conversa com a gente sobre essa estrutura e compartilha o que tem visto na prática com marcas e negócios de diferentes tamanhos. Entre os temas da conversa:\nO que é marca de verdade, e por que ela vai muito além do logo e das cores.\nPor que estar presente com frequência faz diferença, já que a maior parte do mercado ainda não está pronta para comprar hoje, mas vai lembrar de quem esteve por perto quando estiver.\nComo falar do jeito que o cliente quer ouvir, no canal e na linguagem dele, e não só no que agrada a quem comunica.\nComo sair do óbvio quando todo mundo do setor parece fazer igual.\nUm encontro para trocar ideias, tirar dúvidas e sair com um olhar novo sobre o próprio negócio.\n📅 Data: 10/12\n🕔 Horário: A partir das 17h\n📍 Local: Porto Maravalley – Av. Professor Pereira Reis, 76 – Santo Cristo\nPara quem é: empreendedores, empresários e profissionais que participam de decisões de marca e comunicação, mesmo sem experiência em marketing.\n\nEsperamos você para mais uma noite de boas conversas, novas conexões e muito conteúdo no Maravalley!"
     },
     {
       "id": "2026-12-12-cafe-em-codigo-experience",
