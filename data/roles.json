@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "events": [
     {
       "title": "Maquete de LEGO® do Rio de Janeiro I Exposição Permanente na Cidade das Artes",
@@ -790,6 +790,22 @@
           "fonte": "agendacultural:fim-de-semana",
           "data": "2026-11-26",
           "aplicado": false
+        },
+        {
+          "campo": "start",
+          "antes": "2026-11-25T16:00:00-03:00",
+          "depois": "2026-11-28T16:00:00-03:00",
+          "fonte": "agendacultural:fim-de-semana",
+          "data": "2026-11-27",
+          "aplicado": false
+        },
+        {
+          "campo": "end",
+          "antes": "2026-11-25",
+          "depois": "2026-11-28",
+          "fonte": "agendacultural:fim-de-semana",
+          "data": "2026-11-27",
+          "aplicado": false
         }
       ],
       "resumo": {
@@ -1215,6 +1231,24 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "historico": [
+        {
+          "campo": "start",
+          "antes": "2026-11-26T20:00:00-03:00",
+          "depois": "2026-11-27T20:00:00-03:00",
+          "fonte": "agendacultural:fim-de-semana",
+          "data": "2026-11-27",
+          "aplicado": false
+        },
+        {
+          "campo": "end",
+          "antes": "2026-11-26",
+          "depois": "2026-11-27",
+          "fonte": "agendacultural:fim-de-semana",
+          "data": "2026-11-27",
+          "aplicado": false
+        }
       ]
     },
     {
@@ -1394,6 +1428,9 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/major-rd-lanca-turne-alfa-na-fundicao-progresso-em-novembro"
       ]
     },
     {
@@ -2463,7 +2500,12 @@
         }
       ],
       "end": "2026-11-29T23:30:00-03:00",
-      "descricao_completa": "GIPSY KINGS® by Diego Baliardo e Sidney Magal se encontram no Qualistage em uma turnê criada especialmente para o público brasileiro. O espetáculo reúne a rumba flamenca e a tradição cigana associadas ao repertório internacional dos Gipsy Kings com a teatralidade, o romantismo e a música latina que transformaram Sidney Magal em um dos artistas mais populares do Brasil. A proposta da noite tem uma estrutura específica: Sidney Magal participa como convidado especial durante o show do GIPSY KINGS® by Diego Baliardo, criando momentos em conjunto e aproximando dois universos que sempre tiveram na dança, na guitarra, no ritmo e na comunicação direta com o público alguns de seus elementos mais fortes. GIPSY KINGS® by Diego Baliardo representa uma linhagem musical construída a partir da família Baliardo e da tradição cigana do sul da França. Sob a liderança de Diego Baliardo, o projeto preserva uma linguagem baseada na guitarra acústica, no canto de forte intensidade e na fusão entre flamenco, rumba e música popular. A história divulgada para o espetáculo remonta a 1978, quando músicos da família passaram a ganhar atenção na Côte d'Azur francesa depois de apresentações em ambientes privados e festas ligadas ao circuito de Saint-Tropez. A combinação de técnica, energia e identidade cultural ajudou a transformar aquela música familiar em um fenômeno de alcance internacional. Mais de quatro décadas depois, o repertório associado aos Gipsy Kings permanece reconhecível em vários países. \"Bamboleo\", \"Djobi Djoba\" e \"Baila Me\" se tornaram símbolos de uma sonoridade que colocou a rumba flamenca no centro da música pop mundial, enquanto versões de \"Volare\", \"Hotel California\" e \"A Mi Manera\" mostraram a capacidade de reorganizar canções conhecidas dentro de uma estética própria. A formação liderada por Diego Baliardo mantém como elemento central os arranjos de múltiplas guitarras, recurso que produz uma base rítmica intensa e ao mesmo tempo cria espaço para solos, vozes e palmas. Essa combinação foi decisiva para construir a identidade do grupo nos grandes palcos internacionais. Segundo a divulgação oficial da turnê, o projeto associado aos Gipsy Kings soma mais de 20 milhões de álbuns vendidos e carrega em sua história o Grammy de Melhor Álbum de World Music conquistado com \"Savor Flamenco\". Esses números ajudam a dimensionar o alcance internacional de uma música construída a partir de uma tradição familiar e regional. Sidney Magal entra nesse universo com uma carreira igualmente ligada à música latina, ao romantismo e ao espetáculo. O cantor começou sua trajetória artística nos anos 1960 e passou por experiências em rádio, televisão, canto lírico e música erudita antes de construir a persona popular que o transformaria em fenômeno nacional. A explosão de \"Sandra Rosa Madalena (A Cigana)\" no final dos anos 1970 colocou Magal no centro da cultura popular brasileira. A combinação de figurinos, dança, interpretação dramática e sonoridades latinas construiu uma imagem que atravessou programas de televisão, rádios e grandes apresentações. Outros sucessos consolidaram essa identidade. \"Meu Sangue Ferve por Você\", \"Tenho\", \"Se Te Agarro com Outro Te Mato\" e \"Me Chama Que Eu Vou\" estão entre músicas que marcaram diferentes fases da carreira. Esta última ganhou nova projeção no início dos anos 1990 ao integrar o universo da novela \"Rainha da Sucata\", durante o período de grande popularidade da lambada. Em 2026, Sidney Magal vive o ciclo de celebração de seis décadas de carreira. O encontro com GIPSY KINGS® by Diego Baliardo é especialmente coerente com essa história porque aproxima duas trajetórias associadas ao imaginário latino, à dança e a uma forte comunicação visual e musical com a plateia. No ponto alto do show, a rumba flamenca e a música cigana encontram o repertório brasileiro de Magal. A proposta é criar um momento inédito em que artistas de origens diferentes compartilham um mesmo palco a partir de referências que dialogam entre si. O Qualistage recebe a apresentação em uma noite de domingo na Barra da Tijuca. Para quem procura Gipsy Kings no Rio de Janeiro, show de Sidney Magal, música latina, rumba flamenca e grandes espetáculos internacionais em 2026, o encontro oferece um repertório de clássicos mundiais e brasileiros dentro de uma produção concebida especificamente para esta turnê. 📅 Data: Domingo, 29 de novembro de 2026 ⏰ Horário: 21h30 📍 Local: Qualistage -- Avenida Ayrton Senna, 3000, Barra da Tijuca, Rio de Janeiro - RJ 💸 Ingressos: https://www.ticketmaster.com.br/event/gipsy-kings-part-sidney-magal-qualistage"
+      "descricao_completa": "GIPSY KINGS® by Diego Baliardo e Sidney Magal se encontram no Qualistage em uma turnê criada especialmente para o público brasileiro. O espetáculo reúne a rumba flamenca e a tradição cigana associadas ao repertório internacional dos Gipsy Kings com a teatralidade, o romantismo e a música latina que transformaram Sidney Magal em um dos artistas mais populares do Brasil. A proposta da noite tem uma estrutura específica: Sidney Magal participa como convidado especial durante o show do GIPSY KINGS® by Diego Baliardo, criando momentos em conjunto e aproximando dois universos que sempre tiveram na dança, na guitarra, no ritmo e na comunicação direta com o público alguns de seus elementos mais fortes. GIPSY KINGS® by Diego Baliardo representa uma linhagem musical construída a partir da família Baliardo e da tradição cigana do sul da França. Sob a liderança de Diego Baliardo, o projeto preserva uma linguagem baseada na guitarra acústica, no canto de forte intensidade e na fusão entre flamenco, rumba e música popular. A história divulgada para o espetáculo remonta a 1978, quando músicos da família passaram a ganhar atenção na Côte d'Azur francesa depois de apresentações em ambientes privados e festas ligadas ao circuito de Saint-Tropez. A combinação de técnica, energia e identidade cultural ajudou a transformar aquela música familiar em um fenômeno de alcance internacional. Mais de quatro décadas depois, o repertório associado aos Gipsy Kings permanece reconhecível em vários países. \"Bamboleo\", \"Djobi Djoba\" e \"Baila Me\" se tornaram símbolos de uma sonoridade que colocou a rumba flamenca no centro da música pop mundial, enquanto versões de \"Volare\", \"Hotel California\" e \"A Mi Manera\" mostraram a capacidade de reorganizar canções conhecidas dentro de uma estética própria. A formação liderada por Diego Baliardo mantém como elemento central os arranjos de múltiplas guitarras, recurso que produz uma base rítmica intensa e ao mesmo tempo cria espaço para solos, vozes e palmas. Essa combinação foi decisiva para construir a identidade do grupo nos grandes palcos internacionais. Segundo a divulgação oficial da turnê, o projeto associado aos Gipsy Kings soma mais de 20 milhões de álbuns vendidos e carrega em sua história o Grammy de Melhor Álbum de World Music conquistado com \"Savor Flamenco\". Esses números ajudam a dimensionar o alcance internacional de uma música construída a partir de uma tradição familiar e regional. Sidney Magal entra nesse universo com uma carreira igualmente ligada à música latina, ao romantismo e ao espetáculo. O cantor começou sua trajetória artística nos anos 1960 e passou por experiências em rádio, televisão, canto lírico e música erudita antes de construir a persona popular que o transformaria em fenômeno nacional. A explosão de \"Sandra Rosa Madalena (A Cigana)\" no final dos anos 1970 colocou Magal no centro da cultura popular brasileira. A combinação de figurinos, dança, interpretação dramática e sonoridades latinas construiu uma imagem que atravessou programas de televisão, rádios e grandes apresentações. Outros sucessos consolidaram essa identidade. \"Meu Sangue Ferve por Você\", \"Tenho\", \"Se Te Agarro com Outro Te Mato\" e \"Me Chama Que Eu Vou\" estão entre músicas que marcaram diferentes fases da carreira. Esta última ganhou nova projeção no início dos anos 1990 ao integrar o universo da novela \"Rainha da Sucata\", durante o período de grande popularidade da lambada. Em 2026, Sidney Magal vive o ciclo de celebração de seis décadas de carreira. O encontro com GIPSY KINGS® by Diego Baliardo é especialmente coerente com essa história porque aproxima duas trajetórias associadas ao imaginário latino, à dança e a uma forte comunicação visual e musical com a plateia. No ponto alto do show, a rumba flamenca e a música cigana encontram o repertório brasileiro de Magal. A proposta é criar um momento inédito em que artistas de origens diferentes compartilham um mesmo palco a partir de referências que dialogam entre si. O Qualistage recebe a apresentação em uma noite de domingo na Barra da Tijuca. Para quem procura Gipsy Kings no Rio de Janeiro, show de Sidney Magal, música latina, rumba flamenca e grandes espetáculos internacionais em 2026, o encontro oferece um repertório de clássicos mundiais e brasileiros dentro de uma produção concebida especificamente para esta turnê. 📅 Data: Domingo, 29 de novembro de 2026 ⏰ Horário: 21h30 📍 Local: Qualistage -- Avenida Ayrton Senna, 3000, Barra da Tijuca, Rio de Janeiro - RJ 💸 Ingressos: https://www.ticketmaster.com.br/event/gipsy-kings-part-sidney-magal-qualistage",
+      "resumo": {
+        "pt": "Show do GIPSY KINGS® by Diego Baliardo com participação especial de Sidney Magal, com rumba flamenca, música cigana e repertório latino, no Qualistage (Barra da Tijuca, Rio de Janeiro), domingo, 29 de novembro de 2026, às 21h30.",
+        "en": "Show by GIPSY KINGS® by Diego Baliardo with special guest Sidney Magal, featuring flamenco rumba, gypsy music and Latin repertoire, at Qualistage in Barra da Tijuca, Rio de Janeiro, on Sunday, November 29, 2026, at 9:30 PM.",
+        "es": "Espectáculo de GIPSY KINGS® by Diego Baliardo con el invitado especial Sidney Magal, con rumba flamenca, música gitana y repertorio latino, en Qualistage (Barra da Tijuca, Río de Janeiro), el domingo 29 de noviembre de 2026 a las 21:30."
+      }
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -2888,7 +2930,15 @@
           "via": "feed",
           "data": "2026-11-25"
         }
-      ]
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/ze-ibarra-no-circo-voador-apresenta-nova-fase-da-carreira-solo"
+      ],
+      "resumo": {
+        "pt": "Zé Ibarra, cantor, compositor e multi-instrumentista carioca, se apresenta no Circo Voador (Lapa, Rio de Janeiro) em show que apresenta sua carreira solo, na sexta-feira, 4 de dezembro de 2026, às 20h. Ingressos pelo site da Eventim.",
+        "en": "Singer-songwriter and multi-instrumentalist Zé Ibarra performs his solo career at Circo Voador in Lapa, Rio de Janeiro, on Friday, December 4, 2026, at 8 PM. Tickets are sold through Eventim.",
+        "es": "El cantautor y multiinstrumentista carioca Zé Ibarra se presenta en su carrera solo en el Circo Voador, en Lapa, Río de Janeiro, el viernes 4 de diciembre de 2026 a las 20:00. Entradas en Eventim."
+      }
     },
     {
       "title": "Armandinho e banda na Fundição Progresso na FUNDIÇÃO PROGRESSO",
@@ -2939,7 +2989,10 @@
         "pt": "Show do cantor Armandinho e banda na Fundição Progresso, no Rio de Janeiro, em 5 de dezembro de 2026 (sábado). Mistura pop, reggae, rock, surf rock e romantismo, com sucessos como Desenho de Deus, Outra Vida, Casinha e Ana Lua.",
         "en": "Concert by singer Armandinho and his band at Fundição Progresso in Rio de Janeiro on December 5, 2026 (Saturday). The show mixes pop, reggae, rock, surf rock and romance, with hits such as Desenho de Deus, Outra Vida, Casinha and Ana Lua.",
         "es": "Concierto del cantante Armandinho y su banda en Fundição Progresso, en Río de Janeiro, el 5 de diciembre de 2026 (sábado). Mezcla pop, reggae, rock, surf rock y romanticismo, con éxitos como Desenho de Deus, Outra Vida, Casinha y Ana Lua."
-      }
+      },
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/armandinho-and-band-at-foundry-progress-at-foundry-progress"
+      ]
     },
     {
       "title": "Corrida na Quinta da Boa Vista",
@@ -3287,7 +3340,9 @@
         "es": "Baile do 2A es una fiesta de baile funk, funk y pagode en Río de Janeiro, en un lugar secreto, el 5 de diciembre de 2026, de 22:00 a 05:00 del día siguiente. Las entradas se informan en la taquilla."
       },
       "urls": [
-        "https://agendaculturalriodejaneiro.com/events/baile-do-2a-aposta-em-funk-e-pagode-em-locacao-secreta-no-rio"
+        "https://agendaculturalriodejaneiro.com/events/baile-do-2a-aposta-em-funk-e-pagode-em-locacao-secreta-no-rio",
+        "https://agendaculturalriodejaneiro.com/en/events/dance-of-the-2nd-bet-on-funk-and-pagode-in-a-secret-location-in-rio",
+        "https://agendaculturalriodejaneiro.com/en/events/2nd-dance-mixing-funk-and-pagode-at-secret-party-in-rio"
       ],
       "historico": [
         {
@@ -3305,6 +3360,47 @@
           "fonte": "agendacultural:fim-de-semana",
           "data": "2026-11-25",
           "aplicado": false
+        }
+      ]
+    },
+    {
+      "title": "Piquenique Poliglota na Quinta da Boa Vista",
+      "start": "2026-12-06T14:00:00-03:00",
+      "end": "2026-12-06T17:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/clubepoliglotarj/events/317593581",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Clube Poliglota Rio de Janeiro 🌍 Picnic Poliglota RJ 🧺 Que tal praticar idiomas, conhecer pessoas novas e aproveitar uma tarde ao ar livre? O Clube Poliglota RJ convida você para mais uma edição do nosso Picnic…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "São Cristóvão",
+      "descricao_completa": "Clube Poliglota Rio de Janeiro\n🌍 Picnic Poliglota RJ 🧺\n\nQue tal praticar idiomas, conhecer pessoas novas e aproveitar uma tarde ao ar livre?\n\nO Clube Poliglota RJ convida você para mais uma edição do nosso Picnic Poliglota, desta vez na Quinta da Boa Vista!\n\nA proposta é reunir pessoas interessadas em idiomas para conversar, trocar experiências e fazer novas amizades em um ambiente descontraído.\n\nOs idiomas mais praticados são inglês, espanhol e francês, mas todos os idiomas são bem-vindos!\n\n📅 Domingo, 6 de dezembro de 2026\n⏰ Das 14h às 17h\n📍 Quinta da Boa Vista, São Cristóvão, Rio de Janeiro\n🎟️ Evento totalmente gratuito!\n\n🧺 O que levar?\n\n• Algo para comer ou beber e compartilhar.\n• Uma canga ou toalha para sentar na grama.\n• Disposição para conversar e praticar idiomas!\n\n🌎 Preciso falar outro idioma fluentemente?\n\nNão! Todos os níveis são bem-vindos, inclusive iniciantes.\n\nO objetivo é praticar idiomas de maneira natural, sem pressão e sem medo de cometer erros.\n\nEsperamos vocês na Quinta da Boa Vista!",
+      "source": "Meetup · Clube Poliglota RJ",
+      "fonte": "meetup:clubepoliglotarj",
+      "via": "feed",
+      "id": "2026-12-06-piquenique-poliglota-na-quinta-da-boa-vista",
+      "added": "2026-11-27",
+      "vistos": [
+        {
+          "fonte": "meetup:clubepoliglotarj",
+          "via": "feed",
+          "data": "2026-11-27"
         }
       ]
     },
@@ -3709,6 +3805,9 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/capim-limao-apresenta-novo-disco-em-show-na-audio-rebel"
       ]
     },
     {
@@ -4226,7 +4325,15 @@
           "via": "feed",
           "data": "2026-11-25"
         }
-      ]
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/barko-abrindo-o-verao-leva-baile-funk-e-techno-a-marina-da-gloria"
+      ],
+      "resumo": {
+        "pt": "Barko Abrindo o Verão é uma festa ao ar livre na Marina da Glória (BR Marinas), no Rio de Janeiro, no domingo, 13 de dezembro de 2026, às 14h. Tem KBRAL e Vicx com mistura de baile funk e techno, com pista e vista para o mar.",
+        "en": "Barko Abrindo o Verão is an outdoor party at Marina da Glória (BR Marinas) in Rio de Janeiro on Sunday, December 13, 2026, starting at 2pm. KBRAL and Vicx perform a mix of baile funk and techno, with a dance floor and sea views.",
+        "es": "Barko Abrindo o Verão es una fiesta al aire libre en Marina da Glória (BR Marinas), en Río de Janeiro, el domingo 13 de diciembre de 2026 a las 14h. KBRAL y Vicx ofrecen una mezcla de baile funk y techno, con pista y vista al mar."
+      }
     },
     {
       "title": "Testament, Municipal Waste e Immolation no Sacadura 154",
@@ -4273,7 +4380,12 @@
           "via": "feed",
           "data": "2026-11-25"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Show no Sacadura 154, no Rio de Janeiro, com Testament, Municipal Waste e Immolation, bandas de thrash, crossover thrash e death metal norte-americanos. Acontece em domingo, 13 de dezembro de 2026, às 18h00, para quem curte metal extremo.",
+        "en": "Concert at Sacadura 154 in Rio de Janeiro featuring Testament, Municipal Waste and Immolation, US thrash, crossover thrash and death metal bands. It takes place Sunday, December 13, 2026, at 6:00 PM, for metal fans.",
+        "es": "Concierto en el Sacadura 154, en Río de Janeiro, con Testament, Municipal Waste e Immolation, bandas estadounidenses de thrash, crossover thrash y death metal. Será el domingo 13 de diciembre de 2026, a las 18:00, para fanáticos del metal."
+      }
     },
     {
       "title": "Mundo Lingo Botafogo/Humaitá",
@@ -4509,6 +4621,46 @@
           "fonte": "agendacultural:fim-de-semana",
           "via": "feed",
           "data": "2026-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Corrida na Quinta da Boa Vista",
+      "start": "2026-12-19T08:30:00-03:00",
+      "end": "2026-12-19T09:30:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "desconhecido",
+        "text": null
+      },
+      "registration": "inscricao",
+      "url": "https://www.meetup.com/meetup-de-corrida-rio-de-janeiro/events/lwvbbpyjcqbzb",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Meetup de Corrida Rio de Janeiro vamos correr na quinta da boa vista. costumo sempre correr por lá nos fins de semanas. o local eh bem movimentado e com policiais no parque, nunca tendo visto nada anormal. o lugar eh…"
+      },
+      "tags": [
+        "corrida"
+      ],
+      "status": "confirmado",
+      "categoria": "ao-ar-livre",
+      "bairro": "Maracanã",
+      "descricao_completa": "Meetup de Corrida Rio de Janeiro\nvamos correr na quinta da boa vista. costumo sempre correr por lá nos fins de semanas. o local eh bem movimentado e com policiais no parque, nunca tendo visto nada anormal. o lugar eh super agradável para correr, bem arborizado e com variações interessantes de inclinação do terreno. Corrida de 7 km por 2 cartões postais da cidade (Quinta da Boa Vista e Maracanã)",
+      "source": "Meetup · Corrida Rio de Janeiro",
+      "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+      "via": "feed",
+      "id": "2026-12-19-corrida-na-quinta-da-boa-vista",
+      "added": "2026-11-27",
+      "vistos": [
+        {
+          "fonte": "meetup:meetup-de-corrida-rio-de-janeiro",
+          "via": "feed",
+          "data": "2026-11-27"
         }
       ]
     },
@@ -5007,7 +5159,58 @@
           "via": "feed",
           "data": "2026-11-25"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Encontro semanal no Rio de Janeiro (Botafogo/Humaitá) para socializar e praticar idiomas, aberto a pessoas de todas as idades e níveis, locais e estrangeiras. A recepção é das 19h às 22h, e o evento é gratuito, com bebidas em promoção.",
+        "en": "Weekly meetup in Rio de Janeiro (Botafogo/Humaitá) where people of all ages and levels, locals and foreigners, socialise and practise languages. Free; reception 7–10pm, with drink specials.",
+        "es": "Encuentro semanal en Río de Janeiro (Botafogo/Humaitá) para socializar y practicar idiomas, abierto a personas de todas las edades y niveles, locales y extranjeras. Gratis; recepción de 19 a 22 h, con ofertas en bebidas."
+      }
+    },
+    {
+      "title": "Mundo Lingo Rio - Botafogo",
+      "start": "2026-12-31T19:00:00-03:00",
+      "end": "2027-01-01T05:00:00-03:00",
+      "time_known": true,
+      "venue": null,
+      "address": null,
+      "city": "Rio de Janeiro",
+      "format": "presencial",
+      "cost": {
+        "type": "gratis",
+        "text": "Grátis"
+      },
+      "registration": "livre",
+      "url": "https://www.meetup.com/mundo-lingo-rio/events/317588673",
+      "image": null,
+      "organizer": null,
+      "description": {
+        "pt": "Mundo Lingo Rio de Janeiro 100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free. 🟢 The Flags Place flags on your chest from top…"
+      },
+      "tags": [
+        "idiomas"
+      ],
+      "status": "confirmado",
+      "categoria": "comunidades",
+      "idioma": "multi",
+      "bairro": "Botafogo",
+      "descricao_completa": "Mundo Lingo Rio de Janeiro\n100s of people from around the 🌎 meet weekly to socialise, have a drink, and meet foreign/local people of all ages. It's chilled, fun and free.\n\n🟢 The Flags\nPlace flags on your chest from top to bottom according to fluency. We offer flags from 200+ places.\n\n🟢 Stand to mingle, sit to dwindle!\n🗣 Talk about anything you like. You don't have to be an advanced speaker - it's open to everyone!\n\n🛎 Reception 7 - 10pm\nNot obligatory, but arrive at this time if you’re new or want those drinks specials.\n\nConnect with us 👉 mundolingo.org",
+      "source": "Meetup · Mundo Lingo Rio",
+      "fonte": "meetup:mundo-lingo-rio",
+      "via": "feed",
+      "id": "2026-12-31-mundo-lingo-rio-botafogo",
+      "added": "2026-11-27",
+      "vistos": [
+        {
+          "fonte": "meetup:mundo-lingo-rio",
+          "via": "feed",
+          "data": "2026-11-27"
+        }
+      ],
+      "resumo": {
+        "pt": "Encontro semanal do Mundo Lingo no Rio de Janeiro (Botafogo), para socializar e praticar idiomas com pessoas de vários países e idades. É gratuito, aberto a todos os níveis, com recepção das 19h às 22h e promoções de bebidas.",
+        "en": "Weekly Mundo Lingo meetup in Rio de Janeiro (Botafogo) where people from many countries socialise and practise languages, all ages and levels welcome. It is free, with a reception from 7 to 10pm and drink specials.",
+        "es": "Encuentro semanal de Mundo Lingo en Río de Janeiro (Botafogo) para socializar y practicar idiomas con personas de muchos países y edades, abierto a todos los niveles. Es gratis, con recepción de 19:00 a 22:00 y ofertas en bebidas."
+      }
     },
     {
       "title": "Réveillon de Copacabana — Djavan, Simone Mendes, Xande de Pilares + Revelação, Pedro Sampaio",
@@ -5092,6 +5295,9 @@
           "via": "feed",
           "data": "2026-11-25"
         }
+      ],
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/white-rooftop-reveillon-2027-anuncia-virada-intimista-em-santa-teresa"
       ]
     },
     {
@@ -5137,7 +5343,10 @@
         "pt": "Réveillon do Altar de Copa no rooftop Alma Copacabana, no Rio de Janeiro, em 31/12/2026 às 20h, com música, open bar premium, serviço gastronômico e atmosfera ritualística para atravessar a meia-noite. Ingressos pelo site Shotgun.",
         "en": "New Year's Eve party by Altar de Copa on the Alma Copacabana rooftop in Rio de Janeiro, on 31 Dec 2026 from 8 pm, with music, premium open bar, food service and a ritual atmosphere to see in midnight. Tickets via Shotgun.",
         "es": "Fiesta de Nochevieja de Altar de Copa en la azotea del Alma Copacabana, en Río de Janeiro, el 31/12/2026 desde las 20h, con música, barra libre premium, gastronomía y ambiente ritual para recibir la medianoche. Entradas en Shotgun."
-      }
+      },
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/canopy-altar-proposes-new-years-eve-elevated-over-copacabana"
+      ]
     },
     {
       "title": "☮️Let's Meditate New Year Eve. Celebrate within ❤️",
@@ -5448,7 +5657,12 @@
           "data": "2026-11-23"
         }
       ],
-      "descricao_completa": "Rio Speaks English\n*Em português:*\nUm encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o foco é conversar, se soltar e conhecer gente nova.\n\nTodos os níveis são bem-vindos, do avançado ao iniciante. Não tem prova, não tem pressão — é só uma mesa amigável onde todo mundo se ajuda. Se você está aprendendo inglês, aqui é o lugar para finalmente falar sem medo de errar.\n\nAnfitrião: Murillo, com Jader como co-anfitrião.\n\n📍 Onde: Café no 2º andar da Livraria Travessa, Botafogo\n🕥 Quando: Todo sábado, 10h30 – 12h00\n👥 Vagas: Até 16 pessoas\n☕ Valor: R25 (Pix ou dinheiro) / R30 (cartão), pago no local\n\nEntre no nosso grupo do WhatsApp!\n\n👉 **Link do grupo:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4\n\n*In English:*\nJoin us for a relaxed, in-person English conversation meetup in the heart of Botafogo. Each week we pick a theme — culture, travel, ideas, life in Rio, whatever gets us talking — and dive into a real conversation. The goal isn't a lesson; it's practice, connection, and a good excuse to meet interesting people.\n\nAll levels are welcome, from confident speakers to nervous beginners. There's no test and no pressure — just a friendly table where everyone helps each other out. We wander off-topic, we laugh, and the weekly themes are simply there to break the ice.\n\nLocals and foreigners mix equally here. If you're learning English, it's a safe space to actually speak it. If you're new to Rio, it's a great way to meet Cariocas and make friends.\n\nYour host is Murillo, with Jader co-hosting and stepping in when needed.\n\n📍 Where: Café on the 2nd floor of Livraria Travessa, Botafogo\n🕥 When: Every Saturday, 10:30 AM – 12:00 PM\n👥 Group size: Up to 16 people\n☕ Cost: R25 (Pix or cash) / R30 (credit card), paid at the meetup\n\nJoin our WhatsApp group!\n\n👉 **Group link:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4"
+      "descricao_completa": "Rio Speaks English\n*Em português:*\nUm encontro presencial e descontraído para praticar inglês de verdade, todo sábado de manhã, no coração de Botafogo. A cada semana escolhemos um tema para puxar a conversa — mas o foco é conversar, se soltar e conhecer gente nova.\n\nTodos os níveis são bem-vindos, do avançado ao iniciante. Não tem prova, não tem pressão — é só uma mesa amigável onde todo mundo se ajuda. Se você está aprendendo inglês, aqui é o lugar para finalmente falar sem medo de errar.\n\nAnfitrião: Murillo, com Jader como co-anfitrião.\n\n📍 Onde: Café no 2º andar da Livraria Travessa, Botafogo\n🕥 Quando: Todo sábado, 10h30 – 12h00\n👥 Vagas: Até 16 pessoas\n☕ Valor: R25 (Pix ou dinheiro) / R30 (cartão), pago no local\n\nEntre no nosso grupo do WhatsApp!\n\n👉 **Link do grupo:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4\n\n*In English:*\nJoin us for a relaxed, in-person English conversation meetup in the heart of Botafogo. Each week we pick a theme — culture, travel, ideas, life in Rio, whatever gets us talking — and dive into a real conversation. The goal isn't a lesson; it's practice, connection, and a good excuse to meet interesting people.\n\nAll levels are welcome, from confident speakers to nervous beginners. There's no test and no pressure — just a friendly table where everyone helps each other out. We wander off-topic, we laugh, and the weekly themes are simply there to break the ice.\n\nLocals and foreigners mix equally here. If you're learning English, it's a safe space to actually speak it. If you're new to Rio, it's a great way to meet Cariocas and make friends.\n\nYour host is Murillo, with Jader co-hosting and stepping in when needed.\n\n📍 Where: Café on the 2nd floor of Livraria Travessa, Botafogo\n🕥 When: Every Saturday, 10:30 AM – 12:00 PM\n👥 Group size: Up to 16 people\n☕ Cost: R25 (Pix or cash) / R30 (credit card), paid at the meetup\n\nJoin our WhatsApp group!\n\n👉 **Group link:** https://chat.whatsapp.com/JRCxwCcTb9eFn9RSI9rCIa?s=cl&p=a&ilr=4",
+      "resumo": {
+        "pt": "Encontro presencial e descontraído para praticar inglês em conversa, todo sábado, das 10h30 às 12h, no café da Livraria Travessa, em Botafogo. Aberto a todos os níveis, com até 16 vagas e pagamento no local.",
+        "en": "A relaxed in-person English conversation meetup every Saturday, 10:30 AM–12:00 PM, at the café of Livraria Travessa in Botafogo. Open to all levels, up to 16 people, paid at the door (R$25 Pix/cash, R$30 card).",
+        "es": "Encuentro presencial y relajado para practicar inglés conversando, todos los sábados de 10:30 a 12:00, en el café de la Livraria Travessa, en Botafogo. Abierto a todos los niveles, hasta 16 personas, pago en el lugar."
+      }
     },
     {
       "title": "Woof Week Rio 2027 transforma a cidade em destino LGBTQIA+ internacional",
@@ -5576,7 +5790,12 @@
           "via": "feed",
           "data": "2026-11-25"
         }
-      ]
+      ],
+      "resumo": {
+        "pt": "Show da cantora e compositora franco-camaronesa Irma, na World Tour 2027, no Circo Voador (Lapa, Rio de Janeiro), em 21 de janeiro de 2027, às 20h. Repertório de folk, soul e pop; ingressos de R$ 100 a R$ 360.",
+        "en": "Concert by Franco-Cameroonian singer-songwriter Irma on her World Tour 2027 at Circo Voador (Lapa, Rio de Janeiro) on January 21, 2027, at 8 PM. Folk, soul and pop repertoire; tickets R$ 100 to R$ 360.",
+        "es": "Concierto de la cantante y compositora franco-camerunesa Irma, en su World Tour 2027, en el Circo Voador (Lapa, Río de Janeiro), el 21 de enero de 2027 a las 20:00. Repertorio de folk, soul y pop; entradas de R$ 100 a R$ 360."
+      }
     },
     {
       "title": "Rio Speaks English",
@@ -5720,7 +5939,10 @@
         "pt": "Show de Covinh4, rapper e trapper de Santarém (PA), no Circo Voador, na Lapa, Rio de Janeiro, sábado, 23 de janeiro de 2027, às 21h30. Para quem busca rap e trap paraense e shows na Lapa; ingressos pelo link do evento.",
         "en": "Covinh4, a rapper and trap artist from Santarém (PA), performs live at Circo Voador in Lapa, Rio de Janeiro, on Saturday, January 23, 2027, at 9:30 pm. Aimed at fans of Brazilian rap and trap; tickets via the event link.",
         "es": "Covinh4, rapero y trapero de Santarém (PA), se presenta en vivo en el Circo Voador, en Lapa, Río de Janeiro, el sábado 23 de enero de 2027, a las 21:30. Para fans del rap y trap brasileño; entradas en el enlace del evento."
-      }
+      },
+      "urls": [
+        "https://agendaculturalriodejaneiro.com/en/events/covinh4-ao-vivo-no-circo-voador-em-janeiro-de-2027"
+      ]
     },
     {
       "title": "Suco da Luz do Sol - Oficina Sabores&Saberes Livre",
